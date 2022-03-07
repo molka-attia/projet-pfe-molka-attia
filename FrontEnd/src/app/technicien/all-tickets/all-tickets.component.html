@@ -1,0 +1,89 @@
+<app-technicien></app-technicien>
+<div class="content">
+    
+
+  <main>
+  
+
+    <div >
+      <div >
+        <div class="case">
+          <div class="header-case">
+            <h2>Listes tickets</h2>
+            <button class="button">voir plus<span class="fa fa-arrow-right"></span></button>
+          </div>
+          <div class="body-case">
+            <div class="tableau">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <!-- <th>Number</th> -->
+                    <th>Description</th>
+                    <td>Priorité</td>
+                    <td>assigner au </td>
+                    <td>Demandeur</td>
+                    <td>Etat</td>
+                 
+                    <td>consulter</td>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+             
+                  <tr  *ngFor="let ticket of ticketsList; let i = index">
+                    <!-- <td>{{ticket.id}}</td> -->
+                    <td>{{ticket.description}}</td>
+                    <div *ngIf="ticket.priorite =='urgent'">  
+                      <td><span class="status-produit color-one"></span>{{ticket.priorite}}</td>
+                     </div>
+                     <div *ngIf="ticket.priorite =='moyenne'">  
+                      <td><span class="status-produit color-two"></span>{{ticket.priorite}}</td>
+                     </div>
+                     <div *ngIf="ticket.priorite =='faible'">  
+                      <td><span class="status-produit color-three"></span>{{ticket.priorite}}</td>
+                     </div>
+                    <td>{{ticket.demandeur}}</td>
+                    <td>{{ticket. assignetech}}</td>
+                    <td>{{ticket.etat}}</td>
+                  
+                    <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
+                  
+                    <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
+               
+            
+                    <!-- <td><span class="status-produit color-three"></span>twitter</td> -->
+                  
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    
+      <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketDetails">
+            
+        <a class="close-button" (click)="onClickCloseForm2()">X</a>
+        <div class="edit">
+          <!-- create form -->
+          <form >
+            <h3>Ticket info</h3>
+            <!-- <img src="assets/images/photo3.jpg"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50"> -->
+            <div>
+              <h4 style="text-align: center;">{{currentticket.description}}</h4>
+         
+            <h5 style="text-align: center;">{{currentticket.etat}}</h5>
+          </div>
+          <!-- <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
+          <button class="btn btn-success add-btn" style="width: 25%;" >Supprimer</button>  -->
+      
+     
+          </form>
+        </div>
+    
+    
+    </div>
+  

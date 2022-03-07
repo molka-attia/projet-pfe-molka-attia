@@ -1,0 +1,66 @@
+<app-utilisateur></app-utilisateur>
+<div class="content">
+    
+
+  <main>
+  
+
+    <div >
+      <div >
+        <div class="case">
+          <div class="header-case">
+            <h2>Listes tickets</h2>
+            <button class="button">voir plus<span class="fa fa-arrow-right"></span></button>
+          </div>
+          <div class="body-case">
+            <div class="tableau">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <!-- <th>Number</th> -->
+                    <th>Description</th>
+                    <td>Priorité</td>
+                    <td>assigner au </td>
+                  
+                    <td>Etat</td>
+                 
+                   
+                   
+                  </tr>
+                </thead>
+                <tbody>
+             
+                  <tr  *ngFor="let ticket of ticketsList; let i = index">
+                    <!-- <td>{{ticket.id}}</td> -->
+                    <td>{{ticket.description}}</td>
+                    <div *ngIf="ticket.priorite =='urgent'">  
+                      <td><span class="status-produit color-one"></span>{{ticket.priorite}}</td>
+                     </div>
+                     <div *ngIf="ticket.priorite =='moyenne'">  
+                      <td><span class="status-produit color-two"></span>{{ticket.priorite}}</td>
+                     </div>
+                     <div *ngIf="ticket.priorite =='faible'">  
+                      <td><span class="status-produit color-three"></span>{{ticket.priorite}}</td>
+                     </div>
+                    <td>{{ticket.demandeur}}</td>
+                    <td>{{ticket. assignetech}}</td>
+                    <td>{{ticket.etat}}</td>
+                  
+                  
+                  
+                    <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
+               
+            
+                    <!-- <td><span class="status-produit color-three"></span>twitter</td> -->
+                  
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    
