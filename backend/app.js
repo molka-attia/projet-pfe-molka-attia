@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
  const User= require('./models/User');
 const app = express();
 
+const adminRouter=require('./routes/admin');
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/Pfe', {
     useNewUrlParser: true,
@@ -21,9 +22,7 @@ res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With,Content, 
 res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PATCH,OPTIONS');
 next();
 });
-app.get('/api/users',(req,res)=>{
-   User.find().then(users=>res.status(200).json(users)).catch(err=>res.status(400).json('Eror')); 
-  });
+app.use('/api/users',adminRouter);
 
 
 module.exports = app;
