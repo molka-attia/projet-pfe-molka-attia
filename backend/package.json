@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molka-attia/molkaattia-pfe.git"
+  },
+  "author": "molka attia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/molka-attia/molkaattia-pfe/issues"
+  },
+  "homepage": "https://github.com/molka-attia/molkaattia-pfe#readme"
+}
