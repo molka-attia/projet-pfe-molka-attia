@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+ const User= require('./models/User');
 const app = express();
 
 //connecting to database
@@ -20,31 +21,8 @@ res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With,Content, 
 res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PATCH,OPTIONS');
 next();
 });
-app.get('/api/users',(req,res)=>{const users = [
-    {
-      id:"1",
-      name: 'Molka',
-      user_img:"4c.jpg",
-      email: 'john.doe.gmail.com',
-      type:'admin',
-    
-    },
-    {
-      id:"2",
-      name: 'Molka2',
-      user_img:"4c.jpg",
-      email: 'john.doe.gmail.com2',
-      type:'admin',
-    },  
-    {
-      id:"3",
-      name: 'Emily',
-      user_img:"4c.jpg",
-      email: 'john.doe.gmail.com2',
-      type:'technicien',
-    },  
-  ];
-  res.json(users);
+app.get('/api/users',(req,res)=>{
+   User.find().then(users=>res.status(200).json(users)).catch(err=>res.status(400).json('Eror')); 
   });
 
 
