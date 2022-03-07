@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/molka-attia/molkaattia-pfe/issues"
   },
-  "homepage": "https://github.com/molka-attia/molkaattia-pfe#readme"
+  "homepage": "https://github.com/molka-attia/molkaattia-pfe#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
