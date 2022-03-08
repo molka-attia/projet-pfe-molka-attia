@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { MainDashAdminComponent } from './main-dash-admin/main-dash-admin.component';
 import { UserComponent } from './user/user.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TicketComponent } from './ticket/ticket.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

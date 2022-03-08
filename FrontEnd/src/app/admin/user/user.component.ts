@@ -14,12 +14,14 @@ import {AdminService } from '../../services/admin.service';
 })
 export class UserComponent implements OnInit {
   public usersList : User[] = users;
-  
-  //imagePreview:string;
+ 
+ public imagePreview:string;
+
   constructor(private userService : AdminService, private router:Router) {
    
    }
-    //formaddUser:FormGroup;
+    formaddUser:FormGroup;
+    
    public showAddUserForm = false;
    public showUserDetails = false;
    public showEditUserForm=false;
@@ -33,14 +35,31 @@ export class UserComponent implements OnInit {
          console.log(resultatUser);
       }
     );
-    // this.formaddUser = new FormGroup({
-    //   name: new FormControl(null,{validators:[Validators.required]}),
-    //   email: new FormControl(null,{validators:[Validators.required]}),
-    //  password: new FormControl(null,{validators:[Validators.required]}),
-    //  type: new FormControl(null,{validators:[Validators.required]}),
-    //  user_img: new FormControl(null,{validators:[Validators.required]}),
-    // });
+    this.formaddUser = new FormGroup({
+      name: new FormControl(null,{validators:[Validators.required]}),
+      email: new FormControl(null,{validators:[Validators.required]}),
+     password: new FormControl(null,{validators:[Validators.required]}),
+     type: new FormControl(null,{validators:[Validators.required]}),
+     user_img: new FormControl(null,{validators:[Validators.required]}),
+    });
  
+  }
+
+  async onAddSubmit(){
+    await this.userService.addUser(this.formaddUser.value);
+    this.showAddUserForm = false;
+   // this.router.navigate(['dash-respo/events']);
+  }
+  onImagePicked(event :Event){
+    const file = (event.target as HTMLInputElement).files[0];
+    this.formaddUser.patchValue({user_img:file});
+    this.formaddUser.get('user_img').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+
   }
 
   onClickShowForm(){
