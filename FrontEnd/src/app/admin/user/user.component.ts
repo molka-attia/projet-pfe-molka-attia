@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from './user.model';
 import { users } from './users-list';
@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
  
  public imagePreview:string;
 
-  constructor(private userService : AdminService, private router:Router) {
+  constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) {
    
    }
     formaddUser:FormGroup;
@@ -44,7 +44,16 @@ export class UserComponent implements OnInit {
     });
  
   }
-
+  onDeleteUser(user:string){
+    // this.route.paramMap.subscribe(params=>{
+      // const userId=params.get("id");
+      // const userId=id;
+      //  console.log(user.id)
+      //  this.currentuser=user;
+       this.userService.DeleteUser(user);
+    //this.router.navigate(['admin/user']);
+  // })
+  }
   async onAddSubmit(){
     await this.userService.addUser(this.formaddUser.value);
     this.showAddUserForm = false;

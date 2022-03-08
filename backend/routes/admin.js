@@ -55,4 +55,6 @@ const storageEvents = multer.diskStorage({
 
 
 });
+router.delete('/:id/deleteuser',userController.delete)
+
 module.exports = router;

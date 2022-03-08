@@ -12,10 +12,10 @@ exports.getUsers = (req, res, next) =>{
 //     .then(userResults => res.json(userResults[0]));
 // }
 
-// exports.delete= (req, res, next) =>{
-// users.deleteOne({_id:req.params.id})
-// .then(userResults => res.json("succes"));
-// }
+exports.delete= (req, res, next) =>{
+users.deleteOne({_id:req.params.id})
+.then(userResults => res.json("succes"));
+}
 
 // exports.getStats = (req, res, next) => {
 //   // users.find({},{_id:1})

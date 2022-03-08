@@ -21,7 +21,7 @@
                     <div>
                     <h4>{{user.name}}</h4>
                     <small>{{user.type}}</small>
-                    
+                   
                   </div>
                   </div>
                   
@@ -46,9 +46,12 @@
                         <h4 style="text-align: center;">{{currentuser.name}}</h4>
                    
                       <h5 style="text-align: center;">{{currentuser.type}}</h5>
+                      <h5 style="text-align: center;">{{currentuser.email}}</h5>
+
+                     
                     </div>
                     <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
-                    <button class="btn btn-success add-btn" style="width: 25%;"  >Supprimer</button> 
+                    <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
                 
                
                     </form>
