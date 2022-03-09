@@ -3,7 +3,7 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/models/discussions_info_model.dart';
 import 'package:responsive_admin_dashboard/pages/profile_page.dart';
 import 'package:responsive_admin_dashboard/screens/components/adduserform.dart';
-
+import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +18,7 @@ class DiscussionInfoDetail extends StatefulWidget {
 }
 
 class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
-  //deleteUser() async {
+  deleteUser() async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // String token = prefs.getString("token");
@@ -29,13 +29,14 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
     //   "Authorization": "Bearer " + token,
     //   "userId": userId,
     // };
-    // var uri = Uri.parse("http://192.168.194.123:3000/api/admin_user/" +
-    //     widget.user["_id"] +
-    //     "/deleteuser");
-    // var request = http.delete(uri, headers: headers);
-  //   Navigator.push(
-  //       context, MaterialPageRoute(builder: (context) => Dashuser()));
-  // }
+    var uri = Uri.parse("http://localhost:3000/api/users/" +
+        widget.info["_id"] +
+        "/deleteuser");
+   // var request = http.delete(uri, headers: headers);
+    var request = http.delete(uri);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+  }
 
 // class DiscussionInfoDetail extends StatelessWidget {
 //   const DiscussionInfoDetail({Key? key, required this.info}) : super(key: key);
@@ -208,7 +209,7 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
                           // }),
                              FloatingActionButton.extended(
         onPressed: () {
-      
+       deleteUser();
           // Add your onPressed code here!
         },
         label: const Text('delete'),

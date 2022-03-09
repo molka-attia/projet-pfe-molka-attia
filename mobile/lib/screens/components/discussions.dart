@@ -80,8 +80,59 @@ class _DashuserState extends State<Discussions> {
               // ),
               FloatingActionButton.extended(
         onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
           // Add your onPressed code here!
+           showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: Text('User edit'),
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                icon: Icon(Icons.account_box),
+                              ),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                icon: Icon(Icons.email),
+                              ),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Message',
+                                icon: Icon(Icons.message ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                     actions: [
+                   FloatingActionButton.extended(
+       
+        label: const Text('edit'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor: Colors.yellow,
+                          onPressed: () {
+                            // your code
+                            
+                          }),
+                        
+                          
+                    ],
+                  );
+                });
+
+
+          
         },
         label: const Text('Ajouter'),
         // icon: const Icon(Icons.plus_one_rounded),
