@@ -99,6 +99,7 @@ class _DashuserState extends State<Discussions> {
                                 icon: Icon(Icons.account_box),
                               ),
                             ),
+                            
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'Email',
