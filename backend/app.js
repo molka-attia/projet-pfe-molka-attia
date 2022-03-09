@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const bodyParser = require('body-parser');
+const cors = require('cors');
  const User= require('./models/User');
 const app = express();
 
@@ -22,6 +23,11 @@ res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With,Content, 
 res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PATCH,OPTIONS');
 next();
 });
+app.use(bodyParser.json());
+
+
+// CORS Middleware
+app.use(cors());
 app.use('/api/users',adminRouter);
 
 
