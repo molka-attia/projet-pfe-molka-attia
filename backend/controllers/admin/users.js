@@ -49,3 +49,20 @@ users.deleteOne({_id:req.params.id})
 //           });
   
 //      }
+
+exports.getStats = (req, res, next) => {
+    // users.find({},{_id:1})
+  //    users.size().then(stats => {
+  //                 res.json(stats);      
+  //             });
+  
+      users.aggregate([
+          // {$match:{_id :mongoose.Types.ObjectId()}},
+          // {$project : {"users" : {$size :"$users"},_id:0}}
+         { $group:{_id:null, users:{$sum:1}}}
+          ])
+          .then(stats => {
+              res.json(stats[0]);      
+          });
+  
+     }

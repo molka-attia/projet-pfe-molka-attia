@@ -55,6 +55,37 @@ const storageEvents = multer.diskStorage({
 
 
 });
+router.put('/editUser/:id',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+    
+   
+  const id=req.params.id;
+  console.log(id);
+       const user = new User({
+         name: req.body.name,
+         email: req.body.email,
+         type:req.body.type,
+         user_img:req.file.filename,
+       });
+ 
+       User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"type":req.body.type,"user_img":req.file.filename}})
+       .then(resultat=> console.log(resultat)) 
+       
+       // .then(() => res.status(201).json({
+         //   message: 'User modified !',
+         //   status: 201
+         // }))
+         .catch(error => res.status(400).json({
+           error
+         }));
+ 
+ 
+ });
+  
+
+ 
 router.delete('/:id/deleteuser',userController.delete)
+//////////////////////////////////////// Stats ////////////////////////////////////////
+//router.get('/stats',auth, userController.getStats);
+router.get('/stats', userController.getStats);
 
 module.exports = router;

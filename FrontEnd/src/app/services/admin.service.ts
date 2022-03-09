@@ -42,6 +42,26 @@ export class AdminService {
   }
 
   
+  EditUser(user:User,id:string){
+
+    const userData = new FormData();
+    userData.append('name',user.name);
+    userData.append('email',user.email);
+    userData.append('type',user.type);
+    // userData.append('password',user.password);
+    userData.append('user_img',user.user_img);
+
+  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+    //console.log(userData);
+     this.http.put(`http://localhost:3000/api/users/`+id,userData)
+     .subscribe(res=>{
+       console.log(res);
+
+
+    }); 
+  }
+
   DeleteUser(id:string){
     this.http.delete(`http://localhost:3000/api/users/${id}/deleteuser`)
     .subscribe(res=>{
@@ -49,6 +69,10 @@ export class AdminService {
   
   
    }); 
+  }
+  getStats(){
+    return this.http.get(`http://localhost:3000/api/users/stats`);
+
   }
 
 }

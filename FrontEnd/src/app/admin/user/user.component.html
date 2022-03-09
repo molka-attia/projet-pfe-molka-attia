@@ -127,37 +127,37 @@
   <a class="close-button" (click)="onClickCloseForm3()">X</a>
   <div class="edit">
     <!-- create form -->
-    <form  >
-      
-           <div class="form-group">
-        <label for="name">User Name</label>
-        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
-      </div>
+    <form [formGroup]="formEdit" (submit)="oneEditSubmit(currentuser._id)">
       <div class="form-group">
-        <label for="email">User Email : </label>
-        <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+          <label for="name">User Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
+        </div>
+        <div class="form-group">
+          <label for="email">User Email : </label>
+          <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+        </div>
+        <!-- <div class="form-group">
+          <label for="password">User password : </label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+        </div> -->
+        <div class="form-group">
+          <label for="radio">User type : </label>
+          <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+          <select class="form-control" id="type" formControlName="type" name="type">
+          <option value="admin">admin</option>
+          <option value="manager">manager</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="event_img">User Image</label>
+          <input type="file" #filePicker (change)="onImagePicked($event)" class="form-control" id="userimage" placeholder="Enter user image">
+      <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview">
+        <img [src]="imagePreview" alt="">
       </div>
-      <div class="form-group">
-        <label for="password">User password : </label>
-        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
-      </div>
-      <div class="form-group">
-        <label for="radio">User type : </label>
-        <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
-        <select class="form-control" id="type" formControlName="type" name="type">
-        <option value="admin">admin</option>
-        <option value="manager">technicien</option>
-      </select>
-      </div>
-      <div class="form-group">
-        <label for="event_img">User Image</label>
-        <!-- <input type="file" #filePicker (change)="onImagePicked($event)" class="form-control" id="userimage" placeholder="Enter user image"> -->
-    <!-- <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview">
-      <img [src]="imagePreview" alt="">
-    </div> -->
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
   </div>
 
 

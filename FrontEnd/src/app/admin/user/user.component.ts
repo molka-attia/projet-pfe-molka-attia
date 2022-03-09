@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
    
    }
     formaddUser:FormGroup;
-    
+    formEdit:FormGroup;
    public showAddUserForm = false;
    public showUserDetails = false;
    public showEditUserForm=false;
@@ -42,7 +42,20 @@ export class UserComponent implements OnInit {
      type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
- 
+
+    this.formEdit = new FormGroup({
+      name: new FormControl(null,{validators:[Validators.required]}),
+      email: new FormControl(null,{validators:[Validators.required]}),
+      // password: new FormControl(null,{validators:[Validators.required]}),
+     type: new FormControl(null,{validators:[Validators.required]}),
+     user_img: new FormControl(null,{validators:[Validators.required]}),
+    });
+  }
+  oneEditSubmit(userId:string){
+
+    this.userService.EditUser(this.formEdit.value,userId);
+    this.showEditUserForm = false;
+   
   }
   onDeleteUser(user:string){
     // this.route.paramMap.subscribe(params=>{
