@@ -4,10 +4,43 @@ import 'package:responsive_admin_dashboard/models/discussions_info_model.dart';
 import 'package:responsive_admin_dashboard/pages/profile_page.dart';
 import 'package:responsive_admin_dashboard/screens/components/adduserform.dart';
 
-class DiscussionInfoDetail extends StatelessWidget {
-  const DiscussionInfoDetail({Key? key, required this.info}) : super(key: key);
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-  final DiscussionInfoModel info;
+import 'discussions.dart';
+
+class DiscussionInfoDetail extends StatefulWidget {
+  final dynamic info;
+ DiscussionInfoDetail({this.info});
+
+  @override
+  State<DiscussionInfoDetail> createState() => _DiscussionInfoDetailState();
+}
+
+class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
+  //deleteUser() async {
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // String token = prefs.getString("token");
+    // String userId = prefs.getString("userId");
+    // var headers = {
+    //   "Content-Type": "application/json",
+    //   "Accept": "application/json",
+    //   "Authorization": "Bearer " + token,
+    //   "userId": userId,
+    // };
+    // var uri = Uri.parse("http://192.168.194.123:3000/api/admin_user/" +
+    //     widget.user["_id"] +
+    //     "/deleteuser");
+    // var request = http.delete(uri, headers: headers);
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (context) => Dashuser()));
+  // }
+
+// class DiscussionInfoDetail extends StatelessWidget {
+//   const DiscussionInfoDetail({Key? key, required this.info}) : super(key: key);
+
+//   final DiscussionInfoModel info;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +56,7 @@ class DiscussionInfoDetail extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(40),
             child: Image.asset(
-              info.imageSrc!,
+              'images/'+ widget.info['user_img'],
               height: 42,
               width: 42,
               fit: BoxFit.cover,
@@ -36,7 +69,7 @@ class DiscussionInfoDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    info.name!,
+                     widget.info['name'],
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.w600
@@ -44,7 +77,7 @@ class DiscussionInfoDetail extends StatelessWidget {
                   ),
 
                   Text(
-                    info.date!,
+                   widget.info['type'],
                     style: TextStyle(
                         color: textColor.withOpacity(0.5),
                       fontSize: 13,
@@ -75,14 +108,14 @@ class DiscussionInfoDetail extends StatelessWidget {
                               ClipRRect(
             borderRadius: BorderRadius.circular(40),
             child: Image.asset(
-              info.imageSrc!,
+              'images/'+ widget.info['user_img'],
               height: 52,
               width: 52,
               fit: BoxFit.cover,
             ),
           ),
                             Text(
-                    info.name!,
+                     widget.info['name'],
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.w600
@@ -90,12 +123,19 @@ class DiscussionInfoDetail extends StatelessWidget {
                   ),
 
                   Text(
-                    info.date!,
+                     widget.info['type'],
                     style: TextStyle(
                         color: textColor.withOpacity(0.5),
                       fontSize: 13,
                     ),
-                  ),
+                   ),
+                     Text(
+                     widget.info['email'],
+                    style: TextStyle(
+                        color: textColor.withOpacity(0.5),
+                      fontSize: 13,
+                    ),
+                   ),
                           ],
                         ),
                       ),
@@ -188,3 +228,5 @@ class DiscussionInfoDetail extends StatelessWidget {
         ))  );
   }
 }
+
+

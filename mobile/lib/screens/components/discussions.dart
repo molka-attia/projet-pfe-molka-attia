@@ -2,12 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/data/data.dart';
 import 'package:responsive_admin_dashboard/screens/components/adduserform.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 import 'discussion_info_detail.dart';
 
-class Discussions extends StatelessWidget {
+class Discussions extends StatefulWidget {
+  @override
+  State<Discussions> createState() => _DashuserState();
+}
+
+class _DashuserState extends State<Discussions> {
+  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+  var users;
+  getUsers() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String token = prefs.getString("token");
+    // String userId = prefs.getString("userId");
+    // String clubId = prefs.getString("club_id");
+    // var headers = {
+    //   "Content-Type": "application/json",
+    //   "Accept": "application/json",
+    //   "Authorization": "Bearer " + token,
+    //   "userId": userId,
+    // };
+    var url = "http://localhost:3000/api/users";
+    var uri = Uri.parse(url);
+    // var request = http.get(uri, headers: headers);
+    var request = http.get(uri);
+    var response = await request.timeout(Duration(seconds: 10));
+    setState(() {
+      users = jsonDecode(response.body);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsers();
+  }
+
     final ScrollController _firstController = ScrollController();
-   Discussions({Key? key}) : super(key: key);
+  // Discussions({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +106,8 @@ class Discussions extends StatelessWidget {
                 controller: _firstController,
                 child: ListView.builder(
                     controller: _firstController,
-                     itemCount: discussionData.length,
-                    itemBuilder:(context, index) => DiscussionInfoDetail(info: discussionData[index],),
+                     itemCount: users.length, 
+                    itemBuilder:(context, index) => DiscussionInfoDetail(info: users[index],),
                     // (BuildContext context, int index) {
                       // return Padding(
                       //   padding: const EdgeInsets.all(8.0),
