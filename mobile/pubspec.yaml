@@ -36,6 +36,13 @@ dependencies:
   provider: ^5.0.0
   badges: ^2.0.2
   flutter_swiper: ^1.1.6
+  http: ^0.13.4
+  persistent_bottom_nav_bar: ^4.0.2
+  api_cache_manager: ^1.0.2
+  dio: ^4.0.4
+  image_picker: ^0.8.4+4
+  fluttertoast: ^8.0.8
+  shared_preferences: ^2.0.11
   
    
 

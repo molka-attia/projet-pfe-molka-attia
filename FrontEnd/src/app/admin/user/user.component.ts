@@ -83,6 +83,17 @@ export class UserComponent implements OnInit {
     reader.readAsDataURL(file);
 
   }
+  onImagePicked2(event :Event){
+    const file = (event.target as HTMLInputElement).files[0];
+  this.formEdit.patchValue({user_img:file});
+  this.formEdit.get('user_img').updateValueAndValidity();
+  const reader = new FileReader();
+  reader.onload = () => {
+    this.imagePreview = reader.result as string;
+  };
+  reader.readAsDataURL(file);
+
+  }
 
   onClickShowForm(){
     this.showAddUserForm = true;
