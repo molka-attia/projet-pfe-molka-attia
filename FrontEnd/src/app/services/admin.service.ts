@@ -54,7 +54,7 @@ export class AdminService {
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
     //console.log(userData);
-     this.http.put(`http://localhost:3000/api/users/`+id,userData)
+     this.http.put(`http://localhost:3000/api/users/${id}/editUser`,userData)
      .subscribe(res=>{
        console.log(res);
 

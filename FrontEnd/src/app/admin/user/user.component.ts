@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
   }
-  oneEditSubmit(userId:string){
+   oneEditSubmit(userId:string){
 
     this.userService.EditUser(this.formEdit.value,userId);
     this.showEditUserForm = false;
