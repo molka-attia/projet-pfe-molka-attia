@@ -55,7 +55,7 @@ const storageEvents = multer.diskStorage({
 
 
 });
-router.put('/editUser/:id',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+router.put('/:id/editUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     
    
   const id=req.params.id;
