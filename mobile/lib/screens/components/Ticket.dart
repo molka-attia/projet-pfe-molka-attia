@@ -94,7 +94,7 @@ TextEditingController _nameController = TextEditingController();
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Users',
+                'Tickets',
                 style: TextStyle(
                   color: textColor,
                   fontWeight: FontWeight.w700,
@@ -109,167 +109,167 @@ TextEditingController _nameController = TextEditingController();
               //     fontSize: 13,
               //   ),
               // ),
-              FloatingActionButton.extended(
-        onPressed: () {
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
-          // Add your onPressed code here!
-           showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: Text('User Add'),
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Form(
-                        child: Column(
-                          children: <Widget>[
-                            // TextFormField(
-                            //   decoration: InputDecoration(
-                            //     labelText: 'Name',
-                            //     icon: Icon(Icons.account_box),
-                            //   ),
-                            // ),
+      //         FloatingActionButton.extended(
+      //   onPressed: () {
+      //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+      //     // Add your onPressed code here!
+      //      showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return AlertDialog(
+      //               scrollable: true,
+      //               title: Text('User Add'),
+      //               content: Padding(
+      //                 padding: const EdgeInsets.all(8.0),
+      //                 child: Form(
+      //                   child: Column(
+      //                     children: <Widget>[
+      //                       // TextFormField(
+      //                       //   decoration: InputDecoration(
+      //                       //     labelText: 'Name',
+      //                       //     icon: Icon(Icons.account_box),
+      //                       //   ),
+      //                       // ),
 
-                            // TextFormField(
-                            //   decoration: InputDecoration(
-                            //     labelText: 'Email',
-                            //     icon: Icon(Icons.email),
-                            //   ),
-                            // ),
-                            // TextFormField(
-                            //   decoration: InputDecoration(
-                            //     labelText: 'Message',
-                            //     icon: Icon(Icons.message ),
-                            //   ),
-                            // ),
-                    //               Container(
-                    //   width: MediaQuery.of(context).size.width,
-                    //   child: ElevatedButton(
-                    //     child: Text('Upload Image'),
-                    //     style: ElevatedButton.styleFrom(
-                    //       primary: Colors.green[800],
-                    //     ),
-                    //     onPressed: () async {
-                    //       final pickedFile = await ImagePicker()
-                    //           .pickImage(source: ImageSource.gallery);
-                    //       setState(() {
-                    //         // _file = pickedFile;
-                    //       });
-                    //     },
-                    //   ),
-                    // ),
-                    TextField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        hintText: "Name",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        hintText: "Email",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      height: 20,
-                    ),
-                        TextField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        hintText: "Password",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      height: 20,
-                    ),
-                    TextField(
-                      controller: _typeController,
-                      decoration: InputDecoration(
-                        hintText: "Type : (Admin/technicien)",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        child: Text('Upload Image'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.green[800],
-                        ),
-                        onPressed: () async {
-                         final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      //                       // TextFormField(
+      //                       //   decoration: InputDecoration(
+      //                       //     labelText: 'Email',
+      //                       //     icon: Icon(Icons.email),
+      //                       //   ),
+      //                       // ),
+      //                       // TextFormField(
+      //                       //   decoration: InputDecoration(
+      //                       //     labelText: 'Message',
+      //                       //     icon: Icon(Icons.message ),
+      //                       //   ),
+      //                       // ),
+      //               //               Container(
+      //               //   width: MediaQuery.of(context).size.width,
+      //               //   child: ElevatedButton(
+      //               //     child: Text('Upload Image'),
+      //               //     style: ElevatedButton.styleFrom(
+      //               //       primary: Colors.green[800],
+      //               //     ),
+      //               //     onPressed: () async {
+      //               //       final pickedFile = await ImagePicker()
+      //               //           .pickImage(source: ImageSource.gallery);
+      //               //       setState(() {
+      //               //         // _file = pickedFile;
+      //               //       });
+      //               //     },
+      //               //   ),
+      //               // ),
+      //               TextField(
+      //                 controller: _nameController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Name",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //               TextField(
+      //                 controller: _emailController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Email",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //                SizedBox(
+      //                 height: 20,
+      //               ),
+      //                   TextField(
+      //                 controller: _passwordController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Password",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //                SizedBox(
+      //                 height: 20,
+      //               ),
+      //               TextField(
+      //                 controller: _typeController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "Type : (Admin/technicien)",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //               Container(
+      //                 width: MediaQuery.of(context).size.width,
+      //                 child: ElevatedButton(
+      //                   child: Text('Upload Image'),
+      //                   style: ElevatedButton.styleFrom(
+      //                     primary: Colors.green[800],
+      //                   ),
+      //                   onPressed: () async {
+      //                    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                          setState(() {
+      //                     setState(() {
 
-                            // _file =pickedFile;
-                          });
-                        },
-                      ),
-                    ),
-                          ],
-                        ),
-                      ),
-                    ),
-                     actions: [
-        //            FloatingActionButton.extended(
+      //                       // _file =pickedFile;
+      //                     });
+      //                   },
+      //                 ),
+      //               ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //                actions: [
+      //   //            FloatingActionButton.extended(
        
-        // label: const Text('ajouter'),
-        // // icon: const Icon(Icons.plus_one_rounded),
-        // backgroundColor: Colors.yellow,
-        //                     onPressed: () async{
-        //             File image = File(_file.path);
-        //             await SignUp(
-        //                 image,
-        //                 _nameController.text,
-        //                 _emailController.text,
-        //                 _passwordController.text,
-        //                 _typeController.text,
-        //                 context);
-        //            // Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
-        //              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
-        //           },
-        //           ),
-                        ElevatedButton(
-                  onPressed: () async{
+      //   // label: const Text('ajouter'),
+      //   // // icon: const Icon(Icons.plus_one_rounded),
+      //   // backgroundColor: Colors.yellow,
+      //   //                     onPressed: () async{
+      //   //             File image = File(_file.path);
+      //   //             await SignUp(
+      //   //                 image,
+      //   //                 _nameController.text,
+      //   //                 _emailController.text,
+      //   //                 _passwordController.text,
+      //   //                 _typeController.text,
+      //   //                 context);
+      //   //            // Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+      //   //              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+      //   //           },
+      //   //           ),
+      //                   ElevatedButton(
+      //             onPressed: () async{
                  
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
-                  },
-                  child: Text('Save')) 
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+      //             },
+      //             child: Text('Save')) 
                           
-                    ],
-                  );
-                });
+      //               ],
+      //             );
+      //           });
 
 
           
-        },
-        label: const Text('Ajouter'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.blue,
+      //   },
+      //   label: const Text('Ajouter'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.blue,
 
-      ),
+      // ),
             ],
           ),
           SizedBox(

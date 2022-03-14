@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'dart:convert';
@@ -51,6 +52,7 @@ class User {
 
 class _DiscussionInfoDetailState extends State<Oneticket> {
   // dynamic user;
+  Color _primaryColor = HexColor('#0c297e');
   final ScrollController _firstController = ScrollController();
   var text="ha";
 getcolor()  {
@@ -247,12 +249,20 @@ Future<User> fetchUser2() async {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                widget.info['priorite'],
+             Text(
+                widget.info['etat'],
                 style: TextStyle(
                   color: textColor,
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
+                ),
+              ),
+               Text(
+                widget.info['priorite'],
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               // Container(
@@ -278,7 +288,7 @@ Future<User> fetchUser2() async {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('Ticket info'),
+                    title: Text('Ticket info :'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -297,21 +307,22 @@ Future<User> fetchUser2() async {
                      widget.info['description'],
                     style: TextStyle(
                       color: textColor,
-                      fontWeight: FontWeight.w600
+                      fontWeight: FontWeight.w400
                     ),
                   ),
                   //     Text(
-                  //    widget.info['demandeur'],
+                  //   'demandeur:',
                   //   style: TextStyle(
                   //     color: textColor,
                   //     fontWeight: FontWeight.w600
                   //   ),
                   // ),
+                  
   FutureBuilder<User>(
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.name);
+                return Text('Demandeur :    '+snapshot.data!.name);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -320,11 +331,19 @@ Future<User> fetchUser2() async {
               return const CircularProgressIndicator();
             },
           ),
+          
+                  //     Text(
+                  //   'technicien :',
+                  //   style: TextStyle(
+                  //     color: textColor,
+                  //     fontWeight: FontWeight.w600
+                  //   ),
+                  // ),
            FutureBuilder<User>(
             future: futureAlbum2,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.name);
+                return Text('Technicien :    '+snapshot.data!.name);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -356,9 +375,9 @@ Future<User> fetchUser2() async {
                       //     child: Text("edit"),
                           FloatingActionButton.extended(
        
-        label: const Text('edit'),
+        label: const Text('affecter'),
         // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.yellow,
+        backgroundColor: _primaryColor,
 
       
                           onPressed: () {
@@ -368,30 +387,20 @@ Future<User> fetchUser2() async {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('User edit'),
+                    title: Text('Ticket affecté'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
                         child: Column(
                           children: <Widget>[
+                            
                             TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'Name',
                                 icon: Icon(Icons.account_box),
                               ),
                             ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                icon: Icon(Icons.email),
-                              ),
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Message',
-                                icon: Icon(Icons.message ),
-                              ),
-                            ),
+                           
                           ],
                         ),
                       ),
@@ -399,9 +408,9 @@ Future<User> fetchUser2() async {
                      actions: [
                    FloatingActionButton.extended(
        
-        label: const Text('edit'),
+        label: const Text('affecter'),
         // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.yellow,
+        backgroundColor: _primaryColor,
                           onPressed: () {
                             // your code
                             
@@ -422,7 +431,7 @@ Future<User> fetchUser2() async {
       
           // Add your onPressed code here!
         },
-        label: const Text('delete'),
+        label: const Text('cloturer'),
         // icon: const Icon(Icons.plus_one_rounded),
         backgroundColor: Colors.red,
 

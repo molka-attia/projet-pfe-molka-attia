@@ -6,7 +6,11 @@ import 'package:responsive_admin_dashboard/screens/components/adduserform.dart';
 import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:async/async.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'dart:io';
+import 'dart:convert';
 import 'discussions.dart';
 
 class DiscussionInfoDetail extends StatefulWidget {
@@ -34,14 +38,25 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
         "/deleteuser");
    // var request = http.delete(uri, headers: headers);
     var request = http.delete(uri);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
   }
+  
 
 // class DiscussionInfoDetail extends StatelessWidget {
 //   const DiscussionInfoDetail({Key? key, required this.info}) : super(key: key);
 
 //   final DiscussionInfoModel info;
+
+ 
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +98,10 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
                         color: textColor.withOpacity(0.5),
                       fontSize: 13,
                     ),
+                    
                   ),
+                  
+                  
                 ],
               ),
             ),

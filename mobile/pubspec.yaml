@@ -43,6 +43,8 @@ dependencies:
   image_picker: ^0.8.4+4
   fluttertoast: ^8.0.8
   shared_preferences: ^2.0.11
+  flutter_icons: ^1.1.0
+  glassmorphism_ui: ^0.1.0
   
    
 
@@ -68,7 +70,9 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-    - assets/icons/
+    # - asset/img/
+    # - asset/img/avatar/
+ 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -104,6 +104,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_icons",
+      "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_icons-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flutter_page_indicator",
       "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_page_indicator-0.0.3",
       "packageUri": "lib/",
@@ -152,6 +158,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "glassmorphism_ui",
+      "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/glassmorphism_ui-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "hexcolor",
       "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.5",
       "packageUri": "lib/",
@@ -171,7 +183,7 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+10",
+      "rootUri": "file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+11",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -446,7 +458,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-03-09T16:20:38.353701Z",
+  "generated": "2022-03-14T21:20:46.524112Z",
   "generator": "pub",
   "generatorVersion": "2.14.3"
 }

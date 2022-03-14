@@ -66,6 +66,10 @@ fl_chart
 2.12
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.36.3/
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.36.3/lib/
+flutter_icons
+2.0
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_icons-1.1.0/
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_icons-1.1.0/lib/
 flutter_page_indicator
 2.0
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_page_indicator-0.0.3/
@@ -90,6 +94,10 @@ font_awesome_flutter
 2.12
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.2.0/
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.2.0/lib/
+glassmorphism_ui
+2.7
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/glassmorphism_ui-0.1.0/
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/glassmorphism_ui-0.1.0/lib/
 hexcolor
 2.12
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.5/
@@ -104,8 +112,8 @@ file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib/
 image_picker
 2.14
-file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+10/
-file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+10/lib/
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+11/
+file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+11/lib/
 image_picker_for_web
 2.12
 file:///C:/dsi33/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_for_web-2.1.6/

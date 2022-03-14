@@ -37,7 +37,7 @@ class AnalyticInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: primaryColor!.withOpacity(0.1),
+                    color: primaryColor.withOpacity(0.1),
                     shape: BoxShape.circle),
                 child: SvgPicture.asset(
                   info.svgSrc!,
