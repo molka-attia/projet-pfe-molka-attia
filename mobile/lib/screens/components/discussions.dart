@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
-import 'package:responsive_admin_dashboard/data/data.dart';
-import 'package:responsive_admin_dashboard/screens/components/adduserform.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
+import 'package:async/async.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'dart:io';
+
 import 'discussion_info_detail.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
+
 
 class Discussions extends StatefulWidget {
   @override
@@ -43,6 +52,53 @@ class _DashuserState extends State<Discussions> {
     super.initState();
     getUsers();
   }
+TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _typeController = TextEditingController();
+
+  //XFile
+ // XFile;
+
+   late XFile? _file;
+ 
+
+  Future<dynamic> SignUp(File imageFile, String name, String email,
+      String password, String type, context) async {
+    var stream =
+        new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var uri = Uri.parse("http://localhost:3000/api/users/addUser");
+    var request = new http.MultipartRequest("POST", uri);
+    var multipartFile = new http.MultipartFile('user_img', stream, length,
+        filename: basename(imageFile.path));
+    request.files.add(multipartFile);
+    request.fields['name'] = name;
+    request.fields['email'] = email;
+    request.fields['password'] = password;
+    request.fields['type'] = type;
+    var response = await request.send();
+    Fluttertoast.showToast(
+        msg: "User Added Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0);
+    response.stream.transform(utf8.decoder).listen((value) {});
+    return response;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
     final ScrollController _firstController = ScrollController();
   // Discussions({Key? key}) : super(key: key);
@@ -87,46 +143,152 @@ class _DashuserState extends State<Discussions> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('User edit'),
+                    title: Text('User Add'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
                         child: Column(
                           children: <Widget>[
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Name',
-                                icon: Icon(Icons.account_box),
-                              ),
-                            ),
-                            
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                icon: Icon(Icons.email),
-                              ),
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Message',
-                                icon: Icon(Icons.message ),
-                              ),
-                            ),
+                            // TextFormField(
+                            //   decoration: InputDecoration(
+                            //     labelText: 'Name',
+                            //     icon: Icon(Icons.account_box),
+                            //   ),
+                            // ),
+
+                            // TextFormField(
+                            //   decoration: InputDecoration(
+                            //     labelText: 'Email',
+                            //     icon: Icon(Icons.email),
+                            //   ),
+                            // ),
+                            // TextFormField(
+                            //   decoration: InputDecoration(
+                            //     labelText: 'Message',
+                            //     icon: Icon(Icons.message ),
+                            //   ),
+                            // ),
+                    //               Container(
+                    //   width: MediaQuery.of(context).size.width,
+                    //   child: ElevatedButton(
+                    //     child: Text('Upload Image'),
+                    //     style: ElevatedButton.styleFrom(
+                    //       primary: Colors.green[800],
+                    //     ),
+                    //     onPressed: () async {
+                    //       final pickedFile = await ImagePicker()
+                    //           .pickImage(source: ImageSource.gallery);
+                    //       setState(() {
+                    //         // _file = pickedFile;
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
+                    TextField(
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        hintText: "Name",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                     SizedBox(
+                      height: 20,
+                    ),
+                        TextField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                     SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: _typeController,
+                      decoration: InputDecoration(
+                        hintText: "Type : (Admin/technicien)",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        child: Text('Upload Image'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green[800],
+                        ),
+                        onPressed: () async {
+                         final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+                          setState(() {
+
+                             _file =pickedFile;
+                          });
+                        },
+                      ),
+                    ),
                           ],
                         ),
                       ),
                     ),
                      actions: [
-                   FloatingActionButton.extended(
+        //            FloatingActionButton.extended(
        
-        label: const Text('edit'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.yellow,
-                          onPressed: () {
-                            // your code
-                            
-                          }),
-                        
+        // label: const Text('ajouter'),
+        // // icon: const Icon(Icons.plus_one_rounded),
+        // backgroundColor: Colors.yellow,
+        //                     onPressed: () async{
+        //             File image = File(_file.path);
+        //             await SignUp(
+        //                 image,
+        //                 _nameController.text,
+        //                 _emailController.text,
+        //                 _passwordController.text,
+        //                 _typeController.text,
+        //                 context);
+        //            // Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+        //              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+        //           },
+        //           ),
+                        ElevatedButton(
+                  onPressed: () async{
+                    File image = File(_file!.path);
+                    await SignUp(
+                        image,
+                        _nameController.text,
+                        _emailController.text,
+                        _passwordController.text,
+                        _typeController.text,
+                        context);
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+                  },
+                  child: Text('Save')) 
                           
                     ],
                   );
