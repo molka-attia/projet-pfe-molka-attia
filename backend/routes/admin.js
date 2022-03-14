@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User=require('./../models/User');
+const Ticket=require('./../models/Ticket');
 const bcrypt = require('bcrypt');
 const userController = require('../controllers/admin/users');
+const ticketController = require('../controllers/admin/tickets');
 const multer = require('multer');
 const MIME_TYPE_MAP = {
     'image/png': 'png',
@@ -20,13 +22,15 @@ const storageEvents = multer.diskStorage({
     }
 });
 
-
+router.get('/:id/getuser',userController.getOneUser);
 
 // router.get('/',(req,res)=>{
 //     User.find().then(users=>res.status(200).json(users)).catch(err=>res.status(400).json('Eror')); 
 //    })
 
    router.get('/',userController.getUsers);
+
+   router.get('/tickets',ticketController.getTickets);
   
    router.post('/addUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     console.log(req.file);

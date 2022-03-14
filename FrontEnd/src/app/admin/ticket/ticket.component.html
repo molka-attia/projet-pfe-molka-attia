@@ -20,8 +20,8 @@
                       <!-- <th>Number</th> -->
                       <th>Description</th>
                       <td>Priorité</td>
-                      <td>assigner au </td>
-                      <td>Demandeur</td>
+                      <!-- <td>assigner au </td> -->
+                      <!-- <td>Demandeur</td> -->
                       <td>Opened</td>
                       <td>Etat</td>
                       
@@ -33,7 +33,7 @@
                   </thead>
                   <tbody>
                
-                    <tr  *ngFor="let ticket of ticketsList; let i = index">
+                    <tr  *ngFor="let ticket of fetchedTicket; let i = index">
                       <!-- <td>{{ticket.id}}</td> -->
                       <td>{{ticket.description}}</td>
                       <div *ngIf="ticket.priorite =='urgent'">  
@@ -45,10 +45,11 @@
                        <div *ngIf="ticket.priorite =='faible'">  
                         <td><span class="status-produit color-three"></span>{{ticket.priorite}}</td>
                        </div>
-                      <td>{{ticket.demandeur}}</td>
-                      <td>{{ticket. assignetech}}</td>
+                      <!-- <td>{{ticket.demandeur}}</td>
+                      <td>{{ticket. assignetech}}</td> -->
                       <td>{{ticket.opened}}</td>
                       <td>{{ticket.etat}}</td>
+                      
                       <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowAffecter()" >affecter</button> </td>
                       <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                     
@@ -79,7 +80,10 @@
               <div>
                 <h4 style="text-align: center;">{{currentticket.description}}</h4>
            
-              <h5 style="text-align: center;">{{currentticket.etat}}</h5>
+              <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
+            
+              <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
+              <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
              
               <button type="submit" class="btn btn-primary">Cloturer</button>
             </div>

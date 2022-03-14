@@ -21,6 +21,10 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/users`);
   }
 
+  getTickets(){
+    
+    return this.http.get<any>(`http://localhost:3000/api/users/tickets`);
+  }
 
   addUser(user:User){
     const userData = new FormData();
@@ -40,7 +44,10 @@ export class AdminService {
 
     });
   }
-
+  getUser(id:String){
+    return this.http.get(`http://localhost:3000/api/users/${id}/getuser`);
+    
+    }
   
   EditUser(user:User,id:string){
 
