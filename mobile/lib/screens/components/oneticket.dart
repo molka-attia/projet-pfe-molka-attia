@@ -55,25 +55,44 @@ class _DiscussionInfoDetailState extends State<Oneticket> {
   var text="ha";
 getcolor()  {
 if(widget.info['priorite']=='urgent'){
-return text="hi";
+return red;
 }
-else{
-  return text="hello";
+else if(widget.info['priorite']=='moyenne'){
+  return Colors.yellow;
 }
-
+else {
+  return green;
+}
 }
  late Future<User> futureAlbum;
- 
+ late Future<User> futureAlbum2;
 
   @override
   void initState() {
     super.initState();
     futureAlbum = fetchUser();
+    futureAlbum2=fetchUser2();
   }
 Future<User> fetchUser() async {
   final response = await http
       .get(Uri.parse("http://localhost:3000/api/users/" +
          widget.info["demandeur"] +
+         "/getUserName"));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return User.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load user');
+  }
+}
+Future<User> fetchUser2() async {
+  final response = await http
+      .get(Uri.parse("http://localhost:3000/api/users/" +
+         widget.info["assignetech"] +
          "/getUserName"));
 
   if (response.statusCode == 200) {
@@ -157,22 +176,22 @@ Future<User> fetchUser() async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                     Text(
-                     getcolor(),
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.w600
-                    ),
+                  //    Text(
+                  //    getcolor(),
+                  //   style: TextStyle(
+                  //     color: textColor,
+                  //     fontWeight: FontWeight.w600
+                  //   ),
 
-                  ), 
-                  Text(
-                     widget.info['description'],
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.w600
-                    ),
+                  // ), 
+                  // Text(
+                  //    widget.info['description'],
+                  //   style: TextStyle(
+                  //     color: textColor,
+                  //     fontWeight: FontWeight.w600
+                  //   ),
 
-                  ), 
+                  // ), 
                 
         
             //       FutureBuilder<User>(
@@ -204,22 +223,51 @@ Future<User> fetchUser() async {
                   //  // }
                   //   ),
 
-                  Text(
-                   widget.info['priorite'],
-                    style: TextStyle(
-                        color: textColor.withOpacity(0.5),
-                      fontSize: 13,
-                    ),
+                  // Text(
+                  //  widget.info['priorite'],
+                  //   style: TextStyle(
+                  //       color: textColor.withOpacity(0.5),
+                  //     fontSize: 13,
+                  //   ),
                     
-                  ),
-                  
-                  
-                ],
+                  // ),
+                  Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: appPadding,
+        vertical: appPadding / 2,
+      ),
+      decoration: BoxDecoration(
+         // color: secondaryColor,
+          color: getcolor().withOpacity(0.1),
+           borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.info['priorite'],
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-          ),
-         // Icon(Icons.more_vert_rounded,color: textColor.withOpacity(0.5),size: 18,
-              new IconButton(
+              // Container(
+              //   padding: EdgeInsets.all(appPadding / 2),
+              //   height: 40,
+              //   width: 40,
+              //   decoration: BoxDecoration(
+              //       color: getcolor().withOpacity(0.1),
+              //       shape: BoxShape.circle),
+              //   // child: SvgPicture.asset(
+              //   //   info.svgSrc!,
+              //   //   color: Colors.blue,
+              //   // ),
+              // )
+                    new IconButton(
         icon: new Icon(Icons.more_vert_rounded),
         color: textColor.withOpacity(0.5),
         //size: 18,
@@ -261,6 +309,19 @@ Future<User> fetchUser() async {
                   // ),
   FutureBuilder<User>(
             future: futureAlbum,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!.name);
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+          ),
+           FutureBuilder<User>(
+            future: futureAlbum2,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Text(snapshot.data!.name);
@@ -372,6 +433,40 @@ Future<User> fetchUser() async {
                 });
         }
       ),
+            ],
+          ),
+          Text(
+            widget.info['description'],
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        SizedBox(height: 30),
+      //     FloatingActionButton.extended(
+      //   onPressed: () {
+      //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+      //     // Add your onPressed code here!
+      //   },
+        
+      //   label: const Text('view more'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.blue,
+
+      // ),
+        ],
+      ),
+    ) ,
+                  
+                ],
+              ),
+            ),
+          ),
+         // Icon(Icons.more_vert_rounded,color: textColor.withOpacity(0.5),size: 18,
+        
           
         ],
       ),
