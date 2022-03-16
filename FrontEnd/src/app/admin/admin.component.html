@@ -63,7 +63,9 @@
         <img src="assets/images/photo3.jpg" width="40" height="40" class="logo-admin">
         <div class="dropdown-content">
         <p>Mon profil</p>
-        <p>Deconnexion</p>
+        <li class="nav-item toRight" style="cursor: pointer;" *ngIf="userIsAuthenticated">
+          <a class="nav-link" (click)="onLogoutClick()">Logout</a>
+        </li>
         </div>
         
       </div>
