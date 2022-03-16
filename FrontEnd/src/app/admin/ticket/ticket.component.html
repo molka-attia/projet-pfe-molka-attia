@@ -33,7 +33,7 @@
                   </thead>
                   <tbody>
                
-                    <tr  *ngFor="let ticket of fetchedTicket; let i = index">
+                    <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
                       <!-- <td>{{ticket.id}}</td> -->
                       <td>{{ticket.description}}</td>
                       <div *ngIf="ticket.priorite =='urgent'">  

@@ -35,6 +35,7 @@ export class TicketComponent implements OnInit {
     
       
   }
+  
   onClickShowForm2(ticket:Ticket){
     this.showTicketDetails = true;
     this.currentticket=ticket;

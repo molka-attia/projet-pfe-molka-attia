@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
  const User= require('./models/User');
+ 
 const app = express();
 
 const adminRouter=require('./routes/admin');
+const authRouter = require('./routes/auth');
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/Pfe', {
     useNewUrlParser: true,
@@ -28,6 +30,7 @@ app.use(bodyParser.json());
 
 // CORS Middleware
 app.use(cors());
+app.use('/api/auth', authRouter);
 app.use('/api/users',adminRouter);
 
 

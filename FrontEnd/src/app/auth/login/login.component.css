@@ -189,6 +189,9 @@ body{
   background: #3bbbb4;
 
 }
+.warning{
+  color: red;
+}
 .forms .form-content label{
   color: #3bbbb4;
   cursor: pointer;
