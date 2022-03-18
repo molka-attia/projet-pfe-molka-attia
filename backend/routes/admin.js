@@ -60,6 +60,34 @@ router.get('/:id/getUserName',userController.getUserName);
 
 
 });
+
+router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+  console.log(req.file);
+  bcrypt.hash(req.body.password, 10)
+  .then(hash => {
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: hash,
+      type:req.body.type,
+     // user_img:req.file.filename,
+    });
+  
+    user.save()
+      .then(() => res.status(201).json({
+        message: 'User created !',
+        status: 201
+      }))
+      .catch(error => res.status(400).json({
+        error
+      }));
+  })
+  .catch(error => res.status(500).json({
+    error
+  }));
+
+
+});
 router.put('/:id/editUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     
    

@@ -9,7 +9,7 @@ import 'tech-components/drawer_menu.dart';
 import 'package:provider/provider.dart';
 
 class TechDashBoardScreen extends StatelessWidget {
-  const TechDashBoardScreen({Key? key}) : super(key: key);
+  const TechDashBoardScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

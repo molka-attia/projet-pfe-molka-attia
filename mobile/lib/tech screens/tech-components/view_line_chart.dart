@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 
 class ViewLineChart extends StatefulWidget {
-  const ViewLineChart({Key? key}) : super(key: key);
+  const ViewLineChart({Key key}) : super(key: key);
 
   @override
   _ViewLineChartState createState() => _ViewLineChartState();

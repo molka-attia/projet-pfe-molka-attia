@@ -6,7 +6,7 @@ import 'package:responsive_admin_dashboard/data/data.dart';
 import 'analytic_info_card.dart';
 
 class AnalyticCards extends StatelessWidget {
-  const AnalyticCards({Key? key}) : super(key: key);
+  const AnalyticCards({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AnalyticCards extends StatelessWidget {
 
 class AnalyticInfoCardGridView extends StatelessWidget {
   const AnalyticInfoCardGridView({
-    Key? key,
+    Key key,
     this.crossAxisCount = 4,
     this.childAspectRatio = 1.4,
   }) : super(key: key);
@@ -43,7 +43,8 @@ class AnalyticInfoCardGridView extends StatelessWidget {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: analyticData.length,
+     // itemCount: analyticData.length,
+     itemCount: 2,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: appPadding,
@@ -51,7 +52,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) => AnalyticInfoCard(
-        info: analyticData[index],
+        //info: analyticData[index],
       ),
     );
   }

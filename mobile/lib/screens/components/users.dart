@@ -4,7 +4,7 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'bar_chart_users.dart';
 
 class Users extends StatelessWidget {
-  const Users({Key? key}) : super(key: key);
+  const Users({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

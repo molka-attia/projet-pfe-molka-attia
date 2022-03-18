@@ -61,7 +61,7 @@ TextEditingController _nameController = TextEditingController();
   //XFile
  // XFile;
 
-   late XFile _file;
+    XFile _file;
  
 
 

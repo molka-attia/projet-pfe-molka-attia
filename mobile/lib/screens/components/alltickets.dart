@@ -15,7 +15,7 @@ import 'package:responsive_admin_dashboard/screens/components/viewers.dart';
 import 'discussions.dart';
 
 class Alltickets extends StatelessWidget {
-  const Alltickets({Key? key}) : super(key: key);
+  const Alltickets({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

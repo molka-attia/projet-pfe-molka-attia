@@ -9,7 +9,7 @@ import 'components/drawer_menu.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatelessWidget {
-  const DashBoardScreen({Key? key}) : super(key: key);
+  const DashBoardScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

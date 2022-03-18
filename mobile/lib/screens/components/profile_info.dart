@@ -4,7 +4,7 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 
 class ProfileInfo extends StatelessWidget {
-  const ProfileInfo({Key? key}) : super(key: key);
+  const ProfileInfo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

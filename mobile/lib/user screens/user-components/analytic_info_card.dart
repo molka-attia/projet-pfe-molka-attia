@@ -4,9 +4,9 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/models/analytic_info_model.dart';
 
 class AnalyticInfoCard extends StatelessWidget {
-  const AnalyticInfoCard({Key? key, required this.info}) : super(key: key);
-
-  final AnalyticInfo info;
+ // const AnalyticInfoCard({Key? key, required this.info}) : super(key: key);
+ const AnalyticInfoCard({Key key}) : super(key: key);
+  // final AnalyticInfo info;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,8 @@ class AnalyticInfoCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${info.count}",
+               // "${info.count}",
+               '50',
                 style: TextStyle(
                   color: textColor,
                   fontSize: 18,
@@ -37,17 +38,19 @@ class AnalyticInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: primaryColor!.withOpacity(0.1),
+                    color: primaryColor.withOpacity(0.1),
                     shape: BoxShape.circle),
                 child: SvgPicture.asset(
-                  info.svgSrc!,
+                 // info.svgSrc!,
+                 "assets/icons/Subscribers.svg",
                   color: Colors.blue,
                 ),
               )
             ],
           ),
           Text(
-            info.title!,
+            //info.title!,
+            'hi',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(

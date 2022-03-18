@@ -9,7 +9,7 @@ import 'login_page.dart';
 import 'widgets/header_widget.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+  const ForgotPasswordPage({Key key}) : super(key: key);
 
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
@@ -80,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               child: TextFormField(
                                 decoration: ThemeHelper().textInputDecoration("Email", "Enter your email"),
                                 validator: (val){
-                                  if(val!.isEmpty){
+                                  if(val.isEmpty){
                                     return "Email can't be empty";
                                   }
                                   else if(!RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(val)){
@@ -109,7 +109,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if(_formKey.currentState!.validate()) {
+                                  if(_formKey.currentState.validate()) {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(

@@ -12,7 +12,7 @@ import 'package:responsive_admin_dashboard/screens/components/viewers.dart';
 import 'discussions.dart';
 
 class DashboardContent extends StatelessWidget {
-  const DashboardContent({Key? key}) : super(key: key);
+  const DashboardContent({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

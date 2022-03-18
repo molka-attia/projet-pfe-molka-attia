@@ -11,7 +11,7 @@ import 'package:responsive_admin_dashboard/tech screens/tech-components/viewers.
 
 
 class Allticketsadmin extends StatelessWidget {
-  const Allticketsadmin({Key? key}) : super(key: key);
+  const Allticketsadmin({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

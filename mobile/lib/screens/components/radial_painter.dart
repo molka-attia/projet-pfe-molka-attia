@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class RadialPainter extends CustomPainter {
   const RadialPainter({
-    required this.bgColor,
-    required this.lineColor,
-    required this.percent,
-    required this.width,
+     this.bgColor,
+     this.lineColor,
+     this.percent,
+     this.width,
   });
 
   final Color bgColor;
