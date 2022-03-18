@@ -7,7 +7,7 @@ import 'package:responsive_admin_dashboard/tech screens/tech-components/search_f
 import 'package:provider/provider.dart';
 
 class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({Key? key}) : super(key: key);
+  const CustomAppbar({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ import 'package:responsive_admin_dashboard/user screens/user-components/drawer_m
 
 
 class Alltickets extends StatelessWidget {
-  const Alltickets({Key? key}) : super(key: key);
+  const Alltickets({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

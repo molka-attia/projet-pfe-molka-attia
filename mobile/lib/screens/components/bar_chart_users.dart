@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 
 class BarChartUsers extends StatelessWidget {
-  const BarChartUsers({Key? key}) : super(key: key);
+  const BarChartUsers({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

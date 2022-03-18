@@ -24,9 +24,12 @@ import 'package:responsive_admin_dashboard/mainDash.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:responsive_admin_dashboard/pages/register.dart';
+import 'package:responsive_admin_dashboard/pages/register2.dart';
+import 'package:responsive_admin_dashboard/pages/register3.dart';
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
-import 'registration_page.dart';
+//import 'registration_page.dart';
 import 'widgets/header_widget.dart';
 
 // class LoginPage extends StatefulWidget{
@@ -353,6 +356,7 @@ class _LoginState extends State<LoginPage> {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = (){
                                           Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => addUser3()));
                                         },
                                       style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
                                     ),

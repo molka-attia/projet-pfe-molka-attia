@@ -9,7 +9,7 @@ import 'package:responsive_admin_dashboard/user screens/user-components/custom_a
 
 
 class DashboardContent extends StatelessWidget {
-  const DashboardContent({Key? key}) : super(key: key);
+  const DashboardContent({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

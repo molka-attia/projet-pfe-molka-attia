@@ -11,7 +11,7 @@ import 'user-components/drawer_menu.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardtickets extends StatelessWidget {
-  const DashBoardtickets({Key? key}) : super(key: key);
+  const DashBoardtickets({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import 'user-components/drawer_menu.dart';
 import 'package:provider/provider.dart';
 
 class UserDashBoardScreen extends StatelessWidget {
-  const UserDashBoardScreen({Key? key}) : super(key: key);
+  const UserDashBoardScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

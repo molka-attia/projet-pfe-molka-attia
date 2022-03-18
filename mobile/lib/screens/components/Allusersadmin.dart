@@ -12,7 +12,7 @@ import 'package:responsive_admin_dashboard/screens/components/viewers.dart';
 import 'discussions.dart';
 
 class Allusersadmin extends StatelessWidget {
-  const Allusersadmin({Key? key}) : super(key: key);
+  const Allusersadmin({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

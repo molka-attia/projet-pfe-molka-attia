@@ -8,7 +8,7 @@ import 'package:responsive_admin_dashboard/user screens/user-components/custom_a
 
 
 class Allticketsadmin extends  StatefulWidget {
-   Allticketsadmin({Key? key}) : super(key: key);
+   Allticketsadmin({Key key}) : super(key: key);
      @override
   State<Allticketsadmin> createState() => _Allticketsadmin();
 }
@@ -82,9 +82,9 @@ DropdownButton<String>(
         width: 50,
         color: Colors.blue,
       ),
-      onChanged: (String? newValue) {
+      onChanged: (String newValue) {
          setState(() {
-          dropdownValue = newValue!;
+          dropdownValue = newValue;
          });
       },
       items: <String>['urgent', 'moyenne', 'faible']

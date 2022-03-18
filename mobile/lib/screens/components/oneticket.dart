@@ -22,7 +22,7 @@ class Oneticket extends StatefulWidget {
   State<Oneticket> createState() => _DiscussionInfoDetailState();
 }
 
-late Future<User> futureAlbum;
+ Future<User> futureAlbum;
 
   // @override
   // void initState() {
@@ -38,7 +38,7 @@ class User {
   const User({
     // required this.userId,
     // required this.id,
-    required this.name,
+     this.name,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -66,8 +66,8 @@ else {
   return green;
 }
 }
- late Future<User> futureAlbum;
- late Future<User> futureAlbum2;
+ Future<User> futureAlbum;
+  Future<User> futureAlbum2;
 
   @override
   void initState() {
@@ -322,7 +322,7 @@ Future<User> fetchUser2() async {
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text('Demandeur :    '+snapshot.data!.name);
+                return Text('Demandeur :    '+snapshot.data.name);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -343,7 +343,7 @@ Future<User> fetchUser2() async {
             future: futureAlbum2,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text('Technicien :    '+snapshot.data!.name);
+                return Text('Technicien :    '+snapshot.data.name);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }

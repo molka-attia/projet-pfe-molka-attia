@@ -52,23 +52,20 @@ class _DashuserState extends State<Discussions> {
     super.initState();
     getUsers();
   }
-TextEditingController _nameController = TextEditingController();
+ TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
 
   //XFile
- // XFile;
-
-   late XFile? _file;
- 
+  XFile _file;
 
   Future<dynamic> SignUp(File imageFile, String name, String email,
       String password, String type, context) async {
     var stream =
         new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
-    var uri = Uri.parse("http://localhost:3000/api/users/addUser");
+    var uri = Uri.parse("http://localhost:3000/api/auth/signup");
     var request = new http.MultipartRequest("POST", uri);
     var multipartFile = new http.MultipartFile('user_img', stream, length,
         filename: basename(imageFile.path));
@@ -78,16 +75,18 @@ TextEditingController _nameController = TextEditingController();
     request.fields['password'] = password;
     request.fields['type'] = type;
     var response = await request.send();
-    Fluttertoast.showToast(
-        msg: "User Added Successfully",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.TOP,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.0);
+    // Fluttertoast.showToast(
+    //     msg: "User Added Successfully",
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.TOP,
+    //     backgroundColor: Colors.green,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0);
     response.stream.transform(utf8.decoder).listen((value) {});
     return response;
   }
+
+ 
 
 
 
@@ -243,14 +242,21 @@ TextEditingController _nameController = TextEditingController();
                         style: ElevatedButton.styleFrom(
                           primary: Colors.green[800],
                         ),
+                        // onPressed: () async {
+                        //  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+                        //   setState(() {
+
+                        //      _file =pickedFile;
+                        //   });
                         onPressed: () async {
-                         final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-
+                          final pickedFile = await ImagePicker()
+                              .pickImage(source: ImageSource.gallery);
                           setState(() {
-
-                             _file =pickedFile;
+                            _file = pickedFile;
                           });
                         },
+                        
                       ),
                     ),
                           ],
@@ -277,8 +283,17 @@ TextEditingController _nameController = TextEditingController();
         //           },
         //           ),
                         ElevatedButton(
-                  onPressed: () async{
-                    File image = File(_file!.path);
+                  // onPressed: () async{
+                  //   File image = File(_file.path);
+                  //   await SignUp(
+                  //       image,
+                  //       _nameController.text,
+                  //       _emailController.text,
+                  //       _passwordController.text,
+                  //       _typeController.text,
+                  //       context);
+                   onPressed: () async{
+                    File image = File(_file.path);
                     await SignUp(
                         image,
                         _nameController.text,
@@ -286,8 +301,10 @@ TextEditingController _nameController = TextEditingController();
                         _passwordController.text,
                         _typeController.text,
                         context);
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
                   },
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+                 // },
                   child: Text('Save')) 
                           
                     ],

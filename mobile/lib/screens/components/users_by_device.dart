@@ -3,7 +3,7 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/screens/components/radial_painter.dart';
 
 class UsersByDevice extends StatelessWidget {
-  const UsersByDevice({Key? key}) : super(key: key);
+  const UsersByDevice({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

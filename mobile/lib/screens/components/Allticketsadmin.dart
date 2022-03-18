@@ -11,7 +11,7 @@ import 'package:responsive_admin_dashboard/screens/components/custom_appbar.dart
 // import 'ticket.dart';
 
 class Allticketsadmin extends StatelessWidget {
-  const Allticketsadmin({Key? key}) : super(key: key);
+  const Allticketsadmin({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

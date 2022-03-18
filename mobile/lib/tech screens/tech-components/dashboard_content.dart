@@ -11,7 +11,7 @@ import 'package:responsive_admin_dashboard/tech screens/tech-components/viewers.
 
 
 class DashboardContent extends StatelessWidget {
-  const DashboardContent({Key? key}) : super(key: key);
+  const DashboardContent({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

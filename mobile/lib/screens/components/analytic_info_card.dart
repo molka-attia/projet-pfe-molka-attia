@@ -4,9 +4,9 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/models/analytic_info_model.dart';
 
 class AnalyticInfoCard extends StatelessWidget {
-  const AnalyticInfoCard({Key? key, required this.info}) : super(key: key);
+  const AnalyticInfoCard({Key key}) : super(key: key);
 
-  final AnalyticInfo info;
+  //final AnalyticInfo info;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,8 @@ class AnalyticInfoCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${info.count}",
+                // "${info.count}",
+                '50',
                 style: TextStyle(
                   color: textColor,
                   fontSize: 18,
@@ -40,14 +41,63 @@ class AnalyticInfoCard extends StatelessWidget {
                     color: primaryColor.withOpacity(0.1),
                     shape: BoxShape.circle),
                 child: SvgPicture.asset(
-                  info.svgSrc!,
+                 "assets/icons/Subscribers.svg",
                   color: Colors.blue,
                 ),
               )
             ],
           ),
           Text(
-            info.title!,
+           ' Users',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
+      ),
+    );Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: appPadding,
+        vertical: appPadding / 2,
+      ),
+      decoration: BoxDecoration(
+          color: secondaryColor, borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                // "${info.count}",
+                '50',
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(appPadding / 2),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: primaryColor.withOpacity(0.1),
+                    shape: BoxShape.circle),
+                child: SvgPicture.asset(
+                 "assets/icons/Subscribers.svg",
+                  color: Colors.blue,
+                ),
+              )
+            ],
+          ),
+          Text(
+           ' Users',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
