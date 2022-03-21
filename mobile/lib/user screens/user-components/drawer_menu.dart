@@ -37,7 +37,7 @@ class DrawerMenu extends StatelessWidget {
          
                DrawerListTile(
               title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsUser() ));
               }),
           // DrawerListTile(
           //     title: 'Message', svgSrc: 'assets/icons/Message.svg', tap: () {}),

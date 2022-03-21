@@ -27,6 +27,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:responsive_admin_dashboard/pages/register.dart';
 import 'package:responsive_admin_dashboard/pages/register2.dart';
 import 'package:responsive_admin_dashboard/pages/register3.dart';
+import '../Allmain.dart';
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
 //import 'registration_page.dart';
@@ -239,13 +240,12 @@ class _LoginState extends State<LoginPage> {
           "token", (json.decode(response.body)["token"]).toString());
       prefs.setString(
           "userId", (json.decode(response.body)["user"]["userId"]).toString());
-      prefs.setString("club_id",
-          (json.decode(response.body)["user"]["club_id"]).toString());
+     
       prefs.setString(
           "type", (json.decode(response.body)["user"]["type"]).toString());
 
       // prefs.setString("user", (json.decode(response.body)["user"]).toString());
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MainDash()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AllMainDash()));
       Fluttertoast.showToast(
           msg: "You Are Logged In",
           toastLength: Toast.LENGTH_SHORT,

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_admin_dashboard/controllers/controller.dart';
-import 'package:responsive_admin_dashboard/screens/dash_board_screen%20copy.dart';
-import 'package:responsive_admin_dashboard/user screens/user_dash_board_screen tickets.dart';
 
+import 'common screens/dash_board_screen.dart';
 
+void main() {
+  runApp(AllMainDash());
+}
 
-class AllticketsUser extends StatelessWidget {
+class AllMainDash extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class AllticketsUser extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => Controller(),)
         ],
-        child: DashBoardtickets(),
+        child: DashBoardScreen(),
       ),
     );
   }
