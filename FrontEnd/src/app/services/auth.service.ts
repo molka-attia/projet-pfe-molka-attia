@@ -38,7 +38,7 @@ export class AuthService {
        if(res.status == 201) {
             localStorage.setItem('user_id',JSON.stringify(res.userId));
             
-            this.router.navigate(['/admin']);
+            this.router.navigate(['/']);
             form.reset();
             let element: HTMLElement = document.getElementById('signIn') as HTMLElement;
             element.click();
@@ -67,7 +67,10 @@ export class AuthService {
     this.httpClient.post<{status,token,user}>('http://localhost:3000/api/auth/login',user,{headers:headers}).subscribe(res => {
       if(res.status == 200) {
         this.storeUserData(res.token,res.user);
-        this.router.navigate(['/admin']);
+        // if(user.type=="admin"){
+        this.router.navigate(['/main']);
+        // if(user.type=="technicien"){
+        //   this.router.navigate(['/technicien']);}
         this.authStatusListener.next(true);
         this.typeListener.next(res.user.type);
       }else{

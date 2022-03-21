@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NotfoundComponent } from './notfound/notfound.component';
+import { MainDashAllComponent } from './main-dash-all/main-dash-all.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     AppComponent,
     LoginComponent,
     NotfoundComponent,
+    MainDashAllComponent,
 
   ],
   imports: [
