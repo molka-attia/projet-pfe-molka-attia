@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit ,OnDestroy {
   userType:string;
   manager : boolean;
   admin:boolean=false;
+token2:any;
 
   constructor(
     public authService : AuthService,
@@ -22,7 +23,9 @@ export class AdminComponent implements OnInit ,OnDestroy {
       this.authListenerSubs= this.authService.getAuthStatusListener().subscribe(isAuthenticated=>{
         this.userIsAuthenticated= isAuthenticated;
       });
+      
       const token = localStorage.getItem('id_token');
+      
       if(token){
         this.userIsAuthenticated=true;
       }
