@@ -58,6 +58,7 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
