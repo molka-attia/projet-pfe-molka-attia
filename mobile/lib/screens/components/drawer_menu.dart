@@ -3,8 +3,6 @@ import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 // import 'package:responsive_admin_dashboard/screens/components/Allticketsadmin.dart';
 import 'package:responsive_admin_dashboard/AllticketsAdmin.dart';
-import 'package:responsive_admin_dashboard/main%20copy.dart';
-import 'package:responsive_admin_dashboard/pages/login_page.dart';
 import 'package:responsive_admin_dashboard/screens/components/drawer_list_tile.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -53,7 +51,6 @@ class _WrapperState extends State<DrawerMenu> {
     //clear shared preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
-     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>LoginUiApp() ));
   }
 
   //const DrawerMenu({Key key}) : super(key: key);
@@ -153,10 +150,7 @@ class _WrapperState extends State<DrawerMenu> {
           DrawerListTile(
               title: 'Logout',
               svgSrc: 'assets/icons/Logout.svg',
-              tap: () {
-              Logout();
-
-              }),
+              tap: () {}),
         ],
       ),
     );

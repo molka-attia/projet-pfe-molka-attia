@@ -43,8 +43,6 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
   }
   
 
-  
-
 // class DiscussionInfoDetail extends StatelessWidget {
 //   const DiscussionInfoDetail({Key? key, required this.info}) : super(key: key);
 
@@ -52,20 +50,6 @@ class _DiscussionInfoDetailState extends State<DiscussionInfoDetail> {
 
  
 
-// FutureBuilder<User>(
-//             future: futureAlbum,
-//             builder: (context, snapshot) {
-//               if (snapshot.hasData) {
-//                 return Text('Demandeur :    '+snapshot.data.name);
-//               } else if (snapshot.hasError) {
-//                 return Text('${snapshot.error}');
-//               }
-
-//               // By default, show a loading spinner.
-//               return const CircularProgressIndicator();
-//             },
-//           ),
-          
 
 
 
