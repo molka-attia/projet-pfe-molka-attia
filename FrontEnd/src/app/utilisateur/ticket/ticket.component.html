@@ -10,7 +10,7 @@
         <div class="case">
           <div class="header-case">
             <h2>Listes tickets</h2>
-            <button class="button">voir plus<span class="fa fa-arrow-right"></span></button>
+            <!-- <button class="button">voir plus<span class="fa fa-arrow-right"></span></button> -->
           </div>
           <div class="body-case">
             <div class="tableau">
@@ -20,17 +20,21 @@
                     <!-- <th>Number</th> -->
                     <th>Description</th>
                     <td>Priorité</td>
-                    <td>assigner au </td>
-                  
+                    <!-- <td>assigner au </td> -->
+                    <!-- <td>Demandeur</td> -->
+                    <td>Opened</td>
                     <td>Etat</td>
-                 
+                    
                    
+                    
+                    <td>consulter</td>
+                    
                    
                   </tr>
                 </thead>
                 <tbody>
              
-                  <tr  *ngFor="let ticket of ticketsList; let i = index">
+                  <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
                     <!-- <td>{{ticket.id}}</td> -->
                     <td>{{ticket.description}}</td>
                     <div *ngIf="ticket.priorite =='urgent'">  
@@ -42,11 +46,13 @@
                      <div *ngIf="ticket.priorite =='faible'">  
                       <td><span class="status-produit color-three"></span>{{ticket.priorite}}</td>
                      </div>
-                    <td>{{ticket.demandeur}}</td>
-                    <td>{{ticket. assignetech}}</td>
+                    <!-- <td>{{ticket.demandeur}}</td>
+                    <td>{{ticket. assignetech}}</td> -->
+                    <td>{{ticket.opened}}</td>
                     <td>{{ticket.etat}}</td>
-                  
-                  
+                    
+                   
+                    <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                   
                     <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
                
@@ -64,3 +70,57 @@
 
 
     
+      <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketDetails">
+            
+        <a class="close-button" (click)="onClickCloseForm2()">X</a>
+        <div class="edit">
+          <!-- create form -->
+          <form >
+            <h3>Ticket info</h3>
+            <!-- <img src="assets/images/photo3.jpg"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50"> -->
+            <div>
+              <h4 style="text-align: center;">{{currentticket.description}}</h4>
+         
+            <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
+          
+            <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
+            <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
+            <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
+            <button type="submit" class="btn btn-primary">Cloturer</button>
+          </div>
+          <!-- <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
+          <button class="btn btn-success add-btn" style="width: 25%;" >Supprimer</button>  -->
+      
+     
+          </form>
+        </div>
+    
+    
+    </div>
+  
+    <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketaffectation">
+
+      <a class="close-button" (click)="onClickCloseAffecter()">X</a>
+      <div class="edit">
+        <!-- create form -->
+        <form  >
+          
+             
+         
+        
+          <div class="form-group">
+            <label for="radio">Techniciens : </label>
+            <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+            <select class="form-control" id="type" formControlName="type" name="type">
+            <option value="admin">admin</option>
+            <option value="manager">manager</option>
+          </select>
+          </div>
+       
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+  
+  
+  </div>
+  

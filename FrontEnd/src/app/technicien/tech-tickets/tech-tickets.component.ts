@@ -32,7 +32,7 @@ export class TechTicketsComponent  implements OnInit {
     //      console.log(resultatTicket);
     //   }  
     //   );
-    this.userService.getTicketsUser(JSON.parse(this.technicienId).userId).subscribe(
+    this.userService.getTicketsTech(JSON.parse(this.technicienId).userId).subscribe(
         (resultatTicket) => {
           this.fetchedTicket = resultatTicket;
            console.log(resultatTicket);
