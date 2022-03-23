@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_admin_dashboard/controllers/controller.dart';
 import 'package:responsive_admin_dashboard/screens/dash_board_screen%20copy.dart';
-import 'package:responsive_admin_dashboard/tech screens/tech_dash_board_screen tickets.dart';
+import 'package:responsive_admin_dashboard/tech screens/tech_dash_board_screen owntickets.dart';
 
 
 
-class AllticketsTech extends StatelessWidget {
+class ticketsTech extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
