@@ -27,7 +27,7 @@ tickets.aggregate([
     }
 
     exports.getUsertickets = (req, res, next) => {
-      tickets.find({'assignetech':req.params.id},{'description':1,'_id':0})
+      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':0})
       .then(events => res.json(events));
   }
 // description?:string;

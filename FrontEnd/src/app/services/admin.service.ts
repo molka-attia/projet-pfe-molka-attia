@@ -86,6 +86,10 @@ export class AdminService {
   
    }); 
   }
+  getTicketsUser(id:string){
+    
+    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`);
+  }
   getStats(){
     return this.http.get(`http://localhost:3000/api/users/stats`);
 
