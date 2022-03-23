@@ -21,6 +21,15 @@ tickets.aggregate([
   .then(ticketResults => {res.json(ticketResults);console.log(ticketResults)});
    }
 
+   exports.delete= (req, res, next) =>{
+    tickets.deleteOne({_id:req.params.id})
+    .then(userResults => res.json("succes"));
+    }
+
+    exports.getUsertickets = (req, res, next) => {
+      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':0})
+      .then(events => res.json(events));
+  }
 // description?:string;
 // priorite?:string;
 // demandeur?:string;

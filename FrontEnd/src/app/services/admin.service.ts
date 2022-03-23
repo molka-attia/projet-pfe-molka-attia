@@ -77,6 +77,19 @@ export class AdminService {
   
    }); 
   }
+  
+  DeleteTicket(id:string){
+    this.http.delete(`http://localhost:3000/api/tickets/${id}/deleteticket`)
+    .subscribe(res=>{
+      console.log(res);
+  
+  
+   }); 
+  }
+  getTicketsUser(id:string){
+    
+    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`);
+  }
   getStats(){
     return this.http.get(`http://localhost:3000/api/users/stats`);
 
