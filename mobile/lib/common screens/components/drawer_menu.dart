@@ -79,9 +79,14 @@ class _WrapperState extends State<DrawerMenu> {
                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>TechMainDash() ));
                                }
               ),
+               if (type == "technicien")
+               DrawerListTile(
+              title: 'tickets to do', svgSrc: 'assets/icons/Pages.svg', tap: () {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
+              }),
           if (type == "technicien")
                DrawerListTile(
-              title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
+              title: 'All tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
               }),
           // DrawerListTile(
