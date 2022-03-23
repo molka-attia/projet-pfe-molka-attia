@@ -68,5 +68,14 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
   onClickCloseAffecter(){
     this.showTicketaffectation = false;
   }
-
+  onDeleteTiket(user:string){
+    // this.route.paramMap.subscribe(params=>{
+      // const userId=params.get("id");
+      // const userId=id;
+      //  console.log(user.id)
+      //  this.currentuser=user;
+       this.userService.DeleteTicket(user);
+    //this.router.navigate(['admin/user']);
+  // })
+  }
 }

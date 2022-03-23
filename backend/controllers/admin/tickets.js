@@ -21,6 +21,10 @@ tickets.aggregate([
   .then(ticketResults => {res.json(ticketResults);console.log(ticketResults)});
    }
 
+   exports.delete= (req, res, next) =>{
+    tickets.deleteOne({_id:req.params.id})
+    .then(userResults => res.json("succes"));
+    }
 // description?:string;
 // priorite?:string;
 // demandeur?:string;
