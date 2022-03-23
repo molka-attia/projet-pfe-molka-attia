@@ -15,6 +15,7 @@ import 'dart:convert';
 import 'discussions.dart';
 
 class Oneticket extends StatefulWidget {
+  
   final dynamic info;
  Oneticket({this.info});
 
@@ -51,6 +52,25 @@ class User {
 }
 
 class _DiscussionInfoDetailState extends State<Oneticket> {
+  deleteTicket() async {
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // String token = prefs.getString("token");
+    // String userId = prefs.getString("userId");
+    // var headers = {
+    //   "Content-Type": "application/json",
+    //   "Accept": "application/json",
+    //   "Authorization": "Bearer " + token,
+    //   "userId": userId,
+    // };http://localhost:3000/api/tickets/${id}/deleteticket
+    var uri = Uri.parse("http://localhost:3000/api/tickets/" +
+        widget.info["_id"] +
+        "/deleteticket");
+   // var request = http.delete(uri, headers: headers);
+    var request = http.delete(uri);
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+  }
   // dynamic user;
   Color _primaryColor = HexColor('#0c297e');
   final ScrollController _firstController = ScrollController();
@@ -265,6 +285,16 @@ Future<User> fetchUser2() async {
                   fontWeight: FontWeight.w700,
                 ),
               ),
+               FloatingActionButton.extended(
+        onPressed: () {
+       deleteTicket();
+          // Add your onPressed code here!
+        },
+        label: const Text('delete'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor: Colors.red.withOpacity(0.6),
+
+      ),
               // Container(
               //   padding: EdgeInsets.all(appPadding / 2),
               //   height: 40,
