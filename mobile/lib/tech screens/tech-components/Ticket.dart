@@ -99,7 +99,7 @@ TextEditingController _nameController = TextEditingController();
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Tickets 2',
+                'Tickets ',
                 style: TextStyle(
                   color: textColor,
                   fontWeight: FontWeight.w700,
