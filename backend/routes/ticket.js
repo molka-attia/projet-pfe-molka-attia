@@ -22,8 +22,8 @@ const storageEvents = multer.diskStorage({
     }
 });
 
-router.get('/:id/getuser',userController.getOneUser);
 
+router.get('/:id/getUsertickets',ticketController.getUsertickets);
  
 router.delete('/:id/deleteticket',ticketController.delete)
 //////////////////////////////////////// Stats ////////////////////////////////////////
