@@ -5,6 +5,7 @@ import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 import 'package:responsive_admin_dashboard/AllticketsAdmin.dart';
 import 'package:responsive_admin_dashboard/main%20copy.dart';
 import 'package:responsive_admin_dashboard/pages/login_page.dart';
+import 'package:responsive_admin_dashboard/tech screens/tech-components/Ticket.dart';
 import 'package:responsive_admin_dashboard/screens/components/drawer_list_tile.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/cupertino.dart';
 
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:responsive_admin_dashboard/ticketsTech%20copy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:responsive_admin_dashboard/mainDash.dart';
@@ -82,12 +84,12 @@ class _WrapperState extends State<DrawerMenu> {
                if (type == "technicien")
                DrawerListTile(
               title: 'tickets to do', svgSrc: 'assets/icons/Pages.svg', tap: () {
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>ticketsTech() ));
               }),
           if (type == "technicien")
                DrawerListTile(
               title: 'All tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsAdmin() ));
               }),
           // DrawerListTile(
           //     title: 'Message', svgSrc: 'assets/icons/Message.svg', tap: () {}),

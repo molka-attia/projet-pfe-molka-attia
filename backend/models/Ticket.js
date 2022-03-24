@@ -7,6 +7,8 @@ const ticketSchema = mongoose.Schema({
     assignetech:{type: String, required: false},
     etat:{type: String, required: false},
     opened:{type: String, required: false},
+    Datecreaation:{type: Date, required: false},
+    Datecloturation:{type: Date, required: false},
 });
 
 module.exports = mongoose.model('Ticket', ticketSchema);

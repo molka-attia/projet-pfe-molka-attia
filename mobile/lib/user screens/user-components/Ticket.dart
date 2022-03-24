@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:responsive_admin_dashboard/tech screens/tech-components/oneticket.dart';
+import 'package:responsive_admin_dashboard/user screens/user-components/oneticket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -42,7 +42,7 @@ class _DashuserState extends State<Ticket> {
    // };http://localhost:3000/api/tickets/${id}/deleteticket
     var uri = Uri.parse("http://localhost:3000/api/tickets/" +
        userId +
-        "/getTechtickets");
+        "/getUsertickets");
         //http://localhost:3000/api/tickets/${id}/getTechtickets
     //var uri = Uri.parse(url);
     // var request = http.get(uri, headers: headers);

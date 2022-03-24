@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Ticket } from '../admin/ticket/ticket.model';
 import { User } from '../admin/user/user.model';
 
 
@@ -86,6 +87,24 @@ export class AdminService {
   
    }); 
   }
+
+
+  addTicket(description:string,priorite:string,id:string){
+   // const ticketData = new FormData();
+   const ticketData = {description:description,priorite:priorite}
+  //  ticketData.append('description',description);
+    //ticketData.append('priorite',priorite);
+
+  //console.log(description);
+    //console.log(userData);
+     this.http.post(`http://localhost:3000/api/tickets/${id}/addticket`,ticketData)
+     .subscribe(res=>{
+       console.log(res);
+
+
+    });
+  }
+
   getTicketsTech(id:string){
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`);

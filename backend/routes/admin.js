@@ -32,6 +32,14 @@ router.get('/:id/getUserName',userController.getUserName);
    router.get('/',userController.getUsers);
 
    router.get('/tickets',ticketController.getTickets);
+
+
+
+
+
+
+
+   
   
    router.post('/addUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     console.log(req.file);
