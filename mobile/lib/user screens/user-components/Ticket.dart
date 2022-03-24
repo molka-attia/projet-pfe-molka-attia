@@ -58,10 +58,7 @@ class _DashuserState extends State<Ticket> {
     super.initState();
     getUsers();
   }
-TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _typeController = TextEditingController();
+
 
   //XFile
  // XFile;
@@ -69,8 +66,81 @@ TextEditingController _nameController = TextEditingController();
     XFile _file;
  
 
+TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _prioriteController = TextEditingController();
 
 
+  //XFile
+ 
+
+  AddTicket( ) async {
+ 
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+     String token = prefs.getString("token");
+   var body = {
+      "description": _descriptionController.text,
+      "priorite":_prioriteController.text
+    };
+   var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://localhost:3000/api/tickets/" +
+        userId +
+        "/addticket");
+        var request = http.post(uri,  body: json.encode(body), headers: headers);
+   // var request = new http.MultipartRequest("POST", uri);
+    
+    //request.fields['description'] = description;
+    ///request.fields['priorite'] = email;
+ 
+    //var response = await request.send();
+    // Fluttertoast.showToast(
+    //     msg: "User Added Successfully",
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.TOP,
+    //     backgroundColor: Colors.green,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0);
+    //response.stream.transform(utf8.decoder).listen((value) {});
+    //return response;
+      // var response = await request.send();
+    // print(response.statusCode);
+
+    // // listen for response
+    // response.stream.transform(utf8.decoder).listen((value) {
+    //   print(value);
+    // });
+  }
+
+ 
+// var uri = Uri.parse("http://localhost:3000/api/users/addUser2");
+
+//     // create multipart request
+//     var request = new http.MultipartRequest("POST", uri);
+
+//     // multipart that takes file
+//     //var multipartFile = new http.MultipartFile('myFile', stream, length,
+//       //  filename: basename(imageFile.path));
+
+//     // add file to multipart
+//    // request.files.add(multipartFile);
+
+//     // send
+//         request.fields['name'] = name;
+//     request.fields['email'] = email;
+//     request.fields['password'] = password;
+//     request.fields['type'] = type;
+//     var response = await request.send();
+//     print(response.statusCode);
+
+//     // listen for response
+//     response.stream.transform(utf8.decoder).listen((value) {
+//       print(value);
+//     });
 
 
 
@@ -106,6 +176,89 @@ TextEditingController _nameController = TextEditingController();
                   fontSize: 15,
                 ),
               ),
+               FloatingActionButton.extended(
+        onPressed: () {
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+          // Add your onPressed code here!
+           showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: Text('Ticket Add'),
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+                         
+                   
+                
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: _descriptionController,
+                      decoration: InputDecoration(
+                        hintText: "le problème",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                     SizedBox(
+                      height: 20,
+                    ),
+                   
+                    
+                    TextField(
+                      controller: _prioriteController,
+                      decoration: InputDecoration(
+                        hintText: "priorité : (faible/moyenne/urgent)",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+              
+                          ],
+                        ),
+                      ),
+                    ),
+                     actions: [
+    
+                        ElevatedButton(
+              
+                   onPressed: () async{
+                  
+                    await AddTicket(
+                       
+                      
+                     
+                        );
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+                  },
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+                 // },
+                  child: Text('Save')) 
+                          
+                    ],
+                  );
+                });
+
+
+          
+        },
+        label: const Text('Ajouter'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor: Colors.blue,
+
+      ),
               // Text(
               //   'View All',
               //   style: TextStyle(
