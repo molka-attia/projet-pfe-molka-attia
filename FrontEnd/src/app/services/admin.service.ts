@@ -105,6 +105,23 @@ export class AdminService {
     });
   }
 
+  EditTicket(description:string,priorite:string,id:string){
+    // const ticketData = new FormData();
+    const ticketData = {description:description,priorite:priorite}
+   //  ticketData.append('description',description);
+     //ticketData.append('priorite',priorite);
+ 
+   //console.log(description);
+     //console.log(userData);
+      this.http.put(`http://localhost:3000/api/tickets/${id}/editticket`,ticketData)
+      .subscribe(res=>{
+        console.log(res);
+ 
+ 
+     });
+   }
+ 
+
   getTicketsTech(id:string){
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`);
