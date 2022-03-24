@@ -27,12 +27,12 @@ tickets.aggregate([
     }
 
     exports.getTechtickets = (req, res, next) => {
-      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':0})
+      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':1})
       .then(events => res.json(events));
   }
 
   exports.getUsertickets = (req, res, next) => {
-    tickets.find({'demandeur':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':0})
+    tickets.find({'demandeur':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':1})
     .then(events => res.json(events));
 }
   
