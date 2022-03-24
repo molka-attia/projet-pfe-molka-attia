@@ -12,6 +12,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 
 
 class Oneticket extends StatefulWidget {
@@ -52,6 +53,39 @@ class User {
 }
 
 class _DiscussionInfoDetailState extends State<Oneticket> {
+  
+TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _prioriteController = TextEditingController();
+
+
+  //XFile
+ 
+
+  EditTicket( ) async {
+ 
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+     String token = prefs.getString("token");
+   var body = {
+      "description": _descriptionController.text,
+      "priorite":_prioriteController.text
+    };
+   var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://localhost:3000/api/tickets/" +
+        widget.info["_id"] +
+        "/editticket");
+        var request = http.put(uri,  body: json.encode(body), headers: headers);
+   // var request = new http.MultipartRequest("POST", uri);
+    
+    //request.fields['description'] = description;
+    ///request.fields['priorite'] = email;
+ 
+  }
   deleteTicket() async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -449,6 +483,7 @@ Future<User> fetchUser2() async {
                         
                           
                     ],
+                    
                   );
                 });
                           }),
@@ -486,6 +521,86 @@ Future<User> fetchUser2() async {
             ),
           ),
         SizedBox(height: 30),
+          FloatingActionButton.extended(
+        onPressed: () {
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+          // Add your onPressed code here!
+           showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: Text('Ticket Add'),
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+                         
+                   
+                
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextField(
+                      controller: _descriptionController,
+                      decoration: InputDecoration(
+                        hintText: "le problème",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                     SizedBox(
+                      height: 20,
+                    ),
+                   
+                    
+                    TextField(
+                      controller: _prioriteController,
+                      decoration: InputDecoration(
+                        hintText: "priorité : (faible/moyenne/urgent)",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+              
+                          ],
+                        ),
+                      ),
+                    ),
+                     actions: [
+    
+                        ElevatedButton(
+              
+                   onPressed: () async{
+                  
+                    await EditTicket(
+                        );
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+                  },
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+                 // },
+                  child: Text('modifier')) 
+                          
+                    ],
+                  );
+                });
+
+
+          
+        },
+        label: const Text('modifier'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor: Colors.blue,
+
+      ),
       //     FloatingActionButton.extended(
       //   onPressed: () {
       //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));

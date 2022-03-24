@@ -29,7 +29,7 @@ export class TicketComponent  implements OnInit {
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
   ngOnInit(): void {
-    this.userService.getTickets().subscribe(
+    this.userService.getTicketsUser(JSON.parse(this.technicienId).userId).subscribe(
       (resultatTicket) => {
         this.fetchedTicket = resultatTicket;
          console.log(resultatTicket);
