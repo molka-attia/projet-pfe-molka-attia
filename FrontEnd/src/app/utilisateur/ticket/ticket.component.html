@@ -26,7 +26,7 @@
                     <td>Opened</td>
                     <td>Etat</td>
                     
-                   
+                    
                     
                     <td>consulter</td>
                     
@@ -52,7 +52,7 @@
                     <td>{{ticket.opened}}</td>
                     <td>{{ticket.etat}}</td>
                     
-                   
+
                     <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                   
                     <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
@@ -80,13 +80,15 @@
             <h3>Ticket info</h3>
             <!-- <img src="assets/images/photo3.jpg"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50"> -->
             <div>
+              
               <h4 style="text-align: center;">{{currentticket.description}}</h4>
          
             <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
           
             <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
             <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
-            <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
+            <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button>
+            <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowFormEdit()">Modifier</button> 
             <button type="submit" class="btn btn-primary">Cloturer</button>
           </div>
           <!-- <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
@@ -98,42 +100,6 @@
     
     
     </div>
-    <div class="model-bg"style="margin-left: -25%;" *ngIf="showAddUserForm">
-
-      <a class="close-button" (click)="onClickCloseForm()">X</a>
-      <div class="edit">
-        <!-- create form -->
-        <form [formGroup]="formaddTicket" (submit)="onAddSubmit()">
-          
-          <div class="form-group">
-       <label for="description">Le problème</label>
-       <textarea  class="form-control" id="description" formControlName="description" placeholder="decrit le problème">
-       </textarea>
-     </div>
-     <!-- <div class="form-group">
-       <label for="email">User Email : </label>
-       <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
-     </div>
-     <div class="form-group">
-       <label for="password">User password : </label>
-       <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
-     </div> -->
-     <div class="form-group">
-       <label for="radio">priorité : </label>
-       <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
-       <select class="form-control" id="priorite" formControlName="priorite" name="priorite">
-       <option value="faible">faible</option>
-       <option value="moyenne">moyenne</option>
-       <option value="urgent">urgent</option>
-     </select>
-     </div>
-    
-     <button type="submit" class="btn btn-primary">Submit</button>
-   </form>
-      </div>
-  
-  
-  </div>
   
     <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketaffectation">
 
@@ -161,3 +127,77 @@
   
   </div>
   
+  <div class="model-bg"style="margin-left: -25%;" *ngIf="showAddUserForm">
+
+    <a class="close-button" (click)="onClickCloseForm()">X</a>
+    <div class="edit">
+      <!-- create form -->
+      <form [formGroup]="formaddTicket" (submit)="onAddSubmit()">
+        
+        <div class="form-group">
+     <label for="description">Le problème</label>
+     <textarea  class="form-control" id="description" formControlName="description" placeholder="decrit le problème">
+     </textarea>
+   </div>
+   <!-- <div class="form-group">
+     <label for="email">User Email : </label>
+     <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+   </div>
+   <div class="form-group">
+     <label for="password">User password : </label>
+     <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+   </div> -->
+   <div class="form-group">
+     <label for="radio">priorité : </label>
+     <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+     <select class="form-control" id="priorite" formControlName="priorite" name="priorite">
+     <option value="faible">faible</option>
+     <option value="moyenne">moyenne</option>
+     <option value="urgent">urgent</option>
+   </select>
+   </div>
+  
+   <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+    </div>
+
+
+</div>
+
+
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showEditTicketForm">
+
+  <a class="close-button" (click)="onClickCloseFormEdit()">X</a>
+  <div class="edit">
+    <!-- create form -->
+    <form [formGroup]="formeditTicket" (submit)="onEditSubmit(currentticket._id)">
+      
+      <div class="form-group">
+   <label for="description">Le problème</label>
+   <textarea  class="form-control" id="description" formControlName="description" placeholder="decrit le problème">
+   </textarea>
+ </div>
+ <!-- <div class="form-group">
+   <label for="email">User Email : </label>
+   <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+ </div>
+ <div class="form-group">
+   <label for="password">User password : </label>
+   <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+ </div> -->
+ <div class="form-group">
+   <label for="radio">priorité : </label>
+   <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+   <select class="form-control" id="priorite" formControlName="priorite" name="priorite">
+   <option value="faible">faible</option>
+   <option value="moyenne">moyenne</option>
+   <option value="urgent">urgent</option>
+ </select>
+ </div>
+
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+
+
+

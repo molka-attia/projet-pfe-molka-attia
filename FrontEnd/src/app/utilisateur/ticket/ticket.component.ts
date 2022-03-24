@@ -21,33 +21,33 @@ export class TicketComponent  implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
+  public showEditTicketForm = false;
   formaddTicket:FormGroup;
+  formeditTicket:FormGroup;
   public showAddUserForm = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
-
   ngOnInit(): void {
-    // this.userService.getTickets().subscribe(
-    //   (resultatTicket) => {
-    //     this.fetchedTicket = resultatTicket;
-    //      console.log(resultatTicket);
-    //   }  
-    //   );
-    
-    this.userService.getTicketsUser(JSON.parse(this.technicienId).userId).subscribe(
-        (resultatTicket) => {
-          this.fetchedTicket = resultatTicket;
-           console.log(resultatTicket);
-        }  
-        );
+    this.userService.getTickets().subscribe(
+      (resultatTicket) => {
+        this.fetchedTicket = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+      this.formaddTicket = new FormGroup({
+        description: new FormControl(null,{validators:[Validators.required]}),
+        priorite: new FormControl(null,{validators:[Validators.required]}),
      
+      });
+  
+      this.formeditTicket = new FormGroup({
+        description: new FormControl(null,{validators:[Validators.required]}),
+        priorite: new FormControl(null,{validators:[Validators.required]}),
+     
+      });
     
-        this.formaddTicket = new FormGroup({
-          description: new FormControl(null,{validators:[Validators.required]}),
-          priorite: new FormControl(null,{validators:[Validators.required]}),
-       
-        });
+     
     
       
   }
@@ -95,19 +95,32 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
   // })
   }
   onAddSubmit(){
-   this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,JSON.parse(this.technicienId).userId);
-    this.showAddUserForm = false;
-   // this.router.navigate(['dash-respo/events']);
-  }
- 
-
-
-
-
-  onClickShowForm(){
-    this.showAddUserForm = true;
-  }
-  onClickCloseForm(){
-    this.showAddUserForm = false;
-  }
+    this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,JSON.parse(this.technicienId).userId);
+     this.showAddUserForm = false;
+    // this.router.navigate(['dash-respo/events']);
+   }
+  
+   onEditSubmit(user:string){
+     
+     this.userService.EditTicket(this.formeditTicket.value.description,this.formeditTicket.value.priorite,user);
+      this.showEditTicketForm = false;
+     // this.router.navigate(['dash-respo/events']);
+    }
+    onClickCloseFormEdit(){
+      this.showEditTicketForm = false;
+    }
+  
+    onClickShowForm(){
+      this.showAddUserForm = true;
+    }
+    onClickCloseForm(){
+      this.showAddUserForm = false;
+    } 
+    onClickShowFormEdit(){
+    
+      this.showTicketDetails = false;
+     
+      this.showEditTicketForm = true;
+      //this.id=user;
+    }
 }

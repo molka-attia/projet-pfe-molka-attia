@@ -53,7 +53,38 @@ router.post('/:id/addticket' ,(req, res, next) => {
         }));
     })
     
-
+    router.put('/:id/editticket',(req, res, next) => {
+    
+   
+        const id=req.params.id;
+      
+        const ticket = new Ticket({
+            description: req.body.description,
+            priorite: req.body.priorite,
+            demandeur: req.params.id,
+            assignetech:'',
+            etat:'non cloturer',
+            opened:'closed',
+            Datecreaation:new Date(),
+            Datecloturation:'',
+          });  
+       
+             Ticket.updateOne({"_id":id},{"$set":{"description":req.body.description,"priorite":req.body.priorite}})
+             .then(resultat=> console.log(resultat)) 
+             
+             // .then(() => res.status(201).json({
+               //   message: 'User modified !',
+               //   status: 201
+               // }))
+               .catch(error => res.status(400).json({
+                 error
+               }));
+       
+       
+       });
+        
+      
+       
 
 
 
