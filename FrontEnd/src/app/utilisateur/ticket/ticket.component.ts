@@ -21,10 +21,12 @@ export class TicketComponent  implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
+  formaddTicket:FormGroup;
+  public showAddUserForm = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
-  
+
   ngOnInit(): void {
     // this.userService.getTickets().subscribe(
     //   (resultatTicket) => {
@@ -32,6 +34,7 @@ export class TicketComponent  implements OnInit {
     //      console.log(resultatTicket);
     //   }  
     //   );
+    
     this.userService.getTicketsUser(JSON.parse(this.technicienId).userId).subscribe(
         (resultatTicket) => {
           this.fetchedTicket = resultatTicket;
@@ -39,6 +42,12 @@ export class TicketComponent  implements OnInit {
         }  
         );
      
+    
+        this.formaddTicket = new FormGroup({
+          description: new FormControl(null,{validators:[Validators.required]}),
+          priorite: new FormControl(null,{validators:[Validators.required]}),
+       
+        });
     
       
   }
@@ -84,5 +93,21 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
        this.userService.DeleteTicket(user);
     //this.router.navigate(['admin/user']);
   // })
+  }
+  onAddSubmit(){
+   this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,JSON.parse(this.technicienId).userId);
+    this.showAddUserForm = false;
+   // this.router.navigate(['dash-respo/events']);
+  }
+ 
+
+
+
+
+  onClickShowForm(){
+    this.showAddUserForm = true;
+  }
+  onClickCloseForm(){
+    this.showAddUserForm = false;
   }
 }

@@ -8,69 +8,6 @@
     text-decoration: none;
     font-family: 'Montserrat';
   }
-  
-.add-btn{
-  margin-top: 2%;
-  margin-left: 5%;
-  width: 10%;
-}
-
-.model-bg{
-  z-index: 10000;
-  position: fixed;
-  top: 0;
-  background-color: #00000062;
-  width: 100vw;
-  height: 100vh;
-}
-
-
-.edit{
-width: 400px;
-position: absolute;
-right: 35%;
-top: 16%;
-padding: 15px;
-background-color: rgb(241, 238, 238);
-border-radius: 10px;
-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-}
-.edit label{
-margin-top: 10px;
-margin-bottom: 10px;
-}
-
-.edit button{
-margin-top: 10px;
-
-}
-
-.image-preview{
-height: 135px;
-  width: 209px;
-  margin-top: 10px;
-}
-.image-preview img{
-height: 100%;
-width: 100%;
-}
-
-.close-button{
-font-size: 20px;
-z-index: 10000;
-position: fixed;
-right: 33%;
-top: 10%;
-color: #fff;
-width: 30px;
-height: 30px;
-border: none;
-text-align: center;
-line-height: 30px;
-cursor: pointer;
-text-decoration: none;
-}
-
   .sidebar{
     width: 300px;
     position: fixed;
@@ -240,7 +177,6 @@ text-decoration: none;
     background: #bcdfdd;
     color: #fff;
   }
-  
   .composant{
     margin-top: 3.5rem;
     display: grid;
@@ -252,7 +188,7 @@ text-decoration: none;
     border-radius: 10px;
   }
   .header-case, .body-case{
-    padding: .8rem;
+    padding: .5rem;
   }
   .header-case{
     display: flex;
@@ -299,21 +235,7 @@ text-decoration: none;
     margin-right: 1rem;
     border-radius: 50%; 
   }
-  .status-produit.color-one{
-    background:  #ec1c24;
-  }
-  .status-produit.color-two{
-    background:  #fff200;
-  }
-  .status-produit.color-three{
-    background:  #6fba3d;
-  }
-  .status-produit.color-four{
-    background:  #00a8f3;
-  }
-  .status-produit.color-five{
-    background:  #b83dba;
-  }
+  .status-produit.color-one{ background:  #ec1c24; } .status-produit.color-two{ background:  #fff200; } .status-produit.color-three{ background:  #6fba3d; } .status-produit.color-four{ background:  #00a8f3; } .status-produit.color-five{ background:  #b83dba; }
   tr td:last-child{
     display: flex;
     align-items: center;
@@ -513,6 +435,68 @@ text-decoration: none;
   }
   
   
+.add-btn{
+  margin-top: 2%;
+  margin-left: 5%;
+  width: 10%;
+}
+
+.model-bg{
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  background-color: #00000062;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.edit{
+width: 400px;
+position: absolute;
+right: 35%;
+top: 16%;
+padding: 15px;
+background-color: rgb(241, 238, 238);
+border-radius: 10px;
+box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+.edit label{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.edit button{
+margin-top: 10px;
+
+}
+
+.image-preview{
+height: 135px;
+  width: 209px;
+  margin-top: 10px;
+}
+.image-preview img{
+height: 100%;
+width: 100%;
+}
+
+.close-button{
+font-size: 20px;
+z-index: 10000;
+position: fixed;
+right: 33%;
+top: 10%;
+color: #fff;
+width: 30px;
+height: 30px;
+border: none;
+text-align: center;
+line-height: 30px;
+cursor: pointer;
+text-decoration: none;
+}
+
   
   
   @media only screen and (max-width: 960px){
@@ -647,67 +631,7 @@ text-decoration: none;
     #menu:checked ~ .content{
       margin-left: 0rem !important;
     }
-    .add-btn{
-      margin-top: 2%;
-      margin-left: 5%;
-      width: 10%;
-  }
   
-  .model-bg{
-      z-index: 10000;
-      position: fixed;
-      top: 0;
-      background-color: #00000062;
-      width: 100vw;
-      height: 100vh;
-  }
-  
-  
-  .edit{
-    width: 400px;
-    position: absolute;
-    right: 35%;
-    top: 16%;
-    padding: 15px;
-    background-color: rgb(241, 238, 238);
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-  }
-  .edit label{
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .edit button{
-    margin-top: 10px;
-  
-  }
-  
-  .image-preview{
-    height: 135px;
-      width: 209px;
-      margin-top: 10px;
-  }
-  .image-preview img{
-    height: 100%;
-    width: 100%;
-  }
-  
-  .close-button{
-    font-size: 20px;
-    z-index: 10000;
-    position: fixed;
-    right: 33%;
-    top: 10%;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    border: none;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-    text-decoration: none;
-  }
   }
   @media only screen and (max-width: 560px){
      .cards{

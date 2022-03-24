@@ -27,6 +27,45 @@ router.get('/:id/getTechtickets',ticketController.getTechtickets);
 router.get('/:id/getUsertickets',ticketController.getUsertickets);
  
 router.delete('/:id/deleteticket',ticketController.delete)
+
+
+router.post('/:id/addticket' ,(req, res, next) => {
+    
+   
+      const ticket = new Ticket({
+        description: req.body.description,
+        priorite: req.body.priorite,
+        demandeur: req.params.id,
+        assignetech:'',
+        etat:'non cloturer',
+        opened:'closed',
+        Datecreaation:new Date(),
+        Datecloturation:'',
+      });
+    
+      ticket.save()
+        .then(() => res.status(201).json({
+          message: 'Ticket created !',
+          status: 201
+        }))
+        .catch(error => res.status(400).json({
+          error
+        }));
+    })
+    
+
+
+
+
+
+    // description: {type: String, required: false},
+    // priorite: {type: String, required: false},
+    // demandeur: {type: String, required: false},
+    // assignetech:{type: String, required: false},
+    // etat:{type: String, required: false},
+    // opened:{type: String, required: false},
+    // Dateopening:{type: Date, required: false},
+    // Datecloturation:{type: Date, required: false},
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
 router.get('/stats', userController.getStats);
