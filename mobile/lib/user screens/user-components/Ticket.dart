@@ -25,7 +25,16 @@ class Ticket extends StatefulWidget {
 
 class _DashuserState extends State<Ticket> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-
+   String selectedValue = "urgent";
+List<DropdownMenuItem<String>> get dropdownItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("Urgent"),value: "urgent"),
+    DropdownMenuItem(child: Text("Moyenne"),value: "moyenne"),
+    DropdownMenuItem(child: Text("faible"),value: "faible"),
+ 
+  ];
+  return menuItems;
+}
   var users;
   getUsers() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -80,7 +89,8 @@ TextEditingController _descriptionController = TextEditingController();
      String token = prefs.getString("token");
    var body = {
       "description": _descriptionController.text,
-      "priorite":_prioriteController.text
+     // "priorite":_prioriteController.text
+     "priorite":selectedValue
     };
    var headers = {
       "Content-Type": "application/json",
@@ -210,18 +220,28 @@ TextEditingController _descriptionController = TextEditingController();
                      SizedBox(
                       height: 20,
                     ),
-                   
                     
-                    TextField(
-                      controller: _prioriteController,
-                      decoration: InputDecoration(
-                        hintText: "priorité : (faible/moyenne/urgent)",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
+                DropdownButton(
+      value: selectedValue,
+      dropdownColor: Colors.green,
+      onChanged: (String newValue){
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+      items: dropdownItems
+      ),
+                    
+                    // TextField(
+                    //   controller: _prioriteController,
+                    //   decoration: InputDecoration(
+                    //     hintText: "priorité : (faible/moyenne/urgent)",
+                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
