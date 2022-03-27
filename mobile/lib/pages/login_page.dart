@@ -355,8 +355,8 @@ class _LoginState extends State<LoginPage> {
                                       text: 'Create',
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
-                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => addUser3()));
+                                         Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => addUser()));
                                         },
                                       style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
                                     ),

@@ -26,6 +26,17 @@ class RegistrationPage extends  StatefulWidget{
   }
 }
    class _RegistrationPageState extends State<RegistrationPage>{
+       GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+   String selectedValue = "utilisateur";
+List<DropdownMenuItem<String>> get dropdownItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("utilisateur"),value: "utilisateur"),
+    DropdownMenuItem(child: Text("technicien"),value: "technicien"),
+    
+ 
+  ];
+  return menuItems;
+}
 
   final _formKey = GlobalKey<FormState>();
   bool checkedValue = false;
@@ -47,13 +58,13 @@ class RegistrationPage extends  StatefulWidget{
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _typeController = TextEditingController();
+  //TextEditingController _typeController = TextEditingController();
 
   //XFile
   XFile _file;
 
   Future<dynamic> SignUp(File imageFile, String name, String email,
-      String password, String type, context) async {
+      String password,String selectedValue , context) async {
     // var stream =
     //     new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     // var length = await imageFile.length();
@@ -84,7 +95,8 @@ class RegistrationPage extends  StatefulWidget{
         request.fields['name'] = name;
     request.fields['email'] = email;
     request.fields['password'] = password;
-    request.fields['type'] = type;
+    //request.fields['type'] = selectedValue;
+    request.fields['type'] = selectedValue;
     var response = await request.send();
     print(response.statusCode);
 
@@ -170,15 +182,16 @@ class RegistrationPage extends  StatefulWidget{
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 30,),
-                        Container(
-                          child: TextFormField(
-                            controller: _typeController,
-                            decoration: ThemeHelper().textInputDecoration('type', 'Enter your type'),
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 20,),
+                        // Container(
+                        //   child: TextFormField(
+                        //     controller: _typeController,
+                        //     decoration: ThemeHelper().textInputDecoration('type', 'Enter your type'),
+                        //   ),
+                        //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        // ),
+                       
+                        //SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: _emailController,
@@ -210,7 +223,7 @@ class RegistrationPage extends  StatefulWidget{
                         //   ),
                         //   decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         // ),
-                        SizedBox(height: 20.0),
+                       SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: _passwordController,
@@ -227,6 +240,39 @@ class RegistrationPage extends  StatefulWidget{
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
                         SizedBox(height: 15.0),
+                                    Container(
+                                      width: 450,
+                                     // decoration: ThemeHelper().inputBoxDecorationShaddow(),
+          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            //       decoration: BoxDecoration(
+            //  // color: Theme.of(context).primaryColorLight,
+            //  color: Colors.white,
+            //   borderRadius: BorderRadius.circular(30)
+              
+            //   ),
+               decoration: ThemeHelper().inputBoxDecorationShaddow(),
+               
+                          child:
+                           DropdownButton(
+      value: selectedValue,
+      
+      //decoration: ThemeHelper().inputBoxDecorationShaddow(),
+      //dropdownColor: Colors.green,
+      // isExpanded:true,
+      onChanged: (String newValue){
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+      items: dropdownItems,
+       hint: Center(
+                child: Text(
+              'role',
+              style: TextStyle(color: Colors.white),
+            )),
+      ),
+      
+                ),  SizedBox(height: 15.0),
                         FormField<bool>(
                           builder: (state) {
                             return Column(
@@ -252,6 +298,7 @@ class RegistrationPage extends  StatefulWidget{
                                     style: TextStyle(color: Theme.of(context).errorColor,fontSize: 12,),
                                   ),
                                 )
+                        
                               ],
                             );
                           },
@@ -292,7 +339,8 @@ class RegistrationPage extends  StatefulWidget{
                         _nameController.text,
                         _emailController.text,
                         _passwordController.text,
-                        _typeController.text,
+                      //  _typeController.text,
+                      selectedValue ,
                         context);
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
                               }

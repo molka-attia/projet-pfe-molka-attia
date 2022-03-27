@@ -71,7 +71,7 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
 });
 
-router.post('/addUser2',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
