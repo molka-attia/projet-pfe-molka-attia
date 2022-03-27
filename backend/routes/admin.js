@@ -5,6 +5,8 @@ const Ticket=require('./../models/Ticket');
 const bcrypt = require('bcrypt');
 const userController = require('../controllers/admin/users');
 const ticketController = require('../controllers/admin/tickets');
+const auth=require('../middlewares/auth');
+
 const multer = require('multer');
 const MIME_TYPE_MAP = {
     'image/png': 'png',
@@ -22,16 +24,16 @@ const storageEvents = multer.diskStorage({
     }
 });
 
-router.get('/:id/getuser',userController.getOneUser);
+router.get('/:id/getuser',auth,userController.getOneUser);
 
-router.get('/:id/getUserName',userController.getUserName);
+router.get('/:id/getUserName',auth,userController.getUserName);
 // router.get('/',(req,res)=>{
 //     User.find().then(users=>res.status(200).json(users)).catch(err=>res.status(400).json('Eror')); 
 //    })
 
-   router.get('/',userController.getUsers);
+   router.get('/',auth,userController.getUsers);
 
-   router.get('/tickets',ticketController.getTickets);
+   router.get('/tickets',auth,ticketController.getTickets);
 
 
 
@@ -41,7 +43,7 @@ router.get('/:id/getUserName',userController.getUserName);
 
    
   
-   router.post('/addUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+   router.post('/addUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     console.log(req.file);
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -69,7 +71,7 @@ router.get('/:id/getUserName',userController.getUserName);
 
 });
 
-router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+router.post('/addUser2',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
@@ -96,7 +98,7 @@ router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req
 
 
 });
-router.put('/:id/editUser',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     
    
   const id=req.params.id;
@@ -124,9 +126,9 @@ router.put('/:id/editUser',multer({storage:storageEvents}).single("user_img") ,(
   
 
  
-router.delete('/:id/deleteuser',userController.delete)
+router.delete('/:id/deleteuser',auth,userController.delete)
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
-router.get('/stats', userController.getStats);
+router.get('/stats',auth, userController.getStats);
 
 module.exports = router;

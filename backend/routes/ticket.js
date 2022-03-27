@@ -5,6 +5,8 @@ const Ticket=require('./../models/Ticket');
 const bcrypt = require('bcrypt');
 const userController = require('../controllers/admin/users');
 const ticketController = require('../controllers/admin/tickets');
+const auth=require('../middlewares/auth');
+
 const multer = require('multer');
 const MIME_TYPE_MAP = {
     'image/png': 'png',
@@ -23,13 +25,13 @@ const storageEvents = multer.diskStorage({
 });
 
 
-router.get('/:id/getTechtickets',ticketController.getTechtickets);
-router.get('/:id/getUsertickets',ticketController.getUsertickets);
+router.get('/:id/getTechtickets',auth,ticketController.getTechtickets);
+router.get('/:id/getUsertickets',auth,ticketController.getUsertickets);
  
-router.delete('/:id/deleteticket',ticketController.delete)
+router.delete('/:id/deleteticket',auth,ticketController.delete)
 
 
-router.post('/:id/addticket' ,(req, res, next) => {
+router.post('/:id/addticket' ,auth,(req, res, next) => {
     
    
       const ticket = new Ticket({
@@ -53,7 +55,7 @@ router.post('/:id/addticket' ,(req, res, next) => {
         }));
     })
     
-    router.put('/:id/editticket',(req, res, next) => {
+    router.put('/:id/editticket',auth,(req, res, next) => {
     
    
         const id=req.params.id;
@@ -99,6 +101,6 @@ router.post('/:id/addticket' ,(req, res, next) => {
     // Datecloturation:{type: Date, required: false},
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
-router.get('/stats', userController.getStats);
+router.get('/stats', auth,userController.getStats);
 
 module.exports = router;

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSignUpSubmit(){
-    if ( this.formSignUp.value.type == "user"){
+    if ( this.formSignUp.value.type == "utilisateur"){
     this.authService.signup(this.formSignUp.value,this.formSignUp);
   }else if ( this.formSignUp.value.type == "technicien"){
     this.authService.signup(this.formSignUp.value,this.formSignUp);

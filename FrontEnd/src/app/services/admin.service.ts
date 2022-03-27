@@ -9,8 +9,17 @@ import { User } from '../admin/user/user.model';
   providedIn: 'root'
 })
 export class AdminService {
-
-
+  private head = this.getHeaders().headers;
+  getHeaders(){
+    const token = localStorage.getItem('id_token');
+    const id = JSON.parse(localStorage.getItem('user')).userId;
+    return {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'userId': id
+      }
+    };
+  }
   // private userUpdated = new Subject<User[]>();
   constructor(private http:HttpClient) { }
   API_URL: string = 'http://localhost:3000/api/users';
@@ -19,12 +28,12 @@ export class AdminService {
 
   getUsers(){
     
-    return this.http.get<any>(`http://localhost:3000/api/users`);
+    return this.http.get<any>(`http://localhost:3000/api/users`,{headers:this.head});
   }
 
   getTickets(){
     
-    return this.http.get<any>(`http://localhost:3000/api/users/tickets`);
+    return this.http.get<any>(`http://localhost:3000/api/users/tickets`,{headers:this.head});
   }
 
   addUser(user:User){
@@ -38,7 +47,7 @@ export class AdminService {
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
     //console.log(userData);
-     this.http.post(`http://localhost:3000/api/users/addUser`,userData)
+     this.http.post(`http://localhost:3000/api/users/addUser`,userData,{headers:this.head})
      .subscribe(res=>{
        console.log(res);
 
@@ -46,7 +55,7 @@ export class AdminService {
     });
   }
   getUser(id:String){
-    return this.http.get(`http://localhost:3000/api/users/${id}/getuser`);
+    return this.http.get(`http://localhost:3000/api/users/${id}/getuser`,{headers:this.head});
     
     }
   
@@ -62,7 +71,7 @@ export class AdminService {
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
     //console.log(userData);
-     this.http.put(`http://localhost:3000/api/users/${id}/editUser`,userData)
+     this.http.put(`http://localhost:3000/api/users/${id}/editUser`,userData,{headers:this.head})
      .subscribe(res=>{
        console.log(res);
 
@@ -71,7 +80,7 @@ export class AdminService {
   }
 
   DeleteUser(id:string){
-    this.http.delete(`http://localhost:3000/api/users/${id}/deleteuser`)
+    this.http.delete(`http://localhost:3000/api/users/${id}/deleteuser`,{headers:this.head})
     .subscribe(res=>{
       console.log(res);
   
@@ -80,7 +89,7 @@ export class AdminService {
   }
   
   DeleteTicket(id:string){
-    this.http.delete(`http://localhost:3000/api/tickets/${id}/deleteticket`)
+    this.http.delete(`http://localhost:3000/api/tickets/${id}/deleteticket`,{headers:this.head})
     .subscribe(res=>{
       console.log(res);
   
@@ -97,7 +106,7 @@ export class AdminService {
 
   //console.log(description);
     //console.log(userData);
-     this.http.post(`http://localhost:3000/api/tickets/${id}/addticket`,ticketData)
+     this.http.post(`http://localhost:3000/api/tickets/${id}/addticket`,ticketData,{headers:this.head})
      .subscribe(res=>{
        console.log(res);
 
@@ -113,7 +122,7 @@ export class AdminService {
  
    //console.log(description);
      //console.log(userData);
-      this.http.put(`http://localhost:3000/api/tickets/${id}/editticket`,ticketData)
+      this.http.put(`http://localhost:3000/api/tickets/${id}/editticket`,ticketData,{headers:this.head})
       .subscribe(res=>{
         console.log(res);
  
@@ -124,14 +133,14 @@ export class AdminService {
 
   getTicketsTech(id:string){
     
-    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`);
+    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`,{headers:this.head});
   }
   getTicketsUser(id:string){
     
-    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`);
+    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`,{headers:this.head});
   }
   getStats(){
-    return this.http.get(`http://localhost:3000/api/users/stats`);
+    return this.http.get(`http://localhost:3000/api/users/stats`,{headers:this.head});
 
   }
 
