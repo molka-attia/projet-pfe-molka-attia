@@ -62,7 +62,9 @@ class _DiscussionInfoDetailState extends State<Oneticket> {
     //   "Accept": "application/json",
     //   "Authorization": "Bearer " + token,
     //   "userId": userId,
-    // };http://localhost:3000/api/tickets/${id}/deleteticket
+    // };
+    // 
+    // http://localhost:3000/api/tickets/${id}/deleteticket
     var uri = Uri.parse("http://localhost:3000/api/tickets/" +
         widget.info["_id"] +
         "/deleteticket");
@@ -97,10 +99,20 @@ else {
     futureAlbum2=fetchUser2();
   }
 Future<User> fetchUser() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
   final response = await http
       .get(Uri.parse("http://localhost:3000/api/users/" +
          widget.info["demandeur"] +
-         "/getUserName"));
+         "/getUserName"), headers: headers);
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -113,10 +125,20 @@ Future<User> fetchUser() async {
   }
 }
 Future<User> fetchUser2() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
   final response = await http
       .get(Uri.parse("http://localhost:3000/api/users/" +
          widget.info["assignetech"] +
-         "/getUserName"));
+         "/getUserName"), headers: headers);
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

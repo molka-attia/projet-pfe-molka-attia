@@ -28,19 +28,19 @@ class _DashuserState extends State<Discussions> {
   var users;
   getUsers() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String token = prefs.getString("token");
-    // String userId = prefs.getString("userId");
-    // String clubId = prefs.getString("club_id");
-    // var headers = {
-    //   "Content-Type": "application/json",
-    //   "Accept": "application/json",
-    //   "Authorization": "Bearer " + token,
-    //   "userId": userId,
-    // };
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
     var url = "http://localhost:3000/api/users";
     var uri = Uri.parse(url);
     // var request = http.get(uri, headers: headers);
-    var request = http.get(uri);
+    var request = http.get(uri, headers: headers);
     var response = await request.timeout(Duration(seconds: 10));
     setState(() {
       users = jsonDecode(response.body);
