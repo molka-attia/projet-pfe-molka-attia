@@ -63,6 +63,7 @@
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
         </div>
@@ -112,9 +113,11 @@
             <div class="form-group">
               <label for="radio">Techniciens : </label>
               <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
-              <select class="form-control" id="type" formControlName="type" name="type">
-              <option value="admin">admin</option>
-              <option value="manager">manager</option>
+              <select  class="form-control" id="type" formControlName="type" name="type">
+                
+              <option  *ngFor="let technicien of listtechniciens; let i = index" value={{technicien._id}}>{{technicien.name}}</option>
+         
+              <!-- <option value="manager">manager</option> -->
             </select>
             </div>
          

@@ -33,6 +33,8 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
    router.get('/',auth,userController.getUsers);
 
+   router.get('/gettechniciens',auth,userController.getTechniciens);
+
    router.get('/tickets',auth,ticketController.getTickets);
 
 
