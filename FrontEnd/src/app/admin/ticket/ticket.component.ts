@@ -20,6 +20,7 @@ export class TicketComponent implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
+  public listtechniciens=users;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -30,7 +31,7 @@ export class TicketComponent implements OnInit {
          console.log(resultatTicket);
       }  
       );
-    
+   
      
     
       
@@ -60,8 +61,16 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
     this.showTicketDetails = false;
   }
 
-  onClickShowAffecter(){
+  async onClickShowAffecter(){
     this.showTicketaffectation = true;
+   
+      await    this.userService.getTechniciens().subscribe(
+        (resultatTicket) => {
+          this.listtechniciens = resultatTicket;
+           console.log(resultatTicket);
+        }  
+        );
+     // this.router.navigate(['dash-respo/events']);
    
 
   }

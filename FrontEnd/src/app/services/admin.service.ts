@@ -9,6 +9,7 @@ import { User } from '../admin/user/user.model';
   providedIn: 'root'
 })
 export class AdminService {
+ 
   private head = this.getHeaders().headers;
   getHeaders(){
     const token = localStorage.getItem('id_token');
@@ -30,7 +31,9 @@ export class AdminService {
     
     return this.http.get<any>(`http://localhost:3000/api/users`,{headers:this.head});
   }
-
+  getTechniciens() {
+    return this.http.get<any>(`http://localhost:3000/api/users/gettechniciens`,{headers:this.head});
+  }
   getTickets(){
     
     return this.http.get<any>(`http://localhost:3000/api/users/tickets`,{headers:this.head});
