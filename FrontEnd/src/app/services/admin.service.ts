@@ -135,6 +135,7 @@ export class AdminService {
      });
    }
 
+   
    EditAffecter(assignetech:string,id:string){
     // const ticketData = new FormData();
     const ticketData = {assignetech:assignetech}
