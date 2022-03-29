@@ -55,6 +55,39 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         }));
     })
     
+    router.put('/:id/affecterautechnicien',auth,(req, res, next) => {
+      const id=req.params.id;
+      const ticket = new Ticket({
+         
+          
+          assignetech:req.body.assignetech,
+       
+          
+        });  
+     
+           Ticket.updateOne({"_id":id},{"$set":{"assignetech":req.body.assignetech}})
+           .then(resultat=> console.log(resultat)) 
+           
+           // .then(() => res.status(201).json({
+             //   message: 'User modified !',
+             //   status: 201
+             // }))
+             .catch(error => res.status(400).json({
+               error
+             }));
+     
+     
+     });
+      
+    
+     
+
+
+
+
+
+
+
     router.put('/:id/editticket',auth,(req, res, next) => {
     
    

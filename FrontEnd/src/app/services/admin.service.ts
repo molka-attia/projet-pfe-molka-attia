@@ -82,6 +82,8 @@ export class AdminService {
     }); 
   }
 
+
+
   DeleteUser(id:string){
     this.http.delete(`http://localhost:3000/api/users/${id}/deleteuser`,{headers:this.head})
     .subscribe(res=>{
@@ -126,6 +128,23 @@ export class AdminService {
    //console.log(description);
      //console.log(userData);
       this.http.put(`http://localhost:3000/api/tickets/${id}/editticket`,ticketData,{headers:this.head})
+      .subscribe(res=>{
+        console.log(res);
+ 
+ 
+     });
+   }
+
+   
+   EditAffecter(assignetech:string,id:string){
+    // const ticketData = new FormData();
+    const ticketData = {assignetech:assignetech}
+   //  ticketData.append('description',description);
+     //ticketData.append('priorite',priorite);
+ 
+   //console.log(description);
+     //console.log(userData);
+      this.http.put(`http://localhost:3000/api/tickets/${id}/affecterautechnicien`,ticketData,{headers:this.head})
       .subscribe(res=>{
         console.log(res);
  

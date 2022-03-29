@@ -51,7 +51,7 @@
                       <td>{{ticket.opened}}</td>
                       <td>{{ticket.etat}}</td>
                       
-                      <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowAffecter()" >affecter</button> </td>
+                      <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowAffecter(ticket)" >affecter</button> </td>
                       <td><button class="btn btn-success add-btn" style="width: 75%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                     
                       <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
@@ -105,15 +105,11 @@
         <a class="close-button" (click)="onClickCloseAffecter()">X</a>
         <div class="edit">
           <!-- create form -->
-          <form  >
-            
-               
-           
-          
+          <form [formGroup]="formAffecter" (submit)="oneEditAffecter(currentticket._id)" >
             <div class="form-group">
               <label for="radio">Techniciens : </label>
               <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
-              <select  class="form-control" id="type" formControlName="type" name="type">
+              <select  class="form-control" id="type" formControlName="technicienid" name="type">
                 
               <option  *ngFor="let technicien of listtechniciens; let i = index" value={{technicien._id}}>{{technicien.name}}</option>
          

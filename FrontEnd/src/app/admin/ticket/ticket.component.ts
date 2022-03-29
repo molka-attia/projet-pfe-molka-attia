@@ -21,6 +21,7 @@ export class TicketComponent implements OnInit {
   public user:User;
   public technicienaffecte:User;
   public listtechniciens=users;
+  formAffecter:FormGroup;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -32,9 +33,18 @@ export class TicketComponent implements OnInit {
       }  
       );
    
-     
+      this.formAffecter = new FormGroup({
+        technicienid: new FormControl(null,{validators:[Validators.required]}),
+ 
+      });
     
       
+  }
+  oneEditAffecter(userId:string){
+
+    this.userService.EditAffecter(this.formAffecter.value.technicienid,userId);
+    this.showTicketaffectation = false;
+   
   }
   
   onClickShowForm2(ticket:Ticket){
@@ -61,9 +71,9 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
     this.showTicketDetails = false;
   }
 
-  async onClickShowAffecter(){
+  async onClickShowAffecter(ticket:Ticket){
     this.showTicketaffectation = true;
-   
+    this.currentticket=ticket;
       await    this.userService.getTechniciens().subscribe(
         (resultatTicket) => {
           this.listtechniciens = resultatTicket;

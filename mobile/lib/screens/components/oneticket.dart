@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:responsive_admin_dashboard/common/theme_helper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:path/path.dart';
 import 'dart:io';
@@ -22,6 +23,16 @@ class Oneticket extends StatefulWidget {
   @override
   State<Oneticket> createState() => _DiscussionInfoDetailState();
 }
+
+
+
+
+
+
+
+
+
+
 
  Future<User> futureAlbum;
 
@@ -52,6 +63,41 @@ class User {
 }
 
 class _DiscussionInfoDetailState extends State<Oneticket> {
+  var techniciens;
+  var technicien;
+  getTechniciens() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var url = "http://localhost:3000/api/users/gettechniciens";
+    var uri = Uri.parse(url);
+    // var request = http.get(uri, headers: headers);
+    var request = http.get(uri, headers: headers);
+    var response = await request.timeout(Duration(seconds: 10));
+    setState(() {
+      techniciens = jsonDecode(response.body);
+    });
+  }
+   String selectedValue = '';
+List<DropdownMenuItem<String>> get dropdownItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text(''),value:''), 
+     for (technicien in techniciens)
+   
+    DropdownMenuItem(child: Text(technicien['name']),value: technicien['_id']),
+   // DropdownMenuItem(child: Text("technicien"),value: "technicien"),
+    
+  
+  ];
+  return menuItems;
+}
   deleteTicket() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -96,6 +142,7 @@ else {
     super.initState();
     futureAlbum = fetchUser();
     futureAlbum2=fetchUser2();
+    getTechniciens();
   }
 Future<User> fetchUser() async {
      SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -439,19 +486,59 @@ Future<User> fetchUser2() async {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('Ticket affecté'),
+                    title: Text('Techniciens :'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
                         child: Column(
                           children: <Widget>[
                             
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Name',
-                                icon: Icon(Icons.account_box),
-                              ),
-                            ),
+                            // TextFormField(
+                            //   // decoration: InputDecoration(
+                            //     labelText: 'Techniciens :',
+                            //     icon: Icon(Icons.account_box),
+                            //   //),
+                            // ),
+
+              //                Text(
+              //   'Techniciens:',
+              //   style: TextStyle(
+              //     color: textColor,
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.w700,
+              //   ),
+              // ),
+                                                        Container(
+                                      width: 450,
+                                     // decoration: ThemeHelper().inputBoxDecorationShaddow(),
+          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            //       decoration: BoxDecoration(
+            //  // color: Theme.of(context).primaryColorLight,
+            //  color: Colors.white,
+            //   borderRadius: BorderRadius.circular(30)
+              
+            //   ),
+               decoration: ThemeHelper().inputBoxDecorationShaddow(),
+               
+                          child:
+                           DropdownButton(
+      value: selectedValue,
+      
+      //decoration: ThemeHelper().inputBoxDecorationShaddow(),
+      //dropdownColor: Colors.green,
+      // isExpanded:true,
+      onChanged: (String newValue){
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+      items: dropdownItems,
+       hint: Center(
+                child: Text(
+              'role',
+              style: TextStyle(color: Colors.white),
+            )),
+      )),
                            
                           ],
                         ),
@@ -534,5 +621,3 @@ Future<User> fetchUser2() async {
         ))  );
   }
 }
-
-
