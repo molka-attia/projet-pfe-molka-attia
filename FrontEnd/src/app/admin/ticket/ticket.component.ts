@@ -40,6 +40,13 @@ export class TicketComponent implements OnInit {
     
       
   }
+  onCloturerTiket(userId:string){
+
+    this.userService.EditCloturer(userId);
+    this.showTicketDetails = false
+   
+  }
+
   oneEditAffecter(userId:string){
 
     this.userService.EditAffecter(this.formAffecter.value.technicienid,userId);

@@ -34,6 +34,10 @@ export class AdminService {
   getTechniciens() {
     return this.http.get<any>(`http://localhost:3000/api/users/gettechniciens`,{headers:this.head});
   }
+
+
+
+
   getTickets(){
     
     return this.http.get<any>(`http://localhost:3000/api/users/tickets`,{headers:this.head});
@@ -134,7 +138,18 @@ export class AdminService {
  
      });
    }
+   EditCloturer(id:string){
 
+    //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+    const ticketData = {}
+      //console.log(userData);
+       this.http.put(`http://localhost:3000/api/tickets/${id}/clotureticket`,ticketData,{headers:this.head})
+       .subscribe(res=>{
+         console.log(res);
+    
+    
+      }); 
+    }
    
    EditAffecter(assignetech:string,id:string){
     // const ticketData = new FormData();

@@ -79,6 +79,24 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
      
      });
       
+     router.put('/:id/clotureticket',auth,(req, res, next) => {
+      const id=req.params.id;
+     
+     
+           Ticket.updateOne({"_id":id},{"$set":{"etat":'cloturer',"Datecloturation":new Date()}})
+           .then(resultat=> console.log(resultat)) 
+           
+           // .then(() => res.status(201).json({
+             //   message: 'User modified !',
+             //   status: 201
+             // }))
+             .catch(error => res.status(400).json({
+               error
+             }));
+     
+     
+     });
+      
     
      
 
