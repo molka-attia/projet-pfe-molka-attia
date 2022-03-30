@@ -52,6 +52,31 @@ class User {
 }
 
 class _DiscussionInfoDetailState extends State<Oneticket> {
+  ClotureTicket( ) async {
+ 
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+     String token = prefs.getString("token");
+   var body = {
+      
+    };
+   var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://localhost:3000/api/tickets/" +
+        widget.info["_id"] +
+        "/clotureticket");
+        var request = http.put(uri,  body: json.encode(body), headers: headers);
+   // var request = new http.MultipartRequest("POST", uri);
+    
+    //request.fields['description'] = description;
+    ///request.fields['priorite'] = email;
+ 
+  }
+  
   deleteTicket() async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -466,7 +491,7 @@ Future<User> fetchUser2() async {
         backgroundColor: _primaryColor,
                           onPressed: () {
                             // your code
-                            
+                            ClotureTicket();
                           }),
                         
                           
