@@ -25,12 +25,12 @@ class Ticket extends StatefulWidget {
 
 class _DashuserState extends State<Ticket> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-   String selectedValue = "urgent";
+   String selectedValue = "Urgent";
 List<DropdownMenuItem<String>> get dropdownItems{
   List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("Urgent"),value: "urgent"),
-    DropdownMenuItem(child: Text("Moyenne"),value: "moyenne"),
-    DropdownMenuItem(child: Text("faible"),value: "faible"),
+    DropdownMenuItem(child: Text("Urgent"),value: "Urgent"),
+    DropdownMenuItem(child: Text("Moyenne"),value: "Moyenne"),
+    DropdownMenuItem(child: Text("faible"),value: "Faible"),
  
   ];
   return menuItems;
@@ -183,7 +183,7 @@ TextEditingController _descriptionController = TextEditingController();
                 style: TextStyle(
                   color: textColor,
                   fontWeight: FontWeight.w700,
-                  fontSize: 15,
+                  fontSize: 20,
                 ),
               ),
                FloatingActionButton.extended(
@@ -195,7 +195,7 @@ TextEditingController _descriptionController = TextEditingController();
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('Ticket Add'),
+                    title: Text('Ajouter ticket'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -223,7 +223,8 @@ TextEditingController _descriptionController = TextEditingController();
                     
                 DropdownButton(
       value: selectedValue,
-      dropdownColor: Colors.green,
+      dropdownColor:CupertinoColors.activeBlue,
+      isExpanded:true,
       onChanged: (String newValue){
         setState(() {
           selectedValue = newValue;
@@ -243,7 +244,7 @@ TextEditingController _descriptionController = TextEditingController();
                     //   ),
                     // ),
                     SizedBox(
-                      height: 20,
+                      height: 70,
                     ),
               
                           ],
@@ -265,7 +266,7 @@ TextEditingController _descriptionController = TextEditingController();
                   },
                     //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
                  // },
-                  child: Text('Save')) 
+                  child: Text('ajouter')) 
                           
                     ],
                   );

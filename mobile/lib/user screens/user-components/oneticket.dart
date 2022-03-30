@@ -57,7 +57,16 @@ class _DiscussionInfoDetailState extends State<Oneticket> {
 TextEditingController _descriptionController = TextEditingController();
   TextEditingController _prioriteController = TextEditingController();
 
-
+  String selectedValue = "Urgent";
+List<DropdownMenuItem<String>> get dropdownItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("Urgent"),value: "Urgent"),
+    DropdownMenuItem(child: Text("Moyenne"),value: "Moyenne"),
+    DropdownMenuItem(child: Text("faible"),value: "Faible"),
+ 
+  ];
+  return menuItems;
+}
   //XFile
  
 
@@ -68,7 +77,7 @@ TextEditingController _descriptionController = TextEditingController();
      String token = prefs.getString("token");
    var body = {
       "description": _descriptionController.text,
-      "priorite":_prioriteController.text
+      "priorite":selectedValue
     };
    var headers = {
       "Content-Type": "application/json",
@@ -86,6 +95,31 @@ TextEditingController _descriptionController = TextEditingController();
     ///request.fields['priorite'] = email;
  
   }
+  ClotureTicket( ) async {
+ 
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+     String token = prefs.getString("token");
+   var body = {
+      
+    };
+   var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://localhost:3000/api/tickets/" +
+        widget.info["_id"] +
+        "/clotureticket");
+        var request = http.put(uri,  body: json.encode(body), headers: headers);
+   // var request = new http.MultipartRequest("POST", uri);
+    
+    //request.fields['description'] = description;
+    ///request.fields['priorite'] = email;
+ 
+  }
+  
   deleteTicket() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -112,10 +146,10 @@ TextEditingController _descriptionController = TextEditingController();
   final ScrollController _firstController = ScrollController();
   var text="ha";
 getcolor()  {
-if(widget.info['priorite']=='urgent'){
+if(widget.info['priorite']=='Urgent'){
 return red;
 }
-else if(widget.info['priorite']=='moyenne'){
+else if(widget.info['priorite']=='Moyenne'){
   return Colors.yellow;
 }
 else {
@@ -325,32 +359,30 @@ Future<User> fetchUser2() async {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             Text(
-                widget.info['etat'],
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+           
                Text(
                 widget.info['priorite'],
                 style: TextStyle(
                   color: textColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  //fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight. bold,
                 ),
               ),
-               FloatingActionButton.extended(
-        onPressed: () {
-       deleteTicket();
-          // Add your onPressed code here!
-        },
-        label: const Text('delete'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.red.withOpacity(0.6),
+      //          FloatingActionButton.extended(
+      //   onPressed: () {
+      //  deleteTicket();
+      //     // Add your onPressed code here!
+      //   },
+      //   label: const Text('delete'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.red.withOpacity(0.6),
 
-      ),
+      // ),
+      
+           
+
+      
               // Container(
               //   padding: EdgeInsets.all(appPadding / 2),
               //   height: 40,
@@ -364,7 +396,8 @@ Future<User> fetchUser2() async {
               //   // ),
               // )
                     new IconButton(
-        icon: new Icon(Icons.more_vert_rounded),
+        // icon: new Icon(Icons.more_vert_rounded),
+        icon: new Icon(Icons.info),
         color: textColor.withOpacity(0.5),
         //size: 18,
         onPressed: (){
@@ -389,22 +422,7 @@ Future<User> fetchUser2() async {
           //     fit: BoxFit.cover,
           //   ),
           // ),
-                            Text(
-                     widget.info['description'],
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.w400
-                    ),
-                  ),
-                  //     Text(
-                  //   'demandeur:',
-                  //   style: TextStyle(
-                  //     color: textColor,
-                  //     fontWeight: FontWeight.w600
-                  //   ),
-                  // ),
-                  
-  FutureBuilder<User>(
+                    FutureBuilder<User>(
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -429,7 +447,7 @@ Future<User> fetchUser2() async {
             future: futureAlbum2,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text('Technicien :    '+snapshot.data.name);
+                return Text('Technicien :    ' +snapshot.data.name);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -438,6 +456,23 @@ Future<User> fetchUser2() async {
               return const CircularProgressIndicator();
             },
           ),
+ 
+                   
+                            Text(
+                     widget.info['description'],
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.w400
+                    ),
+                  ),
+                  //     Text(
+                  //   'demandeur:',
+                  //   style: TextStyle(
+                  //     color: textColor,
+                  //     fontWeight: FontWeight.w600
+                  //   ),
+                  // ),
+ 
                   // Text(
                   //    widget.info['type'],
                   //   style: TextStyle(
@@ -459,90 +494,66 @@ Future<User> fetchUser2() async {
                      actions: [
                       // RaisedButton(
                       //     child: Text("edit"),
-                          FloatingActionButton.extended(
+        //                   FloatingActionButton.extended(
        
-        label: const Text('affecter'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: _primaryColor,
+        // label: const Text('affecter'),
+        // // icon: const Icon(Icons.plus_one_rounded),
+        // backgroundColor: _primaryColor,
 
       
-                          onPressed: () {
-                            // your code
-                              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: Text('Ticket affecté'),
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Form(
-                        child: Column(
-                          children: <Widget>[
+        //                   onPressed: () {
+        //                     // your code
+        //                       showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) {
+        //           return AlertDialog(
+        //             scrollable: true,
+        //             title: Text('Ticket affecté'),
+        //             content: Padding(
+        //               padding: const EdgeInsets.all(8.0),
+        //               child: Form(
+        //                 child: Column(
+        //                   children: <Widget>[
                             
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Name',
-                                icon: Icon(Icons.account_box),
-                              ),
-                            ),
+        //                     // TextFormField(
+        //                     //   decoration: InputDecoration(
+        //                     //     labelText: 'Name',
+        //                     //     icon: Icon(Icons.account_box),
+        //                     //   ),
+        //                     // ),
                            
-                          ],
-                        ),
-                      ),
-                    ),
-                     actions: [
-                   FloatingActionButton.extended(
+        //                   ],
+        //                 ),
+        //               ),
+        //             ),
+        //          //    actions: [
+        // //            FloatingActionButton.extended(
        
-        label: const Text('affecter'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: _primaryColor,
-                          onPressed: () {
-                            // your code
+        // // label: const Text('affecter'),
+        // // // icon: const Icon(Icons.plus_one_rounded),
+        // // backgroundColor: _primaryColor,
+        // //                   onPressed: () {
+        // //                     // your code
                             
-                          }),
+        // //                   }),
                         
                           
-                    ],
+        //           //  ],
                     
-                  );
-                });
-                          }),
-                          //   RaisedButton(
-                          // child: Text("delete"),
-                          // onPressed: () {
-                          //   // your code
-                          // }),
+        //           );
+        //         });
+        //                   }),
+                        
                              FloatingActionButton.extended(
         onPressed: () {
-      
+      ClotureTicket();
           // Add your onPressed code here!
         },
         label: const Text('cloturer'),
         // icon: const Icon(Icons.plus_one_rounded),
         backgroundColor: Colors.red,
 
-      ),
-                          
-                    ],
-                  );
-                });
-        }
-      ),
-            ],
-          ),
-          Text(
-            widget.info['description'],
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        SizedBox(height: 30),
-          FloatingActionButton.extended(
+      ),  FloatingActionButton.extended(
         onPressed: () {
               // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
           // Add your onPressed code here!
@@ -551,7 +562,7 @@ Future<User> fetchUser2() async {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     scrollable: true,
-                    title: Text('Ticket Add'),
+                    title: Text('Modifier ticket'),
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -563,7 +574,7 @@ Future<User> fetchUser2() async {
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
+                                TextField(
                       controller: _descriptionController,
                       decoration: InputDecoration(
                         hintText: "le problème",
@@ -576,21 +587,46 @@ Future<User> fetchUser2() async {
                      SizedBox(
                       height: 20,
                     ),
+                    
+                DropdownButton(
+      value: selectedValue,
+      dropdownColor:CupertinoColors.activeBlue,
+      isExpanded:true,
+      onChanged: (String newValue){
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+      items: dropdownItems
+      ),
+                    // TextField(
+                    //   controller: _descriptionController,
+                    //   decoration: InputDecoration(
+                    //     hintText: "le problème",
+                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10),
+                    //     ),
+                    //   ),
+                    // ),
+                    //  SizedBox(
+                    //   height: 20,
+                    // ),
                    
                     
-                    TextField(
-                      controller: _prioriteController,
-                      decoration: InputDecoration(
-                        hintText: "priorité : (faible/moyenne/urgent)",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // TextField(
+                    //   controller: _prioriteController,
+                    //   decoration: InputDecoration(
+                    //     hintText: "priorité : (faible/moyenne/urgent)",
+                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
               
                           ],
                         ),
@@ -622,6 +658,63 @@ Future<User> fetchUser2() async {
         backgroundColor: Colors.blue,
 
       ),
+                          
+                    ],
+                  );
+                });
+        }
+      ),
+            ],
+          ),
+          Text(
+            widget.info['description'],
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        SizedBox(height: 25),
+        Row(
+children: List.generate(150~/10, (index) => Expanded(
+ child: Container(
+  color: index%2==0?Colors.transparent
+  :Colors.grey,
+  height: 2,
+ ),
+ )),
+),
+//  Text(
+//             widget.info['Datecreaation'].toString(),
+//             maxLines: 2,
+//             overflow: TextOverflow.ellipsis,
+//             style: TextStyle(
+//               color: textColor,
+//               fontSize: 15,
+//               fontWeight: FontWeight.w600,
+//             ),
+//           ),
+        
+         SizedBox(height: 15),  
+
+  Text(
+               'Etat :  '+ widget.info['etat'],
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+
+  SizedBox(height: 15), 
+
+
+
+
+
+
       //     FloatingActionButton.extended(
       //   onPressed: () {
       //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
@@ -635,6 +728,7 @@ Future<User> fetchUser2() async {
       // ),
         ],
       ),
+      
     ) ,
                   
                 ],
