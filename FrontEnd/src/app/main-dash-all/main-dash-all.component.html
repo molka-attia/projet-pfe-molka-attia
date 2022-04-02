@@ -11,7 +11,7 @@
             <a  [routerLinkActive]="'active'" routerLink="/admin/dash" *ngIf="userIsAuthenticated && admin"><span class="fa fa-home"></span><span>Accueil</span></a>
           </li>
           <li>
-            <a [routerLinkActive]="'active'" routerLink="/admin/user" *ngIf="userIsAuthenticated && admin"><span class="fa fa-user"></span><span>Users</span></a>
+            <a [routerLinkActive]="'active'" routerLink="/admin/user" *ngIf="userIsAuthenticated && admin"><span class="fa fa-user"></span><span>Utilisateurs</span></a>
           </li>
           <li>
             <a [routerLinkActive]="'active'" routerLink="/admin/ticket" *ngIf="userIsAuthenticated && admin"><span class="fa fa-clipboard"></span><span>Tickets</span></a>
@@ -19,10 +19,16 @@
             <a  [routerLinkActive]="'active'" routerLink="/technicien/dash" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-home"></span><span>Accueil</span></a>
           </li>
           <li>
-            <a [routerLinkActive]="'active'" routerLink="/technicien/tech-tickets" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-clipboard"></span><span>Tickets to do</span></a>
+            <a [routerLinkActive]="'active'" routerLink="/technicien/tech-tickets" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-ticket"></span><span>Tickets attribués</span></a>
           </li>
           <li>
-            <a [routerLinkActive]="'active'" routerLink="/technicien/all-tickets" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-clipboard"></span><span>Tickets</span></a>
+            <a [routerLinkActive]="'active'" routerLink="/technicien/all-tickets" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-ticket"></span><span>Tickets</span></a>
+          </li>
+          <li>
+            <a [routerLinkActive]="'active'" routerLink="/technicien/publications" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-id-card-o"></span><span>publications</span></a>
+          </li>
+          <li>
+            <a [routerLinkActive]="'active'" routerLink="/admin/archive" *ngIf="userIsAuthenticated && technicien || admin"><span class="fa fa-archive"></span><span>archive</span></a>
           </li>
           <li>
             <a href="" *ngIf="userIsAuthenticated && admin"><span class="fa fa-line-chart" ></span><span>Statistique</span></a>
@@ -82,7 +88,7 @@
           <div class="dropdown-content">
           <p>Mon profil</p>
           <li class="nav-item toRight" style="cursor: pointer;" *ngIf="userIsAuthenticated">
-            <a class="nav-link" (click)="onLogoutClick()">Logout</a>
+            <a class="nav-link" (click)="onLogoutClick()">Déconnexion</a>
           </li>
           </div>
           

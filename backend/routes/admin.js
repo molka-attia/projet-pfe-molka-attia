@@ -16,6 +16,7 @@ const MIME_TYPE_MAP = {
 const storageEvents = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './../FrontEnd/src/assets/images');
+       
     },
     filename: function (req, file, cb) {
         const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -158,5 +159,6 @@ router.delete('/:id/deleteuser',auth,userController.delete)
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
 router.get('/stats',auth, userController.getStats);
+
 
 module.exports = router;

@@ -27,6 +27,7 @@ const storageEvents = multer.diskStorage({
 
 router.get('/:id/getTechtickets',auth,ticketController.getTechtickets);
 router.get('/:id/getUsertickets',auth,ticketController.getUsertickets);
+router.get('/ticketscloturer',auth,ticketController.getTicketscloturer);
  
 router.delete('/:id/deleteticket',auth,ticketController.delete)
 
@@ -152,6 +153,6 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
     // Datecloturation:{type: Date, required: false},
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
-router.get('/stats', auth,userController.getStats);
-
+router.get('/statsalltickets', auth,ticketController.getTicketsnumber);
+router.get('/:id/statstechtickets',auth, ticketController.getTicketstechnumber);
 module.exports = router;

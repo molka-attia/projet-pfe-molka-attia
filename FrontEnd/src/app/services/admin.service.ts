@@ -9,7 +9,7 @@ import { User } from '../admin/user/user.model';
   providedIn: 'root'
 })
 export class AdminService {
- 
+
   private head = this.getHeaders().headers;
   getHeaders(){
     const token = localStorage.getItem('id_token');
@@ -35,7 +35,11 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/users/gettechniciens`,{headers:this.head});
   }
 
-
+  getTicketscloturer() {
+    //ticketscloturer 
+    return this.http.get<any>(`http://localhost:3000/api/tickets/ticketscloturer`,{headers:this.head});
+    }
+   
 
 
   getTickets(){
@@ -180,5 +184,12 @@ export class AdminService {
     return this.http.get(`http://localhost:3000/api/users/stats`,{headers:this.head});
 
   }
+  getStatstickets(){
+    return this.http.get(`http://localhost:3000/api/tickets/statsalltickets`,{headers:this.head});
 
+  }
+  getStatstechtickets(id:string){
+    return this.http.get(`http://localhost:3000/api/tickets/${id}/statstechtickets`,{headers:this.head});
+
+  }
 }

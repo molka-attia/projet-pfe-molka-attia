@@ -118,7 +118,7 @@ class _DashuserState extends State<Discussions> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Users',
+                'Utilisateurs',
                 style: TextStyle(
                   color: textColor,
                   fontWeight: FontWeight.w700,

@@ -59,6 +59,7 @@ token2:any;
         else{
           this.admin=true;
           this.technicien = false;
+          this.utilisateur=false;
           
         }
 
