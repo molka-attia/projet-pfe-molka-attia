@@ -288,7 +288,7 @@ class _LoginState extends State<LoginPage> {
                                
                                
                     Text(
-                      'Login',
+                      'Connexion',
                       style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
                     )  ,
                     // Text(
@@ -303,7 +303,7 @@ class _LoginState extends State<LoginPage> {
                             Container(
                               child: TextField(
                                  controller: _emailController,
-                                decoration: ThemeHelper().textInputDecoration('User Name', 'Enter your user name'),
+                                decoration: ThemeHelper().textInputDecoration('Email', 'Entrer votre email'),
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
@@ -312,7 +312,7 @@ class _LoginState extends State<LoginPage> {
                               child: TextField(
                                  controller: _passwordController,
                                 obscureText: true,
-                                decoration: ThemeHelper().textInputDecoration('Password', 'Enter your password'),
+                                decoration: ThemeHelper().textInputDecoration('Mot de Passe', 'Entrer votre mot de passe'),
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
@@ -334,7 +334,7 @@ class _LoginState extends State<LoginPage> {
                                 style: ThemeHelper().buttonStyle(),
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text('Sign In'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+                                  child: Text('Envoyer'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
                                 ),
                                 onPressed: (){
                                   _login();
@@ -350,9 +350,9 @@ class _LoginState extends State<LoginPage> {
                               child: Text.rich(
                                 TextSpan(
                                   children: [
-                                    TextSpan(text: "Don\'t have an account? "),
+                                    TextSpan(text: "vous n'avez pas de compte?  "),
                                     TextSpan(
-                                      text: 'Create',
+                                      text: "s'inscrire",
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = (){
                                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationPage()));

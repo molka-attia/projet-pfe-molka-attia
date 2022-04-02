@@ -481,7 +481,13 @@ Future<User> fetchUser2() async {
               return const CircularProgressIndicator();
             },
           ),
-          
+          new GestureDetector(
+  onTap: () {
+   // Navigator.pushNamed(context, "myRoute");
+  },
+  child: new Text("my Title"),
+),
+
                   //     Text(
                   //   'technicien :',
                   //   style: TextStyle(

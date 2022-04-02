@@ -6,6 +6,7 @@ import { TechnicienComponent } from './technicien.component';
 import { MainDashTechnicienComponent } from './main-dash-technicien/main-dash-technicien.component';
 import { AllTicketsComponent } from './all-tickets/all-tickets.component';
 import { TechTicketsComponent } from './tech-tickets/tech-tickets.component';
+import { PublicationComponent } from './publication/publication.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TechTicketsComponent } from './tech-tickets/tech-tickets.component';
     TechnicienComponent,
     MainDashTechnicienComponent,
     AllTicketsComponent,
-    TechTicketsComponent
+    TechTicketsComponent,
+    PublicationComponent
   ],
   imports: [
     CommonModule,

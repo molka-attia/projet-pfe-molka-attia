@@ -8,6 +8,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+ import 'package:flutter/gestures.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -178,7 +179,7 @@ List<DropdownMenuItem<String>> get dropdownItems{
                         Container(
                           child: TextFormField(
                             controller: _nameController,
-                            decoration: ThemeHelper().textInputDecoration('First Name', 'Enter your first name'),
+                            decoration: ThemeHelper().textInputDecoration('Nom', 'Entrer votre nom'),
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
@@ -195,11 +196,11 @@ List<DropdownMenuItem<String>> get dropdownItems{
                         Container(
                           child: TextFormField(
                             controller: _emailController,
-                            decoration: ThemeHelper().textInputDecoration("E-mail address", "Enter your email"),
+                            decoration: ThemeHelper().textInputDecoration("E-mail ", "Entrer votre Email"),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               if(!(val.isEmpty) && !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(val)){
-                                return "Enter a valid email address";
+                                return "Veuillez entrer une adresse email valide";
                               }
                               return null;
                             },
@@ -229,7 +230,7 @@ List<DropdownMenuItem<String>> get dropdownItems{
                             controller: _passwordController,
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Password*", "Enter your password"),
+                                "mot de passe*", "Entrer votre mot de passe"),
                             validator: (val) {
                               if (val.isEmpty) {
                                 return "Please enter your password";
@@ -318,7 +319,7 @@ List<DropdownMenuItem<String>> get dropdownItems{
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Register".toUpperCase(),
+                                "Envoyer".toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -348,6 +349,26 @@ List<DropdownMenuItem<String>> get dropdownItems{
                           ),
                         ),
                         SizedBox(height: 30.0),
+                        Container(
+                              margin: EdgeInsets.fromLTRB(10,20,10,20),
+                              //child: Text('Don\'t have an account? Create'),
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(text: "vous avez deja un compte?  "),
+                                    TextSpan(
+                                      text: "Connecter Maintenant",
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = (){
+                                         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) => addUser()));
+                                        },
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).accentColor),
+                                    ),
+                                  ]
+                                )
+                              ),
+                            ),
                         Text("Or create account using social media",  style: TextStyle(color: Colors.grey),),
                         SizedBox(height: 25.0),
                         Row(

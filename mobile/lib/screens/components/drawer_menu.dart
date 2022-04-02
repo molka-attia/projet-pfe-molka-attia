@@ -5,6 +5,7 @@ import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 import 'package:responsive_admin_dashboard/AllticketsAdmin.dart';
 import 'package:responsive_admin_dashboard/main%20copy.dart';
 import 'package:responsive_admin_dashboard/pages/login_page.dart';
+import 'package:responsive_admin_dashboard/tech screens/tech-components/Ticket.dart';
 import 'package:responsive_admin_dashboard/screens/components/drawer_list_tile.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/cupertino.dart';
 
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:responsive_admin_dashboard/ticketsTech%20copy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:responsive_admin_dashboard/mainDash.dart';
@@ -70,7 +72,7 @@ class _WrapperState extends State<DrawerMenu> {
           ),
            if (type == "technicien")
           DrawerListTile(
-              title: 'Dash Board',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -79,10 +81,15 @@ class _WrapperState extends State<DrawerMenu> {
                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>TechMainDash() ));
                                }
               ),
+               if (type == "technicien")
+               DrawerListTile(
+              title: 'Tickets attribués', svgSrc: 'assets/icons/Pages.svg', tap: () {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>ticketsTech() ));
+              }),
           if (type == "technicien")
                DrawerListTile(
-              title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsTech() ));
+              title: 'Tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsAdmin() ));
               }),
           // DrawerListTile(
           //     title: 'Message', svgSrc: 'assets/icons/Message.svg', tap: () {}),
@@ -93,7 +100,7 @@ class _WrapperState extends State<DrawerMenu> {
               tap: () {}),
             if (type == "admin")
           DrawerListTile(
-              title: 'Dash Board',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -104,7 +111,7 @@ class _WrapperState extends State<DrawerMenu> {
               ),
                 if (type == "admin")
           DrawerListTile(
-              title: 'Users',
+              title: 'Utilisateurs',
               svgSrc: 'assets/icons/Subscribers.svg',
               tap: () {
 
@@ -124,7 +131,7 @@ class _WrapperState extends State<DrawerMenu> {
               tap: () {}),
               if (type == "utilisateur")
               DrawerListTile(
-              title: 'Profile',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -135,7 +142,7 @@ class _WrapperState extends State<DrawerMenu> {
               ),
          if (type == "utilisateur")
                DrawerListTile(
-              title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
+              title: 'Tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsUser() ));
               }),
           Padding(

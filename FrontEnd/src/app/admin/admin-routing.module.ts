@@ -5,12 +5,14 @@ import {MainDashAdminComponent} from './main-dash-admin/main-dash-admin.componen
 import {UserComponent} from './user/user.component';
 
 import {TicketComponent} from './ticket/ticket.component';
+import {ArchiveComponent} from './archive/archive.component';
 
 const routes: Routes = [{ path: '', component: AdminComponent },
 { path: 'dash', component: MainDashAdminComponent },
 { path: 'user', component:UserComponent },
 
 { path: 'ticket', component:TicketComponent },
+{ path: 'archive', component:ArchiveComponent },
 ];
 
 @NgModule({

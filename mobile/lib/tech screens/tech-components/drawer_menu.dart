@@ -72,7 +72,7 @@ class _WrapperState extends State<DrawerMenu> {
           ),
            if (type == "technicien")
           DrawerListTile(
-              title: 'Dash Board',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -83,12 +83,12 @@ class _WrapperState extends State<DrawerMenu> {
               ),
                if (type == "technicien")
                DrawerListTile(
-              title: 'tickets to do', svgSrc: 'assets/icons/Pages.svg', tap: () {
+              title: 'Tickets attribués', svgSrc: 'assets/icons/Pages.svg', tap: () {
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>ticketsTech() ));
               }),
           if (type == "technicien")
                DrawerListTile(
-              title: 'All tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
+              title: 'Tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsAdmin() ));
               }),
           // DrawerListTile(
@@ -100,7 +100,7 @@ class _WrapperState extends State<DrawerMenu> {
               tap: () {}),
             if (type == "admin")
           DrawerListTile(
-              title: 'Dash Board',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -111,7 +111,7 @@ class _WrapperState extends State<DrawerMenu> {
               ),
                 if (type == "admin")
           DrawerListTile(
-              title: 'Users',
+              title: 'Utilisateurs',
               svgSrc: 'assets/icons/Subscribers.svg',
               tap: () {
 
@@ -131,7 +131,7 @@ class _WrapperState extends State<DrawerMenu> {
               tap: () {}),
               if (type == "utilisateur")
               DrawerListTile(
-              title: 'Profile',
+              title: 'Acceuil',
               svgSrc: 'assets/icons/Dashboard.svg',
               tap: () { 
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -142,7 +142,7 @@ class _WrapperState extends State<DrawerMenu> {
               ),
          if (type == "utilisateur")
                DrawerListTile(
-              title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
+              title: 'Tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsUser() ));
               }),
           Padding(
