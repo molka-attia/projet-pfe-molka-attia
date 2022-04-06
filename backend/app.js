@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
  const User= require('./models/User');
- 
+ const Groupe= require('./models/Groupe');
 const app = express();
 
 const adminRouter=require('./routes/admin');
 const authRouter = require('./routes/auth');
 const ticketRouter = require('./routes/ticket');
+const groupeRouter = require('./routes/groupe');
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/Pfe', {
     useNewUrlParser: true,
@@ -34,6 +35,7 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/users',adminRouter);
 app.use('/api/tickets',ticketRouter);
+app.use('/api/groupe',groupeRouter);
 
 
 module.exports = app;
