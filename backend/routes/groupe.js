@@ -8,8 +8,8 @@ const userController = require('../controllers/admin/users');
 const GroupeController = require('../controllers/admin/groupe');
 const auth=require('../middlewares/auth');
 
-router.get('/getgroupes', GroupeController.getGroupes);
-router.post('/ajoutergroupe',(req, res, next) => {
+router.get('/getgroupes', auth,GroupeController.getGroupes);
+router.post('/ajoutergroupe',auth,(req, res, next) => {
         const groupe = new Groupe({
       specialite: req.body.specialite,
     });
@@ -23,6 +23,6 @@ router.post('/ajoutergroupe',(req, res, next) => {
         error
       }));
   })
-  router.delete('/:id/deletegroupe',GroupeController.deleteGroupe)
-  router.put('/:id/modifiergroupe',GroupeController.updateGroupe)
+  router.delete('/:id/deletegroupe',auth,GroupeController.deleteGroupe)
+  router.put('/:id/modifiergroupe',auth,GroupeController.updateGroupe)
 module.exports = router;
