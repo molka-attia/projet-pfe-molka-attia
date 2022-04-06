@@ -237,7 +237,14 @@ export class AdminService {
    });
   }
  
-
+  DeleteGroupe(id:string){
+    this.http.delete(`http://localhost:3000/api/groupe/${id}/deletegroupe`,{headers:this.head})
+    .subscribe(res=>{
+      console.log(res);
+  
+  
+   });  
+  }
 
 
 }

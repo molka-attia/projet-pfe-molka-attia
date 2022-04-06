@@ -59,7 +59,11 @@ onAddSubmit(){
 
 
 
+ onClickDeleteGroupe(user:string){
+ 
+     this.userService.DeleteGroupe(user);
 
+}
 
 
 
