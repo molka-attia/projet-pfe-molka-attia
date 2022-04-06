@@ -41,7 +41,7 @@
                       
                       <td><button class="btn btn-success add-btn" style="width: 100%;"  >ajouter membre</button> </td>
                       <td><button class="btn btn-success add-btn" style="width: 100%;" >consulter les membres</button> </td>
-                      <td><button class="btn btn-success add-btn" style="width: 100%;" >operation</button>
+                      <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowFormEdit(ticket._id)">modifier</button>
                          </td>
                       <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
                  
@@ -80,3 +80,27 @@
         
         </div>
         
+
+        
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showEditGroupForm">
+
+    <a class="close-button" (click)="onClickCloseFormEdit()">X</a>
+    <div class="edit">
+      <!-- create form -->
+      <form [formGroup]="formEditGroupe" (submit)="onEditSubmit(cuurentgroupe)">
+        
+        <div class="form-group">
+     <label for="description">spécialite </label>
+     <textarea  class="form-control" id="specialite" formControlName="specialite" placeholder="Spécialite">
+     </textarea>
+   </div>
+   
+  
+  
+   <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    </div>
+  
+  
+  
+  

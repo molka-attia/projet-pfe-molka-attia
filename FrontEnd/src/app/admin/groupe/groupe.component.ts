@@ -16,7 +16,9 @@ export class GroupeComponent implements OnInit {
   public showAddUserForm = false;
   public showTicketDetails = false;
   public showTicketaffectation = false;
-  // public currentticket=tickets[0];
+  public showEditGroupForm=false;
+  //  public currentgroupe=groupes[0];
+  public cuurentgroupe:string ;
   public fetchedTicket=groupes;
   public fetchedTechniciens=users;
   public user:User;
@@ -24,6 +26,7 @@ export class GroupeComponent implements OnInit {
   public listtechniciens=users;
   formajouter:FormGroup;
   formaddGroupe:FormGroup;
+  formEditGroupe:FormGroup;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -39,8 +42,12 @@ export class GroupeComponent implements OnInit {
       
      
       });
-  
-
+      this.formEditGroupe = new FormGroup({
+        specialite: new FormControl(null,{validators:[Validators.required]}),
+      
+     
+      });
+      
       
 }
 
@@ -63,7 +70,23 @@ onClickCloseForm(){
   this.showAddUserForm = false;
 }
 
+onClickCloseFormEdit(){
+  this.showEditGroupForm = false;
+}
 
+
+onClickShowFormEdit(id:string){
+
+ this.cuurentgroupe=id;
+  this.showEditGroupForm = true;
+  //this.id=user;
+}
+onEditSubmit(user:string){
+     
+  this.userService.EditGroupe(this.formEditGroupe.value.specialite,user);
+   this.showEditGroupForm = false;
+  // this.router.navigate(['dash-respo/events']);
+ }
 
 
 }

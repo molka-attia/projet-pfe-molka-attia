@@ -11,7 +11,7 @@ import { Groupe } from '../admin/groupe/groupe.model';
   providedIn: 'root'
 })
 export class AdminService {
- 
+
 
   private head = this.getHeaders().headers;
   getHeaders(){
@@ -227,7 +227,16 @@ export class AdminService {
     });
   }
 
+  EditGroupe(specialite:String,id:string) {
+    const GroupeData = {specialite:specialite}
+    this.http.put(`http://localhost:3000/api/groupe/${id}/modifiergroupe`,GroupeData,{headers:this.head})
+    .subscribe(res=>{
+      console.log(res);
 
+
+   });
+  }
+ 
 
 
 
