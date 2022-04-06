@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArchiveComponent } from './archive/archive.component';
+import { GroupeComponent } from './groupe/groupe.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ArchiveComponent } from './archive/archive.component';
     MainDashAdminComponent,
     UserComponent,
     TicketComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    GroupeComponent
   ],
   imports: [
     CommonModule,

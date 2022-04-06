@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Ticket } from '../admin/ticket/ticket.model';
 import { User } from '../admin/user/user.model';
+import { Groupe } from '../admin/groupe/groupe.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+ 
 
   private head = this.getHeaders().headers;
   getHeaders(){
@@ -172,6 +175,18 @@ export class AdminService {
    }
  
 
+
+
+
+
+
+
+
+
+
+
+
+
   getTicketsTech(id:string){
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`,{headers:this.head});
@@ -192,4 +207,28 @@ export class AdminService {
     return this.http.get(`http://localhost:3000/api/tickets/${id}/statstechtickets`,{headers:this.head});
 
   }
+
+  getGroupes(){
+    return this.http.get<any>(`http://localhost:3000/api/groupe/getgroupes`,{headers:this.head});
+  }
+
+
+  addGroupe(specialite:String) {
+    const GroupeData = {specialite:specialite}
+  
+  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+    //console.log(userData);
+     this.http.post(`http://localhost:3000/api/groupe/ajoutergroupe`,GroupeData,{headers:this.head})
+     .subscribe(res=>{
+       console.log(res);
+
+
+    });
+  }
+
+
+
+
+
 }

@@ -1,0 +1,82 @@
+
+<app-admin></app-admin>
+<div class="content">
+    
+
+    <main>
+    
+
+      <div >
+        <div >
+          <div class="case">
+            <div class="header-case">
+              <h2>Liste des Groupes</h2>
+              <button style="background-color: red;" (click)="onClickShowForm()">ajouter<span class="fa fa-plus"></span></button>
+            </div>
+            <div class="body-case">
+              <div class="tableau">
+                <table width="100%">
+                  <thead>
+                    <tr>
+                      <!-- <th>Number</th> -->
+                      <th>numero du groupe</th>
+                      <td>Spécialité</td>
+                      
+                      <td>ajouter membre</td>
+                      <td>consulter les membres</td>
+                      <td>operations</td>
+                    
+                      
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+               
+                    <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
+                      <td>{{i+1}}</td>
+                      <td>{{ticket.specialite}}</td>
+                   
+                     
+                     
+                      
+                      <td><button class="btn btn-success add-btn" style="width: 100%;"  >ajouter membre</button> </td>
+                      <td><button class="btn btn-success add-btn" style="width: 100%;" >consulter les membres</button> </td>
+                      <td><button class="btn btn-success add-btn" style="width: 100%;" >operation</button>
+                         </td>
+                      <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
+                 
+              
+                      <!-- <td><span class="status-produit color-three"></span>twitter</td> -->
+                    
+                   
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="model-bg" style="margin-left: -25%;"*ngIf="showAddUserForm">
+
+            <a class="close-button" (click)="onClickCloseForm()">X</a>
+            <div class="edit">
+              <!-- create form -->
+              <form [formGroup]="formaddGroupe" (submit)="onAddSubmit()">
+               
+                <div class="form-group">
+             <label for="name">Spécialite</label>
+             <input type="text" class="form-control" id="specialite" formControlName="specialite" placeholder="Entrer specialite">
+           </div>
+          
+         
+         
+          
+           <button type="submit" class="btn btn-primary">ajouter</button>
+         </form>
+            </div>
+        
+        
+        </div>
+        
