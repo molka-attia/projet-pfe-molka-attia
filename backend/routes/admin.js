@@ -67,6 +67,31 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
   
 
 
+ router.put('/:id/affectertechnicien' ,auth,(req, res, next) => {
+    
+   
+  const id=req.params.id;
+  console.log(id);
+       const user = new User({
+        groupe_id: req.body.groupe_id,
+        
+       });
+ 
+       User.updateOne({"_id":id},{"$set":{"groupe_id":req.body.groupe_id}})
+       .then(resultat=> console.log(resultat)) 
+       
+       // .then(() => res.status(201).json({
+         //   message: 'User modified !',
+         //   status: 201
+         // }))
+         .catch(error => res.status(400).json({
+           error
+         }));
+ 
+ 
+ });
+  
+
 
 
 
@@ -100,6 +125,42 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
 
 });
 
+
+router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+  console.log(req.file);
+  bcrypt.hash(req.body.password, 10)
+  .then(hash => {
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: hash,
+      type:"technicien",
+      user_img:req.file.filename,
+      groupe_id:req.body.groupe_id,
+
+    });
+  
+    user.save()
+      .then(() => res.status(201).json({
+        message: 'User created !',
+        status: 201
+      }))
+      .catch(error => res.status(400).json({
+        error
+      }));
+  })
+  .catch(error => res.status(500).json({
+    error
+  }));
+
+
+});
+
+
+
+
+
+
 router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
   bcrypt.hash(req.body.password, 10)
@@ -127,6 +188,45 @@ router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req
 
 
 });
+
+
+router.put('/:id/editTechnicien',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+    
+   
+  const id=req.params.id;
+  console.log(id);
+       const user = new User({
+         name: req.body.name,
+         email: req.body.email,
+         type:"technicien",
+         user_img:req.file.filename,
+         groupe_id:req.body.groupe_id,
+       });
+ 
+       User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"type":"technicien","user_img":req.file.filename,"groupe_id":req.body.groupe_id}})
+       .then(resultat=> console.log(resultat)) 
+       
+       // .then(() => res.status(201).json({
+         //   message: 'User modified !',
+         //   status: 201
+         // }))
+         .catch(error => res.status(400).json({
+           error
+         }));
+ 
+ 
+ });
+
+
+
+
+
+
+
+
+
+
+
 router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     
    
@@ -153,7 +253,7 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
  
  });
   
-
+ router.get('/:id/getmembreofspecialite',userController.getTechniciensofthegroupe )
  
 router.delete('/:id/deleteuser',auth,userController.delete)
 //////////////////////////////////////// Stats ////////////////////////////////////////

@@ -32,6 +32,7 @@ token2:any;
       if(type=="technicien"){
         this.technicien=true;
         this.utilisateur=false;
+        this.admin=false;
       }
       if(type=="admin"){
         this.admin=true;
@@ -40,9 +41,7 @@ token2:any;
       if(type=="utilisateur"){
         this.utilisateur=true;
       }
-      else{this.admin=false;
-      
-      }
+    
       this.typeListenerSubs = this.authService.getTypeListener().subscribe(type=>{
         this.userType = type;
 

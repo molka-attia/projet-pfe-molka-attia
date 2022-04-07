@@ -5,14 +5,16 @@ import { Subscription } from 'rxjs';
 import { User } from './user.model';
 import { users } from './users-list';
 import {AdminService } from '../../services/admin.service';
+import { Groupe } from '../groupe/groupe.model';
+import { groupes } from '../groupe/groupes-list';
 
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-technicien',
+  templateUrl: './technicien.component.html',
+  styleUrls: ['./technicien.component.css']
 })
-export class UserComponent implements OnInit {
+export class TechnicienComponent implements OnInit {
   public usersList : User[] = users;
  
  public imagePreview:string;
@@ -25,26 +27,40 @@ export class UserComponent implements OnInit {
     public techniciens=false;
    public showAddUserForm = false;
    public showUserDetails = false;
+   public showTechnicienaffecter = false;
    public showEditUserForm=false;
    public currentuser=users[0];
    public fetchedUser=users;
    public listtechniciens=users;
+   public fetchedspecialite;
+   public fetchedgroupes=groupes;
+   formAffecter:FormGroup;
+   
 
   ngOnInit(): void {
     this.techniciens=false;
-    this.userService.getUsers().subscribe(
+    this.userService.getTechniciens().subscribe(
       (resultatUser) => {
         this.fetchedUser = resultatUser;
          console.log(resultatUser);
       }
+
     );
+
+    this.userService.getTechniciens().subscribe(
+      (resultatUser) => {
+        this.fetchedspecialite = resultatUser;
+         console.log(resultatUser);
+      }
+      );
     
     this.formaddUser = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
      password: new FormControl(null,{validators:[Validators.required]}),
-     type: new FormControl(null,{validators:[Validators.required]}),
+     type: new FormControl(null),
      user_img: new FormControl(null,{validators:[Validators.required]}),
+     groupe_id: new FormControl(null,{validators:[Validators.required]}),
     });
 
     this.formEdit = new FormGroup({
@@ -53,12 +69,23 @@ export class UserComponent implements OnInit {
       // password: new FormControl(null,{validators:[Validators.required]}),
      type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
+
+    });
+    this.formAffecter = new FormGroup({
+      groupe_id : new FormControl(null,{validators:[Validators.required]}),
+
     });
   }
    oneEditSubmit(userId:string){
 
     this.userService.EditUser(this.formEdit.value,userId);
     this.showEditUserForm = false;
+   
+  }
+  oneAffceterSubmit(userId:string){
+
+    this.userService.AffecterTechnicien(this.formAffecter.value.groupe_id,userId);
+    this.showTechnicienaffecter = false;
    
   }
   onDeleteUser(user:string){
@@ -72,7 +99,16 @@ export class UserComponent implements OnInit {
   // })
   }
   async onAddSubmit(){
-    await this.userService.addUser(this.formaddUser.value);
+
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedgroupes = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+
+
+    await this.userService.ajoutertechnicien(this.formaddUser.value);
     this.showAddUserForm = false;
    // this.router.navigate(['dash-respo/events']);
   }
@@ -120,6 +156,22 @@ export class UserComponent implements OnInit {
   onClickShowForm3(){
     this.showUserDetails = false;
 this.showEditUserForm=true;
+  }
+
+  onClickCloseForm4(){
+    
+    this.showTechnicienaffecter = false;
+  }
+  onClickShowForm4(){
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedgroupes = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+    this.showUserDetails = false;
+    
+this.showTechnicienaffecter=true;
   }
 
   async  onclickaffichertechniciens(){

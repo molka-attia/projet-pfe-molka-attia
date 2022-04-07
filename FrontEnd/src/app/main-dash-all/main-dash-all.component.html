@@ -14,10 +14,13 @@
             <a [routerLinkActive]="'active'" routerLink="/admin/user" *ngIf="userIsAuthenticated && admin"><span class="fa fa-user"></span><span>Utilisateurs</span></a>
           </li>
           <li>
+            <a [routerLinkActive]="'active'" routerLink="/admin/technicien" *ngIf="userIsAuthenticated && admin"><span class="fa fa-user"></span><span>Techniciens</span></a>
+          </li>
+          <li>
             <a [routerLinkActive]="'active'" routerLink="/admin/groupe" *ngIf="userIsAuthenticated && admin"><span class="fa fa-users"></span><span>groupes</span></a>
           </li>
           <li>
-            <a [routerLinkActive]="'active'" routerLink="/admin/ticket" *ngIf="userIsAuthenticated && admin"><span class="fa fa-clipboard"></span><span>Tickets</span></a>
+            <a [routerLinkActive]="'active'" routerLink="/admin/ticket" *ngIf="userIsAuthenticated && admin"><span class="fa fa-ticket"></span><span>Tickets</span></a>
           </li> 
            <li>
             <a  [routerLinkActive]="'active'" routerLink="/technicien/dash" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-home"></span><span>Accueil</span></a>

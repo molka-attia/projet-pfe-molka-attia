@@ -62,6 +62,7 @@ exports.getTicketsnumber = (req, res, next) => {
     tickets.aggregate([
         // {$match:{_id :mongoose.Types.ObjectId()}},
         // {$project : {"users" : {$size :"$users"},_id:0}}
+        {$match:{etat:"non cloturer"}},
        { $group:{_id:null, tickets:{$sum:1}}}
         ])
         .then(stats => {

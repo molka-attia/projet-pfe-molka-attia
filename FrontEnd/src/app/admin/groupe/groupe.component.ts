@@ -14,6 +14,8 @@ import { User } from '../user/user.model';
 })
 export class GroupeComponent implements OnInit {
   public showAddUserForm = false;
+  public showMembreForm = false;
+  public showaffecterForm = false;
   public showTicketDetails = false;
   public showTicketaffectation = false;
   public showEditGroupForm=false;
@@ -23,7 +25,7 @@ export class GroupeComponent implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
-  public listtechniciens=users;
+  public listtechniciens :any;
   formajouter:FormGroup;
   formaddGroupe:FormGroup;
   formEditGroupe:FormGroup;
@@ -83,6 +85,23 @@ onClickShowFormEdit(id:string){
 
  this.cuurentgroupe=id;
   this.showEditGroupForm = true;
+  //this.id=user;
+}
+
+onClickCloseFormtechniciens(){
+  this.showMembreForm = false;
+}
+
+
+async onClickShowFormtechniciens(id:string){
+  await    this.userService.getTechniciensofthegroupe(id).subscribe(
+    (resultatTicket) => {
+      this.listtechniciens = resultatTicket;
+       console.log(resultatTicket);
+    }  
+    );
+ this.cuurentgroupe=id;
+  this.showMembreForm  = true;
   //this.id=user;
 }
 onEditSubmit(user:string){

@@ -13,6 +13,7 @@ import { Groupe } from '../admin/groupe/groupe.model';
 export class AdminService {
 
 
+
   private head = this.getHeaders().headers;
   getHeaders(){
     const token = localStorage.getItem('id_token');
@@ -68,11 +69,32 @@ export class AdminService {
 
     });
   }
+  
+ ajoutertechnicien(user:User){
+    const userData = new FormData();
+    userData.append('name',user.name);
+    userData.append('email',user.email);
+    userData.append('password',user.password);
+    userData.append('type',"technicien");
+    userData.append('user_img',user.user_img);
+    userData.append('groupe_id',user.groupe_id);
+  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+    //console.log(userData);
+     this.http.post(`http://localhost:3000/api/users/ajouterTechnicien`,userData,{headers:this.head})
+     .subscribe(res=>{
+       console.log(res);
+
+
+    });
+  }
+  
   getUser(id:String){
     return this.http.get(`http://localhost:3000/api/users/${id}/getuser`,{headers:this.head});
     
     }
   
+    ///editTechnicien
   EditUser(user:User,id:string){
 
     const userData = new FormData();
@@ -244,6 +266,24 @@ export class AdminService {
   
   
    });  
+  }
+  AffecterTechnicien(groupe_id:String, id: string) {
+    const GroupeData = {groupe_id:groupe_id}
+    this.http.put(`http://localhost:3000/api/users/${id}/affectertechnicien`,GroupeData,{headers:this.head})
+    .subscribe(res=>{
+      console.log(res);
+
+
+   });
+  }
+
+
+  getTechniciensofthegroupe(id: string) {
+    return this.http.get(`http://localhost:3000/api/users/${id}/getmembreofspecialite`,{headers:this.head});
+  }
+    getStatsgroupes(){
+    return this.http.get(`http://localhost:3000/api/groupe/getgroupesnum`,{headers:this.head});
+
   }
 
 
