@@ -9,6 +9,8 @@ import { TicketComponent } from './ticket/ticket.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArchiveComponent } from './archive/archive.component';
 import { GroupeComponent } from './groupe/groupe.component';
+import { TechnicienComponent } from './technicien/technicien.component';
+
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { GroupeComponent } from './groupe/groupe.component';
     UserComponent,
     TicketComponent,
     ArchiveComponent,
-    GroupeComponent
+    GroupeComponent,
+    TechnicienComponent
   ],
   imports: [
     CommonModule,

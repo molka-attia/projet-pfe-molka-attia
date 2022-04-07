@@ -14,16 +14,21 @@ import { User } from '../user/user.model';
 })
 export class GroupeComponent implements OnInit {
   public showAddUserForm = false;
+  public showMembreForm = false;
+  public showaffecterForm = false;
   public showTicketDetails = false;
   public showTicketaffectation = false;
-  // public currentticket=tickets[0];
+  public showEditGroupForm=false;
+  //  public currentgroupe=groupes[0];
+  public cuurentgroupe:string ;
   public fetchedTicket=groupes;
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
-  public listtechniciens=users;
+  public listtechniciens :any;
   formajouter:FormGroup;
   formaddGroupe:FormGroup;
+  formEditGroupe:FormGroup;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -39,8 +44,12 @@ export class GroupeComponent implements OnInit {
       
      
       });
-  
-
+      this.formEditGroupe = new FormGroup({
+        specialite: new FormControl(null,{validators:[Validators.required]}),
+      
+     
+      });
+      
       
 }
 
@@ -52,7 +61,11 @@ onAddSubmit(){
 
 
 
+ onClickDeleteGroupe(user:string){
+ 
+     this.userService.DeleteGroupe(user);
 
+}
 
 
 
@@ -63,7 +76,40 @@ onClickCloseForm(){
   this.showAddUserForm = false;
 }
 
+onClickCloseFormEdit(){
+  this.showEditGroupForm = false;
+}
 
+
+onClickShowFormEdit(id:string){
+
+ this.cuurentgroupe=id;
+  this.showEditGroupForm = true;
+  //this.id=user;
+}
+
+onClickCloseFormtechniciens(){
+  this.showMembreForm = false;
+}
+
+
+async onClickShowFormtechniciens(id:string){
+  await    this.userService.getTechniciensofthegroupe(id).subscribe(
+    (resultatTicket) => {
+      this.listtechniciens = resultatTicket;
+       console.log(resultatTicket);
+    }  
+    );
+ this.cuurentgroupe=id;
+  this.showMembreForm  = true;
+  //this.id=user;
+}
+onEditSubmit(user:string){
+     
+  this.userService.EditGroupe(this.formEditGroupe.value.specialite,user);
+   this.showEditGroupForm = false;
+  // this.router.navigate(['dash-respo/events']);
+ }
 
 
 }

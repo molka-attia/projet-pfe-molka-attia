@@ -22,7 +22,7 @@
                       <th>numero du groupe</th>
                       <td>Spécialité</td>
                       
-                      <td>ajouter membre</td>
+                      <!-- <td>ajouter membre</td> -->
                       <td>consulter les membres</td>
                       <td>operations</td>
                     
@@ -39,9 +39,10 @@
                      
                      
                       
-                      <td><button class="btn btn-success add-btn" style="width: 100%;"  >ajouter membre</button> </td>
-                      <td><button class="btn btn-success add-btn" style="width: 100%;" >consulter les membres</button> </td>
-                      <td><button class="btn btn-success add-btn" style="width: 100%;" >operation</button>
+                      <!-- <td><button class="btn btn-success add-btn" style="width: 100%;"  >ajouter membre</button> </td> -->
+                      <td><button class="btn btn-success add-btn" style="width: 100%;"(click)="onClickShowFormtechniciens(ticket._id)" >consulter les membres</button> </td>
+                      <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowFormEdit(ticket._id)">modifier</button>
+                        <button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickDeleteGroupe(ticket._id)">supprimer</button>
                          </td>
                       <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
                  
@@ -80,3 +81,51 @@
         
         </div>
         
+
+        
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showEditGroupForm">
+
+    <a class="close-button" (click)="onClickCloseFormEdit()">X</a>
+    <div class="edit">
+      <!-- create form -->
+      <form [formGroup]="formEditGroupe" (submit)="onEditSubmit(cuurentgroupe)">
+        
+        <div class="form-group">
+     <label for="description">spécialite </label>
+     <textarea  class="form-control" id="specialite" formControlName="specialite" placeholder="Spécialite">
+     </textarea>
+   </div>
+   
+  
+  
+   <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    </div>
+  
+  </div>
+  
+        
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showMembreForm">
+
+  <a class="close-button" (click)="onClickCloseFormtechniciens()">X</a>
+  <div class="edit">
+    <!-- create form -->
+    <form >
+      
+      <div class="form-group">
+   <label for="membres">membres </label>
+   <!-- <textarea  class="form-control" id="specialite" formControlName="specialite" placeholder="Spécialite">
+   </textarea> -->
+   <tr  *ngFor="let technicien of listtechniciens; let i = index" >
+    <td>{{technicien.name}}</td>
+    </tr>
+ </div>
+</form>
+
+
+
+  </div>
+
+
+
+  

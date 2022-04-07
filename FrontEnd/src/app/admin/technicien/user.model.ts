@@ -5,7 +5,6 @@ export interface User {
   user_img?:string;
   email?:string;
   type?:string;
-  groupe_id?:string;
 }
 
 

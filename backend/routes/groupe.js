@@ -25,4 +25,12 @@ router.post('/ajoutergroupe',auth,(req, res, next) => {
   })
   router.delete('/:id/deletegroupe',auth,GroupeController.deleteGroupe)
   router.put('/:id/modifiergroupe',auth,GroupeController.updateGroupe)
+
+  router.get('/:id/getTechnicienspecialite',GroupeController.getTechnicienspecialite)
+
+  
+
+  router.get('/getgroupesnum',auth, GroupeController.getGroupesnumber);
+
+
 module.exports = router;
