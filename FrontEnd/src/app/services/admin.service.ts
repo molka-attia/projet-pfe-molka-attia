@@ -167,10 +167,10 @@ export class AdminService {
  
      });
    }
-   EditCloturer(id:string){
+   EditCloturer(note:string,id:string){
 
     //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
-    const ticketData = {}
+    const ticketData = {note:note}
       //console.log(userData);
        this.http.put(`http://localhost:3000/api/tickets/${id}/clotureticket`,ticketData,{headers:this.head})
        .subscribe(res=>{

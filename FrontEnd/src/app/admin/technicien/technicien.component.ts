@@ -137,6 +137,13 @@ export class TechnicienComponent implements OnInit {
 
   onClickShowForm(){
     this.showAddUserForm = true;
+    
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedgroupes = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
   }
   onClickCloseForm(){
     this.showAddUserForm = false;

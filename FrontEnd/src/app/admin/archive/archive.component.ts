@@ -40,12 +40,12 @@ export class ArchiveComponent implements OnInit {
     
       
   }
-  onCloturerTiket(userId:string){
+  // onCloturerTiket(userId:string){
 
-    this.userService.EditCloturer(userId);
-    this.showTicketDetails = false
+  //   this.userService.EditCloturer(userId);
+  //   this.showTicketDetails = false
    
-  }
+  // }
 
   oneEditAffecter(userId:string){
 

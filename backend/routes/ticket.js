@@ -27,7 +27,7 @@ const storageEvents = multer.diskStorage({
 
 router.get('/:id/getTechtickets',auth,ticketController.getTechtickets);
 router.get('/:id/getUsertickets',auth,ticketController.getUsertickets);
-router.get('/ticketscloturer',auth,ticketController.getTicketscloturer);
+router.get('/ticketscloturer',ticketController.getTicketscloturer);
  
 router.delete('/:id/deleteticket',auth,ticketController.delete)
 
@@ -84,7 +84,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
       const id=req.params.id;
      
      
-           Ticket.updateOne({"_id":id},{"$set":{"etat":'cloturer',"Datecloturation":new Date()}})
+           Ticket.updateOne({"_id":id},{"$set":{"etat":'cloturer',"Datecloturation":new Date(),"note":req.body.note}})
            .then(resultat=> console.log(resultat)) 
            
            // .then(() => res.status(201).json({

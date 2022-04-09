@@ -15,6 +15,7 @@ export class TicketComponent implements OnInit {
   public ticketsList : Ticket[] = tickets;
   public showTicketDetails = false;
   public showTicketaffectation = false;
+  public showTicketcloturation = false;
   public currentticket=tickets[0];
   public fetchedTicket=tickets;
   public fetchedTechniciens=users;
@@ -22,6 +23,7 @@ export class TicketComponent implements OnInit {
   public technicienaffecte:User;
   public listtechniciens=users;
   formAffecter:FormGroup;
+  formclourer:FormGroup;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -37,12 +39,20 @@ export class TicketComponent implements OnInit {
         technicienid: new FormControl(null,{validators:[Validators.required]}),
  
       });
+      this.formclourer = new FormGroup({
+        note: new FormControl(null,{validators:[Validators.required]}),
+ 
+      });
     
       
   }
+
+
+
   onCloturerTiket(userId:string){
 
-    this.userService.EditCloturer(userId);
+    this.userService.EditCloturer(this.formclourer.value.note,userId);
+    this.showTicketcloturation = false;
     this.showTicketDetails = false
    
   }
@@ -51,6 +61,7 @@ export class TicketComponent implements OnInit {
 
     this.userService.EditAffecter(this.formAffecter.value.technicienid,userId);
     this.showTicketaffectation = false;
+
    
   }
   
@@ -90,6 +101,21 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
      // this.router.navigate(['dash-respo/events']);
    
 
+  }
+
+
+  onClickShowcloturation(ticket:Ticket){
+    this.showTicketDetails = false;
+    this.showTicketcloturation = true;
+    this.currentticket=ticket;
+      
+     // this.router.navigate(['dash-respo/events']);
+   
+
+  }
+
+  onClickClosecloturation(){
+    this.showTicketcloturation = false;
   }
   onClickCloseAffecter(){
     this.showTicketaffectation = false;
