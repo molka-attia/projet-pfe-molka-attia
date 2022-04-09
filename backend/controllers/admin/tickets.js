@@ -23,7 +23,7 @@ const tickets = require('../../models/Ticket');
 //    }
 
 exports.getTickets= (req, res, next) => {
-  tickets.find({'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+  tickets.find({'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
   .then(events => res.json(events));
 }
 
@@ -32,18 +32,18 @@ exports.getTickets= (req, res, next) => {
     .then(userResults => res.json("succes"));
     }
     exports.getTechtickets = (req, res, next) => {
-      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+      tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
       .then(events => res.json(events));
   }
 
 
     exports.getTicketscloturer = (req, res, next) => {
-      tickets.find({'etat':'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'note':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+      tickets.find({'etat':'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
       .then(events => res.json(events));
   }
 
   exports.getUsertickets = (req, res, next) => {
-    tickets.find({'demandeur':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'opened':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+    tickets.find({'demandeur':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
     .then(events => res.json(events));
 }
   

@@ -41,7 +41,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         demandeur: req.params.id,
         assignetech:'',
         etat:'non cloturer',
-        opened:'closed',
+        specialite:req.body.specialite,
         Datecreaation:new Date(),
         Datecloturation:'',
       });

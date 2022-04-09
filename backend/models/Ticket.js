@@ -6,7 +6,7 @@ const ticketSchema = mongoose.Schema({
     demandeur: {type: String, required: false},
     assignetech:{type: String, required: false},
     etat:{type: String, required: false},
-    opened:{type: String, required: false},
+    specialite:{type: String, required: false},
     Datecreaation:{type: Date, required: false},
     Datecloturation:{type: Date, required: false},
     note:{type:String, required: false},
