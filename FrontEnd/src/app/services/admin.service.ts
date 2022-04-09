@@ -136,9 +136,9 @@ export class AdminService {
   }
 
 
-  addTicket(description:string,priorite:string,id:string){
+  addTicket(description:string,priorite:string,specialite:string,id:string){
    // const ticketData = new FormData();
-   const ticketData = {description:description,priorite:priorite}
+   const ticketData = {description:description,priorite:priorite,specialite:specialite}
   //  ticketData.append('description',description);
     //ticketData.append('priorite',priorite);
 
@@ -281,6 +281,12 @@ export class AdminService {
   getTechniciensofthegroupe(id: string) {
     return this.http.get(`http://localhost:3000/api/users/${id}/getmembreofspecialite`,{headers:this.head});
   }
+
+
+getspecialite(id: string) {
+  return this.http.get(`http://localhost:3000/api/groupe/${id}/getTechnicienspecialite`,{headers:this.head});
+}
+
     getStatsgroupes(){
     return this.http.get(`http://localhost:3000/api/groupe/getgroupesnum`,{headers:this.head});
 

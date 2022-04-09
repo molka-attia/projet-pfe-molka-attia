@@ -6,6 +6,8 @@ import { tickets } from './tickets-list';
 import {AdminService } from '../../services/admin.service';
 import { users } from '../../admin/user/users-list';
 import { User } from '../../admin/user/user.model';
+import { groupes } from 'src/app/admin/groupe/groupes-list';
+import {Groupe} from 'src/app/admin/groupe/groupe.model';
 
 @Component({
   selector: 'app-ticket',
@@ -18,6 +20,7 @@ export class TicketComponent  implements OnInit {
   public showTicketaffectation = false;
   public currentticket=tickets[0];
   public fetchedTicket=tickets;
+  public fetchedgroupes=groupes;
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
@@ -25,6 +28,8 @@ export class TicketComponent  implements OnInit {
   formaddTicket:FormGroup;
   formeditTicket:FormGroup;
   public showAddUserForm = false;
+  public specialite: Groupe;
+ 
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
@@ -35,10 +40,12 @@ export class TicketComponent  implements OnInit {
          console.log(resultatTicket);
       }  
       );
+
+
       this.formaddTicket = new FormGroup({
         description: new FormControl(null,{validators:[Validators.required]}),
         priorite: new FormControl(null,{validators:[Validators.required]}),
-     
+        specialite: new FormControl(null,{validators:[Validators.required]}),
       });
   
       this.formeditTicket = new FormGroup({
@@ -52,23 +59,29 @@ export class TicketComponent  implements OnInit {
       
   }
   
-  onClickShowForm2(ticket:Ticket){
+  async onClickShowForm2(ticket:Ticket){
     this.showTicketDetails = true;
     this.currentticket=ticket;
-ticket.opened="opened";
-this.userService.getUser(this.currentticket.demandeur) .subscribe(
+
+await this.userService.getUser(this.currentticket.demandeur) .subscribe(
   (resultat:any) => {
     console.log(resultat);
     this.user = resultat;
   
   });
-  this.userService.getUser(this.currentticket.assignetech) .subscribe(
+  await   this.userService.getUser(this.currentticket.assignetech) .subscribe(
     (resultat:any) => {
       console.log(resultat);
       this.technicienaffecte = resultat;
     
     }
     );
+    await   this.userService.getspecialite(this.currentticket.specialite).subscribe(
+      (resultatTicket:any) => {
+        this.specialite = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
   }
   onClickCloseForm2(){
  
@@ -95,7 +108,7 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
   // })
   }
   onAddSubmit(){
-    this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,JSON.parse(this.technicienId).userId);
+    this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,this.formaddTicket.value.specialite,JSON.parse(this.technicienId).userId);
      this.showAddUserForm = false;
     // this.router.navigate(['dash-respo/events']);
    }
@@ -112,6 +125,12 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
   
     onClickShowForm(){
       this.showAddUserForm = true;
+      this.userService.getGroupes().subscribe(
+        (resultatTicket) => {
+          this.fetchedgroupes = resultatTicket;
+           console.log(resultatTicket);
+        }  
+        );
     }
     onClickCloseForm(){
       this.showAddUserForm = false;

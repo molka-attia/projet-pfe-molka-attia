@@ -10,7 +10,7 @@ exports.getGroupes = (req, res, next) =>{
 
 
 exports.getTechnicienspecialite = (req, res, next) => {
-    Groupe.find({'_id':req.params.id},{_id:0,'specialite':1})
+    Groupe.findOne({'_id':req.params.id},{_id:1,'specialite':1})
     .then(events => res.json(events));
 }
 
