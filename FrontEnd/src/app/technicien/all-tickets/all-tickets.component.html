@@ -22,7 +22,7 @@
                     <td>Priorité</td>
                     <!-- <td>assigner au </td> -->
                     <!-- <td>Demandeur</td> -->
-                    <td>Inspecté</td>
+                    <!-- <td>Inspecté</td> -->
                     <td>Etat</td>
                     
                     <td>affecter</td>
@@ -48,7 +48,7 @@
                      </div>
                     <!-- <td>{{ticket.demandeur}}</td>
                     <td>{{ticket. assignetech}}</td> -->
-                    <td>{{ticket.opened}}</td>
+                    <!-- <td>{{ticket.opened}}</td> -->
                     <td>{{ticket.etat}}</td>
                     
                     <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowAffecter()" >affecter</button> </td>
@@ -86,7 +86,7 @@
             <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
             <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
             <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
-            <button type="submit" class="btn btn-primary">Cloturer</button>
+            <button type="submit" class="btn btn-primary" (click)="onClickShowcloturation(currentticket)">Cloturer</button>
           </div>
           <!-- <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
           <button class="btn btn-success add-btn" style="width: 25%;" >Supprimer</button>  -->
@@ -123,4 +123,38 @@
   
   
   </div>
-  
+  <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketcloturation ">
+
+    <a class="close-button" (click)="onClickClosecloturation()">X</a>
+    <div class="edit">
+      <!-- create form -->
+      <form [formGroup]="formclourer" (submit)="onCloturerTiket(currentticket._id)" >
+        <div class="form-group">
+          <label for="note">Comment le problème a été résolu ?  </label>
+         <textarea class="form-control" id="note" formControlName="note" placeholder="decrit la solution"></textarea>
+        </div>
+     
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+
+</div>
+
+<div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketcloturation ">
+
+  <a class="close-button" (click)="onClickClosecloturation()">X</a>
+  <div class="edit">
+    <!-- create form -->
+    <form [formGroup]="formclourer" (submit)="onCloturerTiket(currentticket._id)" >
+      <div class="form-group">
+        <label for="note">Comment le problème a été résolu ?  </label>
+       <textarea class="form-control" id="note" formControlName="note" placeholder="decrit la solution"></textarea>
+      </div>
+   
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+
+</div>

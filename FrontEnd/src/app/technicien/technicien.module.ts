@@ -7,6 +7,7 @@ import { MainDashTechnicienComponent } from './main-dash-technicien/main-dash-te
 import { AllTicketsComponent } from './all-tickets/all-tickets.component';
 import { TechTicketsComponent } from './tech-tickets/tech-tickets.component';
 import { PublicationComponent } from './publication/publication.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PublicationComponent } from './publication/publication.component';
   ],
   imports: [
     CommonModule,
-    TechnicienRoutingModule
+    TechnicienRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class TechnicienModule { }
