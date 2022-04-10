@@ -21,6 +21,8 @@ export class TechTicketsComponent  implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
+  public formclourer:FormGroup;
+  public showTicketcloturation = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
@@ -39,7 +41,11 @@ export class TechTicketsComponent  implements OnInit {
         }  
         );
      
-    
+        this.formclourer = new FormGroup({
+          note: new FormControl(null,{validators:[Validators.required]}),
+   
+        });
+       
       
   }
   
@@ -66,7 +72,13 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
     
     this.showTicketDetails = false;
   }
+  onCloturerTiket(userId:string){
 
+    this.userService.EditCloturer(this.formclourer.value.note,userId);
+    this.showTicketcloturation = false;
+    this.showTicketDetails = false
+   
+  }
   onClickShowAffecter(){
     this.showTicketaffectation = true;
    
@@ -84,5 +96,18 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
        this.userService.DeleteTicket(user);
     //this.router.navigate(['admin/user']);
   // })
+  }
+   
+  onClickShowcloturation(ticket:Ticket){
+    this.showTicketDetails = false;
+    this.showTicketcloturation = true;
+    this.currentticket=ticket;
+      
+     // this.router.navigate(['dash-respo/events']);
+   
+
+  }
+  onClickClosecloturation(){
+    this.showTicketcloturation = false;
   }
 }
