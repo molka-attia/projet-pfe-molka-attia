@@ -27,6 +27,21 @@ exports.getTickets= (req, res, next) => {
   .then(events => res.json(events));
 }
 
+
+
+
+exports.getavailabletechnicien= (req, res, next) => {
+  tickets.find({'specialite':req.body.specialite},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1},{ $sortByCount:"$assignetech" })
+  .then(events => res.json(events));
+}
+
+
+
+
+
+
+
+
    exports.delete= (req, res, next) =>{
     tickets.deleteOne({_id:req.params.id})
     .then(userResults => res.json("succes"));
@@ -35,6 +50,18 @@ exports.getTickets= (req, res, next) => {
       tickets.find({'assignetech':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
       .then(events => res.json(events));
   }
+
+  exports.affecterautechnicien = (req, res, next) => {
+    tickets.updateOne({'id':req.params.id},
+    {'$set':{
+        'assignetech':req.body.specialite,
+             
+    }})
+    .then(post => res.json(post));
+}
+
+
+
 
 
     exports.getTicketscloturer = (req, res, next) => {
@@ -86,4 +113,7 @@ exports.getTicketsnumber = (req, res, next) => {
               res.json(stats[0]);      
           });
   
+
+
+
      }

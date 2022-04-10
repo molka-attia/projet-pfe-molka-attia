@@ -29,12 +29,23 @@ router.get('/:id/getTechtickets',auth,ticketController.getTechtickets);
 router.get('/:id/getUsertickets',auth,ticketController.getUsertickets);
 router.get('/ticketscloturer',ticketController.getTicketscloturer);
  
+
+
+
+
+
+router.get('/getavailabletechicien',ticketController.getavailabletechnicien);
+
+
+
+
+
+
 router.delete('/:id/deleteticket',auth,ticketController.delete)
 
 
 router.post('/:id/addticket' ,auth,(req, res, next) => {
-    
-   
+
       const ticket = new Ticket({
         description: req.body.description,
         priorite: req.body.priorite,
@@ -54,6 +65,9 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         .catch(error => res.status(400).json({
           error
         }));
+
+
+        
     })
     
     router.put('/:id/affecterautechnicien',auth,(req, res, next) => {
@@ -123,7 +137,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
             Datecloturation:'',
           });  
        
-             Ticket.updateOne({"_id":id},{"$set":{"description":req.body.description,"priorite":req.body.priorite}})
+             Ticket.updateOne({"_id":id},{"$set":{"description":req.body.description,"priorite":req.body.priorite,"specialite":req.body.specialite}})
              .then(resultat=> console.log(resultat)) 
              
              // .then(() => res.status(201).json({

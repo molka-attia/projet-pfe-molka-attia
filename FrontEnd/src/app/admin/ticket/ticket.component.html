@@ -10,6 +10,7 @@
           <div class="case">
             <div class="header-case">
               <h2>Liste des tickets</h2>
+              <button class="btn btn-success add-btn"  (click)="onClickShowForm()">ajouter</button>
               <!-- <button class="button">voir plus<span class="fa fa-arrow-right"></span></button> -->
             </div>
             <div class="body-case">
@@ -22,7 +23,7 @@
                       <td>Priorité</td>
                       <!-- <td>assigner au </td> -->
                       <!-- <td>Demandeur</td> -->
-                      <td>Inspecté</td>
+                      <!-- <td>Inspecté</td> -->
                       <td>Etat</td>
                       
                       <td>affecter</td>
@@ -48,7 +49,7 @@
                        </div>
                       <!-- <td>{{ticket.demandeur}}</td>
                       <td>{{ticket. assignetech}}</td> -->
-                      <td>{{ticket.opened}}</td>
+                    
                       <td>{{ticket.etat}}</td>
                       
                       <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowAffecter(ticket)" >affecter</button> </td>
@@ -87,6 +88,7 @@
             
               <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
               <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
+              <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowFormEdit()">Modifier</button> 
               <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
               <button type="submit" class="btn btn-primary" (click)="onClickShowcloturation(currentticket)">Cloturer</button>
             </div>
@@ -144,4 +146,94 @@
   </div>
   
   
+<!-- </div> -->
+
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showAddUserForm">
+
+  <a class="close-button" (click)="onClickCloseForm()">X</a>
+  <div class="edit">
+    <!-- create form -->
+    <form [formGroup]="formaddTicket" (submit)="onAddSubmit()">
+      
+      <div class="form-group">
+   <label for="description">Le problème</label>
+   <textarea  class="form-control" id="description" formControlName="description" placeholder="decrit le problème">
+   </textarea>
+ </div>
+ <!-- <div class="form-group">
+   <label for="email">User Email : </label>
+   <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+ </div>
+ <div class="form-group">
+   <label for="password">User password : </label>
+   <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+ </div> -->
+ <div class="form-group">
+   <label for="radio">priorité : </label>
+   <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+   <select class="form-control" id="priorite" formControlName="priorite" name="priorite">
+   <option value="Faible">faible</option>
+   <option value="Moyenne">moyenne</option>
+   <option value="Urgent">urgent</option>
+ </select>
+ </div>
+ <div class="form-group">
+  <label for="radio">problème de: </label>
+  <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+  <select class="form-control" id="specialite" formControlName="specialite" name="specialite">
+  <option   *ngFor="let groupe of fetchedgroupes" value={{groupe._id}}>{{groupe.specialite}}</option>
+ 
+</select>
+</div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+
+
+</div>
+
+
+<div class="model-bg"style="margin-left: -25%;" *ngIf="showEditTicketForm">
+
+  <a class="close-button" (click)="onClickCloseFormEdit()">X</a>
+  <div class="edit">
+    <!-- create form -->
+    <form [formGroup]="formeditTicket" (submit)="onEditSubmit(currentticket._id)">
+      
+      <div class="form-group">
+   <label for="description">Le problème</label>
+   <textarea  class="form-control" id="description" formControlName="description" placeholder="decrit le problème">
+   </textarea>
+ </div>
+ <!-- <div class="form-group">
+   <label for="email">User Email : </label>
+   <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+ </div>
+ <div class="form-group">
+   <label for="password">User password : </label>
+   <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+ </div> -->
+ <div class="form-group">
+   <label for="radio">priorité : </label>
+   <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+   <select class="form-control" id="priorite" formControlName="priorite" name="priorite">
+   <option value="Faible">faible</option>
+   <option value="Moyenne">moyenne</option>
+   <option value="Urgent">urgent</option>
+ </select>
+ </div>
+ <div class="form-group">
+  <label for="radio">problème de: </label>
+  <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+  <select class="form-control" id="specialite" formControlName="specialite" name="specialite">
+  <option   *ngFor="let groupe of fetchedgroupes" value={{groupe._id}}>{{groupe.specialite}}</option>
+ 
+</select>
+</div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+
+
+
 </div>
