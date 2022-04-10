@@ -23,7 +23,7 @@
                     <td>Priorité</td>
                     <!-- <td>assigner au </td> -->
                     <!-- <td>Demandeur</td> -->
-                    <td>Domaine</td>
+                    <!-- <td>Domaine</td> -->
                     <td>Etat</td>
                     
                     
@@ -203,7 +203,14 @@
    <option value="Urgent">urgent</option>
  </select>
  </div>
-
+ <div class="form-group">
+  <label for="radio">problème de: </label>
+  <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
+  <select class="form-control" id="specialite" formControlName="specialite" name="specialite">
+  <option   *ngFor="let groupe of fetchedgroupes" value={{groupe._id}}>{{groupe.specialite}}</option>
+ 
+</select>
+</div>
  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>

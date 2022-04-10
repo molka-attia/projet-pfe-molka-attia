@@ -51,6 +51,7 @@ export class TicketComponent  implements OnInit {
       this.formeditTicket = new FormGroup({
         description: new FormControl(null,{validators:[Validators.required]}),
         priorite: new FormControl(null,{validators:[Validators.required]}),
+        specialite: new FormControl(null,{validators:[Validators.required]}),
      
       });
     
@@ -115,7 +116,7 @@ await this.userService.getUser(this.currentticket.demandeur) .subscribe(
   
    onEditSubmit(user:string){
      
-     this.userService.EditTicket(this.formeditTicket.value.description,this.formeditTicket.value.priorite,user);
+     this.userService.EditTicket(this.formeditTicket.value.description,this.formeditTicket.value.priorite,this.formeditTicket.value.specialite,user);
       this.showEditTicketForm = false;
      // this.router.navigate(['dash-respo/events']);
     }
@@ -136,6 +137,12 @@ await this.userService.getUser(this.currentticket.demandeur) .subscribe(
       this.showAddUserForm = false;
     } 
     onClickShowFormEdit(){
+      this.userService.getGroupes().subscribe(
+        (resultatTicket) => {
+          this.fetchedgroupes = resultatTicket;
+           console.log(resultatTicket);
+        }  
+        );
     
       this.showTicketDetails = false;
      

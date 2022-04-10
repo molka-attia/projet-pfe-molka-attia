@@ -6,6 +6,8 @@ import { tickets } from './tickets-list';
 import {AdminService } from '../../services/admin.service';
 import { users } from '../user/users-list';
 import { User } from '../user/user.model';
+import { groupes } from 'src/app/admin/groupe/groupes-list';
+import {Groupe} from 'src/app/admin/groupe/groupe.model';
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -24,9 +26,15 @@ export class TicketComponent implements OnInit {
   public listtechniciens=users;
   formAffecter:FormGroup;
   formclourer:FormGroup;
+  formaddTicket:FormGroup;
+  formeditTicket:FormGroup;
+  public showAddUserForm = false;
+  public specialite: Groupe;
+  public fetchedgroupes=groupes;
+  public showEditTicketForm = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
-
+  technicienId = localStorage.getItem('user');
   ngOnInit(): void {
     this.userService.getTickets().subscribe(
       (resultatTicket) => {
@@ -43,7 +51,17 @@ export class TicketComponent implements OnInit {
         note: new FormControl(null,{validators:[Validators.required]}),
  
       });
-    
+      this.formaddTicket = new FormGroup({
+        description: new FormControl(null,{validators:[Validators.required]}),
+        priorite: new FormControl(null,{validators:[Validators.required]}),
+        specialite: new FormControl(null,{validators:[Validators.required]}),
+      });
+      this.formeditTicket = new FormGroup({
+        description: new FormControl(null,{validators:[Validators.required]}),
+        priorite: new FormControl(null,{validators:[Validators.required]}),
+        specialite: new FormControl(null,{validators:[Validators.required]}),
+     
+      });
       
   }
 
@@ -68,7 +86,7 @@ export class TicketComponent implements OnInit {
   onClickShowForm2(ticket:Ticket){
     this.showTicketDetails = true;
     this.currentticket=ticket;
-ticket.opened="opened";
+
 this.userService.getUser(this.currentticket.demandeur) .subscribe(
   (resultat:any) => {
     console.log(resultat);
@@ -113,7 +131,11 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
    
 
   }
-
+  onAddSubmit(){
+    this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,this.formaddTicket.value.specialite,JSON.parse(this.technicienId).userId);
+     this.showAddUserForm = false;
+    // this.router.navigate(['dash-respo/events']);
+   }
   onClickClosecloturation(){
     this.showTicketcloturation = false;
   }
@@ -130,4 +152,44 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
     //this.router.navigate(['admin/user']);
   // })
   }
+
+
+
+  onEditSubmit(user:string){
+     
+    this.userService.EditTicket(this.formeditTicket.value.description,this.formeditTicket.value.priorite,this.formeditTicket.value.specialite,user);
+     this.showEditTicketForm = false;
+    // this.router.navigate(['dash-respo/events']);
+   }
+   onClickCloseFormEdit(){
+     this.showEditTicketForm = false;
+   }
+
+
+  onClickShowForm(){
+    this.showAddUserForm = true;
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedgroupes = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+  }
+  onClickCloseForm(){
+    this.showAddUserForm = false;
+  } 
+  onClickShowFormEdit(){
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedgroupes = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+  
+    this.showTicketDetails = false;
+   
+    this.showEditTicketForm = true;
+    //this.id=user;
+  }
+ 
 }

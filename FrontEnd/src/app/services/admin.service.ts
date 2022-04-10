@@ -152,9 +152,9 @@ export class AdminService {
     });
   }
 
-  EditTicket(description:string,priorite:string,id:string){
+  EditTicket(description:string,priorite:string,specialite:string,id:string){
     // const ticketData = new FormData();
-    const ticketData = {description:description,priorite:priorite}
+    const ticketData = {description:description,priorite:priorite,specialite:specialite}
    //  ticketData.append('description',description);
      //ticketData.append('priorite',priorite);
  
