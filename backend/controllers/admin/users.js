@@ -100,3 +100,9 @@ exports.getStats = (req, res, next) => {
         users.find({_id:req.params.id},{_id:0,name:1})
         .then(userResults => res.json(userResults[0]));
     }
+
+
+    exports.gettechniciensofthesamegroupe= (req, res, next) =>{
+        users.find({_id:req.params.id},{_id:0,name:1})
+        .then(userResults => res.json(userResults[0]));
+    }

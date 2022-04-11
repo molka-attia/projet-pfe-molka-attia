@@ -8,79 +8,17 @@
         <div class="stock">
             <div class="case">
               <div class="header-case">
-                <h2>Utilisateurs</h2>
+                <h2>Liste des Utilisateurs</h2>
 
 
                 <button class="btn btn-success add-btn"  (click)="onClickShowForm()">ajouter</button>
               </div>
 
-              <div>  <button class="button-6" role="button" (click)=" onclickafficherutilisateurs()">Utilisateurs</button>
-                <button class="button-6" role="button" (click)=" onclickaffichertechniciens()">Techniciens</button>
-              </div>
-              <hr>
-            <div  *ngIf="techniciens">
-              <div *ngFor="let user of fetchedUser; let i = index">
-                
-                
-              <div class="body-case">
-                <div class="all-users">
-                  <div class="infos">
-                  <img src="./../../../../assets/images/{{user?.user_img}}" width="50" height="50">
-                    <div>
-                    <h4>{{user.name}}</h4>
-                    <small>{{user.type}}</small>
-                   
-                  </div>
-                  </div>
-                  
-                <!-- <div class="user-contact">
-                  <span class="fa fa-facebook"></span>
-                  <span class="fa fa-whatsapp"></span>
-                  <span class="fa fa-phone"></span>
-                </div> -->
-                <div>
-                    <!-- <button class="btn" >voir plus</button> -->
-                    <button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(user)">voir details</button> 
-                </div>
-              </div>
-
-                <div class="model-bg" style="margin-left: -25%;" *ngIf="showUserDetails">
-
-              
-                  <a class="close-button" (click)="onClickCloseForm2()">X</a>
-                  <div class="edit">
-                    <!-- create form -->
-                    <form >
-                      <h3>User info</h3>
-                      <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
-                      <div>
-                        <h4 style="text-align: center;">{{currentuser.name}}</h4>
-                   
-                      <h5 style="text-align: center;">{{currentuser.type}}</h5>
-                      <h5 style="text-align: center;">{{currentuser.email}}</h5>
-
-                     
-                    </div>
-                    <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
-                    <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
-                
-               
-                    </form>
-                  </div>
-              
-              
-              </div>
-               </div> 
-              
-              </div>
-         
-            
-            </div>
           </div>
           
   </div>
-  <div style="background-color: white;" *ngIf="!techniciens">
-    <div *ngFor="let user of listtechniciens; let i = index">
+  <div style="background-color: white;">
+    <div *ngFor="let user of fetchedUser; let i = index">
       
       
     <div class="body-case">
@@ -105,32 +43,6 @@
       </div>
     </div>
 
-      <div class="model-bg" style="margin-left: -25%;" *ngIf="showUserDetails">
-
-    
-        <a class="close-button" (click)="onClickCloseForm2()">X</a>
-        <div class="edit">
-          <!-- create form -->
-          <form >
-            <h3>User info</h3>
-            <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
-            <div>
-              <h4 style="text-align: center;">{{currentuser.name}}</h4>
-         
-            <h5 style="text-align: center;">{{currentuser.type}}</h5>
-            <h5 style="text-align: center;">{{currentuser.email}}</h5>
-
-           
-          </div>
-          <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
-          <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
-      
-     
-          </form>
-        </div>
-    
-    
-    </div>
      </div> 
     
     </div>
@@ -147,6 +59,33 @@
 
     </main>
   </div> 
+  <div class="model-bg"  *ngIf="showUserDetails">
+
+    
+    <a class="close-button" (click)="onClickCloseForm2()">X</a>
+    <div class="edit">
+      <!-- create form -->
+      <form >
+        <h3>User info</h3>
+        <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
+        <div>
+          <h4 style="text-align: center;">{{currentuser.name}}</h4>
+     
+        <h5 style="text-align: center;">{{currentuser.type}}</h5>
+        <h5 style="text-align: center;">{{currentuser.email}}</h5>
+
+       
+      </div>
+      <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
+      <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
+  
+ 
+      </form>
+    </div>
+
+
+</div>
+
   <div class="model-bg" *ngIf="showAddUserForm">
 
     <a class="close-button" (click)="onClickCloseForm()">X</a>
@@ -198,7 +137,7 @@
     <!-- create form -->
     <form [formGroup]="formEdit" (submit)="oneEditSubmit(currentuser._id)">
       <div class="form-group">
-          <label for="name">User Name {{currentuser._id}}</label>
+          <label for="name">User Name </label>
           <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
         </div>
         <div class="form-group">

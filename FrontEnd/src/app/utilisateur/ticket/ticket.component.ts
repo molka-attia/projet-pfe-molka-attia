@@ -29,6 +29,8 @@ export class TicketComponent  implements OnInit {
   formeditTicket:FormGroup;
   public showAddUserForm = false;
   public specialite: Groupe;
+  public formclourer:FormGroup;
+  public showTicketcloturation = false;
  
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
@@ -54,7 +56,10 @@ export class TicketComponent  implements OnInit {
         specialite: new FormControl(null,{validators:[Validators.required]}),
      
       });
-    
+      this.formclourer = new FormGroup({
+        note: new FormControl(null,{validators:[Validators.required]}),
+ 
+      });
      
     
       
@@ -148,5 +153,24 @@ await this.userService.getUser(this.currentticket.demandeur) .subscribe(
      
       this.showEditTicketForm = true;
       //this.id=user;
+    }
+    onClickShowcloturation(ticket:Ticket){
+      this.showTicketDetails = false;
+      this.showTicketcloturation = true;
+      this.currentticket=ticket;
+        
+       // this.router.navigate(['dash-respo/events']);
+     
+  
+    }
+    onCloturerTiket(userId:string){
+
+      this.userService.EditCloturer(this.formclourer.value.note,userId);
+      this.showTicketcloturation = false;
+      this.showTicketDetails = false
+     
+    }
+    onClickClosecloturation(){
+      this.showTicketcloturation = false;
     }
 }
