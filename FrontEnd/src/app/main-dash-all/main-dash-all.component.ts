@@ -28,6 +28,7 @@ token2:any;
       if(token){
         this.userIsAuthenticated=true;
       }
+      
       const type = JSON.parse(localStorage.getItem('user')).type;
       if(type=="technicien"){
         this.technicien=true;
@@ -36,6 +37,7 @@ token2:any;
       }
       if(type=="admin"){
         this.admin=true;
+        this.technicien=false;
         this.utilisateur=false;
       }
       if(type=="utilisateur"){

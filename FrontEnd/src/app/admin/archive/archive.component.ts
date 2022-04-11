@@ -101,6 +101,7 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
       //  console.log(user.id)
       //  this.currentuser=user;
        this.userService.DeleteTicket(user);
+       this.showTicketDetails = false;
     //this.router.navigate(['admin/user']);
   // })
   }

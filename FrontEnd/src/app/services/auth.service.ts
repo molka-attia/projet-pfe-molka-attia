@@ -25,13 +25,13 @@ export class AuthService {
     userData.append('name',user.name);
     userData.append('email',user.email);
     userData.append('password',user.password);
-    userData.append('type',user.type);
+    // userData.append('type',"utilisateur");
     userData.append('user_img',user.user_img);
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
     //console.log(userData);
-     //this.httpClient.post<any>(`http://localhost:3000/api/users/addUser`,userData)
+    //  this.httpClient.post<any>(`http://localhost:3000/api/users/addUser`,userData)
      this.httpClient.post<any>(`http://localhost:3000/api/auth/signup`, userData)
      .subscribe( (res):any =>{
        console.log(res);
@@ -61,16 +61,20 @@ export class AuthService {
     // );
   }
 
-  login(user: User){
+    login(user: User){
     let headers = new HttpHeaders();
     headers.append('Content-Type','application/json');
     this.httpClient.post<{status,token,user}>('http://localhost:3000/api/auth/login',user,{headers:headers}).subscribe(res => {
       if(res.status == 200) {
         this.storeUserData(res.token,res.user);
-        // if(user.type=="admin"){
-        this.router.navigate(['/main']);
-        // if(user.type=="technicien"){
-        //   this.router.navigate(['/technicien']);}
+        const type = JSON.parse(localStorage.getItem('user')).type;
+        if(type=='admin'){
+        this.router.navigate(['/admin/dash']);}
+        if(type=="technicien"){
+           this.router.navigate(['/technicien/dash']);}
+           if(type=='utilisateur'){
+            this.router.navigate(['/utilisateur/mainuser']);
+           }
         this.authStatusListener.next(true);
         this.typeListener.next(res.user.type);
       }else{

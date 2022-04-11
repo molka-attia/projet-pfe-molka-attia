@@ -8,12 +8,15 @@ import { users } from '../user/users-list';
 import { User } from '../user/user.model';
 import { groupes } from 'src/app/admin/groupe/groupes-list';
 import {Groupe} from 'src/app/admin/groupe/groupe.model';
+import {Subject} from 'rxjs';
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css']
 })
-export class TicketComponent implements OnInit {
+export class TicketComponent implements OnInit, OnDestroy {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   public ticketsList : Ticket[] = tickets;
   public showTicketDetails = false;
   public showTicketaffectation = false;
@@ -34,11 +37,15 @@ export class TicketComponent implements OnInit {
   public showEditTicketForm = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
   technicienId = localStorage.getItem('user');
   ngOnInit(): void {
     this.userService.getTickets().subscribe(
       (resultatTicket) => {
         this.fetchedTicket = resultatTicket;
+       // this.dtTrigger.next();
          console.log(resultatTicket);
       }  
       );

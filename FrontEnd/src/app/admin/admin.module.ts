@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from "angular-datatables";
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -10,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ArchiveComponent } from './archive/archive.component';
 import { GroupeComponent } from './groupe/groupe.component';
 import { TechnicienComponent } from './technicien/technicien.component';
-
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 
 @NgModule({
@@ -21,12 +22,14 @@ import { TechnicienComponent } from './technicien/technicien.component';
     TicketComponent,
     ArchiveComponent,
     GroupeComponent,
-    TechnicienComponent
+    TechnicienComponent,
+    UtilisateurComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule
   ]
 })
 export class AdminModule { }

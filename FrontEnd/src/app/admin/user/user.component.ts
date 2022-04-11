@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { User } from './user.model';
 import { users } from './users-list';
 import {AdminService } from '../../services/admin.service';
+import {Subject} from 'rxjs';
+
 
 
 @Component({
@@ -12,7 +14,10 @@ import {AdminService } from '../../services/admin.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit ,OnDestroy{
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   public usersList : User[] = users;
  
  public imagePreview:string;
@@ -29,12 +34,15 @@ export class UserComponent implements OnInit {
    public currentuser=users[0];
    public fetchedUser=users;
    public listtechniciens=users;
-
+   ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
   ngOnInit(): void {
     this.techniciens=false;
     this.userService.getUsers().subscribe(
       (resultatUser) => {
         this.fetchedUser = resultatUser;
+         this.dtTrigger;
          console.log(resultatUser);
       }
     );
