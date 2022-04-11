@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
+
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -26,8 +28,8 @@ export class LoginComponent implements OnInit {
       name: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required , Validators.email]}),
       password: new FormControl(null,{validators:[Validators.required, Validators.minLength(6)]}),
-      type : new FormControl(null,{validators:[Validators.required]}),
-     // user_img: new FormControl(null,{validators:[Validators.required]}),
+   
+      user_img: new FormControl(null,{validators:[Validators.required]}),
 
     });
 
@@ -45,12 +47,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSignUpSubmit(){
-    if ( this.formSignUp.value.type == "utilisateur"){
+  
     this.authService.signup(this.formSignUp.value,this.formSignUp);
-  }else if ( this.formSignUp.value.type == "technicien"){
-    this.authService.signup(this.formSignUp.value,this.formSignUp);
-    
-    }
+ 
   }
 
   onImagePicked(event :Event){

@@ -59,32 +59,32 @@
 
     </main>
   </div> 
-  <div class="model-bg"  *ngIf="showUserDetails">
+        <div class="model-bg"  *ngIf="showUserDetails">
 
     
-    <a class="close-button" (click)="onClickCloseForm2()">X</a>
-    <div class="edit">
-      <!-- create form -->
-      <form >
-        <h3>User info</h3>
-        <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
-        <div>
-          <h4 style="text-align: center;">{{currentuser.name}}</h4>
+        <a class="close-button" (click)="onClickCloseForm2()">X</a>
+        <div class="edit">
+          <!-- create form -->
+          <form >
+            <h3>User info</h3>
+            <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
+            <div>
+              <h4 style="text-align: center;">{{currentuser.name}}</h4>
+         
+            <h5 style="text-align: center;">{{currentuser.type}}</h5>
+            <h5 style="text-align: center;">{{currentuser.email}}</h5>
+
+           
+          </div>
+          <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
+          <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
+      
      
-        <h5 style="text-align: center;">{{currentuser.type}}</h5>
-        <h5 style="text-align: center;">{{currentuser.email}}</h5>
-
-       
-      </div>
-      <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
-      <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteUser(currentuser._id)" >Supprimer</button> 
-  
- 
-      </form>
+          </form>
+        </div>
+    
+    
     </div>
-
-
-</div>
 
   <div class="model-bg" *ngIf="showAddUserForm">
 

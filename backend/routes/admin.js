@@ -111,7 +111,7 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
         name: req.body.name,
         email: req.body.email,
         password: hash,
-        type:req.body.type,
+        type:"utilisateur",
         user_img:req.file.filename,
       });
     
