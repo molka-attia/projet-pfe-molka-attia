@@ -14,9 +14,8 @@ import {Subject} from 'rxjs';
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css']
 })
-export class TicketComponent implements OnInit, OnDestroy {
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+export class TicketComponent implements OnInit {
+
   public ticketsList : Ticket[] = tickets;
   public showTicketDetails = false;
   public showTicketaffectation = false;
@@ -37,9 +36,7 @@ export class TicketComponent implements OnInit, OnDestroy {
   public showEditTicketForm = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
+
   technicienId = localStorage.getItem('user');
   ngOnInit(): void {
     this.userService.getTickets().subscribe(
