@@ -14,9 +14,7 @@ import {Subject} from 'rxjs';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit ,OnDestroy{
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+export class UserComponent implements OnInit {
 
   public usersList : User[] = users;
  
@@ -34,15 +32,13 @@ export class UserComponent implements OnInit ,OnDestroy{
    public currentuser=users[0];
    public fetchedUser=users;
    public listtechniciens=users;
-   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
+ 
   ngOnInit(): void {
     this.techniciens=false;
     this.userService.getUsers().subscribe(
       (resultatUser) => {
         this.fetchedUser = resultatUser;
-         this.dtTrigger;
+      
          console.log(resultatUser);
       }
     );
