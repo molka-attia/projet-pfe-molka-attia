@@ -30,6 +30,7 @@ exports.getTickets= (req, res, next) => {
 
 
 
+
 exports.getavailabletechnicien= (req, res, next) => {
   tickets.find({'specialite':req.body.specialite},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1},{ $sortByCount:"$assignetech" })
   .then(events => res.json(events));
@@ -69,10 +70,7 @@ exports.getavailabletechnicien= (req, res, next) => {
       .then(events => res.json(events));
   }
 
-  exports.getUsertickets = (req, res, next) => {
-    tickets.find({'demandeur':req.params.id},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
-    .then(events => res.json(events));
-}
+ 
   
 // description?:string;
 // priorite?:string;
@@ -113,7 +111,83 @@ exports.getTicketsnumber = (req, res, next) => {
               res.json(stats[0]);      
           });
   
-
+     
 
 
      }
+
+
+
+
+
+////////////////////////////////////////////////////userTicket/////////////////////////////////////////////////
+
+
+
+     exports.getUsertickets = (req, res, next) => {
+      tickets.find({'demandeur':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+      .then(events => res.json(events));
+  }
+
+
+  exports.getUserticketscloturer = (req, res, next) => {
+    tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+    .then(events => res.json(events));
+}
+
+
+
+
+
+     exports.userticketsnumber= (req, res, next) => {
+      // users.find({},{_id:1})
+    //    users.size().then(stats => {
+    //                 res.json(stats);      
+    //             });
+    
+        tickets.aggregate([
+             {$match:{demandeur:req.params.id}},
+            // {$project : {"users" : {$size :"$users"},_id:0}}
+           { $group:{_id:null, tickets:{$sum:1}}}
+            ])
+            .then(stats => {
+                res.json(stats[0]);      
+            });
+    
+       
+  
+  
+       }
+        //  
+        exports.userticketscloturernumber= (req, res, next) => {
+          // users.find({},{_id:1})
+        //    users.size().then(stats => {
+        //                 res.json(stats);      
+        //             });
+        
+            tickets.aggregate([
+              { $match: { $and: [ { demandeur:req.params.id}, { etat:"cloturer" } ] } },
+                // {$project : {"users" : {$size :"$users"},_id:0}}
+               { $group:{_id:null, tickets:{$sum:1}}}
+                ])
+                .then(stats => {
+                    res.json(stats[0]);      
+                });
+      
+           }
+           exports.userticketsnoncloturernumber= (req, res, next) => {
+            // users.find({},{_id:1})
+          //    users.size().then(stats => {
+          //                 res.json(stats);      
+          //             });
+          
+              tickets.aggregate([
+                { $match: { $and: [ { demandeur:req.params.id}, { etat:{ $ne: 'cloturer'} } ] } },
+                  // {$project : {"users" : {$size :"$users"},_id:0}}
+                 { $group:{_id:null, tickets:{$sum:1}}}
+                  ])
+                  .then(stats => {
+                      res.json(stats[0]);      
+                  });
+        
+             }

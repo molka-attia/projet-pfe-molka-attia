@@ -100,8 +100,8 @@ export class AdminService {
     const userData = new FormData();
     userData.append('name',user.name);
     userData.append('email',user.email);
-    userData.append('type',user.type);
-    // userData.append('password',user.password);
+    userData.append('type',"utilisateur");
+     userData.append('password',user.password);
     userData.append('user_img',user.user_img);
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
@@ -114,7 +114,44 @@ export class AdminService {
 
     }); 
   }
+  EditAdmin(user:User,id:string){
 
+    const userData = new FormData();
+    userData.append('name',user.name);
+    userData.append('email',user.email);
+    userData.append('type',"admin");
+     userData.append('password',user.password);
+    userData.append('user_img',user.user_img);
+
+  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+    //console.log(userData);
+     this.http.put(`http://localhost:3000/api/users/${id}/editUser`,userData,{headers:this.head})
+     .subscribe(res=>{
+       console.log(res);
+
+
+    }); 
+  }
+  EditTechnicien(user:User,id:string){
+
+    const userData = new FormData();
+    userData.append('name',user.name);
+    userData.append('email',user.email);
+    userData.append('type',"technicien");
+     userData.append('password',user.password);
+    userData.append('user_img',user.user_img);
+
+  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+    //console.log(userData);
+     this.http.put(`http://localhost:3000/api/users/${id}/editUser`,userData,{headers:this.head})
+     .subscribe(res=>{
+       console.log(res);
+
+
+    }); 
+  }
 
 
   DeleteUser(id:string){
@@ -217,6 +254,15 @@ export class AdminService {
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`,{headers:this.head});
   }
+
+  getTicketsUsercloturer(id:string){
+    
+    return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUserticketscloturer`,{headers:this.head});
+  }
+
+
+
+
   getStats(){
     return this.http.get(`http://localhost:3000/api/users/stats`,{headers:this.head});
 
@@ -291,6 +337,18 @@ getspecialite(id: string) {
     return this.http.get(`http://localhost:3000/api/groupe/getgroupesnum`,{headers:this.head});
 
   }
+////////////////////////////////User stats///////////////////////////////////////////
+getStatsusernumberoftickets(id:string){
+  return this.http.get(`http://localhost:3000/api/tickets/${id}/userticketsnumber`,{headers:this.head});
 
+}
+//userticketsnumbercloturer
+getStatsusernumberofticketscloturer(id:string){
+  return this.http.get(`http://localhost:3000/api/tickets/${id}/userticketsnumbercloturer`,{headers:this.head});
 
+}
+getStatsusernumberofticketsnoncloturer(id:string){
+  return this.http.get(`http://localhost:3000/api/tickets/${id}/userticketsnumbernoncloturer`,{headers:this.head});
+
+}
 }

@@ -8,6 +8,7 @@ export interface Ticket {
   specialite?:string;
   Dateopening?:Date;
   Datecloturation?:Date;
+  note?:string;
 }
 
 //  Dateopening:{type: Date, required: false},

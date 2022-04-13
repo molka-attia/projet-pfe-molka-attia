@@ -47,15 +47,15 @@ export class UserComponent implements OnInit {
       name: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
      password: new FormControl(null,{validators:[Validators.required]}),
-     type: new FormControl(null,{validators:[Validators.required]}),
+   //  type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
 
     this.formEdit = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
-      // password: new FormControl(null,{validators:[Validators.required]}),
-     type: new FormControl(null,{validators:[Validators.required]}),
+       password: new FormControl(null,{validators:[Validators.required]}),
+    //  type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
   }
@@ -72,6 +72,7 @@ export class UserComponent implements OnInit {
       //  console.log(user.id)
       //  this.currentuser=user;
        this.userService.DeleteUser(user);
+       this.showUserDetails = false;
     //this.router.navigate(['admin/user']);
   // })
   }

@@ -71,38 +71,7 @@
 
 
     
-      <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketDetails">
-            
-        <a class="close-button" (click)="onClickCloseForm2()">X</a>
-        <div class="edit">
-          <!-- create form -->
-          <form >
-            <h3>Ticket info</h3>
-            <!-- <img src="assets/images/photo3.jpg"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50"> -->
-            <div>
-              
-              <h4 style="text-align: center;">{{currentticket.description}}</h4>
-         
-            <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
-          
-            <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
-            <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
-            <h5 style="text-align: center;">problème de:{{specialite.specialite}}</h5>
-           
-            <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button>
-            <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowFormEdit()">Modifier</button> 
-            <button type="submit" class="btn btn-primary" (click)="onClickShowcloturation(currentticket)">Cloturer</button>
-          </div>
-          <!-- <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowForm3()">Modifier</button> 
-          <button class="btn btn-success add-btn" style="width: 25%;" >Supprimer</button>  -->
-      
      
-          </form>
-        </div>
-    
-    
-    </div>
-  
     <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketaffectation">
 
       <a class="close-button" (click)="onClickCloseAffecter()">X</a>
@@ -235,3 +204,163 @@
   
   
   </div>
+  <!-- <div class="model-bg" style="margin-left: -25%;" *ngIf="showTicketDetails">
+            
+    <a class="close-button" (click)="onClickCloseForm2()">X</a>
+    <div class="edit">
+    
+      <form >
+        <h3>Ticket info</h3>
+  
+        <div>
+          
+          <h4 style="text-align: center;">{{currentticket.description}}</h4>
+     
+        <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
+      
+        <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
+        <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
+        <h5 style="text-align: center;">problème de:{{specialite.specialite}}</h5>
+       
+        <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button>
+        <button class="btn btn-success add-btn" style="width: 25%;" (click)="onClickShowFormEdit()">Modifier</button> 
+        <button type="submit" class="btn btn-primary" (click)="onClickShowcloturation(currentticket)">Cloturer</button>
+      </div>
+  
+  
+ 
+      </form>
+    </div>
+
+
+</div>
+
+       -->
+  <div class="model-bg" style="margin-left: -25%;margin-top: 0%;" *ngIf="showTicketDetails">
+              
+    <a class="close-button" (click)="onClickCloseForm2()">X</a>
+    <div class="edit" style="margin-top: -5%;">
+      <!-- create form -->
+      <!-- <form >
+        <h3>Ticket info</h3>
+       
+        <div>
+          
+          <h4 style="text-align: center;">{{currentticket.description}}</h4>
+         
+        <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
+      
+        <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
+        <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
+        <h5 style="text-align: center;">solution :{{currentticket.note}}</h5>
+        <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
+</div>
+  
+ 
+      </form> -->
+      <div id="generic_price_table" style="margin-top: 0%;">   
+        <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-22">
+                            <!--PRICE HEADING START-->
+                            <!-- <div class="price-heading clearfix">
+                                <h3>Ticket info</h3>
+                            </div> -->
+                            <!--//PRICE HEADING END-->
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    
+                    <!--BLOCK ROW START-->
+                    <div class="row">
+                        <div class="col-md-12">
+                        
+                          <!--PRICE CONTENT START-->
+                            <div class="generic_content clearfix">
+                                
+                                <!--HEAD PRICE DETAIL START-->
+                                <div class="generic_head_price clearfix">
+                                
+                                    <!--HEAD CONTENT START-->
+                                    <div class="generic_head_content clearfix">
+                                    
+                                      <!--HEAD START-->
+                                        <div class="head_bg"></div>
+                                        <div class="head">
+                                            <span>{{currentticket.etat}}</span>
+                                        </div>
+                                        <!--//HEAD END-->
+                                        
+                                    </div>
+                                    <!--//HEAD CONTENT END-->
+                                    
+                                    <!--PRICE START-->
+                                    <div class="generic_price_tag clearfix">	
+                                        <span class="price">
+                                            <span >{{currentticket.description}}</span>
+                                            <!-- <span class="currency">99</span> -->
+                                            <!-- <span class="cent">{{currentticket.description}}</span> -->
+                                            <!-- <span class="month">/MON</span> -->
+                                        </span>
+                                    </div>
+                                    <!--//PRICE END-->
+                                    
+                                </div>                            
+                                <!--//HEAD PRICE DETAIL END-->
+                                
+                                <!--FEATURE LIST START-->
+                                <div class="generic_feature_list">
+                                  <ul>
+                                      
+                                      
+                                        <li><span>Demandeur:</span> {{user.name}}</li>
+                                        <li><span>technicien:</span> {{technicienaffecte.name}}</li>
+                                        <!-- <li><span>Solution:</span> {{currentticket.note}}</li> -->
+                                    </ul>
+                                </div>
+                                <div class="generic_feature_list">
+                                  <ul>
+                                      
+                                      
+                                        
+                                        <li style="background-color: #afe4ea"> <button style="background: none; color: white;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;" (click)="onClickShowFormEdit()">modifier</button></li>
+                                        <li style="background-color: #00a5bb"> <button style="background: none; color: white;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;" (click)="onClickShowcloturation(currentticket)">cloturer</button></li>
+                                        <li style="background-color: #008ea1"> <button style="background: none; color: white;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;" (click)="onDeleteTiket(currentticket._id)">supprimer</button></li>
+                                      </ul>
+                                </div>
+                                <!--//FEATURE LIST END-->
+                                
+                                <!--BUTTON START-->
+                                 <!-- <div class="btn-group">
+                                  <button (click)="onDeleteTiket(currentticket._id)">supprimer</button>
+                                  <button  (click)="onClickShowFormEdit()">modifier</button>
+                                  <button (click)="onClickShowcloturation(currentticket)">cloturer</button>
+                                </div> -->
+                      
+                                <!--//BUTTON END-->
+                                
+                            </div>
+                            <!--//PRICE CONTENT END-->
+                                
+                        </div>
+                  
+                      
+                    </div>	
+                    <!--//BLOCK ROW END-->
+                    
+                </div>
+            </section>             
+          <!-- <footer>
+              <a class="bottom_btn" href="#">&copy; MrSahar</a>
+            </footer> -->
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
