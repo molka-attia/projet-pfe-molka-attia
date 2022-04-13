@@ -18,15 +18,59 @@ export class MainDashUtilisateurComponent implements OnInit {
   constructor(private userService : AdminService) { }
   public user:User;
   public technicienaffecte:User;
+  public imagePreview:string;
+  formEdit:FormGroup;
+  public allticketscount;
+  public ticketscloturer;
+  public ticketsnoncloturer;
   ngOnInit(): void {
+    this.userService.getStatsusernumberoftickets(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
+      this.allticketscount = res.tickets;
+      //this. clubsCount = res.teams;
+      //this.title = res.title
+    });
+  //  getStatsusernumberofticketscloturer
 
+  this.userService.getStatsusernumberofticketscloturer(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
+    this.ticketscloturer = res.tickets;
+    //this. clubsCount = res.teams;
+    //this.title = res.title
+  });
+  this.userService.getStatsusernumberofticketsnoncloturer(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
+    this.ticketsnoncloturer = res.tickets;
+    //this. clubsCount = res.teams;
+    //this.title = res.title
+  });
     this.userService.getUser(JSON.parse(this.technicienId).userId) .subscribe(
       (resultat:any) => {
         console.log(resultat);
         this.user = resultat;
       
       });
+      this.formEdit = new FormGroup({
+        name: new FormControl(null,{validators:[Validators.required]}),
+        email: new FormControl(null,{validators:[Validators.required]}),
+         password: new FormControl(null,{validators:[Validators.required]}),
+      //  type: new FormControl(null,{validators:[Validators.required]}),
+       user_img: new FormControl(null,{validators:[Validators.required]}),
+      });
   }
  // getUser(id:String)
+ oneEditSubmit(){
+
+  this.userService.EditUser(this.formEdit.value,JSON.parse(this.technicienId).userId);
  
+ 
+} 
+onImagePicked2(event :Event){
+  const file = (event.target as HTMLInputElement).files[0];
+this.formEdit.patchValue({user_img:file});
+this.formEdit.get('user_img').updateValueAndValidity();
+const reader = new FileReader();
+reader.onload = () => {
+  this.imagePreview = reader.result as string;
+};
+reader.readAsDataURL(file);
+
+}
 }

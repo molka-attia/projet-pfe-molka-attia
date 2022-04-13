@@ -66,8 +66,8 @@ export class TechnicienComponent implements OnInit {
     this.formEdit = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
-      // password: new FormControl(null,{validators:[Validators.required]}),
-     type: new FormControl(null,{validators:[Validators.required]}),
+       password: new FormControl(null,{validators:[Validators.required]}),
+    // type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
 
     });
@@ -78,7 +78,7 @@ export class TechnicienComponent implements OnInit {
   }
    oneEditSubmit(userId:string){
 
-    this.userService.EditUser(this.formEdit.value,userId);
+    this.userService.EditTechnicien(this.formEdit.value,userId);
     this.showEditUserForm = false;
    
   }

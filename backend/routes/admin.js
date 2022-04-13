@@ -46,27 +46,50 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
 
 router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
-    
-   
-  const id=req.params.id;
-  console.log(id);
-       const user = new User({
-         name: req.body.name,
-         email: req.body.email,
-         type:req.body.type,
-         user_img:req.file.filename,
-       });
+  const id=req.params.id;  
+  bcrypt.hash(req.body.password, 10)
+  .then(hash => {
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: hash,
+      type:"utilisateur",
+      user_img:req.file.filename,
+    });
+  
+    User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"password":user.password,"type":req.body.type,"user_img":req.file.filename}})
+  //      .then(resultat=> console.log(resultat)) 
+      .then(() => res.status(201).json({
+        message: 'User created !',
+        status: 201
+      }))
+      .catch(error => res.status(400).json({
+        error
+      }));
+  })
+  .catch(error => res.status(500).json({
+    error
+  }));
+
+  // const id=req.params.id;
+  // console.log(id);
+  //      const user = new User({
+  //        name: req.body.name,
+  //        email: req.body.email,
+  //        type:req.body.type,
+  //        user_img:req.file.filename,
+  //      });
  
-       User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"type":req.body.type,"user_img":req.file.filename}})
-       .then(resultat=> console.log(resultat)) 
+  //      User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"type":req.body.type,"user_img":req.file.filename}})
+  //      .then(resultat=> console.log(resultat)) 
        
-       // .then(() => res.status(201).json({
-         //   message: 'User modified !',
-         //   status: 201
-         // }))
-         .catch(error => res.status(400).json({
-           error
-         }));
+  //      // .then(() => res.status(201).json({
+  //        //   message: 'User modified !',
+  //        //   status: 201
+  //        // }))
+  //        .catch(error => res.status(400).json({
+  //          error
+  //        }));
  
  
  });

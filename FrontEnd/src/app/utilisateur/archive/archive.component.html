@@ -1,0 +1,190 @@
+<app-utilisateur></app-utilisateur>
+
+<div class="content">
+    
+
+    <main>
+    
+
+      <div >
+        <div >
+          <div class="case">
+            <div class="header-case">
+              <h2>Liste des tickets cloturer</h2>
+              <!-- <button class="button">voir plus<span class="fa fa-arrow-right"></span></button> -->
+            </div>
+            <div class="body-case">
+              <div class="tableau">
+                <table width="100%">
+                  <thead>
+                    <tr>
+                      <!-- <th>Number</th> -->
+                      <th width="60%">Description</th>
+                      <td>Priorité</td>
+                      <!-- <td>assigner au </td> -->
+                      <!-- <td>Demandeur</td> -->
+                      <!-- <td>Inspecté</td> -->
+                      <td>Etat</td>
+                      
+                    
+                      
+                      <td>consulter</td>
+                      
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+               
+                    <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
+                      <!-- <td>{{ticket.id}}</td> -->
+                      <td ><p >{{ticket.description}}</p></td>
+                      <div *ngIf="ticket.priorite =='Urgent'">  
+                        <td><span class="status-produit color-one"></span>{{ticket.priorite}}</td>
+                       </div>
+                       <div *ngIf="ticket.priorite =='Moyenne'">  
+                        <td><span class="status-produit color-two"></span>{{ticket.priorite}}</td>
+                       </div>
+                       <div *ngIf="ticket.priorite =='Faible'">  
+                        <td><span class="status-produit color-three"></span>{{ticket.priorite}}</td>
+                       </div>
+                      <!-- <td>{{ticket.demandeur}}</td>
+                      <td>{{ticket. assignetech}}</td> -->
+                      <!-- <td>{{ticket.opened}}</td> -->
+                      <td>{{ticket.etat}}</td>
+                      
+            
+                      <td><button class="btn btn-success add-btn" style="width: 60%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
+                    
+                      <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
+                 
+              
+                      <!-- <td><span class="status-produit color-three"></span>twitter</td> -->
+                    
+                   
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      
+        <div class="model-bg" style="margin-left: -25%;margin-top: 0%;" *ngIf="showTicketDetails">
+              
+          <a class="close-button" (click)="onClickCloseForm2()">X</a>
+          <div class="edit" style="margin-top: -5%;">
+            <!-- create form -->
+            <!-- <form >
+              <h3>Ticket info</h3>
+             
+              <div>
+                
+                <h4 style="text-align: center;">{{currentticket.description}}</h4>
+               
+              <h5 style="text-align: center;">Etat:{{currentticket.etat}}</h5>
+            
+              <h5 style="text-align: center;">Demandeur:{{user.name}}</h5>
+              <h5 style="text-align: center;">technicien:{{technicienaffecte.name}}</h5>
+              <h5 style="text-align: center;">solution :{{currentticket.note}}</h5>
+              <button class="btn btn-success add-btn" style="width: 25%;"  (click)="onDeleteTiket(currentticket._id)" >Supprimer</button> 
+   </div>
+        
+       
+            </form> -->
+            <div id="generic_price_table" style="margin-top: 0%;">   
+              <section>
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-22">
+                                  <!--PRICE HEADING START-->
+                                  <!-- <div class="price-heading clearfix">
+                                      <h3>Ticket info</h3>
+                                  </div> -->
+                                  <!--//PRICE HEADING END-->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="container">
+                          
+                          <!--BLOCK ROW START-->
+                          <div class="row">
+                              <div class="col-md-12">
+                              
+                                <!--PRICE CONTENT START-->
+                                  <div class="generic_content clearfix">
+                                      
+                                      <!--HEAD PRICE DETAIL START-->
+                                      <div class="generic_head_price clearfix">
+                                      
+                                          <!--HEAD CONTENT START-->
+                                          <div class="generic_head_content clearfix">
+                                          
+                                            <!--HEAD START-->
+                                              <div class="head_bg"></div>
+                                              <div class="head">
+                                                  <span>{{currentticket.etat}}</span>
+                                              </div>
+                                              <!--//HEAD END-->
+                                              
+                                          </div>
+                                          <!--//HEAD CONTENT END-->
+                                          
+                                          <!--PRICE START-->
+                                          <div class="generic_price_tag clearfix">	
+                                              <span class="price">
+                                                  <span >{{currentticket.description}}</span>
+                                                  <!-- <span class="currency">99</span> -->
+                                                  <!-- <span class="cent">{{currentticket.description}}</span> -->
+                                                  <!-- <span class="month">/MON</span> -->
+                                              </span>
+                                          </div>
+                                          <!--//PRICE END-->
+                                          
+                                      </div>                            
+                                      <!--//HEAD PRICE DETAIL END-->
+                                      
+                                      <!--FEATURE LIST START-->
+                                      <div class="generic_feature_list">
+                                        <ul>
+                                            
+                                            
+                                              <!-- <li><span>Demandeur:</span> {{user.name}}</li>
+                                              <li><span>technicien:</span> {{technicienaffecte.name}}</li> -->
+                                              <li><span>Solution:</span> {{currentticket.note}}</li>
+                                          </ul>
+                                      </div>
+                                      <!--//FEATURE LIST END-->
+                                      
+                                      <!--BUTTON START-->
+                                      <div class="generic_price_btn clearfix">
+                                        <button (click)="onDeleteTiket(currentticket._id)">supprimer</button>
+                                       
+                                      </div>
+                                      <!--//BUTTON END-->
+                                      
+                                  </div>
+                                  <!--//PRICE CONTENT END-->
+                                      
+                              </div>
+                        
+                            
+                          </div>	
+                          <!--//BLOCK ROW END-->
+                          
+                      </div>
+                  </section>             
+                <!-- <footer>
+                    <a class="bottom_btn" href="#">&copy; MrSahar</a>
+                  </footer> -->
+              </div>
+          </div>
+      
+      
+      </div>
+    
+    
+    
+
