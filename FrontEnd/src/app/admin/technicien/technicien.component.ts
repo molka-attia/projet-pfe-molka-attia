@@ -95,6 +95,7 @@ export class TechnicienComponent implements OnInit {
       //  console.log(user.id)
       //  this.currentuser=user;
        this.userService.DeleteUser(user);
+       this.showUserDetails = false;
     //this.router.navigate(['admin/user']);
   // })
   }

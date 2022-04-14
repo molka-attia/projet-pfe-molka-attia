@@ -78,6 +78,7 @@ export class AdminService {
     userData.append('type',"technicien");
     userData.append('user_img',user.user_img);
     userData.append('groupe_id',user.groupe_id);
+    const ticketData = {email:user.email}
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
     //console.log(userData);
@@ -87,6 +88,12 @@ export class AdminService {
 
 
     });
+    this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
+    .subscribe(res=>{
+      console.log(res);
+
+
+   });
   }
   
   getUser(id:String){
@@ -187,6 +194,7 @@ export class AdminService {
 
 
     });
+   
   }
 
   EditTicket(description:string,priorite:string,specialite:string,id:string){
@@ -280,6 +288,8 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/groupe/getgroupes`,{headers:this.head});
   }
 
+ 
+
 
   addGroupe(specialite:String) {
     const GroupeData = {specialite:specialite}
@@ -351,4 +361,25 @@ getStatsusernumberofticketsnoncloturer(id:string){
   return this.http.get(`http://localhost:3000/api/tickets/${id}/userticketsnumbernoncloturer`,{headers:this.head});
 
 }
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////groupe/////////////////////////////
+
+getequipeid(id:string){
+  return this.http.get<any>(`http://localhost:3000/api/users/${id}/getequipe`,{headers:this.head});
 }
+
+
+
+
+
+}
+

@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const userController = require('../controllers/admin/users');
 const ticketController = require('../controllers/admin/tickets');
 const auth=require('../middlewares/auth');
+const nodemailer = require("nodemailer");
 
 const multer = require('multer');
 const MIME_TYPE_MAP = {
@@ -157,6 +158,7 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
 
 router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
+  let user2 = req.body;
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const user = new User({
@@ -168,7 +170,12 @@ router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("us
       groupe_id:req.body.groupe_id,
 
     });
-  
+   
+    sendMail(user2, info => {
+      console.log(`The mail has beed send 😃 and the id is`);
+      res.send(info);
+    });
+
     user.save()
       .then(() => res.status(201).json({
         message: 'User created !',
@@ -188,7 +195,31 @@ router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("us
 
 
 
+async function sendMail(user, callback) {
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: details.email,
+      pass: details.password
+    }
+  });
 
+  let mailOptions = {
+    from: '"Fun Of Heuristic"<example.gimail.com>', // sender address
+    to: "pfemolka@gmail.com", // list of receivers
+    subject: "Wellcome to Fun Of Heuristic 👻", // Subject line
+    html: `<h1>Hi </h1><br>
+    <h4>Thanks for joining us</h4>`
+  };
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}
 
 router.post('/addUser2',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
@@ -285,6 +316,9 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
  router.get('/:id/getmembreofspecialite',userController.getTechniciensofthegroupe )
  
 router.delete('/:id/deleteuser',auth,userController.delete)
+
+router.get('/:id/getequipe',userController.getequipe )
+
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
 router.get('/stats',auth, userController.getStats);

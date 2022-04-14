@@ -89,7 +89,7 @@
              </div>
              <div class="card-single">
               <div>
-                <h2>20k</h2>
+                <h2>200</h2>
                 <small>Technicien</small>
               </div>
               <div>
@@ -153,16 +153,17 @@
  <div class="stock">
   <div class="case">
     <div class="header-case">
-      <h2>Techniciens</h2>
+      <h2>Techniciens du même équipe</h2>
       <button class="btn">voir plus<span class="fa fa-arrow-right"></span></button>
     </div>
-    <div class="body-case">
+    
+    <div class="body-case" *ngFor="let technicien of listtechniciens; let i = index" >
       <div class="all-users">
         <div class="infos">
-        <img src="assets/images/photo3.jpg" width="40" height="40">
+        <img src="./../../../../assets/images/{{technicien.user_img}}" width="40" height="40">
           <div>
-          <h4>Omar</h4>
-          <small>Embulant</small>
+          <h4>{{technicien.name}}</h4>
+          <small>{{technicien.email}}</small>
         </div>
         </div>
         
@@ -173,54 +174,12 @@
       </div>
     </div>
 
-        <div class="all-users">
-        <div class="infos">
-        <img src="assets/images/photo3.jpg" width="40" height="40">
-          <div>
-          <h4>Omar</h4>
-          <small>Embulant</small>
-        </div>
-        </div>
-        
-      <div class="user-contact">
-        <span class="fa fa-facebook"></span>
-        <span class="fa fa-whatsapp"></span>
-        <span class="fa fa-phone"></span>
-      </div>
-    </div>
+     
 
-        <div class="all-users">
-        <div class="infos">
-        <img src="assets/images/photo3.jpg" width="40" height="40">
-          <div>
-          <h4>Omar</h4>
-          <small>Embulant</small>
-        </div>
-        </div>
-        
-      <div class="user-contact">
-        <span class="fa fa-facebook"></span>
-        <span class="fa fa-whatsapp"></span>
-        <span class="fa fa-phone"></span>
-      </div>
-    </div>
+     
 
     
-      <div class="all-users">
-        <div class="infos">
-        <img src="assets/images/photo3.jpg" width="40" height="40">
-          <div>
-          <h4>Omar</h4>
-          <small>Embulant</small>
-        </div>
-        </div>
-        
-      <div class="user-contact">
-        <span class="fa fa-facebook"></span>
-        <span class="fa fa-whatsapp"></span>
-        <span class="fa fa-phone"></span>
-      </div>
-    </div>
+     
     </div>
    
   </div>
