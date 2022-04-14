@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService } from '../../services/admin.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../admin/user/user.model';
+import { users } from '../../admin/user/users-list';
 @Component({
   selector: 'app-main-dash-technicien',
   templateUrl: './main-dash-technicien.component.html',
@@ -14,7 +16,11 @@ export class MainDashTechnicienComponent implements OnInit {
   public imagePreview:string;
   formaddUser:FormGroup;
   public showEditUserForm=false;
-  
+  public usersList : User[] = users;
+  public fetchedUser=users;
+  public listtechniciens :any;
+  public groupeid:string;
+
   formEdit:FormGroup;
   
   constructor(private userService : AdminService) {
@@ -40,6 +46,24 @@ export class MainDashTechnicienComponent implements OnInit {
         this.user = resultat;
       
       });
+      this.userService.getequipeid(JSON.parse(this.technicienId).userId).subscribe(
+        (res:any) => {
+          this.groupeid = res.groupe_id;
+          this.userService.getTechniciensofthegroupe(res.groupe_id).subscribe(
+            (resultatTicket) => {
+              this.listtechniciens = resultatTicket;
+               console.log(resultatTicket);
+            }  
+            );
+        
+        }
+      );
+
+    
+
+
+
+
 
       this.formEdit = new FormGroup({
         name: new FormControl(null,{validators:[Validators.required]}),

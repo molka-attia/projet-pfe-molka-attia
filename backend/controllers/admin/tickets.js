@@ -31,12 +31,26 @@ exports.getTickets= (req, res, next) => {
 
 
 
+// exports.getavailabletechnicien= (req, res, next) => {
+//   tickets.find({'specialite':req.body.specialite},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1},{ $sortByCount:"$assignetech" })
+//   .then(events => res.json(events));
+// }
+
 exports.getavailabletechnicien= (req, res, next) => {
-  tickets.find({'specialite':req.body.specialite},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1},{ $sortByCount:"$assignetech" })
-  .then(events => res.json(events));
-}
+
+  tickets.aggregate([
+    {$match: {'specialite':req.body.specialite}}   // guessing this is noise so filter out
+    // other $match could be used here to further shrink the data...
+    ,{$group: {_id:"$assignetech", n:{$sum:1}}}
+    ,{$match: {n: {$gt:1}}}  // ignore non-dupes
+    ,{$sort: {_id: 1}} // and finally sort.
+                ]);
+
+   
 
 
+   }
+  
 
 
 

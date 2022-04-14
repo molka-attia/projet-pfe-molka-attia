@@ -37,7 +37,10 @@ exports.getTechniciensofthegroupe = (req, res, next) =>{
 }
 
 
-
+exports.getequipe= (req, res, next) =>{
+    users.findOne({_id:req.params.id },{_id:0,groupe_id:1})
+    .then(userResults => {res.json(userResults);console.log(userResults)});
+}
 
 
 
