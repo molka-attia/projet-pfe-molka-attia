@@ -10,12 +10,12 @@
                   <div class="profile-header-cover"></div>
                  
                   <ul class="profile-header-tab nav nav-tabs">
-                     <li class="nav-item"><a a routerLink="/technicien/publications" class="nav-link active show" data-toggle="tab">Public</a></li>
-                     <!-- <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
-                     <li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>
-                     <li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li> -->
-                     <li class="nav-item"><a routerLink="/technicien/publicationsgroupe" class="nav-link" data-toggle="tab">Groupe</a></li>
-                  </ul>
+                    <li class="nav-item"><a routerLink="/technicien/publications" class="nav-link " data-toggle="tab">Public</a></li>
+                    <!-- <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
+                    <li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>
+                    <li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li> -->
+                    <li class="nav-item"><a routerLink="/technicien/publicationsgroupe" class="nav-link active show" data-toggle="tab">Groupe</a></li>
+                 </ul>
                   <!-- END profile-header-tab -->
                </div>
             </div>
@@ -27,17 +27,17 @@
              } -->
              <br>
              <!-- <div class="widget-post" aria-labelledby="post-header-title" style="width: 58%;margin-right: 18%;"> -->
-               <div class="widget-post" aria-labelledby="post-header-title" style="width: 83%;margin-right: 5%;"  >
+               <div class="widget-post" aria-labelledby="post-header-title" style="width: 83%;margin-right: 5%;">
                <div class="widget-post__header">
                  <h2 class="widget-post__title" id="post-header-title">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                    Write Me
                  </h2>
                </div>
-               <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" [formGroup]="formaddPublication" (submit)="onajoutPublication()">
+               <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget">
                  <div class="widget-post__content">
                    <label for="post-content" class="sr-only">Share</label>
-                   <textarea name="post" id="post-content" class="widget-post__textarea scroller" id="contenu" formControlName="contenu" placeholder="What's wrong with r00tme?"></textarea>
+                   <textarea name="post" id="post-content" class="widget-post__textarea scroller" placeholder="What's wrong with r00tme?"></textarea>
                  </div>
                  <div class="widget-post__options is--hidden" id="stock-options">
                  </div>
@@ -56,7 +56,7 @@
                      <input type="file" id="upload-image" accept="image/*" multiple>
                    </div>
                    <div class="post-actions__widget">
-                     <button type="submit" class="btn post-actions__publish">publish</button>
+                     <button class="btn post-actions__publish">publish</button>
                    </div>
                  </div>
                </form>
@@ -79,18 +79,18 @@
 
 
             <!-- begin profile-content -->
-            <div class="profile-content"  >
+            <div class="profile-content">
                <!-- begin tab-content -->
                <div class="tab-content p-0">
                   <!-- begin #profile-post tab -->
                   <div class="tab-pane fade active show" id="profile-post">
                      <!-- begin timeline -->
                      <ul class="timeline">
-                        <li *ngFor="let publication of fetchedPublications; let i = index">
+                        <li>
                            <!-- begin timeline-time -->
                            <div class="timeline-time">
-                              <span class="date">{{publication.Datecreaation|date:'mediumDate'}}</span>
-                              <span class="time">{{publication.Datecreaation|date:'shortTime'}}</span>
+                              <span class="date">today</span>
+                              <span class="time">04:20</span>
                            </div>
                            <!-- end timeline-time -->
                            <!-- begin timeline-icon -->
@@ -101,13 +101,14 @@
                            <!-- begin timeline-body -->
                            <div class="timeline-body">
                               <div class="timeline-header">
-                                 <span class="userimage"><img src="./../../../../assets/images/{{publication.user_publication[0].user_img}}" alt=""></span>
-                                 <span class="username">{{publication.user_publication[0].name}} <small></small></span>
+                                 <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                 <span class="username">Sean Ngu <small></small></span>
                                  <span class="pull-right text-muted">18 Views</span>
                               </div>
                               <div class="timeline-content">
                                  <p>
-                                   {{publication.contenu}}
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                    Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
                                  </p>
                               </div>
                               <div class="timeline-likes">
@@ -129,7 +130,7 @@
                               </div>
                               <div class="timeline-footer">
                                  <!-- <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a> -->
-                                 <button href="javascript:;" (click)="onshow(publication._id)" style="background: none; 
+                                 <button href="javascript:;" (click)="onshow()" style="background: none; 
                                  color: inherit;
                                  border: none;
                                  padding: 0;
@@ -138,26 +139,23 @@
                                  outline: inherit;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</button> 
                                  <!-- <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a> -->
                               </div>
-                              <div class="timeline-header" *ngIf="show==('1'+publication._id)" >
-                                 <div *ngFor="let commentaire of fetchedCommentaires; let i = index">
+                              <div class="timeline-header" *ngIf="show==1">
                                   <hr>
-                                <span class="userimage"><img src="./../../../../assets/images/{{commentaire.user_commentaire[0].user_img}}" alt=""></span>
-                                <span class="username">{{commentaire.user_commentaire[0].name}}<small></small></span>
-                                <span class="pull-right text-muted">{{commentaire.Datecreaation|date:'shortDate'}}</span>
+                                <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                <span class="username">Sean Ngu <small></small></span>
+                                <span class="pull-right text-muted">18/01/2001</span>
                                 <br>
-                                <p style="margin-left: 6%;">{{commentaire.contenu}}</p>
+                                <p style="margin-left: 6%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo</p>
                                
-                            
-                            
-                              </div>  </div>
+                             </div>
                               <div class="timeline-comment-box">
-                                 <div class="user"><img src="./../../../../assets/images/{{user.user_img}}"></div>
+                                 <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
                                  <div class="input">
-                                    <form [formGroup]="formaddCommentaire" (submit)="onajout(publication._id)">
+                                    <form action="">
                                        <div class="input-group">
-                                          <input type="text" class="form-control rounded-corner" id="contenu" formControlName="contenu" placeholder="Write a comment...">
+                                          <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
                                           <span class="input-group-btn p-l-10">
-                                          <button class="btn btn-primary f-s-12 rounded-corner" type="submit" >Comment</button>
+                                          <button class="btn btn-primary f-s-12 rounded-corner" type="button" >Comment</button>
                                           </span>
                                        </div>
                                     </form>
@@ -169,18 +167,18 @@
                         </li>
                         <li>
                            <!-- begin timeline-time -->
-                           <!-- <div class="timeline-time">
+                           <div class="timeline-time">
                               <span class="date">yesterday</span>
                               <span class="time">20:17</span>
-                           </div> -->
+                           </div>
                            <!-- end timeline-time -->
                            <!-- begin timeline-icon -->
-                           <!-- <div class="timeline-icon">
+                           <div class="timeline-icon">
                               <a href="javascript:;">&nbsp;</a>
-                           </div> -->
+                           </div>
                            <!-- end timeline-icon -->
                            <!-- begin timeline-body -->
-                           <!-- <div class="timeline-body">
+                           <div class="timeline-body">
                               <div class="timeline-header">
                                  <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
                                  <span class="username">Sean Ngu</span>
@@ -194,23 +192,23 @@
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                               </div>
-                           </div> -->
+                           </div>
                            <!-- end timeline-body -->
-                        <!-- </li>
-                        <li> -->
+                        </li>
+                        <li>
                            <!-- begin timeline-time -->
-                           <!-- <div class="timeline-time">
+                           <div class="timeline-time">
                               <span class="date">24 February 2014</span>
                               <span class="time">08:17</span>
-                           </div> -->
+                           </div>
                            <!-- end timeline-time -->
                            <!-- begin timeline-icon -->
-                           <!-- <div class="timeline-icon">
+                           <div class="timeline-icon">
                               <a href="javascript:;">&nbsp;</a>
-                           </div> -->
+                           </div>
                            <!-- end timeline-icon -->
                            <!-- begin timeline-body -->
-                           <!-- <div class="timeline-body">
+                           <div class="timeline-body">
                               <div class="timeline-header">
                                  <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
                                  <span class="username">Sean Ngu</span>
@@ -228,15 +226,15 @@
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                               </div>
-                           </div> -->
+                           </div>
                            <!-- end timeline-body -->
                         </li>
                         <li>
                            <!-- begin timeline-time -->
-                           <!-- <div class="timeline-time">
+                           <div class="timeline-time">
                               <span class="date">10 January 2014</span>
                               <span class="time">20:43</span>
-                           </div> -->
+                           </div>
                            <!-- end timeline-time -->
                            <!-- begin timeline-icon -->
                            <div class="timeline-icon">
@@ -244,7 +242,7 @@
                            </div>
                            <!-- end timeline-icon -->
                            <!-- begin timeline-body -->
-                           <!-- <div class="timeline-body">
+                           <div class="timeline-body">
                               <div class="timeline-header">
                                  <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
                                  <span class="username">Sean Ngu</span>
@@ -265,7 +263,7 @@
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
                                  <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                               </div>
-                           </div> -->
+                           </div>
                            <!-- end timeline-body -->
                         </li>
                         <li>
@@ -275,9 +273,9 @@
                            </div>
                            <!-- end timeline-icon -->
                            <!-- begin timeline-body -->
-                           <!-- <div class="timeline-body">
+                           <div class="timeline-body">
                               Loading...
-                           </div> -->
+                           </div>
                            <!-- begin timeline-body -->
                         </li>
                         
@@ -293,3 +291,4 @@
       </div>
    </div>
 </div>
+
