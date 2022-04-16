@@ -99,7 +99,7 @@ export class TechnicienComponent implements OnInit {
     //this.router.navigate(['admin/user']);
   // })
   }
-  async onAddSubmit(){
+ onAddSubmit(){
 
     this.userService.getGroupes().subscribe(
       (resultatTicket) => {
@@ -109,10 +109,26 @@ export class TechnicienComponent implements OnInit {
       );
 
 
-    await this.userService.ajoutertechnicien(this.formaddUser.value);
+   this.userService.ajoutertechnicien(this.formaddUser.value);
+    this.userService.envoyermailech(this.formaddUser.value);
     this.showAddUserForm = false;
    // this.router.navigate(['dash-respo/events']);
   }
+
+  // async onAddSubmit(){
+
+  //   this.userService.getGroupes().subscribe(
+  //     (resultatTicket) => {
+  //       this.fetchedgroupes = resultatTicket;
+  //        console.log(resultatTicket);
+  //     }  
+  //     );
+
+
+  //  // this.userService.envoyermailech(this.formaddUser.value);
+  //   this.showAddUserForm = false;
+  //  // this.router.navigate(['dash-respo/events']);
+  // }
   onImagePicked(event :Event){
     const file = (event.target as HTMLInputElement).files[0];
     this.formaddUser.patchValue({user_img:file});

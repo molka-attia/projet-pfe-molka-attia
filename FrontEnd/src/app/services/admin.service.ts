@@ -70,32 +70,83 @@ export class AdminService {
     });
   }
   
- ajoutertechnicien(user:User){
-    const userData = new FormData();
-    userData.append('name',user.name);
-    userData.append('email',user.email);
-    userData.append('password',user.password);
-    userData.append('type',"technicien");
-    userData.append('user_img',user.user_img);
-    userData.append('groupe_id',user.groupe_id);
-    const ticketData = {email:user.email}
-  //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+//  ajoutertechnicien(user:User){
+//     const userData = new FormData();
+//     userData.append('name',user.name);
+//     userData.append('email',user.email);
+//     userData.append('password',user.password);
+//     userData.append('type',"technicien");
+//     userData.append('user_img',user.user_img);
+//     userData.append('groupe_id',user.groupe_id);
+//     const ticketData = {email:user.email,name:user.name,password:user.password}
+//   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
-    //console.log(userData);
-     this.http.post(`http://localhost:3000/api/users/ajouterTechnicien`,userData,{headers:this.head})
-     .subscribe(res=>{
-       console.log(res);
+//     //console.log(userData);
+//      this.http.post(`http://localhost:3000/api/users/ajouterTechnicien`,userData,{headers:this.head})
+//      .subscribe(res=>{
+//        console.log(res);
 
 
-    });
-    this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
+//     });
+//     this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
+//     .subscribe(res=>{
+//       console.log(res);
+
+
+//    });
+//   }
+  
+ajoutertechnicien(user:User){
+  const userData = new FormData();
+  userData.append('name',user.name);
+  userData.append('email',user.email);
+  userData.append('password',user.password);
+  userData.append('type',"technicien");
+  userData.append('user_img',user.user_img);
+  userData.append('groupe_id',user.groupe_id);
+  const ticketData = {email:user.email}
+//  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
+
+  //console.log(userData);
+   this.http.post(`http://localhost:3000/api/users/ajouterTechnicien`,userData,{headers:this.head})
+   .subscribe(res=>{
+     console.log(res);
+
+
+  });
+//   this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
+//   .subscribe(res=>{
+//     console.log(res);
+
+
+//  });
+}
+
+envoyermailech(user:User){
+  const ticketData = {email:user.email,name:user.name,password:user.password}
+  this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
     .subscribe(res=>{
       console.log(res);
 
 
    });
-  }
-  
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   getUser(id:String){
     return this.http.get(`http://localhost:3000/api/users/${id}/getuser`,{headers:this.head});
     
