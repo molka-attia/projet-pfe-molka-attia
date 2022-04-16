@@ -156,9 +156,8 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
 });
 
 
-router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+router.post('/ajouterTechnicien',multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   console.log(req.file);
-  let user2 = req.body;
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const user = new User({
@@ -168,14 +167,8 @@ router.post('/ajouterTechnicien',auth,multer({storage:storageEvents}).single("us
       type:"technicien",
       user_img:req.file.filename,
       groupe_id:req.body.groupe_id,
-
     });
-   
-    sendMail(user2, info => {
-      console.log(`The mail has beed send 😃 and the id is`);
-      res.send(info);
-    });
-
+  
     user.save()
       .then(() => res.status(201).json({
         message: 'User created !',

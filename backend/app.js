@@ -6,6 +6,7 @@ const cors = require("cors");
  const Groupe= require('./models/Groupe');
  const Publication= require('./models/Publication');
  const Commenaire= require('./models/Commentaire');
+ const Demande= require('./models/Demande'); 
  const nodemailer = require("nodemailer");
  
 
@@ -19,6 +20,7 @@ const ticketRouter = require('./routes/ticket');
 const groupeRouter = require('./routes/groupe');
 const publicationRouter = require('./routes/publication');
 const commentaireRouter = require('./routes/commentaire');
+const demandeRouter = require('./routes/demande');
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/Pfe', {
     useNewUrlParser: true,
@@ -48,18 +50,20 @@ app.use('/api/tickets',ticketRouter);
 app.use('/api/groupe',groupeRouter);
 app.use('/api/publication',publicationRouter);
 app.use('/api/commentaire',commentaireRouter);
+app.use('/api/demande',demandeRouter);
+
 
 app.post("/api/sendmail", (req, res) => {
-  console.log("request came");
+  //console.log("request came");
   
-  let user = req.body;
-  sendMail(user, info => {
-    console.log(req.body.email);
+ // let user = req.body;
+  sendMail(req.body.email,req.body.name,req.body.password, info => {
+    console.log(req.body.name);
     res.send(info);
   });
 });
 
-async function sendMail(user, callback) {
+async function sendMail(user,name,password ,callback) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -73,10 +77,10 @@ async function sendMail(user, callback) {
 
   let mailOptions = {
     from: 'Carte assurance', // sender address
-    to: 'molkaattia3@gmail.com', // list of receivers
+    to: user, // list of receivers
     subject: "Welcome our newest Technicien", // Subject line
-    html: `<h1>Hi</h1><br>
-    <h4>Thanks for joining us</h4>`
+    html: `<h1>hi `+name+`</h1><br>
+    <h4>you can login now in our app using your current email and this password +`+password+`</h4>`
   };
 
   // send mail with defined transport object
