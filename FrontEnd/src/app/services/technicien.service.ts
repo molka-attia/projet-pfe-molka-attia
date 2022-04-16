@@ -39,6 +39,11 @@ export class TechnicienService {
   }
 
 
+  getPublicationsgroupe(id:String){
+    ///:id/getpublicationsgroupe
+    return this.http.get<any>(`http://localhost:3000/api/publication/${id}/getpublicationsgroupe`,{headers:this.head})
+  }
+
   getCommentaires(id:String){
     return this.http.get(`http://localhost:3000/api/commentaire/${id}/getCommentaires`,{headers:this.head});
     
@@ -62,8 +67,8 @@ export class TechnicienService {
 
 
 
-    addPublication(contenu:String,user_id:String) {
-      const PublicationData = {contenu:contenu,user_id:user_id,publication_id:"public"}
+    addPublication(contenu:String,user_id:String,groupe_id:String) {
+      const PublicationData = {contenu:contenu,user_id:user_id,groupe_id:groupe_id}
     
   
        this.http.post(`http://localhost:3000/api/publication/ajouterpublication`,PublicationData,{headers:this.head})

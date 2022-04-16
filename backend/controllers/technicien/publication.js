@@ -20,15 +20,46 @@ exports.getPublications = (req, res, next) =>{
         },
         {$sort:{
             Datecreaation:-1}}
-        // {
-        //     $match: {
-        //         'active': 'false'
-        //     }
-        // }
+            ,
+            {
+                $match: {
+                    'groupe_id': "public"
+                }
+            }
     
     ])
     .then(userResults => {res.json(userResults);console.log(userResults)});
 }
+
+
+exports.getPublicationsgroupe = (req, res, next) =>{
+    Publication.aggregate([
+        {$set: {user_id: {$toObjectId: "$user_id"} }},
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'user_id',
+                foreignField: '_id',
+                as: 'user_publication'
+            }
+        },
+        {$sort:{
+            Datecreaation:-1}},
+        {
+            $match: {
+                'groupe_id': req.params.id
+            }
+        }
+    
+    ])
+    .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+
+
+
+
+
 // exports.getPublications = (req, res, next) =>{
 // Publication.aggregate( [
 //     {

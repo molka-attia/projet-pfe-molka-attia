@@ -35,5 +35,6 @@ publication.save()
 
 router.get('/getpublications',auth, PublicationController.getPublications);
 
+router.get('/:id/getpublicationsgroupe', PublicationController.getPublicationsgroupe);
 
 module.exports = router;
