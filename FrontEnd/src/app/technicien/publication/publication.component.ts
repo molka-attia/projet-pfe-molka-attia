@@ -100,7 +100,7 @@ onajout(id:string){
 }
 onajoutPublication(){
   // this.technicienService.addCommentaire(this.formaddCommentaire.value,JSON.parse(this.technicienId).userId,id)
-  this.technicienService.addPublication(this.formaddPublication.value.contenu,JSON.parse(this.technicienId).userId)
+  this.technicienService.addPublication(this.formaddPublication.value.contenu,JSON.parse(this.technicienId).userId,"public")
  // addCommentaire
  
  }
