@@ -8,6 +8,7 @@ import {TicketComponent} from './ticket/ticket.component';
 import {ArchiveComponent} from './archive/archive.component';
 import {GroupeComponent} from './groupe/groupe.component';
 import {TechnicienComponent} from './technicien/technicien.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 const routes: Routes = [{ path: '', component: AdminComponent },
 { path: 'dash', component: MainDashAdminComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: '', component: AdminComponent },
 { path: 'archive', component:ArchiveComponent },
 { path: 'groupe', component:GroupeComponent },
 { path: 'technicien', component:TechnicienComponent },
+{ path: 'statistique', component:StatistiqueComponent },
 ];
 
 @NgModule({

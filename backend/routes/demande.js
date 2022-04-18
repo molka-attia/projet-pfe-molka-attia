@@ -53,5 +53,7 @@ router.post('/ajouterDemande',(req, res, next) => {
 
    //////////////////////////stat/////////////////////////////////
    router.get('/:id/statsdemande', demandeController.getStats);
+   //getStatsemetteur
+   router.get('/:id/Statsemetteur', demandeController.getStatsemetteur); 
 
 module.exports = router;

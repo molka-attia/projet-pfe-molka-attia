@@ -12,6 +12,8 @@ import { ArchiveComponent } from './archive/archive.component';
 import { GroupeComponent } from './groupe/groupe.component';
 import { TechnicienComponent } from './technicien/technicien.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
+
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     ArchiveComponent,
     GroupeComponent,
     TechnicienComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    StatistiqueComponent
   ],
   imports: [
     CommonModule,

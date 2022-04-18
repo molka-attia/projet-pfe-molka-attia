@@ -223,36 +223,38 @@
 
 <div class="statistique">
   
-  <div class="statistique-barre bar1"></div>
-  <div class="statistique-barre bar2"></div>
-  <div class="statistique-barre bar3"></div>
-  <div class="statistique-barre bar4"></div>
-  <div class="statistique-barre bar5"></div>
-  <div class="statistique-barre bar6"></div>
-  <div class="statistique-barre bar5"></div>
-  <div class="statistique-barre bar6"></div>
-  <div class="statistique-barre bar5"></div>
-  <div class="statistique-barre bar6"></div>
-  <div class="statistique-barre bar4"></div>
-  <div class="statistique-barre bar5"></div>
-  <div class="statistique-barre bar4"></div>
+  <div class="statistique-barre bar{{techticketscount}}" style="background-color:#001E6C;"></div>
+  <div class="statistique-barre bar{{AllticketsCount}}" style="background-color:#035397;"></div>
+  <div class="statistique-barre bar{{demandes}}"  style="background-color:#E8630A"></div>
+  <div class="statistique-barre bar{{demandeenvoyer}}" style="background-color:#FCD900"></div>
+
 </div>
+
 <div class="legende">
-  <h4>Legende</h4>
+  <h4>Tickets</h4>
   <table>
     <tr>
-      <td><span class="evolution color-one"></span>Riz</td>
+      <td><span class="evolution color-one" style="background-color:#001E6C;"></span>Tickets attribués</td>
     </tr>
     <tr>
-      <td><span class="evolution color-two"></span>Mil</td>
+      <td><span class="evolution color-two"  style="background-color:#035397;"></span>les tickets en attente</td>
+    </tr>
+    <br>
+    
+    <h4>Demandes</h4>
+    <tr>
+      <td><span class="evolution color-two" style="background-color:#E8630A"></span>les Demandes en attente</td>
+    </tr>
+    <tr>
+      <td><span class="evolution color-two" style="background-color:#FCD900"></span>les tickets en attente</td>
     </tr>
   </table>
-  <div class="txt-deco">
+  <!-- <div class="txt-deco">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
     </p>
-  </div>
+  </div> -->
 </div>
 </div>
 

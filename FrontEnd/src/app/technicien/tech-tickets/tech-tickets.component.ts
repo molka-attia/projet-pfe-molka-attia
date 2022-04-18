@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Ticket } from './ticket.model';
+import { Ticket } from '../../admin/ticket/ticket.model';
 import { tickets } from './tickets-list';
 import {AdminService } from '../../services/admin.service';
 import { users } from '../../admin/user/users-list';
@@ -52,7 +52,7 @@ export class TechTicketsComponent  implements OnInit {
   onClickShowForm2(ticket:Ticket){
     this.showTicketDetails = true;
     this.currentticket=ticket;
-ticket.opened="opened";
+//ticket.opened="opened";
 this.userService.getUser(this.currentticket.demandeur) .subscribe(
   (resultat:any) => {
     console.log(resultat);

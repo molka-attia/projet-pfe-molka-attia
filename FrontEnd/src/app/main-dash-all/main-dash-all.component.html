@@ -41,11 +41,11 @@
             <a [routerLinkActive]="'active'" routerLink="/admin/archive" *ngIf="userIsAuthenticated && technicien || admin"><span class="fa fa-archive"></span><span>archive</span></a>
           </li>
           <li>
-            <a href="" *ngIf="userIsAuthenticated && admin"><span class="fa fa-line-chart" ></span><span>Statistique</span></a>
+            <a  [routerLinkActive]="'active'" routerLink="/admin/statistique" *ngIf="userIsAuthenticated && admin"><span class="fa fa-line-chart" ></span><span>Statistique</span></a>
           </li>
-          <li>
+          <!-- <li>
             <a href="" *ngIf="userIsAuthenticated && technicien"><span class="fa fa-line-chart" ></span><span>Statistique</span></a>
-          </li>
+          </li> -->
           <li>
             <a  [routerLinkActive]="'active'" routerLink="/utilisateur/mainuser" *ngIf="userIsAuthenticated && utilisateur"><span class="fa fa-home"></span><span>Accueil</span></a>
           </li>
@@ -85,10 +85,10 @@
       <header>
         <p><label for="menu"><span class="fa fa-bars"></span></label><span class="accueil">Accueil</span></p>
   
-        <div class="search-wrapper">
+        <!-- <div class="search-wrapper">
           <span class="fa fa-search"></span>
           <input type="search" name="" placeholder="recherche" />
-        </div>
+        </div> -->
   
         <div class="user-wrapper" id="dropdown">
           <!-- <div>

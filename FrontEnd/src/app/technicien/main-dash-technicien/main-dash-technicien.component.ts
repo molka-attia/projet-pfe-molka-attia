@@ -22,6 +22,7 @@ export class MainDashTechnicienComponent implements OnInit {
   public listtechniciens :any;
   public groupeid:string;
 public demandes;
+public demandeenvoyer;
   formEdit:FormGroup;
   
   constructor(private userService : AdminService,private technicienService:TechnicienService) {
@@ -48,14 +49,19 @@ public demandes;
       
       });
 
-
+//
       this.technicienService.getdemandesstats(JSON.parse(this.technicienId).userId) .subscribe((res:any)=>{
         
          
           this.demandes = res.demandes;
         
         });
-
+        this.technicienService.getdemandesstatsemmetteur(JSON.parse(this.technicienId).userId) .subscribe((res:any)=>{
+        
+         
+          this.demandeenvoyer = res.demandes;
+        
+        });
 
       this.userService.getequipeid(JSON.parse(this.technicienId).userId).subscribe(
         (res:any) => {

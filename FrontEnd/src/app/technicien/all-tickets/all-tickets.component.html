@@ -23,8 +23,9 @@
                     <!-- <td>assigner au </td> -->
                     <!-- <td>Demandeur</td> -->
                     <!-- <td>Inspecté</td> -->
+                    <td>Date de création</td>
                     <td>Etat</td>
-                    
+                  
                     <td>affecter</td>
                     
                     <td>consulter</td>
@@ -36,7 +37,8 @@
              
                   <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
                     <!-- <td>{{ticket.id}}</td> -->
-                    <td>{{ticket.description}}</td>
+                    <td *ngIf="ticket.description.length>20">{{ticket.description|slice:0:15}} ...</td>
+                    <td *ngIf="ticket.description.length<20" >{{ticket.description}}</td>
                     <div *ngIf="ticket.priorite =='Urgent'">  
                       <td><span class="status-produit color-one"></span>{{ticket.priorite}}</td>
                      </div>
@@ -48,10 +50,16 @@
                      </div>
                     <!-- <td>{{ticket.demandeur}}</td>
                     <td>{{ticket. assignetech}}</td> -->
+                    <td>{{ticket.Datecreaation|date:'medium'}}</td>
+                  
+                    <!-- <td>{{ticket.demandeur}}</td>
+                    <td>{{ticket. assignetech}}</td> -->
                     <!-- <td>{{ticket.opened}}</td> -->
                     <td>{{ticket.etat}}</td>
+                    <td *ngIf="ticket.assignetech !=''" >affecter</td>
+                    <td *ngIf="ticket.assignetech ==''" >non affecter</td>
                     
-                    <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowAffecter()" >affecter</button> </td>
+                    <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onclickaffecter(ticket._id)" >m'affecter</button> </td>
                     <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                   
                     <!-- <td><span class="status-produit color-two"></span>fatt</td> -->
