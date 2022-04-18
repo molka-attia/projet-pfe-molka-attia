@@ -113,6 +113,11 @@ getdemandes(id:String){
     return this.http.get(`http://localhost:3000/api/demande/${id}/statsdemande`,{headers:this.head});
   
   }
+  getdemandesstatsemmetteur(id:string){
+    return this.http.get(`http://localhost:3000/api/demande/${id}/Statsemetteur`,{headers:this.head});
+  
+  }
+  //Statsemetteur
 /** 'etat':req.body.etat, */
 
 }

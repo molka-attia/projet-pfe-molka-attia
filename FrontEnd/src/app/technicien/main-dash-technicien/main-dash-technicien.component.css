@@ -305,27 +305,43 @@
     margin: 6px;
   }
   .bar1{
-    height: 95%;
+    height: 10%;;
     background:  #ec1c24;
   }
   .bar2{
-    height: 85%;
+    height: 20%;
     background:  #00a8f3;
   }
   .bar3{
-    height: 56%;
+    height: 30%;
     background:  #ec1c24;
   }
   .bar4{
-    height: 75%;
+    height: 40%;
     background:  #00a8f3;
   }
   .bar5{
-    height: 36%;
+    height: 50%;
     background:  #ec1c24;
   }
   .bar6{
-    height: 98%;
+    height: 60%;
+    background:  #00a8f3;
+  }
+  .bar7{
+    height: 70%;
+    background:  #00a8f3;
+  }
+  .bar8{
+    height: 80%;
+    background:  #00a8f3;
+  }
+  .bar9{
+    height: 90%;
+    background:  #00a8f3;
+  }
+  .bar10{
+    height: 100%;
     background:  #00a8f3;
   }
   .legende{

@@ -25,7 +25,7 @@ export class AllTicketsComponent  implements OnInit {
 
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
-
+  technicienId = localStorage.getItem('user');
   ngOnInit(): void {
     this.userService.getTickets().subscribe(
       (resultatTicket) => {
@@ -53,7 +53,7 @@ export class AllTicketsComponent  implements OnInit {
   onClickShowForm2(ticket:Ticket){
     this.showTicketDetails = true;
     this.currentticket=ticket;
-ticket.opened="opened";
+//ticket.opened="opened";
 this.userService.getUser(this.currentticket.demandeur) .subscribe(
   (resultat:any) => {
     console.log(resultat);
@@ -105,5 +105,11 @@ this.userService.getUser(this.currentticket.demandeur) .subscribe(
   onClickClosecloturation(){
     this.showTicketcloturation = false;
   }
+
+onclickaffecter(ticket:string){
+
+  this.userService.EditAffecter(JSON.parse(this.technicienId).userId,ticket);
+}
+
 
 }

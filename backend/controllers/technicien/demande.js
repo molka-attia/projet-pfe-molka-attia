@@ -33,3 +33,16 @@ exports.getStats = (req, res, next) => {
           });
   
      }
+
+     exports.getStatsemetteur = (req, res, next) => {
+        Demande.aggregate([
+              // {$match:{emetteur_id :req.params.id}},
+              { $match: { $and: [ { emetteur_id:req.params.id}, { etat: 'pending'} ] } },
+              // {$project : {"users" : {$size :"$users"},_id:0}}
+             { $group:{_id:null, demandes:{$sum:1}}}
+              ])
+              .then(stats => {
+                  res.json(stats[0]);      
+              });
+      
+         }   

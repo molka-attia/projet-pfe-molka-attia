@@ -6,7 +6,7 @@ export interface Ticket {
   assignetech?:string;
   etat?:string;
   specialite?:string;
-  Dateopening?:Date;
+  Datecreaation?:Date;
   Datecloturation?:Date;
 }
 

@@ -5,5 +5,7 @@ export interface Ticket {
   demandeur?:string;
   assignetech?:string;
   etat?:string;
-  opened?:string;
+  specialite?:string;
+  Datecreaation?:Date;
+  Datecloturation?:Date;
 }
