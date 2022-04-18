@@ -80,8 +80,39 @@ export class TechnicienService {
    
     }
 
+//////////////////////////////Demande////////////////////////////////////////////////////
+getdemandes(id:String){
+  return this.http.get(`http://localhost:3000/api/demande/${id}/getdemandes`,{headers:this.head});
+  
+  }
+
+  addDemande(contenu:String,recepteur_id:String,emetteur_id:String,ticket_id:String) {
+    const DemandeData = {contenu:contenu,recepteur_id:recepteur_id,emetteur_id:emetteur_id,ticket_id:ticket_id}
+  
+
+     this.http.post(`http://localhost:3000/api/demande/ajouterDemande`,DemandeData,{headers:this.head})
+     .subscribe(res=>{
+       console.log(res);
 
 
+    });
+ 
+  }
 
+  repondredemande(etat:string,id:string){
+    const demandetData = {etat:etat} 
+      this.http.put(`http://localhost:3000/api/demande/${id}/repondredemande `,demandetData,{headers:this.head})
+      .subscribe(res=>{
+        console.log(res);
+ 
+ 
+     });
+   }
+
+   getdemandesstats(id:string){
+    return this.http.get(`http://localhost:3000/api/demande/${id}/statsdemande`,{headers:this.head});
+  
+  }
+/** 'etat':req.body.etat, */
 
 }

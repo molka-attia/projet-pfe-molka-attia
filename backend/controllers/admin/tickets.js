@@ -117,7 +117,8 @@ exports.getTicketsnumber = (req, res, next) => {
   //             });
   
       tickets.aggregate([
-           {$match:{assignetech:req.params.id}},
+       
+        { $match: { $and: [ { assignetech:req.params.id}, { etat:{ $ne: 'cloturer'} } ] } },
           // {$project : {"users" : {$size :"$users"},_id:0}}
          { $group:{_id:null, tickets:{$sum:1}}}
           ])
