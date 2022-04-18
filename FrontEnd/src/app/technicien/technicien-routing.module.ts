@@ -6,6 +6,7 @@ import { TechTicketsComponent } from './tech-tickets/tech-tickets.component';
 import { MainDashTechnicienComponent } from './main-dash-technicien/main-dash-technicien.component';
 import { PublicationComponent } from './publication/publication.component';
 import { PublicationgroupeComponent } from './publicationgroupe/publicationgroupe.component';
+import{DemandeComponent}from './demande/demande.component';
 
 
 
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: '', component: TechnicienComponent },
 { path: 'dash', component: MainDashTechnicienComponent },
 { path: 'publications', component: PublicationComponent },
 { path: 'publicationsgroupe', component: PublicationgroupeComponent },
+{ path: 'demande', component: DemandeComponent },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -6,6 +6,7 @@ const Demande=require('./../models/Demande');
 const bcrypt = require('bcrypt');
 const userController = require('../controllers/admin/users');
 const ticketController = require('../controllers/admin/tickets');
+const demandeController = require('../controllers/technicien/demande');
 const auth=require('../middlewares/auth');
 
 const multer = require('multer');
@@ -24,6 +25,33 @@ const storageEvents = multer.diskStorage({
         cb(null, Date.now()+ '-' +name);
     }
 });
+router.get('/:id/getdemandes', demandeController.getDemandes);
+router.post('/ajouterDemande',(req, res, next) => {
+        const demande = new Demande({
+            contenu: req.body.contenu,
+            recepteur_id:req.body.recepteur_id,
+            emetteur_id:req.body.emetteur_id,
+            ticket_id:req.body.ticket_id,
+            etat:"pending",
+            Datecreaation:new Date(),
+            Datereponse:""
+    });
+  
+    demande.save()
+      .then(() => res.status(201).json({
+        message: 'request created !',
+        status: 201
+      }))
+      .catch(error => res.status(400).json({
+        error
+      }));
+  })
 
+   router.put('/:id/repondredemande',auth,demandeController.repondredemande)
+
+
+
+   //////////////////////////stat/////////////////////////////////
+   router.get('/:id/statsdemande', demandeController.getStats);
 
 module.exports = router;

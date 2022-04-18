@@ -9,6 +9,7 @@ import { TechTicketsComponent } from './tech-tickets/tech-tickets.component';
 import { PublicationComponent } from './publication/publication.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PublicationgroupeComponent } from './publicationgroupe/publicationgroupe.component';
+import { DemandeComponent } from './demande/demande.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PublicationgroupeComponent } from './publicationgroupe/publicationgroup
     AllTicketsComponent,
     TechTicketsComponent,
     PublicationComponent,
-    PublicationgroupeComponent
+    PublicationgroupeComponent,
+    DemandeComponent
   ],
   imports: [
     CommonModule,

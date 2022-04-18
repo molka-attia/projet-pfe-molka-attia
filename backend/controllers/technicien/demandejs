@@ -1,3 +1,0 @@
-const mongoose = require('mongoose');
-const Demande = require('../../models/Demande');
-const users = require('../../models/User');

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService } from '../../services/admin.service';
+import {TechnicienService } from '../../services/technicien.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../admin/user/user.model';
 import { users } from '../../admin/user/users-list';
@@ -20,10 +21,10 @@ export class MainDashTechnicienComponent implements OnInit {
   public fetchedUser=users;
   public listtechniciens :any;
   public groupeid:string;
-
+public demandes;
   formEdit:FormGroup;
   
-  constructor(private userService : AdminService) {
+  constructor(private userService : AdminService,private technicienService:TechnicienService) {
    
    }
     
@@ -46,6 +47,16 @@ export class MainDashTechnicienComponent implements OnInit {
         this.user = resultat;
       
       });
+
+
+      this.technicienService.getdemandesstats(JSON.parse(this.technicienId).userId) .subscribe((res:any)=>{
+        
+         
+          this.demandes = res.demandes;
+        
+        });
+
+
       this.userService.getequipeid(JSON.parse(this.technicienId).userId).subscribe(
         (res:any) => {
           this.groupeid = res.groupe_id;

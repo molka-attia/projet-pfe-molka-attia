@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const publicationSchema = mongoose.Schema({
     contenu: {type: String, required: false},
-    user_id: {type:mongoose.Schema.ObjectId, required: false},
+    user_id: {type:String, required: false},
     groupe_id: {type: String, required: false},
  
     Datecreaation:{type: Date, required: false},
