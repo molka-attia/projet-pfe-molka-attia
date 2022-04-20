@@ -10,7 +10,7 @@
         <div class="case">
           <br>
         
-          <ul class="profile-header-tab nav nav-tabs">
+          <ul class="profile-header-tab nav nav-tabs" *ngIf="admin!=true">
             <li class="nav-item" style="width: 9%;"><a a routerLink="/technicien/demande" class="nav-link active show" data-toggle="tab"><h4 style="text-align: center;">Reçu</h4></a></li>
             <!-- <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
             <li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>

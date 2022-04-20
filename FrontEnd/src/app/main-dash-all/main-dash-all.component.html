@@ -32,7 +32,7 @@
             <a [routerLinkActive]="'active'" routerLink="/technicien/all-tickets" *ngIf="userIsAuthenticated && technicien "><span class="fa fa-ticket"></span><span>Tickets</span></a>
           </li>
           <li>
-            <a [routerLinkActive]="'active'" routerLink="/technicien/demande" *ngIf="userIsAuthenticated && technicien "><span class="fa fa-ticket"></span><span>Demandes</span></a>
+            <a [routerLinkActive]="'active'" routerLink="/technicien/demande" *ngIf="userIsAuthenticated && technicien || admin "><span class="fa fa-ticket"></span><span>Demandes</span></a>
           </li>
           <li>
             <a [routerLinkActive]="'active'" routerLink="/technicien/publications" *ngIf="userIsAuthenticated && technicien||admin"><span class="fa fa-id-card-o"></span><span>publications</span></a>
