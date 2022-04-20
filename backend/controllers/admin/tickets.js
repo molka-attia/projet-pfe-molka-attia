@@ -22,13 +22,29 @@ const tickets = require('../../models/Ticket');
 //   .then(ticketResults => {res.json(ticketResults);console.log(ticketResults)});
 //    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.getTickets= (req, res, next) => {
   tickets.find({'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
   .then(events => res.json(events));
 }
 
 
-
+exports.getoneticket= (req, res, next) => {
+  tickets.findOne({'_id':req.params.id },{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1})
+  .then(events => res.json(events));
+}
 
 
 // exports.getavailabletechnicien= (req, res, next) => {
@@ -47,8 +63,6 @@ exports.getavailabletechnicien= (req, res, next) => {
                 ]);
 
    
-
-
    }
   
 

@@ -10,6 +10,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PublicationgroupeComponent } from './publicationgroupe/publicationgroupe.component';
 import { DemandeComponent } from './demande/demande.component';
+import { DemandeenvoyerComponent } from './demandeenvoyer/demandeenvoyer.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DemandeComponent } from './demande/demande.component';
     TechTicketsComponent,
     PublicationComponent,
     PublicationgroupeComponent,
-    DemandeComponent
+    DemandeComponent,
+    DemandeenvoyerComponent
   ],
   imports: [
     CommonModule,

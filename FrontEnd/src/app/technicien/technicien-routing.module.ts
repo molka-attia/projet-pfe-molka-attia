@@ -7,6 +7,7 @@ import { MainDashTechnicienComponent } from './main-dash-technicien/main-dash-te
 import { PublicationComponent } from './publication/publication.component';
 import { PublicationgroupeComponent } from './publicationgroupe/publicationgroupe.component';
 import{DemandeComponent}from './demande/demande.component';
+import { DemandeenvoyerComponent } from './demandeenvoyer/demandeenvoyer.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: '', component: TechnicienComponent },
 { path: 'publications', component: PublicationComponent },
 { path: 'publicationsgroupe', component: PublicationgroupeComponent },
 { path: 'demande', component: DemandeComponent },
+{ path: 'demandeenvoyer', component:  DemandeenvoyerComponent },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

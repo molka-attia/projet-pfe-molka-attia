@@ -10,19 +10,19 @@
         <div class="case">
           <br>
         
+          
           <ul class="profile-header-tab nav nav-tabs">
-            <li class="nav-item" style="width: 9%;"><a a routerLink="/technicien/demande" class="nav-link active show" data-toggle="tab"><h4 style="text-align: center;">Reçu</h4></a></li>
+            <li class="nav-item" style="width: 9%;"><a a routerLink="/technicien/demande" class="nav-link " data-toggle="tab"><h4 style="text-align: center;">Reçu</h4></a></li>
             <!-- <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
             <li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>
             <li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li> -->
-            <li class="nav-item" style="width: 9%;" ><a routerLink="/technicien/demandeenvoyer" class="nav-link" data-toggle="tab"><h4 style="text-align: center;"> Envoyer</h4></a></li>
+            <li class="nav-item" style="width: 9%;" ><a routerLink="/technicien/demandeenvoyer" class="nav-link active show" data-toggle="tab"><h4 style="text-align: center;"> Envoyer</h4></a></li>
          </ul>
-          
           <hr>
           <div class="header-case">
             
             <h2>les Demandes</h2>
-            <!-- <button class="button" (click)="onClickShowForm()">ajouter<span class="fa fa-arrow-right"></span></button> -->
+            <button class="button" (click)="onClickShowForm()">ajouter<span class="fa fa-arrow-right"></span></button>
             
           </div>
           <div class="body-case">
@@ -36,8 +36,7 @@
                     <th>Demande</th>
                     <th>Ticket</th>
                     <th>Etat</th>
-                 <th>accepter</th>
-                    <th>refuser</th>
+             
                    
                   </tr>
                 </thead>
@@ -57,9 +56,6 @@
                     <td *ngIf="demande.etat=='refusée'"><span class="status-produit color-one"></span>{{demande.etat}}</td>  
                     <td *ngIf="demande.etat=='pending'"><span class="status-produit color-two"></span>{{demande.etat}}</td>  
                   
-                    <td><img src="./../../../../assets/images/check.png" width="30" (click)="onacceptdemande(demande._id,demande.ticket_id)"></td>
-               
-                    <td><img src="./../../../../assets/images/cross.png" width="30" (click)="onrefusedemande(demande._id)"></td>
                   
                   
                  
