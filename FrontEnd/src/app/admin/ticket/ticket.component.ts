@@ -34,6 +34,8 @@ export class TicketComponent implements OnInit {
   public specialite: Groupe;
   public fetchedgroupes=groupes;
   public showEditTicketForm = false;
+  public technicieninformer:User;
+ 
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -82,6 +84,12 @@ export class TicketComponent implements OnInit {
   oneEditAffecter(userId:string){
 
     this.userService.EditAffecter(this.formAffecter.value.technicienid,userId);
+    this.userService.getUser(this.formAffecter.value.technicienid) .subscribe(
+      (resultat:any) => {
+        console.log(resultat);
+        this.technicieninformer = resultat;
+        this.userService.envoyermailechinformer(resultat);
+      });
     this.showTicketaffectation = false;
 
    

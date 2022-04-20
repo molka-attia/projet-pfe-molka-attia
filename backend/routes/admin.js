@@ -37,6 +37,7 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
    router.get('/gettechniciens',auth,userController.getTechniciens);
 
+   router.get('/getadmin',auth,userController.getadmin);
 
    
    router.get('/gettechniciensofthesamegroupe',auth,userController.gettechniciensofthesamegroupe);

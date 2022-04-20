@@ -21,7 +21,7 @@
           <hr>
           <div class="header-case">
             
-            <h2>les Demandes</h2>
+            <h2>les Demandes </h2>
             <button class="button" (click)="onClickShowForm()">ajouter<span class="fa fa-arrow-right"></span></button>
             
           </div>
@@ -88,11 +88,20 @@
                 <input type="text" class="form-control" id="recepteur_id" formControlName="recepteur_id" placeholder="Enter user email">
               </div> -->
               <div class="form-group">
-                <label for="radio">a : </label>
+                <label for="radio">au technicien: </label>
                 <!-- <input type="text" class="form-control" id="type" formControlName="type" placeholder="Enter user type"> -->
-                <select class="form-control" id="recepteur_id" formControlName="recepteur_id" name="recepteur_id">
+                <select   class="form-control" id="recepteur_id" formControlName="recepteur_id" name="recepteur_id">
                  
                 <option *ngFor="let ticket of fetchedtechniciens; let i = index" value={{ticket._id}}>{{ticket.name}}</option>
+                
+            
+              </select>
+              </div>
+              <div class="form-group">
+                <label for="radio">à : </label>
+                <select class="form-control" id="recepteur_id" formControlName="recepteur_id" name="recepteur_id">
+                 
+                <option *ngFor="let admin of fetchedadmin; let i = index" value={{admin._id}}>{{admin.name}}</option>
                 
             
               </select>

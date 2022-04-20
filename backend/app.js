@@ -89,4 +89,41 @@ async function sendMail(user,name,password ,callback) {
   callback(info);
 }
 
+
+app.post("/api/sendmailticket", (req, res) => {
+  //console.log("request came");
+  
+ // let user = req.body;
+  sendMailticket(req.body.email,req.body.name, info => {
+    console.log(req.body.name);
+    res.send(info);
+  });
+});
+
+async function sendMailticket(user,name,callback) {
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: details.email,
+      pass: details.password
+    }
+  });
+
+  let mailOptions = {
+    from: 'Carte assurance', // sender address
+    to: user, // list of receivers
+    subject: "Nouveau Ticket", // Subject line
+    html: `<h1>Bonsoir `+name+`</h1><br>
+    <h4>Vous avez reçu un nouveau ticket ,merci de le consulter</h4>`
+  };
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}
+
 module.exports = app;

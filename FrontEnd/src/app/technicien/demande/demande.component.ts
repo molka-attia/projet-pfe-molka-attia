@@ -32,9 +32,15 @@ public ticket:Ticket ;
   technicienId = localStorage.getItem('user');
   formaddDemande:FormGroup;
   public showAddDemandeForm = false;
+  public admin;
    constructor(private userService : AdminService,private techService : TechnicienService, private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    const type = JSON.parse(localStorage.getItem('user')).type;
+    if(type=="admin"){
+      this.admin=true;
+ 
+    }
     this.techService.getdemandes(JSON.parse(this.technicienId).userId).subscribe(
       (resultatTicket) => {
         this.fetchedDemandes = resultatTicket;
@@ -119,11 +125,20 @@ this.userService.getUser(this.currentticket.assignetech) .subscribe(
 
 onacceptdemande(id:string,ticket:string){
 
-  this.techService.repondredemande("acceptée",id);
- 
-
-    this.userService.EditAffecter(JSON.parse(this.technicienId).userId,ticket);
+  if(this.admin==true){
+    this.techService.repondredemande("acceptée",id);
+   
   
+    this.userService.EditAffecter("",ticket);
+  }
+  else  {
+    this.techService.repondredemande("acceptée",id);
+   
+  
+      this.userService.EditAffecter(JSON.parse(this.technicienId).userId,ticket);
+    
+    }
+     
 
    
   

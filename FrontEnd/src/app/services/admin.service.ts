@@ -39,6 +39,10 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/users/gettechniciens`,{headers:this.head});
   }
 
+  getadmin(){
+    return this.http.get<any>(`http://localhost:3000/api/users/getadmin`,{headers:this.head});
+  }
+
   getTicketscloturer() {
     //ticketscloturer 
     return this.http.get<any>(`http://localhost:3000/api/tickets/ticketscloturer`,{headers:this.head});
@@ -125,6 +129,17 @@ ajoutertechnicien(user:User){
 envoyermailech(user:User){
   const ticketData = {email:user.email,name:user.name,password:user.password}
   this.http.post(`http://localhost:3000/api/sendmail`,ticketData,{headers:this.head})
+    .subscribe(res=>{
+      console.log(res);
+
+
+   });
+
+
+}
+envoyermailechinformer(user:User){
+  const ticketData = {email:user.email,name:user.name}
+  this.http.post(`http://localhost:3000/api/sendmailticket`,ticketData,{headers:this.head})
     .subscribe(res=>{
       console.log(res);
 

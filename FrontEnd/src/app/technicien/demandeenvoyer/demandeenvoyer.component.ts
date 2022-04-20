@@ -27,6 +27,7 @@ public ticket:Ticket ;
   public currentticket=tickets[0];
  
   public fetchedTechniciens=users;
+  public fetchedadmin=users;
   public user:User;
   public technicienaffecte:User;
   public formclourer:FormGroup;
@@ -34,9 +35,17 @@ public ticket:Ticket ;
   technicienId = localStorage.getItem('user');
   formaddDemande:FormGroup;
   public showAddDemandeForm = false;
+  public admin;
    constructor(private userService : AdminService,private techService : TechnicienService, private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    const type = JSON.parse(localStorage.getItem('user')).type;
+    if(type=="admin"){
+      this.admin=true;
+ 
+    }
+
+
     this.techService.getdemandesenvoyer(JSON.parse(this.technicienId).userId).subscribe(
       (resultatTicket) => {
         this.fetchedDemandes = resultatTicket;
@@ -64,6 +73,14 @@ async onClickShowForm(){
     this.userService.getTechniciens().subscribe(
       (resultatUser) => {
         this.fetchedtechniciens = resultatUser;
+         console.log(resultatUser);
+      }
+
+    );
+
+    this.userService.getadmin().subscribe(
+      (resultatUser) => {
+        this.fetchedadmin = resultatUser;
          console.log(resultatUser);
       }
 
@@ -120,13 +137,19 @@ this.userService.getUser(this.currentticket.assignetech) .subscribe(
 
 
 onacceptdemande(id:string,ticket:string){
+if(this.admin==true){
+  this.techService.repondredemande("acceptée",id);
+ 
 
+  this.userService.EditAffecter("",ticket);
+}
+else if (this.admin==false){
   this.techService.repondredemande("acceptée",id);
  
 
     this.userService.EditAffecter(JSON.parse(this.technicienId).userId,ticket);
   
-
+  }
    
   
  
