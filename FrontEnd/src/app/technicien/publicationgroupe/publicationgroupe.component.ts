@@ -10,6 +10,8 @@ import {TechnicienService } from '../../services/technicien.service';
 import {AdminService } from '../../services/admin.service';
 import { users } from '../../admin/user/users-list';
 import { User } from '../../admin/user/user.model';
+import { Groupe } from '../../admin/groupe/groupe.model';
+import { groupes } from '../../admin/groupe/groupes-list';
 
 @Component({
   selector: 'app-publicationgroupe',
@@ -26,16 +28,20 @@ export class PublicationgroupeComponent implements OnInit {
   formaddPublication:FormGroup;
   public currentcommentaire=commentaires[0];
   public fetchedCommentaires=commentaires;
-  
+  public fetchedgroupes=groupes;
   public fetchedTechniciens=users;
   public user:User;
   public tech:User;
   public technicienaffecte:User;
   public formclourer:FormGroup;
+  public formflitrer:FormGroup;
   public showTicketcloturation = false;
    id:string;
    public groupeid:string;
-  
+  public admin;
+  public valeurtest;
+  public currentgroupe;
+
   
   constructor(private technicienService :TechnicienService,private adminService :AdminService, private route:ActivatedRoute,private router:Router) { }
   technicienId = localStorage.getItem('user');
@@ -45,7 +51,17 @@ export class PublicationgroupeComponent implements OnInit {
       (resultat:any) => {
         console.log(resultat);
         this.user = resultat;
-      
+        this.adminService.getGroupes().subscribe(
+          (resultatTicket) => {
+            this.fetchedgroupes = resultatTicket;
+             console.log(resultatTicket);
+          }  
+          );
+        const type = JSON.parse(localStorage.getItem('user')).type;
+        if(type=="admin"){
+          this.admin=true;
+     
+        }
     
     this.technicienService. getPublicationsgroupe(this.user.groupe_id).subscribe(
       (resultatTicket) => {
@@ -78,9 +94,12 @@ export class PublicationgroupeComponent implements OnInit {
     contenu: new FormControl(null,{validators:[Validators.required]}),
   });
   
+  this.formflitrer = new FormGroup({
+    groupe_id : new FormControl(null,{validators:[Validators.required]}),
+  });
   
   
-     
+
       
     }
    async onshow(id:string){
@@ -97,6 +116,30 @@ export class PublicationgroupeComponent implements OnInit {
         this.show='0';
       }
     }
+
+
+
+    onefiltrerSubmit(){
+      this.currentgroupe=this.formflitrer.value.groupe_id;
+      this.technicienService. getPublicationsgroupe(this.formflitrer.value.groupe_id).subscribe(
+        (resultatTicket) => {
+          this.fetchedPublications = resultatTicket;
+           console.log(resultatTicket);
+     
+          
+  
+        });
+    
+    
+        }  
+       
+      
+    
+
+
+
+
+
   onajout(id:string){
    // this.technicienService.addCommentaire(this.formaddCommentaire.value,JSON.parse(this.technicienId).userId,id)
    this.technicienService.addCommentaire(this.formaddCommentaire.value.contenu,JSON.parse(this.technicienId).userId,id)
@@ -106,9 +149,13 @@ export class PublicationgroupeComponent implements OnInit {
   onajoutPublication(){
     // this.technicienService.addCommentaire(this.formaddCommentaire.value,JSON.parse(this.technicienId).userId,id)
 
-        this.technicienService.addPublication(this.formaddPublication.value.contenu,JSON.parse(this.technicienId).userId,this.user.groupe_id)
-  
-   
+        if(this.admin==true){
+          this.technicienService.addPublication(this.formaddPublication.value.contenu,JSON.parse(this.technicienId).userId,this.currentgroupe)
+       }
+   else{
+    this.technicienService.addPublication(this.formaddPublication.value.contenu,JSON.parse(this.technicienId).userId,this.user.groupe_id)
+      
+   }
    // addCommentaire
    
    }
