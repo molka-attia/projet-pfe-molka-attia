@@ -26,6 +26,10 @@ const storageEvents = multer.diskStorage({
     }
 });
 router.get('/:id/getdemandes', demandeController.getDemandes);
+//
+router.get('/:id/getdemandesenvoyer', demandeController.getDemandesenvoyer);
+
+
 router.post('/ajouterDemande',(req, res, next) => {
         const demande = new Demande({
             contenu: req.body.contenu,

@@ -155,7 +155,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         
       
        
-
+       router.get('/:id/getoneticket', ticketController.getoneticket);
 
 
 

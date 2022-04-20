@@ -1,20 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Demande } from './demande.model';
-import { demandes } from './demandes-list';
+import { Demande } from '../demande/demande.model';
+import { demandes } from '../demande/demandes-list';
 import { Ticket } from '../tech-tickets/ticket.model';
 import { tickets } from '../tech-tickets/tickets-list';
 import {AdminService } from '../../services/admin.service';
 import { users } from '../../admin/user/users-list';
 import { User } from '../../admin/user/user.model';
 import { TechnicienService } from 'src/app/services/technicien.service';
+
 @Component({
-  selector: 'app-demande',
-  templateUrl: './demande.component.html',
-  styleUrls: ['./demande.component.css']
+  selector: 'app-demandeenvoyer',
+  templateUrl: './demandeenvoyer.component.html',
+  styleUrls: ['./demandeenvoyer.component.css']
 })
-export class DemandeComponent implements OnInit {
+export class DemandeenvoyerComponent implements OnInit {
+
   public fetchedDemandes:any;
   public fetchedTicket=tickets;
   public fetchedtechniciens=users;
@@ -35,7 +37,7 @@ public ticket:Ticket ;
    constructor(private userService : AdminService,private techService : TechnicienService, private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-    this.techService.getdemandes(JSON.parse(this.technicienId).userId).subscribe(
+    this.techService.getdemandesenvoyer(JSON.parse(this.technicienId).userId).subscribe(
       (resultatTicket) => {
         this.fetchedDemandes = resultatTicket;
          console.log(resultatTicket);

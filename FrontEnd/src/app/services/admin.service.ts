@@ -296,7 +296,9 @@ envoyermailech(user:User){
 
 
 
-
+getoneticket(id:string){
+  return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getoneticket`,{headers:this.head});
+}
 
 
 
