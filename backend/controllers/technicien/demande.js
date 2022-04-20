@@ -79,8 +79,8 @@ exports.repondredemande = (req, res, next) => {
 //////////////////////////////////statistiques///////////////////////////////////
 exports.getStats = (req, res, next) => {
     Demande.aggregate([
-           {$match:{
-               recepteur_id :req.params.id}},
+         
+            { $match: { $and: [ { recepteur_id:req.params.id}, { etat: 'pending'} ] } },
           // {$project : {"users" : {$size :"$users"},_id:0}}
          { $group:{_id:null, demandes:{$sum:1}}}
           ])
