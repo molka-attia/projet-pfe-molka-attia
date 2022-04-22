@@ -260,6 +260,7 @@ envoyermailechinformer(user:User){
 
 
     });
+    
    
   }
 
@@ -432,16 +433,29 @@ getStatsusernumberofticketsnoncloturer(id:string){
 
 
 
+////////////////////////Affectation/////////////////////////////////////////////
+
+getAvailabletechnicien(id:String) {
+  
+  return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getavailabletechicien`,{headers:this.head})
+
+}
 
 
+///getlatestticket
 
 
+getlatestticket() {
+  
+  return this.http.get<any>(`http://localhost:3000/api/tickets/getlatestticket`,{headers:this.head})
 
+}
 
 
 ////////////////////////////////////groupe/////////////////////////////
 
 getequipeid(id:string){
+
   return this.http.get<any>(`http://localhost:3000/api/users/${id}/getequipe`,{headers:this.head});
 }
 

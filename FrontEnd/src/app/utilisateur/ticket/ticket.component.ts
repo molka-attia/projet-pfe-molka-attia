@@ -31,6 +31,8 @@ export class TicketComponent  implements OnInit {
   public specialite: Groupe;
   public formclourer:FormGroup;
   public showTicketcloturation = false;
+  public technicienavailable:User;
+  public latestticket=tickets[0];
  
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
@@ -115,7 +117,48 @@ await this.userService.getUser(this.currentticket.demandeur) .subscribe(
   }
   onAddSubmit(){
     this.userService.addTicket(this.formaddTicket.value.description,this.formaddTicket.value.priorite,this.formaddTicket.value.specialite,JSON.parse(this.technicienId).userId);
-     this.showAddUserForm = false;
+   
+    // this.userService.getAvailabletechnicien(this.formaddTicket.value.specialite).subscribe(
+    //   (resultatTicket) => {
+    //     this.technicienavailable = resultatTicket;
+    //      console.log(resultatTicket);
+    //      this.userService.getlatestticket().subscribe(
+    //       (latestticket) => {
+    //         this.latestticket = latestticket;
+    //          console.log(latestticket);
+
+    //   }  
+    //   ); });
+    // this.showAddUserForm = false;
+    
+ 
+    this.userService.getAvailabletechnicien(this.formaddTicket.value.specialite).subscribe(
+      (resultatTicket) => {
+        this.technicienavailable = resultatTicket;
+         console.log(resultatTicket);
+         this.userService.getlatestticket().subscribe(
+          (latestticket) => {
+            this.latestticket = latestticket;
+             console.log(latestticket);
+             this.userService.EditAffecter(resultatTicket[0]._id,latestticket[0]._id);
+    this.userService.getUser(resultatTicket[0]._id) .subscribe(
+      (resultat:any) => {
+        console.log(resultat);
+      //  this.technicieninformer = resultat;
+       // this.userService.envoyermailechinformer(resultat);
+      });
+
+      }  
+      ); });
+    this.showAddUserForm = false;
+
+/** this.userService.EditAffecter(this.formAffecter.value.technicienid,userId);
+    this.userService.getUser(this.formAffecter.value.technicienid) .subscribe(
+      (resultat:any) => {
+        console.log(resultat);
+        this.technicieninformer = resultat;
+       // this.userService.envoyermailechinformer(resultat);
+      }); */
     // this.router.navigate(['dash-respo/events']);
    }
   

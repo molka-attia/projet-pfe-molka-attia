@@ -20,13 +20,14 @@
                   <thead>
                     <tr>
                       <!-- <th>Number</th> -->
+                      <th>spécialité</th>
                       <th>Description</th>
                       <td>Priorité</td>
                       <!-- <td>assigner au </td> -->
                       <!-- <td>Demandeur</td> -->
                       <td>affecter ou non</td>
                       <td>Date de création</td>
-                      <td>Etat</td>
+                      <!-- <td>Etat</td> -->
                       
                       <td>affecter</td>
                       
@@ -39,6 +40,7 @@
                
                     <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
                       <!-- <td>{{ticket.id}}</td> -->
+                      <td>{{ticket.ticket_groupe[0].specialite}}</td>
                       <td *ngIf="ticket.description.length>20">{{ticket.description|slice:0:15}} ...</td>
                       <td *ngIf="ticket.description.length<20" >{{ticket.description}}</td>
                       <div *ngIf="ticket.priorite =='Urgent'">  
@@ -55,7 +57,7 @@
                       <td *ngIf="ticket.assignetech !=''" >affecter</td>
                     <td *ngIf="ticket.assignetech ==''" >non affecter</td>
                     <td>{{ticket.Datecreaation|date:'medium'}}</td>
-                      <td>{{ticket.etat}}</td>
+                      <!-- <td>{{ticket.etat}}</td> -->
                       
                       <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowAffecter(ticket)" >affecter</button> </td>
                       <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
