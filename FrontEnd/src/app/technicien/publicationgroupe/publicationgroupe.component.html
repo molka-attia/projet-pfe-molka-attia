@@ -29,8 +29,8 @@
              <form *ngIf="admin" [formGroup]="formflitrer" style=" margin-left: 10%;" (submit)="onefiltrerSubmit()">
     
                <div class="form-group">
-                  <h3 style=" margin-left: 10%;margin-top: 2%;" *ngIf="admin" >groupe:</h3>
-                  <select  style="width: 32%; margin-left: 20%; margin-top: -3%;"  class="form-control" *ngIf="admin" id="groupe_id" formControlName="groupe_id" name="groupe_id">
+                  <!-- <h3 style=" margin-left: 10%;margin-top: 2%;" *ngIf="admin" >groupe:</h3> -->
+                  <select  style="width: 52%; margin-left: 20%; margin-top: 3%;"  class="form-control" *ngIf="admin" id="groupe_id" formControlName="groupe_id" name="groupe_id">
               
                      <option *ngFor="let groupe of fetchedgroupes; let i = index" value={{groupe._id}}>{{groupe.specialite}}</option>
                      
@@ -38,7 +38,7 @@
                    </select>
                </div>
                
-           <button style=" margin-left: 55%; margin-top: -6%;" type="submit"  class="btn post-actions__publish">filter</button>
+           <button style=" margin-left: 82%; margin-top: -6%;" type="submit"  class="btn post-actions__publish">filtrer</button>
          </form>
              <!-- <h3 style=" margin-left: 10%;margin-top: 2%;" *ngIf="admin" >groupe:</h3>
          <select  style="width: 10%; margin-left: 20%; margin-top: -3%;"  class="form-control" *ngIf="admin" id="groupe_id" formControlName="groupe_id" name="groupe_id">
@@ -79,7 +79,7 @@
                      <input type="file" id="upload-image" accept="image/*" multiple>
                    </div>
                    <div class="post-actions__widget">
-                     <button type="submit" class="btn post-actions__publish">publish</button>
+                     <button type="submit" class="btn post-actions__publish">publier</button>
                    </div>
                  </div>
                </form>

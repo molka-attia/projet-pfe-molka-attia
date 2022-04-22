@@ -16,6 +16,7 @@ import { StatistiqueComponent } from './statistique/statistique.component';
 
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,

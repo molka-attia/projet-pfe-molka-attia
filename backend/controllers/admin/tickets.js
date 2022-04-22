@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const tickets = require('../../models/Ticket');
-
+const users = require('../../models/User');
 // exports.getTickets = (req, res, next) =>{
 //     tickets.find({},{_id:1,description:1,priorite:1,demandeur:1,assignetech:1,etat:1,opened:1})
 //     .then(ticketResults => {res.json(ticketResults);console.log(ticketResults)});
@@ -29,16 +29,49 @@ const tickets = require('../../models/Ticket');
 
 
 
+exports.getTickets = (req, res, next) =>{
+  tickets.aggregate([
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe'
+          }
+      },
+      {$sort:{
+          Datecreaation:-1}},
+      {
+          $match: {
+            'etat': { $ne: 'cloturer'}
+          }
+      }
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
 
 
 
-
-
-
-exports.getTickets= (req, res, next) => {
-  tickets.find({'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+exports.getlatestticket= (req, res, next) => {
+  tickets.find({},{_id:1}).limit(1).sort({$natural:-1})
   .then(events => res.json(events));
 }
+
+
+
+
+
+
+
+
+
+
+// exports.getTickets= (req, res, next) => {
+//   tickets.find({'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+//   .then(events => res.json(events));
+// }
 
 
 exports.getoneticket= (req, res, next) => {
@@ -52,23 +85,137 @@ exports.getoneticket= (req, res, next) => {
 //   .then(events => res.json(events));
 // }
 
-exports.getavailabletechnicien= (req, res, next) => {
+// exports.getavailabletechnicien= (req, res, next) => {
 
-  tickets.aggregate([
-    {$match: {'specialite':req.body.specialite}}   // guessing this is noise so filter out
-    // other $match could be used here to further shrink the data...
-    ,{$group: {_id:"$assignetech", n:{$sum:1}}}
-    ,{$match: {n: {$gt:1}}}  // ignore non-dupes
-    ,{$sort: {_id: 1}} // and finally sort.
-                ]);
+//   tickets.aggregate([
+//    // {$match: {'specialite':req.body.specialite}}   // guessing this is noise so filter out
+//     // other $match could be used here to further shrink the data...
+    
+//     {$group: {_id:"$assignetech", min:{$min:{n:{$sum:1}}}}}
+//    // ,{$match: {n: {$gt:1}}}  // ignore non-dupes
+//     //,{$sort: {_id: 1}} // and finally sort.
+//                 ])    .then(stats => {
+//                   res.json(stats);      
+//               });
 
    
-   }
+//    }
   
+//exports.getavailabletechnicien = (req, res, next) =>{
+ // users.find({groupe_id:req.body.id },{_id:1,name:1,email:1,password:1,type:1,user_img:1})
+ // .then(userResults => {
+    //res.json(userResults);console.log(userResults)
+  
+  
+   //tickets.aggregate([
+   // {$match: {'specialite':req.body.specialite}}   // guessing this is noise so filter out
+    // other $match could be used here to further shrink the data...
+    // {$set: {assignetech: {$toObjectId: "$assignetech"} }},
+    //         {
+    //             $lookup: {
+    //                 from: 'tickets',
+    //                 localField:'_id',
+    //                 foreignField:'assignetech',
+    //                 as: 'user_ticket'
+    //             }
+    //         }
+            //,
+ // {$group: {_id:"$assignetech", n:{$sum:1}}},
+   //,
+    // ignore non-dupes
+  //  { $match: { $and: [ { etat:req.body.etat}, { assignetech: { $ne: "" } } ] } }
+  //   ,{$sort: {n: 1}} // and finally sort.
+  //               ])    .then(stats => {
+  //                 res.json(stats);      
+  //             });
+
+   
+  //  }
+  
+  
+exports.getavailabletechnicien= (req, res, next) =>{
+  users.aggregate([
+      // {$set: {assignetech: {$toObjectId: "$assignetech"} }},
+      // {$set: {input: '$_id', to : '$String', onNull: ''}},
+      // {
+      //     $lookup: {
+      //         from: 'tickets',
+      //         localField: '_id',
+      //         foreignField: 'assignetech',
+      //         as: 'user_ticket'
+      //     }
+      // }
+      { $match: { "groupe_id":req.params.id} },
+      { $sample: { size: 1 } }
+ // ]
+      // ,
+      // {$sort:{
+      //     Datecreaation:-1}},
+      // {
+      //     $match: {
+      //         'groupe_id': req.body.specialte
+      //     }
+      // }
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
 
 
 
 
+//    exports.getavailabletechnicien = (req, res, next) =>{
+//     tickets.aggregate([
+//         {$set: {user_id: {$toObjectId: "$user_id"} }},
+//         {
+//             $lookup: {
+//                 from: 'users',
+//                 localField: 'user_id',
+//                 foreignField: '_id',
+//                 as: 'user_publication'
+//             }
+//         },
+//         {$sort:{
+//             Datecreaation:-1}},
+//         {
+//             $match: {
+//                 'groupe_id': req.params.id
+//             }
+//         }
+    
+//     ])
+//     .then(userResults => {res.json(userResults);console.log(userResults)});
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
    exports.delete= (req, res, next) =>{

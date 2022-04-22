@@ -36,10 +36,11 @@ router.get('/ticketscloturer',ticketController.getTicketscloturer);
 
 
 
-router.get('/getavailabletechicien',ticketController.getavailabletechnicien);
+router.get('/:id/getavailabletechicien',ticketController.getavailabletechnicien);
 
 
 
+router.get('/getlatestticket',ticketController.getlatestticket);
 
 
 
@@ -63,6 +64,10 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         .then(() => res.status(201).json({
           message: 'Ticket created !',
           status: 201
+
+
+
+
         }))
         .catch(error => res.status(400).json({
           error

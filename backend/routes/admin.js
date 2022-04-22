@@ -44,7 +44,7 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
 
 
-   router.get('/tickets',auth,ticketController.getTickets);
+   router.get('/tickets',ticketController.getTickets);
 
 
 router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {

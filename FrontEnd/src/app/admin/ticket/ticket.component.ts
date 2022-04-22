@@ -88,7 +88,7 @@ export class TicketComponent implements OnInit {
       (resultat:any) => {
         console.log(resultat);
         this.technicieninformer = resultat;
-        this.userService.envoyermailechinformer(resultat);
+       // this.userService.envoyermailechinformer(resultat);
       });
     this.showTicketaffectation = false;
 

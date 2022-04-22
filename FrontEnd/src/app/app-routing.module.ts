@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import{LoginComponent} from './auth/login/login.component';
 import{MainDashAllComponent} from './main-dash-all/main-dash-all.component';
 // import{MainDashAdminComponent} from './admin/main-dash-admin/main-dash-admin.component';
+
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
