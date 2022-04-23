@@ -344,6 +344,12 @@ getoneticket(id:string){
     return this.http.get(`http://localhost:3000/api/users/stats`,{headers:this.head});
 
   }
+
+  getStatsnombreTechnicien(){
+    return this.http.get(`http://localhost:3000/api/users/getStatsnombreTechnicien`,{headers:this.head});
+
+  }
+
   getStatstickets(){
     return this.http.get(`http://localhost:3000/api/tickets/statsalltickets`,{headers:this.head});
 
@@ -357,7 +363,10 @@ getoneticket(id:string){
     return this.http.get<any>(`http://localhost:3000/api/groupe/getgroupes`,{headers:this.head});
   }
 
- 
+  getGroupescloturer(){
+    return this.http.get<any>(`http://localhost:3000/api/groupe/getgroupescloturer`,{headers:this.head});
+  }
+
 
 
   addGroupe(specialite:String) {

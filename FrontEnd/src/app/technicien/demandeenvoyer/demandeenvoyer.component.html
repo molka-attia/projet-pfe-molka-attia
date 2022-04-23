@@ -76,7 +76,7 @@
                     
 
 
-                    <td *ngIf="demande.etat=='acceptée'"><img src="./../../../../assets/images/approved.png" width="30" >{{demande.etat}}</td>
+                    <td *ngIf="demande.etat=='acceptée'"><span class="status-produit color-three"></span>{{demande.etat}}</td>
                     <td *ngIf="demande.etat=='refusée'"><span class="status-produit color-one"></span>{{demande.etat}}</td>  
                     <td *ngIf="demande.etat=='pending'"><span class="status-produit color-two"></span>{{demande.etat}}</td>  
                   

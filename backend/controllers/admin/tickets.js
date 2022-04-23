@@ -41,7 +41,7 @@ exports.getTickets = (req, res, next) =>{
           }
       },
       {$sort:{
-          Datecreaation:-1}},
+        priorite:- 1,Datecreaation:1}},
       {
           $match: {
             'etat': { $ne: 'cloturer'}
@@ -301,13 +301,13 @@ exports.getTicketsnumber = (req, res, next) => {
 
 
      exports.getUsertickets = (req, res, next) => {
-      tickets.find({'demandeur':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+      tickets.find({'demandeur':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
       .then(events => res.json(events));
   }
 
 
   exports.getUserticketscloturer = (req, res, next) => {
-    tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+    tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
     .then(events => res.json(events));
 }
 
