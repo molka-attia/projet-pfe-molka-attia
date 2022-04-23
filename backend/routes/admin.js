@@ -316,6 +316,8 @@ router.get('/:id/getequipe',userController.getequipe )
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
 router.get('/stats',auth, userController.getStats);
-
+//getStatsnombreTechnicien
+router.get('/getStatsnombreTechnicien',auth, userController.getStatsnombreTechnicien);
+router.get('/getnombredeticketpertechnicien',userController.getnombredeticketpertechnicien);
 
 module.exports = router;

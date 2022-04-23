@@ -11,6 +11,7 @@ export class MainDashAdminComponent implements OnInit {
   public AllticketsCount;
   public usersCount;
   public GroupeCount;
+  public technicienCount;
   public number=3;
   public showUserDetails = false;
   public imagePreview:string;
@@ -25,6 +26,17 @@ export class MainDashAdminComponent implements OnInit {
       //this. clubsCount = res.teams;
       //this.title = res.title
     });
+
+
+
+this.userService.getStatsnombreTechnicien().subscribe((res:any)=>{
+  this.technicienCount = res.techniciens;
+  //this. clubsCount = res.teams;
+  //this.title = res.title
+});
+
+
+
     this.userService.getStatstickets().subscribe((res:any)=>{
       this.AllticketsCount = res.tickets;
       //this. clubsCount = res.teams;

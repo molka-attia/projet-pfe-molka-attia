@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const users = require('../../models/User');
-
+const tickets = require('../../models/Ticket');
 
 
 exports.getUsers = (req, res, next) =>{
@@ -99,6 +99,34 @@ exports.getStats = (req, res, next) => {
           });
   
      }
+
+
+
+exports.getStatsnombreTechnicien= (req, res, next) => {
+    // users.find({},{_id:1})
+  //    users.size().then(stats => {
+  //                 res.json(stats);      
+  //             });
+  
+      users.aggregate([
+          {$match:{type:"technicien"}},
+          // {$project : {"users" : {$size :"$users"},_id:0}}
+         { $group:{_id:null, techniciens:{$sum:1}}}
+          ])
+          .then(stats => {
+              res.json(stats[0]);      
+          });
+  
+     }
+
+
+
+
+
+
+
+
+
      exports.getOneUser = (req, res, next) =>{
         users.find({_id:req.params.id},{_id:1,name:1,email:1,password:1,type:1,user_img:1,groupe_id:1})
         .then(userResults => res.json(userResults[0]));
@@ -113,3 +141,44 @@ exports.getStats = (req, res, next) => {
         users.find({_id:req.params.id},{_id:0,name:1})
         .then(userResults => res.json(userResults[0]));
     }
+
+
+
+    exports.getnombredeticketpertechnicien  =  (req, res, next) =>{
+     users.aggregate([
+        // {$set: {groupe_id: {$toObjectId: "$groupe_id"} }},
+        // {
+        //     $lookup: {
+        //         from: 'users',
+        //         localField: '_id',
+        //         foreignField: 'groupe_id',
+        //         as: 'user_groupe'
+        //     }
+        { "$addFields": { "_id": { "$toString": "$_id" }}},
+        { "$lookup": {
+          "from": "tickets",
+          "localField": "_id",
+          "foreignField": "assignetech",
+          "as": "user_ticket"
+        }},
+        {$match:{type:"technicien"}},
+        {$project: {
+            name:1,
+            email:1,
+            user_img:1,
+            user_ticket: 1,
+            numberOftickets: { $size: "$user_ticket"  }
+         }}
+        //])
+        //,
+        // {$sort:{
+        //     Datecreaation:-1}},
+        // {
+        //     $match: {
+        //         'emetteur_id': req.params.id
+        //     }
+        // }
+    
+    ])
+    .then(userResults => {res.json(userResults);console.log(userResults)});
+}

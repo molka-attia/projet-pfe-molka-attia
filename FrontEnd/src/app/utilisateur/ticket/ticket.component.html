@@ -9,7 +9,7 @@
       <div >
         <div class="case">
           <div class="header-case">
-            <h2>Listes tickets</h2>
+            <h2>Listes des Tickets</h2>
             <button class="btn btn-success add-btn"  (click)="onClickShowForm()">ajouter</button>
             <!-- <button class="button">voir plus<span class="fa fa-arrow-right"></span></button> -->
           </div>
@@ -19,6 +19,7 @@
                 <thead>
                   <tr>
                     <!-- <th>Number</th> -->
+                    <th>Date de création</th>
                     <th>Description</th>
                     <td>Priorité</td>
                     <!-- <td>assigner au </td> -->
@@ -36,8 +37,10 @@
                 <tbody>
              
                   <tr  *ngFor="let ticket of fetchedTicket; let i = index" >
+                    <td>{{ticket.Datecreaation|date:'medium'}}</td>
                     <!-- <td>{{ticket.id}}</td> -->
-                    <td>{{ticket.description}}</td>
+                    <td *ngIf="ticket.description.length>20">{{ticket.description|slice:0:15}} ...</td>
+                    <td *ngIf="ticket.description.length<20" >{{ticket.description}}</td>
                     <div *ngIf="ticket.priorite =='Urgent'">  
                       <td><span class="status-produit color-one"></span>{{ticket.priorite}}</td>
                      </div>
@@ -49,10 +52,9 @@
                      </div>
                     <!-- <td>{{ticket.demandeur}}</td>
                     <td>{{ticket. assignetech}}</td> -->
-                    <!-- <td>{{ticket.specialite}}</td> -->
+                  
+                  
                     <td>{{ticket.etat}}</td>
-                    
-
                     <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(ticket)" >consulter</button> </td>
                   
                     <!-- <td><span class="status-produit color-two"></span>fatt</td> -->

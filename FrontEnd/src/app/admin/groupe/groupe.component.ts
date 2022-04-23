@@ -22,6 +22,7 @@ export class GroupeComponent implements OnInit {
   //  public currentgroupe=groupes[0];
   public cuurentgroupe:string ;
   public fetchedTicket=groupes;
+  public fetchedgroupecloturer=groupes;
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
@@ -29,6 +30,9 @@ export class GroupeComponent implements OnInit {
   formajouter:FormGroup;
   formaddGroupe:FormGroup;
   formEditGroupe:FormGroup;
+  public currentuser=users[0];
+  public fetchedUser=users;
+  public showUserDetails = false;
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 
@@ -39,6 +43,12 @@ export class GroupeComponent implements OnInit {
          console.log(resultatTicket);
       }  
       );
+      this.userService.getGroupescloturer().subscribe(
+        (resultatTicket) => {
+          this.fetchedgroupecloturer = resultatTicket;
+           console.log(resultatTicket);
+        }  
+        );
       this.formaddGroupe = new FormGroup({
         specialite: new FormControl(null,{validators:[Validators.required]}),
       
@@ -64,9 +74,9 @@ onAddSubmit(){
  onClickDeleteGroupe(user:string){
  
      this.userService.DeleteGroupe(user);
+     this.router.navigate(['admin/groupe']);
 
 }
-
 
 
 onClickShowForm(){
@@ -106,10 +116,19 @@ async onClickShowFormtechniciens(id:string){
 }
 onEditSubmit(user:string){
      
-  this.userService.EditGroupe(this.formEditGroupe.value.specialite,user);
+  this.userService.EditGroupe(this.formEditGroupe.value.specialite,this.cuurentgroupe);
+  console.log(this.cuurentgroupe);
    this.showEditGroupForm = false;
   // this.router.navigate(['dash-respo/events']);
  }
+ onClickShowForm2(user:User){
+  this.showUserDetails = true;
+  this.currentuser=user;
+
+}
+ onClickCloseForm2(){
+  this.showUserDetails = false;
+}
 
 
 }
