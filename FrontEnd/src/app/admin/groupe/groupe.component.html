@@ -23,11 +23,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col" style="width: 10%;" >Projects </th>
+                                            <th scope="col" style="width: 10%;" >Groupe </th>
                                             <!-- <th scope="col">Start Date</th> -->
-                                            <th scope="col" style="width: 15%;">Status  </th>
-                                            <th scope="col" style="width: 25%;">Team</th>
-                                            <th scope="col" style="width: 25%;">Progress</th>
+                                            <th scope="col" style="width: 15%;">Statut  </th>
+                                            <th scope="col" style="width: 25%;">équipe</th>
+                                            <th scope="col" style="width: 25%;">Progrès</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -41,7 +41,7 @@
                                                
                                             </td>
                                             <td *ngIf="fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets!=100 ">
-                                              <span class="text-success font-12" ><i class="mdi mdi-checkbox-blank-circle mr-1"></i> en progrès</span>
+                                              <span class="text-success font-12" ><i class="mdi mdi-checkbox-blank-circle mr-1"></i> en cours de traitement</span>
                                              
                                           </td>
                                             <td>
@@ -60,7 +60,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="mb-0">Progress <span class="float-right">{{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets | number}}%</span></p>
+                                                <p class="mb-0">Progrès <span class="float-right">{{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets | number}}%</span></p>
         
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar" style="width: {{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>

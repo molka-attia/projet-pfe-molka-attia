@@ -441,6 +441,28 @@ getStatsusernumberofticketsnoncloturer(id:string){
 }
 
 
+gettechnicienticketspercent(){
+
+  ////getnombredeticketpertechnicien
+  return this.http.get<any>(`http://localhost:3000/api/users/getnombredeticketpertechnicien`,{headers:this.head})
+}
+///getnombredeticketcloturerpertechnicien
+
+
+gettechnicienticketspercentallticket(){
+
+  ////getnombredeticketpertechnicien
+  return this.http.get<any>(`http://localhost:3000/api/users/getnombredeticketcloturerpertechnicien`,{headers:this.head})
+}
+
+//
+gettechnicienticketstotalpercentallticket(){
+
+  ////getnombredeticketpertechnicien
+  return this.http.get<any>(`http://localhost:3000/api/users/getnombredetickettotalpertechnicien`,{headers:this.head})
+}
+
+
 
 ////////////////////////Affectation/////////////////////////////////////////////
 

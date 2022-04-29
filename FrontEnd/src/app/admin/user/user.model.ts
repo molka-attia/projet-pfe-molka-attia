@@ -1,3 +1,5 @@
+import { Ticket } from "../ticket/ticket.model";
+
 export interface User {
   _id?: string;
   name?:string;
@@ -6,6 +8,8 @@ export interface User {
   email?:string;
   type?:string;
   groupe_id?:string;
+  user_ticket?:Ticket;
+  numberOftickets?:number;
 }
 
 

@@ -105,73 +105,65 @@
           <div class="case">
             <div class="header-case">
               <h2>Techniciens</h2>
-              <button class="btn">voir plus<span class="fa fa-arrow-right"></span></button>
+              <button class="btn"  routerLink="/admin/groupe">voir plus <span class="fa fa-arrow-right"></span></button>
             </div>
             <div class="body-case">
               <div class="all-users">
-                <div class="infos">
-                <img src="assets/images/photo3.jpg" width="40" height="40">
-                  <div>
-                  <h4>Omar</h4>
-                  <small>Embulant</small>
-                </div>
-                </div>
-                
-              <div class="user-contact">
-                <span class="fa fa-facebook"></span>
-                <span class="fa fa-whatsapp"></span>
-                <span class="fa fa-phone"></span>
-              </div>
+            
+                <table class="table project-table table-centered table-nowrap" style="width:100%;">
+                  <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col" style="width: 13%;" >Projects </th>
+                          <!-- <th scope="col">Start Date</th> -->
+                          <th scope="col" style="width: 25%;">Status  </th>
+                     
+                          <th scope="col" style="width: 35%;">Progrès</th>
+                          <th scope="col" style="width: 15%;"> tickets non clôturé</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr  *ngFor="let ticket of fetchedTicket; let i = index">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{ticket.specialite}}</td>
+                          <!-- <td>02/5/2019</td> -->
+                          <td *ngIf="fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets==100 ">
+                              <span class="text-success font-12" ><i class="mdi mdi-checkbox-blank-circle mr-1"></i>términé</span>
+                             
+                          </td>
+                          <td *ngIf="fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets!=100 ">
+                            <span class="text-success font-12" ><i class="mdi mdi-checkbox-blank-circle mr-1"></i> en cours de traitement</span>
+                           
+                        </td>
+                        
+                          <td>
+                              <p class="mb-0">Progrès <span class="float-right">{{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets | number}}%</span></p>
+
+                              <div class="progress mt-2" style="height: 5px;">
+                                  <div class="progress-bar bg-success" role="progressbar" style="width: {{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </td>
+
+                          <td >
+                            <p class="mb-0"> <span class="float-right">{{fetchedgroupecloturer[i].numberOftickets}}</span></p>
+
+                            <div class="progress mt-2" style="height: 5px;">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: {{fetchedgroupecloturer[i].numberOftickets*100/ticket.numberOftickets}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          </td>
+                      </tr>
+
+                      
+                  </tbody>
+              </table>
+             
             </div>
 
-                <div class="all-users">
-                <div class="infos">
-                <img src="assets/images/photo3.jpg" width="40" height="40">
-                  <div>
-                  <h4>Omar</h4>
-                  <small>Embulant</small>
-                </div>
-                </div>
-                
-              <div class="user-contact">
-                <span class="fa fa-facebook"></span>
-                <span class="fa fa-whatsapp"></span>
-                <span class="fa fa-phone"></span>
-              </div>
-            </div>
+        
 
-                <div class="all-users">
-                <div class="infos">
-                <img src="assets/images/photo3.jpg" width="40" height="40">
-                  <div>
-                  <h4>Omar</h4>
-                  <small>Embulant</small>
-                </div>
-                </div>
-                
-              <div class="user-contact">
-                <span class="fa fa-facebook"></span>
-                <span class="fa fa-whatsapp"></span>
-                <span class="fa fa-phone"></span>
-              </div>
-            </div>
 
             
-              <div class="all-users">
-                <div class="infos">
-                <img src="assets/images/photo3.jpg" width="40" height="40">
-                  <div>
-                  <h4>Omar</h4>
-                  <small>Embulant</small>
-                </div>
-                </div>
-                
-              <div class="user-contact">
-                <span class="fa fa-facebook"></span>
-                <span class="fa fa-whatsapp"></span>
-                <span class="fa fa-phone"></span>
-              </div>
-            </div>
+             
             </div>
            
           </div>
@@ -213,7 +205,7 @@
           </div>
         </div>
         
-        <div class="statistique">
+        <!-- <div class="statistique">
           
           <div class="statistique-barre bar1"></div>
           <div class="statistique-barre bar2"></div>
@@ -228,8 +220,8 @@
           <div class="statistique-barre bar4"></div>
           <div class="statistique-barre bar5"></div>
           <div class="statistique-barre bar{{number}}"></div>
-      </div>
-        <div class="legende">
+      </div> -->
+        <!-- <div class="legende">
           <h4>Legende</h4>
           <table>
             <tr>
@@ -245,11 +237,11 @@
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
 
 
-      <div class="calendar">
+      <!-- <div class="calendar">
       <div class="mois-annee">
         <ul>
           <li class="prev">&#10094;</li>
@@ -300,7 +292,7 @@
         <li>29</li>
         <li>30<li>
       </ul>
-      </div>
+      </div> -->
     </div>
   </div> 
   <div class="model-bg" *ngIf="showUserDetails">

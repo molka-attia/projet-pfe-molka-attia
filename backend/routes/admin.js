@@ -319,5 +319,6 @@ router.get('/stats',auth, userController.getStats);
 //getStatsnombreTechnicien
 router.get('/getStatsnombreTechnicien',auth, userController.getStatsnombreTechnicien);
 router.get('/getnombredeticketpertechnicien',userController.getnombredeticketpertechnicien);
-
+router.get('/getnombredeticketcloturerpertechnicien',userController.getnombredeticketcloturerpertechnicien);
+router.get('/getnombredetickettotalpertechnicien',userController.getnombredetickettotalpertechnicien);
 module.exports = router;
