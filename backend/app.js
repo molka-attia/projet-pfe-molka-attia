@@ -78,9 +78,9 @@ async function sendMail(user,name,password ,callback) {
   let mailOptions = {
     from: 'Carte assurance', // sender address
     to: user, // list of receivers
-    subject: "Welcome our newest Technicien", // Subject line
-    html: `<h1>hi `+name+`</h1><br>
-    <h4>you can login now in our app using your current email and this password +`+password+`</h4>`
+    subject: "notre technicien", // Subject line
+    html: `<h1>salut `+name+`</h1><br>
+    <h4>vous pouvez maintenant connecté en utilisant le mot de passe suivie+`+password+`</h4>`
   };
 
   // send mail with defined transport object

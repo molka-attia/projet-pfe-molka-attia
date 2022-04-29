@@ -155,11 +155,15 @@ exports.getStatsnombreTechnicien= (req, res, next) => {
         //         as: 'user_groupe'
         //     }
         { "$addFields": { "_id": { "$toString": "$_id" }}},
+        
         { "$lookup": {
           "from": "tickets",
           "localField": "_id",
           "foreignField": "assignetech",
-          "as": "user_ticket"
+          "as": "user_ticket",
+          pipeline: [
+            { $match: { "etat":"non cloturer" } }
+         ],
         }},
         {$match:{type:"technicien"}},
         {$project: {
@@ -167,6 +171,7 @@ exports.getStatsnombreTechnicien= (req, res, next) => {
             email:1,
             user_img:1,
             user_ticket: 1,
+            groupe_id:1,
             numberOftickets: { $size: "$user_ticket"  }
          }}
         //])
@@ -181,4 +186,91 @@ exports.getStatsnombreTechnicien= (req, res, next) => {
     
     ])
     .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+exports.getnombredeticketcloturerpertechnicien  =  (req, res, next) =>{
+    users.aggregate([
+       // {$set: {groupe_id: {$toObjectId: "$groupe_id"} }},
+       // {
+       //     $lookup: {
+       //         from: 'users',
+       //         localField: '_id',
+       //         foreignField: 'groupe_id',
+       //         as: 'user_groupe'
+       //     }
+       { "$addFields": { "_id": { "$toString": "$_id" }}},
+       
+       { "$lookup": {
+         "from": "tickets",
+         "localField": "_id",
+         "foreignField": "assignetech",
+         "as": "user_ticket",
+         pipeline: [
+           { $match: { "etat":"cloturer" } }
+        ],
+       }},
+       {$match:{type:"technicien"}},
+       {$project: {
+           name:1,
+           email:1,
+           user_img:1,
+           user_ticket: 1,
+           groupe_id:1,
+           numberOftickets: { $size: "$user_ticket"  }
+        }}
+       //])
+       //,
+       // {$sort:{
+       //     Datecreaation:-1}},
+       // {
+       //     $match: {
+       //         'emetteur_id': req.params.id
+       //     }
+       // }
+   
+   ])
+   .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+exports.getnombredetickettotalpertechnicien  =  (req, res, next) =>{
+    users.aggregate([
+       // {$set: {groupe_id: {$toObjectId: "$groupe_id"} }},
+       // {
+       //     $lookup: {
+       //         from: 'users',
+       //         localField: '_id',
+       //         foreignField: 'groupe_id',
+       //         as: 'user_groupe'
+       //     }
+       { "$addFields": { "_id": { "$toString": "$_id" }}},
+       
+       { "$lookup": {
+         "from": "tickets",
+         "localField": "_id",
+         "foreignField": "assignetech",
+         "as": "user_ticket",
+        //  pipeline: [
+        //    { $match: { "etat":"non cloturer" } }
+        // ],
+       }},
+       {$match:{type:"technicien"}},
+       {$project: {
+           name:1,
+           email:1,
+           user_img:1,
+           user_ticket: 1,
+           groupe_id:1,
+           numberOftickets: { $size: "$user_ticket"  }
+        }}
+       //])
+       //,
+       // {$sort:{
+       //     Datecreaation:-1}},
+       // {
+       //     $match: {
+       //         'emetteur_id': req.params.id
+       //     }
+       // }
+   
+   ])
+   .then(userResults => {res.json(userResults);console.log(userResults)});
 }

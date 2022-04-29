@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {AdminService } from '../../services/admin.service';
 import { User } from '../../admin/user/user.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Groupe } from '../groupe/groupe.model';
+import { groupes } from '../groupe/groupes-list';
+
+
 @Component({
   selector: 'app-main-dash-admin',
   templateUrl: './main-dash-admin.component.html',
@@ -15,10 +19,14 @@ export class MainDashAdminComponent implements OnInit {
   public number=3;
   public showUserDetails = false;
   public imagePreview:string;
+  public fetchedTicket=groupes;
+  public fetchedgroupecloturer=groupes;
+
   formEdit:FormGroup;
   technicienId = localStorage.getItem('user');
   constructor(private userService : AdminService) { }
   public user:User;
+
 
   ngOnInit(): void {
     this.userService.getStats().subscribe((res:any)=>{
@@ -26,7 +34,18 @@ export class MainDashAdminComponent implements OnInit {
       //this. clubsCount = res.teams;
       //this.title = res.title
     });
-
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedTicket = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+      this.userService.getGroupescloturer().subscribe(
+        (resultatTicket) => {
+          this.fetchedgroupecloturer = resultatTicket;
+           console.log(resultatTicket);
+        }  
+        );
 
 
 this.userService.getStatsnombreTechnicien().subscribe((res:any)=>{

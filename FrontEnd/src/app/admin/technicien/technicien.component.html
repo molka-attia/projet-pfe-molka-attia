@@ -9,7 +9,7 @@
             <div class="case">
               <div class="header-case">
                 <h2>Liste des techniciens</h2>
-                <button class="btn btn-success add-btn"  (click)="onClickShowForm()">ajouter</button>
+                <button style="background-color: rgba(39,154,189,255);width:10% ;" type="button" class="btn btn-primary"  (click)="onClickShowForm()"><h5>Ajouter</h5></button>
               </div>
               <div *ngFor="let user of fetchedUser; let i = index">
                 
@@ -32,7 +32,15 @@
                 </div> -->
                 <div>
                     <!-- <button class="btn" >voir plus</button> -->
-                    <button class="btn btn-secondary btn-lg active" style="width: 100%;" (click)="onClickShowForm2(user)">voir details</button> 
+                    <button class="btn btn-secondary btn-lg active" style="width: 100%;   background: linear-gradient( #3bbbb4 15%, #2596be 100%);
+                    border-radius: 10px;
+                    color: #fff;
+                    font-size: .8rem;
+                    padding: .5rem 1rem;
+                    border: none;
+                    margin-left: 5px;
+                    cursor: pointer;
+                    margin-bottom: 1rem;" (click)="onClickShowForm2(user)">voir details</button> 
                 </div>
                 </div>
               </div>
