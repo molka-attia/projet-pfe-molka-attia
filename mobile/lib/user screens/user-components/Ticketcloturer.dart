@@ -17,13 +17,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 
+import 'oneticketCloturer.dart';
 
-class Ticket extends StatefulWidget {
+
+class TicketCloturer extends StatefulWidget {
   @override
-  State<Ticket> createState() => _DashuserState();
+  State<TicketCloturer> createState() => _DashuserState();
 }
 
-class _DashuserState extends State<Ticket> {
+class _DashuserState extends State<TicketCloturer> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
    String selectedValue = "Urgent";
 List<DropdownMenuItem<String>> get dropdownItems{
@@ -52,7 +54,7 @@ List<DropdownMenuItem<String>> get dropdownItems{
    // };http://localhost:3000/api/tickets/${id}/deleteticket
     var uri = Uri.parse("http://localhost:3000/api/tickets/" +
        userId +
-        "/getUsertickets");
+        "/getUserticketscloturer");
         //http://localhost:3000/api/tickets/${id}/getTechtickets
     //var uri = Uri.parse(url);
     // var request = http.get(uri, headers: headers);
@@ -103,57 +105,8 @@ TextEditingController _descriptionController = TextEditingController();
         userId +
         "/addticket");
         var request = http.post(uri,  body: json.encode(body), headers: headers);
-   // var request = new http.MultipartRequest("POST", uri);
-    
-    //request.fields['description'] = description;
-    ///request.fields['priorite'] = email;
- 
-    //var response = await request.send();
-    // Fluttertoast.showToast(
-    //     msg: "User Added Successfully",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.TOP,
-    //     backgroundColor: Colors.green,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0);
-    //response.stream.transform(utf8.decoder).listen((value) {});
-    //return response;
-      // var response = await request.send();
-    // print(response.statusCode);
-
-    // // listen for response
-    // response.stream.transform(utf8.decoder).listen((value) {
-    //   print(value);
-    // });
+   
   }
-
- 
-// var uri = Uri.parse("http://localhost:3000/api/users/addUser2");
-
-//     // create multipart request
-//     var request = new http.MultipartRequest("POST", uri);
-
-//     // multipart that takes file
-//     //var multipartFile = new http.MultipartFile('myFile', stream, length,
-//       //  filename: basename(imageFile.path));
-
-//     // add file to multipart
-//    // request.files.add(multipartFile);
-
-//     // send
-//         request.fields['name'] = name;
-//     request.fields['email'] = email;
-//     request.fields['password'] = password;
-//     request.fields['type'] = type;
-//     var response = await request.send();
-//     print(response.statusCode);
-
-//     // listen for response
-//     response.stream.transform(utf8.decoder).listen((value) {
-//       print(value);
-//     });
-
-
 
 
 
@@ -180,107 +133,107 @@ TextEditingController _descriptionController = TextEditingController();
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Tickets ',
+                'Tickets cloturé',
                 style: TextStyle(
                   color: textColor,
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
                 ),
               ),
-               FloatingActionButton.extended(
-        onPressed: () {
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
-          // Add your onPressed code here!
-           showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: Text('Ajouter ticket'),
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Form(
-                        child: Column(
-                          children: <Widget>[
+      //          FloatingActionButton.extended(
+      //   onPressed: () {
+      //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+      //     // Add your onPressed code here!
+      //      showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return AlertDialog(
+      //               scrollable: true,
+      //               title: Text('Ajouter ticket'),
+      //               content: Padding(
+      //                 padding: const EdgeInsets.all(8.0),
+      //                 child: Form(
+      //                   child: Column(
+      //                     children: <Widget>[
                          
                    
                 
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextField(
-                      controller: _descriptionController,
-                      decoration: InputDecoration(
-                        hintText: "le problème",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      height: 20,
-                    ),
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //               TextField(
+      //                 controller: _descriptionController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "le problème",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //                SizedBox(
+      //                 height: 20,
+      //               ),
                     
-                DropdownButton(
-      value: selectedValue,
-      dropdownColor:CupertinoColors.activeBlue,
-      isExpanded:true,
-      onChanged: (String newValue){
-        setState(() {
-          selectedValue = newValue;
-        });
-      },
-      items: dropdownItems
-      ),
+      //           DropdownButton(
+      // value: selectedValue,
+      // dropdownColor:CupertinoColors.activeBlue,
+      // isExpanded:true,
+      // onChanged: (String newValue){
+      //   setState(() {
+      //     selectedValue = newValue;
+      //   });
+      // },
+      // items: dropdownItems
+      // ),
                     
-                    // TextField(
-                    //   controller: _prioriteController,
-                    //   decoration: InputDecoration(
-                    //     hintText: "priorité : (faible/moyenne/urgent)",
-                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                    //     border: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10),
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(
-                      height: 70,
-                    ),
+      //               // TextField(
+      //               //   controller: _prioriteController,
+      //               //   decoration: InputDecoration(
+      //               //     hintText: "priorité : (faible/moyenne/urgent)",
+      //               //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //               //     border: OutlineInputBorder(
+      //               //       borderRadius: BorderRadius.circular(10),
+      //               //     ),
+      //               //   ),
+      //               // ),
+      //               SizedBox(
+      //                 height: 70,
+      //               ),
               
-                          ],
-                        ),
-                      ),
-                    ),
-                     actions: [
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //                actions: [
     
-                        ElevatedButton(
+      //                   ElevatedButton(
               
-                   onPressed: () async{
+      //              onPressed: () async{
                   
-                    await AddTicket(
+      //               await AddTicket(
                        
                       
                      
-                        );
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
-                  },
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
-                 // },
-                  child: Text('ajouter')) 
+      //                   );
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+      //             },
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+      //            // },
+      //             child: Text('ajouter')) 
                           
-                    ],
-                  );
-                });
+      //               ],
+      //             );
+      //           });
 
 
           
-        },
-        label: const Text('Ajouter'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.blue,
+      //   },
+      //   label: const Text('Ajouter'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.blue,
 
-      ),
+      // ),
               // Text(
               //   'View All',
               //   style: TextStyle(
@@ -469,7 +422,7 @@ TextEditingController _descriptionController = TextEditingController();
                 child: ListView.builder(
                     controller: _firstController,
                      itemCount: users.length, 
-                    itemBuilder:(context, index) => Oneticket(info: users[index],),
+                    itemBuilder:(context, index) => OneticketCloturer(info: users[index],),
                     // (BuildContext context, int index) {
                       // return Padding(
                       //   padding: const EdgeInsets.all(8.0),

@@ -27,7 +27,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:responsive_admin_dashboard/pages/register.dart';
 import 'package:responsive_admin_dashboard/pages/register2.dart';
 import 'package:responsive_admin_dashboard/pages/register3.dart';
+import 'package:responsive_admin_dashboard/usermainDash.dart';
 import '../Allmain.dart';
+import '../techmainDash.dart';
 import 'forgot_password_page.dart';
 import 'profile_page.dart';
 //import 'registration_page.dart';
@@ -245,7 +247,26 @@ class _LoginState extends State<LoginPage> {
           "type", (json.decode(response.body)["user"]["type"]).toString());
 
       // prefs.setString("user", (json.decode(response.body)["user"]).toString());
-      Navigator.push(context, MaterialPageRoute(builder: (context) => AllMainDash()));
+        var type;
+  getLoggedUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String tt = prefs.getString("type");
+    setState(() {
+      type = tt;
+    });
+    print(prefs.getString("type"));
+  }
+  if(json.decode(response.body)["user"]["type"].toString() == "admin"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MainDash()));
+      Fluttertoast.showToast(
+          msg: "You Are Logged In",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.black,
+          fontSize: 16.0);
+    }  if(json.decode(response.body)["user"]["type"].toString() == "technicien"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => TechMainDash()));
       Fluttertoast.showToast(
           msg: "You Are Logged In",
           toastLength: Toast.LENGTH_SHORT,
@@ -254,6 +275,19 @@ class _LoginState extends State<LoginPage> {
           textColor: Colors.black,
           fontSize: 16.0);
     }
+     if(json.decode(response.body)["user"]["type"].toString() == "utilisateur"){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => userMainDash()));
+      Fluttertoast.showToast(
+          msg: "You Are Logged In",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.black,
+          fontSize: 16.0);
+    }
+    
+    }
+   
     //get data from shared preferences
   }
 

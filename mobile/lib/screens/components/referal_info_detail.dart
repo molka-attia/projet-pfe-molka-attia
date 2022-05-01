@@ -68,15 +68,15 @@ class _DiscussionInfoDetailState extends State<ReferalInfoDetail> {
           //     color: info.color!,
           //   ),
           // ),
-           ClipRRect(
-            borderRadius: BorderRadius.circular(40),
-            child: Image.asset(
-              'images/'+ widget.info['user_img'],
-              height: 42,
-              width: 42,
-              fit: BoxFit.cover,
-            ),
-          ),
+          //  ClipRRect(
+          //   borderRadius: BorderRadius.circular(40),
+          //   child: Image.asset(
+          //     'images/'+ widget.info['user_img'],
+          //     height: 42,
+          //     width: 42,
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: appPadding),

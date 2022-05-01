@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
+import 'package:responsive_admin_dashboard/pages/drawer.dart';
 import 'package:responsive_admin_dashboard/screens/components/analytic_cards.dart';
 import 'package:responsive_admin_dashboard/screens/components/custom_appbar.dart';
 import 'package:responsive_admin_dashboard/screens/components/Allusersadmin.dart';
@@ -20,13 +21,13 @@ class Allusers extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: bgColor,
-      drawer: DrawerMenu(),
+      drawer: drawertest(),
    
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (Responsive.isDesktop(context)) Expanded(child: DrawerMenu(),),
+            if (Responsive.isDesktop(context)) Expanded(child: drawertest(),),
             Expanded(
               flex: 5,
               // child: DashboardContent(),

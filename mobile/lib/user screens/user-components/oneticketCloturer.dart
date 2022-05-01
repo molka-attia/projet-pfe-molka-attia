@@ -16,13 +16,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 
-class Oneticket extends StatefulWidget {
+class OneticketCloturer extends StatefulWidget {
   
   final dynamic info;
- Oneticket({this.info});
+OneticketCloturer({this.info});
 
   @override
-  State<Oneticket> createState() => _DiscussionInfoDetailState();
+  State<OneticketCloturer> createState() => _DiscussionInfoDetailState();
 }
  Future<User> futureAlbum;
 
@@ -52,7 +52,7 @@ class User {
   }
 }
 
-class _DiscussionInfoDetailState extends State<Oneticket> {
+class _DiscussionInfoDetailState extends State<OneticketCloturer> {
 var groupes;
  getGroupes() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -98,7 +98,17 @@ var groupes;
   return dateTime;
   print(dateTime); //2021-12-15 11:10:01.000
 }
+ getDate2() {
+  //var data = "2021-12-15T11:10:01.521Z";
 
+  DateTime dateTime = getFormattedDateFromFormattedString(
+      value: widget.info['Datecloturation'],
+      currentFormat: "yyyy-MM-ddTHH:mm:ssZ",
+  //    desiredFormat: "yyyy-MM-dd HH:mm:ss");
+   desiredFormat: "yyyy-MM-dd HH:mm");
+  return dateTime;
+  print(dateTime); //2021-12-15 11:10:01.000
+}
 getFormattedDateFromFormattedString(
     { value,
      String currentFormat,
@@ -560,6 +570,13 @@ Future<User> fetchUser2() async {
                       fontWeight: FontWeight.w400
                     ),
                   ),
+                        Text(
+                    "solution :"+ widget.info['note'],
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.w400
+                    ),
+                  ),
                   //     Text(
                   //   'demandeur:',
                   //   style: TextStyle(
@@ -830,7 +847,7 @@ Future<User> fetchUser2() async {
   //             ),
                 Text(
               //  widget.info['Datecreaation'],
-               getDate().toString(),
+              'Date de création : '+getDate().toString(),
                 style: TextStyle(
                   color: textColor,
                   
@@ -840,9 +857,18 @@ Future<User> fetchUser2() async {
               ),
 
   SizedBox(height: 15), 
+   Text(
+              //  widget.info['Datecreaation'],
+               'Date de cloturation : '+getDate2().toString(),
+                style: TextStyle(
+                  color: textColor,
+                  
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
 
-
-
+ SizedBox(height: 15), 
 
 
 

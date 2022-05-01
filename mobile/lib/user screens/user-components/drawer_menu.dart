@@ -5,6 +5,7 @@ import 'package:responsive_admin_dashboard/AllusersAdmin.dart';
 import 'package:responsive_admin_dashboard/AllticketsAdmin.dart';
 import 'package:responsive_admin_dashboard/main%20copy.dart';
 import 'package:responsive_admin_dashboard/pages/login_page.dart';
+import 'package:responsive_admin_dashboard/pages/profile_page.dart';
 import 'package:responsive_admin_dashboard/tech screens/tech-components/Ticket.dart';
 import 'package:responsive_admin_dashboard/screens/components/drawer_list_tile.dart';
 
@@ -154,9 +155,11 @@ class _WrapperState extends State<DrawerMenu> {
           ),
 
           DrawerListTile(
-              title: 'Settings',
+              title: 'Profile',
               svgSrc: 'assets/icons/Setting.svg',
-              tap: () {}),
+          tap: () {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>ProfilePage() ));
+              }),
           DrawerListTile(
               title: 'Logout',
               svgSrc: 'assets/icons/Logout.svg',
