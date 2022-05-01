@@ -9,11 +9,13 @@ import 'package:responsive_admin_dashboard/user screens/user-components/custom_a
 
 import 'package:responsive_admin_dashboard/user screens/user-components/drawer_menu.dart';
 
+import 'Allticketsadmincloturer.dart';
 
 
 
-class Alltickets extends StatelessWidget {
-  const Alltickets({Key key}) : super(key: key);
+
+class Allticketscloturer extends StatelessWidget {
+  const Allticketscloturer({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class Alltickets extends StatelessWidget {
               flex: 5,
               // child: DashboardContent(),
     //          child: Allusers(),
-    child:Allticketsadmin(),
+    child:Allticketsadmincloturer(),
               
             )
 

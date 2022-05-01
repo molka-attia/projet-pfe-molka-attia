@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
+import 'package:responsive_admin_dashboard/pages/drawer.dart';
 import 'package:responsive_admin_dashboard/tech screens/tech-components/Allticketsadmin.dart';
 import 'package:responsive_admin_dashboard/tech screens/tech-components/analytic_cards.dart';
 import 'package:responsive_admin_dashboard/tech screens/tech-components/custom_appbar.dart';
@@ -20,13 +21,13 @@ class Alltickets extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: bgColor,
-      drawer: DrawerMenu(),
+      drawer: drawertest(),
    
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (Responsive.isDesktop(context)) Expanded(child: DrawerMenu(),),
+            if (Responsive.isDesktop(context)) Expanded(child: drawertest(),),
             Expanded(
               flex: 5,
               // child: DashboardContent(),

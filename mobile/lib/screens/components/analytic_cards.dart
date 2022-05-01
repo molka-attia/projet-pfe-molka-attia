@@ -27,9 +27,45 @@ class AnalyticCards extends StatelessWidget {
     );
   }
 }
-
+class  AnalyticInfo{
+String title;
+String count;
+String svgSrc;
+Color color;
+AnalyticInfo(String title,String count,String svgSrc,Color color){
+  this.title=title;
+}
+}
 class AnalyticInfoCardGridView extends StatelessWidget {
-  const AnalyticInfoCardGridView({
+int a=20;
+List analyticData = [
+  AnalyticInfo(
+    "users",
+    1. toString(),
+ "assets/icons/Subscribers.svg",
+    primaryColor,
+  ),
+  AnalyticInfo(
+    "technicien",
+    820.toString(),
+    "assets/icons/Subscribers.svg",
+   purple,
+  ),
+  AnalyticInfo(
+    "tickets ",
+    920.toString(),
+     "assets/icons/Pages.svg",
+     orange,
+  ),
+  AnalyticInfo(
+    "tickets cloturer",
+    920.toString(),
+   // svgSrc: "assets/icons/Comments.svg",
+      "assets/icons/Post.svg",
+   green,
+  ),
+];
+ AnalyticInfoCardGridView({
     Key key,
     this.crossAxisCount = 4,
     this.childAspectRatio = 1.4,
@@ -37,7 +73,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
 
   final int crossAxisCount;
   final double childAspectRatio;
-
+ 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -51,7 +87,7 @@ class AnalyticInfoCardGridView extends StatelessWidget {
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) => AnalyticInfoCard(
-        //info: analyticData[index],
+        info: analyticData[index],
       ),
     );
   }
