@@ -511,13 +511,30 @@ Future<User> fetchUser2() async {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
+                    
+  elevation: 20,
+  shape: RoundedRectangleBorder(
+      side:  BorderSide(color:  HexColor('#008ea1'),width: 3),
+      borderRadius: BorderRadius.all(Radius.circular(15))
+  ),
+  backgroundColor: HexColor('#f6f6f6'),
                     scrollable: true,
-                    title: Text('Ticket info :'),
+                   // title: Text('Cloturer '),
+                   
                     content: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
                         child: Column(
                           children: <Widget>[
+                                  ClipRRect(
+       
+            child: Image.asset(
+              'images/cloturer.png',
+              height: 142,
+              width: 320,
+             // fit: BoxFit.cover,
+            ),
+          ),
           //                     ClipRRect(
           //   borderRadius: BorderRadius.circular(40),
           //   child: Image.asset(
@@ -527,11 +544,42 @@ Future<User> fetchUser2() async {
           //     fit: BoxFit.cover,
           //   ),
           // ),
+            //  Text(
+            //        'cloturer',
+            //           textAlign: TextAlign.center,
+            //         style: TextStyle(
+            //           //color: textColor,
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.w800,
+            //           color:  HexColor('#008ea1'),
+                   
+            //         ),
+            //       ),
+          
+            SizedBox(height: 15), 
+                  Text(
+                     widget.info['description'],
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.w400
+                    ),
+                  ),
+                   SizedBox(height: 15), 
+                        Text(
+                    "solution :"+ widget.info['note'],
+                    style: TextStyle(
+                      color: textColor,
+                     fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  // backgroundColor: Colors.white,
+                    ),
+                  ),
                     FutureBuilder<User>(
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Text('Demandeur :    '+snapshot.data.name);
+                
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -540,6 +588,7 @@ Future<User> fetchUser2() async {
               return const CircularProgressIndicator();
             },
           ),
+            SizedBox(height: 15), 
           
                   //     Text(
                   //   'technicien :',
@@ -563,20 +612,50 @@ Future<User> fetchUser2() async {
           ),
  
                    
-                            Text(
-                     widget.info['description'],
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.w400
-                    ),
-                  ),
-                        Text(
-                    "solution :"+ widget.info['note'],
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.w400
-                    ),
-                  ),
+                      SizedBox(height: 15), 
+                       Text(
+              //  widget.info['Datecreaation'],
+              'créer en : '+getDate().toString(),
+                style: TextStyle(
+                  color: textColor,
+                    // backgroundColor: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+
+  SizedBox(height: 15), 
+   Text(
+              //  widget.info['Datecreaation'],
+               'cloturer en : '+getDate2().toString(),
+                style: TextStyle(
+                  color: textColor,
+                    // backgroundColor: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+                SizedBox(height: 30), 
+                
+                  Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+
+  children: <Widget>[
+    new  FloatingActionButton.extended(
+        onPressed: () {
+      deleteTicket();
+          // Add your onPressed code here!
+        },
+        label: const Text('supprimer'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor:   HexColor('#008ea1'),
+
+      ), 
+  
+  ],
+),
+
                   //     Text(
                   //   'demandeur:',
                   //   style: TextStyle(
@@ -603,6 +682,7 @@ Future<User> fetchUser2() async {
                         ),
                       ),
                     ),
+                    
                      actions: [
                       // RaisedButton(
                       //     child: Text("edit"),
@@ -656,137 +736,131 @@ Future<User> fetchUser2() async {
         //         });
         //                   }),
                         
-                             FloatingActionButton.extended(
-        onPressed: () {
-      ClotureTicket();
-          // Add your onPressed code here!
-        },
-        label: const Text('cloturer'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.red,
-
-      ),  FloatingActionButton.extended(
-        onPressed: () {
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
-          // Add your onPressed code here!
-           showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: Text('Modifier ticket'),
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Form(
-                        child: Column(
-                          children: <Widget>[
+                            
+  
+      //  FloatingActionButton.extended(
+      //   onPressed: () {
+      //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+      //     // Add your onPressed code here!
+      //      showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return AlertDialog(
+      //               scrollable: true,
+      //               title: Text('Modifier ticket'),
+      //               content: Padding(
+      //                 padding: const EdgeInsets.all(8.0),
+      //                 child: Form(
+      //                   child: Column(
+      //                     children: <Widget>[
                          
                    
                 
-                    SizedBox(
-                      height: 20,
-                    ),
-                                TextField(
-                      controller: _descriptionController,
-                      decoration: InputDecoration(
-                        hintText: "le problème",
-                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                     SizedBox(
-                      height: 20,
-                    ),
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //                           TextField(
+      //                 controller: _descriptionController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "le problème",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //                SizedBox(
+      //                 height: 20,
+      //               ),
                     
-                DropdownButton(
-      value: selectedValue,
-      dropdownColor:CupertinoColors.activeBlue,
-      isExpanded:true,
-      onChanged: (String newValue){
-        setState(() {
-          selectedValue = newValue;
-        });
-      },
-      items: dropdownItems
-      ),
-         SizedBox(
-                      height: 20,
-                    ),
+      //           DropdownButton(
+      // value: selectedValue,
+      // dropdownColor:CupertinoColors.activeBlue,
+      // isExpanded:true,
+      // onChanged: (String newValue){
+      //   setState(() {
+      //     selectedValue = newValue;
+      //   });
+      // },
+      // items: dropdownItems
+      // ),
+      //    SizedBox(
+      //                 height: 20,
+      //               ),
                     
-        DropdownButton(
-      value: selectedValue2,
-      dropdownColor:CupertinoColors.activeBlue,
-      isExpanded:true,
-      onChanged: (String newValue){
-        setState(() {
-          selectedValue2 = newValue;
-        });
-      },
-      items: dropdownItems2
-      ),
-                    // TextField(
-                    //   controller: _descriptionController,
-                    //   decoration: InputDecoration(
-                    //     hintText: "le problème",
-                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                    //     border: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10),
-                    //     ),
-                    //   ),
-                    // ),
-                    //  SizedBox(
-                    //   height: 20,
-                    // ),
+      //   DropdownButton(
+      // value: selectedValue2,
+      // dropdownColor:CupertinoColors.activeBlue,
+      // isExpanded:true,
+      // onChanged: (String newValue){
+      //   setState(() {
+      //     selectedValue2 = newValue;
+      //   });
+      // },
+      // items: dropdownItems2
+      // ),
+      //               // TextField(
+      //               //   controller: _descriptionController,
+      //               //   decoration: InputDecoration(
+      //               //     hintText: "le problème",
+      //               //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //               //     border: OutlineInputBorder(
+      //               //       borderRadius: BorderRadius.circular(10),
+      //               //     ),
+      //               //   ),
+      //               // ),
+      //               //  SizedBox(
+      //               //   height: 20,
+      //               // ),
                    
                     
-                    // TextField(
-                    //   controller: _prioriteController,
-                    //   decoration: InputDecoration(
-                    //     hintText: "priorité : (faible/moyenne/urgent)",
-                    //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-                    //     border: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.circular(10),
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
+      //               // TextField(
+      //               //   controller: _prioriteController,
+      //               //   decoration: InputDecoration(
+      //               //     hintText: "priorité : (faible/moyenne/urgent)",
+      //               //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //               //     border: OutlineInputBorder(
+      //               //       borderRadius: BorderRadius.circular(10),
+      //               //     ),
+      //               //   ),
+      //               // ),
+      //               // SizedBox(
+      //               //   height: 20,
+      //               // ),
               
-                          ],
-                        ),
-                      ),
-                    ),
-                     actions: [
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //                actions: [
     
-                        ElevatedButton(
+      //                   ElevatedButton(
               
-                   onPressed: () async{
+      //              onPressed: () async{
                   
-                    await EditTicket(
-                        );
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
-                  },
-                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
-                 // },
-                  child: Text('modifier')) 
+      //               await EditTicket(
+      //                   );
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+      //             },
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+      //            // },
+      //             child: Text('modifier')) 
                           
-                    ],
-                  );
-                });
+      //               ],
+      //             );
+      //           });
 
 
           
-        },
-        label: const Text('modifier'),
-        // icon: const Icon(Icons.plus_one_rounded),
-        backgroundColor: Colors.blue,
+      //   },
+      //   label: const Text('modifier'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.blue,
 
-      ),
+      // ),
                           
                     ],
+                    
                   );
                 });
         }
@@ -845,16 +919,16 @@ Future<User> fetchUser2() async {
   //                 fontWeight: FontWeight.w800,
   //               ),
   //             ),
-                Text(
-              //  widget.info['Datecreaation'],
-              'Date de création : '+getDate().toString(),
-                style: TextStyle(
-                  color: textColor,
+              //   Text(
+              // //  widget.info['Datecreaation'],
+              // 'Date de création : '+getDate().toString(),
+              //   style: TextStyle(
+              //     color: textColor,
                   
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+              //     fontSize: 18,
+              //     fontWeight: FontWeight.w800,
+              //   ),
+              // ),
 
   SizedBox(height: 15), 
    Text(

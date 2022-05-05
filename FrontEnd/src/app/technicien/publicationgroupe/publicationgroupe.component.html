@@ -54,13 +54,13 @@
                <div class="widget-post__header">
                  <h2 class="widget-post__title" id="post-header-title">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                   Write Me
+                   Publication
                  </h2>
                </div>
                <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" [formGroup]="formaddPublication" (submit)="onajoutPublication()">
                  <div class="widget-post__content">
                    <label for="post-content" class="sr-only">Share</label>
-                   <textarea name="post" id="post-content" class="widget-post__textarea scroller" id="contenu" formControlName="contenu" placeholder="What's wrong with r00tme?"></textarea>
+                   <textarea name="post" id="post-content" class="widget-post__textarea scroller" id="contenu" formControlName="contenu" placeholder="le problème?"></textarea>
                  </div>
                  <div class="widget-post__options is--hidden" id="stock-options">
                  </div>
@@ -126,7 +126,7 @@
                               <div class="timeline-header">
                                  <span class="userimage"><img src="./../../../../assets/images/{{publication.user_publication[0].user_img}}" alt=""></span>
                                  <span class="username">{{publication.user_publication[0].name}} <small></small></span>
-                                 <span class="pull-right text-muted">18 Views</span>
+                                 <!-- <span class="pull-right text-muted">18 Views</span> -->
                               </div>
                               <div class="timeline-content">
                                  <p>
