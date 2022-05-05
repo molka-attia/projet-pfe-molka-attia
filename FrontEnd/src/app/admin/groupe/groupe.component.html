@@ -26,8 +26,9 @@
                                             <th scope="col" style="width: 10%;" >Groupe </th>
                                             <!-- <th scope="col">Start Date</th> -->
                                             <th scope="col" style="width: 15%;">Statut  </th>
-                                            <th scope="col" style="width: 25%;">équipe</th>
-                                            <th scope="col" style="width: 25%;">Progrès</th>
+                                            <th scope="col" style="width: 15%;">liste des membres</th> 
+                                            <th scope="col" style="width: 20%;">équipe</th>
+                                            <th scope="col" style="width: 20%;">Progrès</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -44,6 +45,8 @@
                                               <span class="text-success font-12" ><i class="mdi mdi-checkbox-blank-circle mr-1"></i> en cours de traitement</span>
                                              
                                           </td>
+                                          <td><button style="background-color: #3abab4" type="button" class="btn btn-primary" (click)="onClickShowFormtechniciens(ticket._id)" >consulter les membres</button> </td>
+                                           
                                             <td>
                                                 <div class="team">
                                                     <a href="javascript: void(0);" class="team-member"  *ngFor="let membre of ticket.membre_groupe; let i = index" data-toggle="tooltip" data-placement="top" title="" data-original-title="Roger Drake">
