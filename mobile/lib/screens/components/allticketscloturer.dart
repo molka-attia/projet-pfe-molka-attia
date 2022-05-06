@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/pages/drawer.dart';
-import 'package:responsive_admin_dashboard/user screens/user-components/Allticketsadmin.dart';
-import 'package:responsive_admin_dashboard/user screens/user-components/analytic_cards.dart';
-import 'package:responsive_admin_dashboard/user screens/user-components/custom_appbar.dart';
-
-import 'package:responsive_admin_dashboard/user screens/user-components/drawer_menu.dart';
+import 'package:responsive_admin_dashboard/screens/components/Allticketsadmincloturer.dart';
 
 import 'Allticketsadmincloturer.dart';
+import 'Allticketsadmincloturer.dart';
+
+
 
 
 

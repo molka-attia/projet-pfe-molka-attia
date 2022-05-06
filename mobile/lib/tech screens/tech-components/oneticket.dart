@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
@@ -56,13 +57,13 @@ class _DiscussionInfoDetailState extends State<Oneticket> {
 
 
 
-  ClotureTicket() async {
+  ClotureTicket(String note) async {
  
    SharedPreferences prefs = await SharedPreferences.getInstance();
     String userId = prefs.getString("userId");
      String token = prefs.getString("token");
    var body = {
-      "note":"j"
+      "note":note
     };
    var headers = {
       "Content-Type": "application/json",
@@ -81,6 +82,7 @@ class _DiscussionInfoDetailState extends State<Oneticket> {
  
   }
   
+TextEditingController _noteController = TextEditingController();
    deleteTicket() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -738,7 +740,10 @@ getFormattedDateFromFormattedString(
 
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: 140),
+               if( widget.info['priorite']=="Moyenne")
+              SizedBox(width: 130),
+              if( widget.info['priorite']!="Moyenne")
+               SizedBox(width: 140),
                Text(
                 widget.info['priorite'],
                  textAlign: TextAlign.center,
@@ -930,9 +935,218 @@ getFormattedDateFromFormattedString(
       width:350,
       child: FloatingActionButton.extended(
         onPressed: () {
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+{
+            //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>ProfilePage() ));
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    
+  elevation: 20,
+  shape: RoundedRectangleBorder(
+      side:  BorderSide(color:  HexColor('#008ea1'),width: 3),
+      borderRadius: BorderRadius.all(Radius.circular(15))
+  ),
+  backgroundColor: HexColor('#f6f6f6'),
+                    scrollable: true,
+                   // title: Text('Cloturer '),
+                   
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+          //                         ClipRRect(
+       
+          //   child: Image.asset(
+          //     'images/ticket.png',
+          //     height: 142,
+          //     width: 360,
+          //    // fit: BoxFit.cover,
+          //   ),
+          // ),
+               TextField(
+                      controller: _noteController,
+                      decoration: InputDecoration(
+                        hintText: "Comment le problème a été resolu ?",
+                        hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                     SizedBox(
+                      height: 20,
+                    ),
+           
+               
+               
+                 Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  
+  children: <Widget>[
+    new Container(
+      width:350,
+      child: FloatingActionButton.extended(
+        onPressed: () {
     
 
- ClotureTicket();
+ ClotureTicket(_noteController.text);
+
+
+        },
+        label: const Text('cloturer'),
+        // icon: const Icon(Icons.plus_one_rounded),
+        backgroundColor:   HexColor('#00a5bb'),
+  shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.zero
+     ),
+      ), 
+    )
+  ],
+),
+      
+
+                          ],
+                       
+              
+                        ),
+                      ),
+                    ),
+                    
+                     actions: [
+                        
+                            
+  
+      //  FloatingActionButton.extended(
+      //   onPressed: () {
+      //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>RegistrationPage() ));
+      //     // Add your onPressed code here!
+      //      showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return AlertDialog(
+      //               scrollable: true,
+      //               title: Text('Modifier ticket'),
+      //               content: Padding(
+      //                 padding: const EdgeInsets.all(8.0),
+      //                 child: Form(
+      //                   child: Column(
+      //                     children: <Widget>[
+                         
+                   
+                
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //                           TextField(
+      //                 controller: _descriptionController,
+      //                 decoration: InputDecoration(
+      //                   hintText: "le problème",
+      //                   hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //                SizedBox(
+      //                 height: 20,
+      //               ),
+                    
+      //           DropdownButton(
+      // value: selectedValue,
+      // dropdownColor:CupertinoColors.activeBlue,
+      // isExpanded:true,
+      // onChanged: (String newValue){
+      //   setState(() {
+      //     selectedValue = newValue;
+      //   });
+      // },
+      // items: dropdownItems
+      // ),
+      //    SizedBox(
+      //                 height: 20,
+      //               ),
+                    
+      //   DropdownButton(
+      // value: selectedValue2,
+      // dropdownColor:CupertinoColors.activeBlue,
+      // isExpanded:true,
+      // onChanged: (String newValue){
+      //   setState(() {
+      //     selectedValue2 = newValue;
+      //   });
+      // },
+      // items: dropdownItems2
+      // ),
+      //               // TextField(
+      //               //   controller: _descriptionController,
+      //               //   decoration: InputDecoration(
+      //               //     hintText: "le problème",
+      //               //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //               //     border: OutlineInputBorder(
+      //               //       borderRadius: BorderRadius.circular(10),
+      //               //     ),
+      //               //   ),
+      //               // ),
+      //               //  SizedBox(
+      //               //   height: 20,
+      //               // ),
+                   
+                    
+      //               // TextField(
+      //               //   controller: _prioriteController,
+      //               //   decoration: InputDecoration(
+      //               //     hintText: "priorité : (faible/moyenne/urgent)",
+      //               //     hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+      //               //     border: OutlineInputBorder(
+      //               //       borderRadius: BorderRadius.circular(10),
+      //               //     ),
+      //               //   ),
+      //               // ),
+      //               // SizedBox(
+      //               //   height: 20,
+      //               // ),
+              
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //                actions: [
+    
+      //                   ElevatedButton(
+              
+      //              onPressed: () async{
+                  
+      //               await EditTicket(
+      //                   );
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashuser()));
+      //             },
+      //               //Navigator.push(context, MaterialPageRoute(builder: (context)=>AllusersAdmin()));
+      //            // },
+      //             child: Text('modifier')) 
+                          
+      //               ],
+      //             );
+      //           });
+
+
+          
+      //   },
+      //   label: const Text('modifier'),
+      //   // icon: const Icon(Icons.plus_one_rounded),
+      //   backgroundColor: Colors.blue,
+
+      // ),
+                          
+                    ],
+                    
+                  );
+                });
+        }
+ //ClotureTicket();
 
 
         },

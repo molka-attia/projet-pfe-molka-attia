@@ -54,11 +54,11 @@ class Allticketsadmincloturer extends StatelessWidget {
                       SizedBox(
                         width: appPadding,
                       ),
-                    if (!Responsive.isMobile(context))
-                      Expanded(
-                        flex: 2,
-                        child: TicketCloturer(),
-                      ),
+                    // if (!Responsive.isMobile(context))
+                    //   Expanded(
+                    //     flex: 2,
+                    //     child: TicketCloturer(),
+                    //   ),
                   ],
                 ),
                 Row(

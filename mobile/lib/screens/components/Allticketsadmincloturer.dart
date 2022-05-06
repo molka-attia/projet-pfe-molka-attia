@@ -2,16 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
-import 'package:responsive_admin_dashboard/tech screens/tech-components/Ticket.dart';
+import 'package:responsive_admin_dashboard/user screens/user-components/Ticket.dart';
 // import 'package:responsive_admin_dashboard/screens/components/Ticket.dart';
 
 import 'package:responsive_admin_dashboard/screens/components/custom_appbar.dart';
 
+import 'Ticketcloturer.dart';
+
+
+
 
 // import 'ticket.dart';
 
-class Allticketsadmin extends StatelessWidget {
-  const Allticketsadmin({Key key}) : super(key: key);
+class Allticketsadmincloturer extends StatelessWidget {
+  const Allticketsadmincloturer({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,7 @@ class Allticketsadmin extends StatelessWidget {
                       child: Column(
                         children: [
                           // AnalyticCards(),
+                          
                           SizedBox(
                             height: appPadding,
                           ),
@@ -43,7 +48,7 @@ class Allticketsadmin extends StatelessWidget {
                             SizedBox(
                               height: appPadding,
                             ),
-                           Ticket(),
+                           TicketCloturer(),
                         ],
                       ),
                     ),
@@ -54,7 +59,7 @@ class Allticketsadmin extends StatelessWidget {
                     // if (!Responsive.isMobile(context))
                     //   Expanded(
                     //     flex: 2,
-                    //     child: Ticket(),
+                    //     child: TicketCloturer(),
                     //   ),
                   ],
                 ),

@@ -457,7 +457,10 @@ Future<User> fetchUser2() async {
 
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: 150),
+          if( widget.info['priorite']=="Moyenne")
+              SizedBox(width: 130),
+              if( widget.info['priorite']!="Moyenne")
+               SizedBox(width: 140),
                Text(
                 widget.info['priorite'],
                  textAlign: TextAlign.center,
@@ -574,6 +577,7 @@ Future<User> fetchUser2() async {
                   // backgroundColor: Colors.white,
                     ),
                   ),
+                  SizedBox(height: 15), 
                     FutureBuilder<User>(
             future: futureAlbum,
             builder: (context, snapshot) {

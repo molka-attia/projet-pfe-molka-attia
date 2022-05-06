@@ -10,6 +10,7 @@ import 'package:responsive_admin_dashboard/pages/widgets/header_widget.dart';
 import 'package:responsive_admin_dashboard/user%20screens/user-components/allticketscloturer.dart';
 
 import '../AllticketsUsercloturer.dart';
+import '../Allticketscloturer.dart';
 import 'forgot_password_page.dart';
 import 'forgot_password_verification_page.dart';
 import 'registration_page.dart';
@@ -217,14 +218,14 @@ PersistentTabController _controller =
                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>MainDash() ));
                                }
               ),
-                if (type == "admin")
-          DrawerListTile(
-              title: 'Utilisateurs',
-              svgSrc: 'assets/icons/Subscribers.svg',
-              tap: () {
+          //       if (type == "admin")
+          // DrawerListTile(
+          //     title: 'Utilisateurs',
+          //     svgSrc: 'assets/icons/Subscribers.svg',
+          //     tap: () {
 
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
-              }),
+          //        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllusersAdmin() ));
+          //     }),
                if (type == "admin")
                DrawerListTile(
               title: 'tickets', svgSrc: 'assets/icons/Pages.svg', tap: () {
@@ -233,10 +234,10 @@ PersistentTabController _controller =
           // DrawerListTile(
           //     title: 'Message', svgSrc: 'assets/icons/Message.svg', tap: () {}),
            if (type == "admin")
-          DrawerListTile(
-              title: 'Statistics',
-              svgSrc: 'assets/icons/Statistics.svg',
-              tap: () {}),
+           DrawerListTile(
+              title: 'Tickets cloturé', svgSrc: 'assets/icons/Pages.svg', tap: () {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>AllticketsCloturer() ));
+              }),
               if (type == "utilisateur")
               DrawerListTile(
               title: 'Acceuil',
