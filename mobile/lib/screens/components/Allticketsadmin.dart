@@ -51,11 +51,11 @@ class Allticketsadmin extends StatelessWidget {
                       SizedBox(
                         width: appPadding,
                       ),
-                    if (!Responsive.isMobile(context))
-                      Expanded(
-                        flex: 2,
-                        child: Ticket(),
-                      ),
+                    // if (!Responsive.isMobile(context))
+                    //   Expanded(
+                    //     flex: 2,
+                    //     child: Ticket(),
+                    //   ),
                   ],
                 ),
                 Row(
