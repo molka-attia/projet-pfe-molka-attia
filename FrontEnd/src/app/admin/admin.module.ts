@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -13,6 +14,10 @@ import { GroupeComponent } from './groupe/groupe.component';
 import { TechnicienComponent } from './technicien/technicien.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { StatistiqueComponent } from './statistique/statistique.component';
+import { MatTableModule } from '@angular/material/table';
+
+
+
 
 
 
@@ -27,12 +32,15 @@ import { StatistiqueComponent } from './statistique/statistique.component';
     GroupeComponent,
     TechnicienComponent,
     UtilisateurComponent,
-    StatistiqueComponent
+    StatistiqueComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatPaginatorModule, 
+    MatTableModule
 
   ]
 })

@@ -9,6 +9,11 @@ import { User } from '../user/user.model';
 import { groupes } from 'src/app/admin/groupe/groupes-list';
 import {Groupe} from 'src/app/admin/groupe/groupe.model';
 import {Subject} from 'rxjs';
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',

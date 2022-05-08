@@ -11,6 +11,9 @@
             <a  [routerLinkActive]="'active'" routerLink="/admin/dash" *ngIf="userIsAuthenticated && admin"><span class="fa fa-home"></span><span>Accueil</span></a>
           </li>
           <li>
+            <a  [routerLinkActive]="'active'" routerLink="/admin/test" *ngIf="userIsAuthenticated && admin"><span class="fa fa-home"></span><span>test</span></a>
+          </li>
+          <li>
             <a [routerLinkActive]="'active'" routerLink="/admin/user" *ngIf="userIsAuthenticated && admin"><span class="fa fa-user"></span><span>Utilisateurs</span></a>
           </li>
           <li>
