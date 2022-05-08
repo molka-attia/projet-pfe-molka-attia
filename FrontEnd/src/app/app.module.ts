@@ -8,6 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MainDashAllComponent } from './main-dash-all/main-dash-all.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -18,6 +22,7 @@ import { MainDashAllComponent } from './main-dash-all/main-dash-all.component';
     LoginComponent,
     NotfoundComponent,
     MainDashAllComponent,
+   
 
   ],
   imports: [
@@ -26,6 +31,10 @@ import { MainDashAllComponent } from './main-dash-all/main-dash-all.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
