@@ -1,3 +1,5 @@
+import { Groupe } from "../groupe/groupe.model";
+
 export interface User {
   _id?: string;
   name?:string;
@@ -5,6 +7,7 @@ export interface User {
   user_img?:string;
   email?:string;
   type?:string;
+  technicien_groupe?:Groupe;
 }
 
 

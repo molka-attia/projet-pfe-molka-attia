@@ -9,7 +9,7 @@
             <div class="case">
               <div class="header-case">
                 <h2>Liste des techniciens</h2>
-                <button style="background-color: rgba(39,154,189,255);width:10% ;" type="button" class="btn btn-primary"  (click)="onClickShowForm()"><h5>Ajouter</h5></button>
+                <button style="background-color: rgba(39,154,189,255);width:10% ;" type="button" class="btn btn-primary"  (click)="onClickShowForm()">Ajouter</button>
               </div>
               <div *ngFor="let user of fetchedUser; let i = index">
                 
@@ -17,10 +17,10 @@
               <div class="body-case">
                 <div class="all-users">
                   <div class="infos">
-                  <img src="./../../../../assets/images/{{user?.user_img}}" width="50" height="50">
+                  <img src="./../../../../assets/images/{{user?.user_img}}" width="60" height="60">
                     <div>
-                    <h4>{{user.name}}</h4>
-                    <small>{{user.type}}</small>
+                    <h2 style="font-weight: 500;">{{user.name}}</h2>
+                    <h4 style="margin-top: -15%;">{{user.technicien_groupe[0].specialite}}</h4>
                    
                   </div>
                   </div>

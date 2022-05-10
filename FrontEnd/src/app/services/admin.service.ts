@@ -55,6 +55,14 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/users/tickets`,{headers:this.head});
   }
 
+
+  getTicketsfiltrer(id:String){
+  
+    return this.http.get<any>(`http://localhost:3000/api/users/${id}/ticketsfilter`,{headers:this.head});
+  }
+  
+
+
   addUser(user:User){
     const userData = new FormData();
     userData.append('name',user.name);
@@ -471,6 +479,13 @@ getAvailabletechnicien(id:String) {
   return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getavailabletechicien`,{headers:this.head})
 
 }
+
+gettimeticketpertechnicien() {
+  
+  return this.http.get<any>(`http://localhost:3000/api/users/gettimeticketpertechnicien`,{headers:this.head})
+
+}
+
 
 
 ///getlatestticket

@@ -14,10 +14,42 @@ exports.getUsers = (req, res, next) =>{
 
 
 
+// exports.getTechniciens = (req, res, next) =>{
+//     users.find({type:"technicien" },{_id:1,name:1,email:1,password:1,type:1,user_img:1})
+//     .then(userResults => {res.json(userResults);console.log(userResults)});
+// }
+
+
 exports.getTechniciens = (req, res, next) =>{
-    users.find({type:"technicien" },{_id:1,name:1,email:1,password:1,type:1,user_img:1})
+    users.aggregate([
+        {$set: {groupe_id: {$toObjectId: "$groupe_id"} }},
+        {
+            $lookup: {
+                from: 'groupes',
+                localField: 'groupe_id',
+                foreignField: '_id',
+                as: 'technicien_groupe'
+            }
+        },
+       
+        {
+            $match: {
+                type:"technicien"
+            }
+        }
+    
+    ])
     .then(userResults => {res.json(userResults);console.log(userResults)});
 }
+
+
+
+
+
+
+
+
+
 
 exports.getadmin = (req, res, next) =>{
     users.find({type:"admin" },{_id:1,name:1,email:1,password:1,type:1,user_img:1})
@@ -274,3 +306,75 @@ exports.getnombredetickettotalpertechnicien  =  (req, res, next) =>{
    ])
    .then(userResults => {res.json(userResults);console.log(userResults)});
 }
+
+
+
+exports.gettimeticketpertechnicien =  (req, res, next) =>{
+    users.aggregate([
+       // {$set: {groupe_id: {$toObjectId: "$groupe_id"} }},
+       // {
+       //     $lookup: {
+       //         from: 'users',
+       //         localField: '_id',
+       //         foreignField: 'groupe_id',
+       //         as: 'user_groupe'
+       //     }
+       { "$addFields": { "_id": { "$toString": "$_id" }}},
+       
+       { "$lookup": {
+         "from": "tickets",
+         "localField": "_id",
+         "foreignField": "assignetech",
+         "as": "user_ticket",
+         pipeline: [
+            {
+                $group:
+                   {
+                       _id: null,
+                       averageTime:
+                          {
+                             $avg:
+                                {
+                                   $dateDiff:
+                                      {
+                                          startDate: "$Datecreaation",
+                                          endDate: "$Datecloturation",
+                                          unit: "hour"
+                                      }
+                                 }
+                          }
+                   }
+             },
+        ],
+       }},
+       {$match:{type:"technicien"}},
+       
+       {$project: {
+           name:1,
+           email:1,
+           user_img:1,
+           "user_ticket.averageTime": 1,
+           averageTime: 1,
+           groupe_id:1,
+        //    numberOftickets: { $size: "$user_ticket"  },
+           numDays:
+           {
+              $trunc:
+                 [ "$averageTime", 1 ]
+           }
+     
+        }}
+       //])
+       //,
+       // {$sort:{
+       //     Datecreaation:-1}},
+       // {
+       //     $match: {
+       //         'emetteur_id': req.params.id
+       //     }
+       // }
+   
+   ])
+   .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+

@@ -6,13 +6,18 @@
     
 
       <div >
+        
         <div >
-          <div class="case" style="margin-left: 25%;">
+          <input type="button" value="Download PDF" style="margin-bottom: 0%;margin-left: 90%;" class="btn btn-success" (click)="openPDF()">
+        <br>
+        <br>
+          <div class="case" style="margin-left: 27%;" id="htmlData">
+          
             <div class="header-case">
-              <h2>Statistique des techniciens</h2>
+              <h2>Statistique des techniciens  </h2>
               <!-- <button class="button">voir plus<span class="fa fa-arrow-right"></span></button> -->
             </div>
-            <div class="body-case">
+            <div class="body-case" >
                 <div class="tableau">
                     <table width="100%">
                     
@@ -65,7 +70,7 @@
                                       <!-- <span class="active">Active</span> -->
                                       <div class="resp-avatars" style="margin-top: -10%;">
                                         <img src="./../../../../assets/images/{{user.user_img}}" alt="avatar" class="img-circle">
-                                    <h6>{{user.name}}</h6> 
+                                    <h4>{{user.name}}</h4> 
                                     </div>
                                     </div>
                                     <div class="project-box white-bg pull-left">
@@ -79,13 +84,13 @@
                                       </div>
                       
                                       <div class="project-name pull-left">
-                                        <div class="name">{{user.email}}</div>
+                                        <div class="name"><h3>{{user.email}}</h3></div>
                                         <!-- <div class="created">Created <span>14.08.2014</span></div> -->
                                       </div>
                                       <div class="project-name pull-left" style="margin-left: 5%;">
                                         <!-- <div class="name">{{user.email}}</div> -->
                                         <div class="created"><span class="fa fa-ticket" style="color: #6fba3d"> </span>Tickets cloturé : <span>{{fetchedUserTicket[i].numberOftickets}}</span></div>
-                                        <div class="created"><span class="fa fa-ticket" style="color:#fff200"></span>Nombre de ticket total: <span>{{fetchedusertickettotal[i].numberOftickets}}</span></div>
+                                        <div class="created"><span class="fa fa-spinner" style="color:blue"></span> Nombre de ticket total: <span>{{fetchedusertickettotal[i].numberOftickets}}</span></div>
                                       </div>
                                       <div class="project-progress pull-left " style="margin-left: 70%;margin-top: -5%;">
                                         <span class="task-title">Completion with: <span>{{(fetchedusertickettotal[i].numberOftickets-user.numberOftickets)*100/fetchedusertickettotal[i].numberOftickets|number}} %</span></span>

@@ -9,6 +9,7 @@ export interface Ticket {
   Datecreaation?:Date;
   Datecloturation?:Date;
   ticket_groupe?:Ticket;
+  averageTime?:Number;
 }
 
 //  Dateopening:{type: Date, required: false},

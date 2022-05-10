@@ -55,6 +55,10 @@ export class PublicationgroupeComponent implements OnInit {
           (resultatTicket) => {
             this.fetchedgroupes = resultatTicket;
              console.log(resultatTicket);
+             this.technicienService. getPublicationsgroupe(this.fetchedgroupes[0]._id).subscribe(
+              (resultatTicket) => {
+                this.fetchedPublications = resultatTicket;
+                 console.log(resultatTicket);
           }  
           );
         const type = JSON.parse(localStorage.getItem('user')).type;
@@ -63,10 +67,7 @@ export class PublicationgroupeComponent implements OnInit {
      
         }
     
-    this.technicienService. getPublicationsgroupe(this.user.groupe_id).subscribe(
-      (resultatTicket) => {
-        this.fetchedPublications = resultatTicket;
-         console.log(resultatTicket);
+
         
         // for(let publication of this.fetchedPublications){
         //   this.id=publication._id;
