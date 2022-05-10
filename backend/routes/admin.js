@@ -46,6 +46,8 @@ router.get('/:id/getUserName',auth,userController.getUserName);
 
    router.get('/tickets',ticketController.getTickets);
 
+   router.get('/:id/ticketsfilter',ticketController.getTicketswithfilter);
+
 
 router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
   const id=req.params.id;  
@@ -321,4 +323,5 @@ router.get('/getStatsnombreTechnicien',auth, userController.getStatsnombreTechni
 router.get('/getnombredeticketpertechnicien',userController.getnombredeticketpertechnicien);
 router.get('/getnombredeticketcloturerpertechnicien',userController.getnombredeticketcloturerpertechnicien);
 router.get('/getnombredetickettotalpertechnicien',userController.getnombredetickettotalpertechnicien);
+router.get('/gettimeticketpertechnicien',userController.gettimeticketpertechnicien);
 module.exports = router;

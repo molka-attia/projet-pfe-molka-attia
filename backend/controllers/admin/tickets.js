@@ -31,7 +31,10 @@ const users = require('../../models/User');
 
 exports.getTickets = (req, res, next) =>{
   tickets.aggregate([
-      {$set: {specialite: {$toObjectId: "$specialite"} }},
+    //{$set: {assignetech: {$toObjectId: "$assignetech"} }},
+
+     {$set: {specialite: {$toObjectId: "$specialite"} }},
+   
       {
           $lookup: {
               from: 'groupes',
@@ -40,6 +43,18 @@ exports.getTickets = (req, res, next) =>{
               as: 'ticket_groupe'
           }
       },
+     // { "$addFields": { "assignetech": { "$toObjectId": "$assignetech" }}},   
+    //   {
+    //     $lookup: {
+    //         from: 'users',
+    //         localField: 'assignetech',
+    //         foreignField: '_id',
+    //         as: 'ticket_user'
+    //     }
+    // },  
+    //  { $addFields:{ "users._id": { $toString: "$users._id" }
+    //  }},
+     
       {$sort:{
         priorite:- 1,Datecreaation:1}},
       {
@@ -47,6 +62,34 @@ exports.getTickets = (req, res, next) =>{
             'etat': { $ne: 'cloturer'}
           }
       }
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+exports.getTicketswithfilter= (req, res, next) =>{
+  tickets.aggregate([
+    { $match: { $and: [ {'specialite':req.params.id},{ 'etat': { $ne: 'cloturer'}} ] } },
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe',
+            //   pipeline: [
+            //     { $match: { 'specialite':req.body.specialite } }
+            //  ],
+          }
+      },
+      {$sort:{
+        priorite:- 1,Datecreaation:1}},
+      // {
+      //     $match: {
+      //       'etat': { $ne: 'cloturer'}
+      //     }
+      // },
+     // { $match: { $and: [ {'specialite':req.body.specialite},{ 'etat': { $ne: 'cloturer'}} ] } },
   
   ])
   .then(userResults => {res.json(userResults);console.log(userResults)});

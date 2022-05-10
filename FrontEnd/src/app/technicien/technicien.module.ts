@@ -11,6 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PublicationgroupeComponent } from './publicationgroupe/publicationgroupe.component';
 import { DemandeComponent } from './demande/demande.component';
 import { DemandeenvoyerComponent } from './demandeenvoyer/demandeenvoyer.component';
+import { MatTableModule } from '@angular/material/table';
+
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { DemandeenvoyerComponent } from './demandeenvoyer/demandeenvoyer.compone
   imports: [
     CommonModule,
     TechnicienRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatPaginatorModule, 
+    MatTableModule
   ]
 })
 export class TechnicienModule { }
