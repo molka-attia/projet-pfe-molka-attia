@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -40,7 +41,8 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatInputModule,
     MatPaginatorModule, 
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule 
 
   ]
 })

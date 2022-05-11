@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ticket } from '../ticket/ticket.model';
 import { tickets } from '../ticket/tickets-list';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 import { users } from '../user/users-list';
 import { User } from '../user/user.model';
 import { groupes } from 'src/app/admin/groupe/groupes-list';
@@ -81,15 +82,23 @@ export class UtilisateurComponent  implements OnInit {
   public fetchedTechniciens=users;
   public user:User;
   public technicienaffecte:User;
+
+  public ticketsnoncloturer;
+  public ticketsnumber;
+  public numberofticketstoday;
  // public listtechniciens :any;
   formajouter:FormGroup;
   formaddGroupe:FormGroup;
   formEditGroupe:FormGroup;
+  formEditDate:FormGroup;
   today:Date;
+
   
 
   constructor(private userService : AdminService, private route:ActivatedRoute,private router:Router) { }
 j=0;
+
+public userperweek:any;
   public currentuser=users[0];
   public fetchedUser=users;
   public fetchedUserperdate=users;
@@ -111,6 +120,13 @@ colors: String[] = [
 ];
 
  ngOnInit(): void {
+  this.formEditDate = new FormGroup({
+    datedebut: new FormControl(null,{validators:[Validators.required]}),
+    datefin: new FormControl(null,{validators:[Validators.required]}),
+ 
+  });
+
+
  this.today=new Date();
  this.userService.getGroupescloturer().subscribe(
   (resultatTicket) => {
@@ -127,6 +143,38 @@ colors: String[] = [
     } 
    
     );
+
+    this.userService.getStatstickets().subscribe((res:any)=>{
+      this.ticketsnoncloturer = res.tickets;
+      //this. clubsCount = res.teams;
+      //this.title = res.title
+    });
+
+//allticketsnumber
+this.userService.allticketsnumber().subscribe((res:any)=>{
+  this.ticketsnumber = res.tickets;
+  //this. clubsCount = res.teams;
+  //this.title = res.title
+});
+this.userService.numberofticketstoday().subscribe((res:any)=>{
+  this.numberofticketstoday = res.tickets;
+  //this. clubsCount = res.teams;
+  //this.title = res.title
+});
+
+
+
+this.userService.userticketsnumbernoncloturerperweek().subscribe((resultatTicket) => {
+    this.userperweek = resultatTicket;
+    
+    // console.log(resultatTicket);
+
+  } 
+ 
+  );
+
+
+
 
 
    this.userService.gettechnicienticketspercent().subscribe(
@@ -152,6 +200,25 @@ this.userService.gettechnicienticketstotalpercentallticket().subscribe(
      console.log(resultatUser);
   }
 );}
+
+
+
+
+onEditchangerDate(){
+  this.userService.userticketsnumbernoncloturerperweekedit(this.formEditDate.value.datedebut,this.formEditDate.value.datefin).subscribe((resultatTicket) => {
+    this.userperweek = resultatTicket;
+    
+     console.log(resultatTicket);
+
+  } 
+ 
+  );
+}
+
+
+
+
+
 public openPDF(): void {
   let DATA: any = document.getElementById('htmlData');
   html2canvas(DATA).then((canvas) => {
@@ -164,6 +231,20 @@ public openPDF(): void {
     PDF.save('performance des techniciens.pdf');
   });
 }
+public openPDF2(): void {
+  let DATA: any = document.getElementById('htmlData2');
+  html2canvas(DATA).then((canvas) => {
+    let fileWidth = 290;
+    let fileHeight = (canvas.height * fileWidth) / canvas.width;
+    const FILEURI = canvas.toDataURL('image/png');
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    let position = 0;
+    PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+    PDF.save('performance des techniciens.pdf');
+  });
+}
+
+
 }
 
 

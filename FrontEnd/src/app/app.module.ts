@@ -10,7 +10,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { MainDashAllComponent } from './main-dash-all/main-dash-all.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatInputModule} from '@angular/material/input';
 
 
@@ -33,7 +33,8 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule
     
   ],
   providers: [],
