@@ -11,6 +11,7 @@ import { Groupe } from '../admin/groupe/groupe.model';
   providedIn: 'root'
 })
 export class AdminService {
+ 
 
 
 
@@ -505,9 +506,38 @@ getequipeid(id:string){
   return this.http.get<any>(`http://localhost:3000/api/users/${id}/getequipe`,{headers:this.head});
 }
 
+///////////////////////////////////nombre de tickets per date////////////////////////////////////////////
+//
+userticketsnumbernoncloturerperweek(){
+  return this.http.get(`http://localhost:3000/api/tickets/userticketsnumbernoncloturerperweek`,{headers:this.head})
+
+}
+
+userticketsnumbernoncloturerperweekedit(datedebut:String,datefin:String){
+  
+  return this.http.get(`http://localhost:3000/api/tickets/${datedebut}/${datefin}/userticketsnumbernoncloturerperweekedit`,{headers:this.head})
+
+}
+
+////////////////////////nombre de ticket total////////////////////////////////////
 
 
 
+
+allticketsnumber() {
+  
+  return this.http.get<any>(`http://localhost:3000/api/tickets/allticketsnumber`,{headers:this.head})
+
+}
+
+
+//////////////////////number of tickets today///////////////////////////////
+//numberofticketstoday
+numberofticketstoday() {
+  
+  return this.http.get<any>(`http://localhost:3000/api/tickets/numberofticketstoday`,{headers:this.head})
+
+}
 
 }
 

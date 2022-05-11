@@ -179,4 +179,13 @@ router.get('/:id/statstechtickets',auth, ticketController.getTicketstechnumber);
 router.get('/:id/userticketsnumber',auth, ticketController.userticketsnumber);
 router.get('/:id/userticketsnumbercloturer',auth, ticketController.userticketscloturernumber);
 router.get('/:id/userticketsnumbernoncloturer',auth, ticketController.userticketsnoncloturernumber);
+//userticketsnoncloturernumberperweek
+router.get('/userticketsnumbernoncloturerperweek', ticketController.userticketsnoncloturernumberperweek);
+//userticketsnumbernoncloturerperweekedit
+router.get('/:datedebut/:datefin/userticketsnumbernoncloturerperweekedit', ticketController.userticketsnumbernoncloturerperweekedit);
+//getBeginningOfTheWeek
+router.get('/allticketsnumber', ticketController.allticketsnumber);
+
+router.get('/numberofticketstoday', ticketController.numberofticketstoday);
+
 module.exports = router;
