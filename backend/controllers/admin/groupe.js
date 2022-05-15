@@ -20,11 +20,11 @@ exports.getGroupes=  (req, res, next) =>{
         //         foreignField: 'groupe_id',
         //         as: 'user_groupe'
         //     }
-        { "$addFields": { "_id": { "$toString": "$_id" }}},
+        //{ "$addFields": { "_id": { "$toString": "$_id" }}},
         { "$lookup": {
           "from": "users",
           "localField": "_id",
-          "foreignField": "groupe_id",
+          "foreignField": "groupe_id._id",
           "as": "membre_groupe"
         }},
         { "$lookup": {

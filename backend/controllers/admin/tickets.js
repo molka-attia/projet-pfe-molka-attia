@@ -95,6 +95,138 @@ exports.getTicketswithfilter= (req, res, next) =>{
   .then(userResults => {res.json(userResults);console.log(userResults)});
 }
 
+exports.getTicketswithfilteruser= (req, res, next) =>{
+  tickets.aggregate([
+    { $match: { $and: [ {'specialite':req.params.groupe},{ 'etat': { $ne: 'cloturer'}},{'demandeur':req.params.id} ] } },
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe',
+            //   pipeline: [
+            //     { $match: { 'specialite':req.body.specialite } }
+            //  ],
+          }
+      },
+      {$sort:{
+        priorite:- 1,Datecreaation:1}},
+      // {
+      //     $match: {
+      //       'etat': { $ne: 'cloturer'}
+      //     }
+      // },
+     // { $match: { $and: [ {'specialite':req.body.specialite},{ 'etat': { $ne: 'cloturer'}} ] } },
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+
+exports.ticketsfiltertech= (req, res, next) =>{
+  tickets.aggregate([
+    { $match: { $and: [ {'specialite':req.params.groupe},{ 'etat': { $ne: 'cloturer'}},{'assignetech':req.params.id} ] } },
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe',
+            //   pipeline: [
+            //     { $match: { 'specialite':req.body.specialite } }
+            //  ],
+          }
+      },
+      {$sort:{
+        priorite:- 1,Datecreaation:1}},
+      // {
+      //     $match: {
+      //       'etat': { $ne: 'cloturer'}
+      //     }
+      // },
+     // { $match: { $and: [ {'specialite':req.body.specialite},{ 'etat': { $ne: 'cloturer'}} ] } },
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+
+
+
+
+
+
+
+
+
+exports.ticketsfilterusercloturer= (req, res, next) =>{
+  tickets.aggregate([
+    { $match: { $and: [ {'specialite':req.params.groupe},{ 'etat': 'cloturer'},{'demandeur':req.params.id}  ] } },
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe',
+            //   pipeline: [
+            //     { $match: { 'specialite':req.body.specialite } }
+            //  ],
+          }
+      },
+      {$sort:{
+        priorite:- 1,Datecreaation:1}},
+      // {
+      //     $match: {
+      //       'etat': { $ne: 'cloturer'}
+      //     }
+      // },
+     // { $match: { $and: [ {'specialite':req.body.specialite},{ 'etat': { $ne: 'cloturer'}} ] } },
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+
+
+exports.ticketscloturerfilter= (req, res, next) =>{
+  tickets.aggregate([
+    { $match: { $and: [ {'specialite':req.params.id},{ 'etat': 'cloturer'} ] } },
+      {$set: {specialite: {$toObjectId: "$specialite"} }},
+      {
+          $lookup: {
+              from: 'groupes',
+              localField: 'specialite',
+              foreignField: '_id',
+              as: 'ticket_groupe',
+            //   pipeline: [
+            //     { $match: { 'specialite':req.body.specialite } }
+            //  ],
+          }
+      },
+      {$sort:{
+        priorite:- 1,Datecreaation:1}},
+      // {
+      //     $match: {
+      //       'etat': { $ne: 'cloturer'}
+      //     }
+      // },
+     // { $match: { $and: [ {'specialite':req.body.specialite},{ 'etat': { $ne: 'cloturer'}} ] } },
+  
+  ])
+  .then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
+
+
+
+
+
+
+
+
 
 
 exports.getlatestticket= (req, res, next) => {
@@ -266,9 +398,48 @@ exports.getavailabletechnicien= (req, res, next) =>{
     .then(userResults => res.json("succes"));
     }
     exports.getTechtickets = (req, res, next) => {
-      tickets.find({'assignetech':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
-      .then(events => res.json(events));
-  }
+  //     tickets.find({'assignetech':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'Datecreaation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+  //     .then(events => res.json(events));
+  // }
+  
+tickets.aggregate([
+  //{$set: {assignetech: {$toObjectId: "$assignetech"} }},
+
+   {$set: {specialite: {$toObjectId: "$specialite"} }},
+ 
+    {
+        $lookup: {
+            from: 'groupes',
+            localField: 'specialite',
+            foreignField: '_id',
+            as: 'ticket_groupe'
+        }
+    },
+   // { "$addFields": { "assignetech": { "$toObjectId": "$assignetech" }}},   
+  //   {
+  //     $lookup: {
+  //         from: 'users',
+  //         localField: 'assignetech',
+  //         foreignField: '_id',
+  //         as: 'ticket_user'
+  //     }
+  // },  
+  //  { $addFields:{ "users._id": { $toString: "$users._id" }
+  //  }},
+   
+    {$sort:{
+      priorite:- 1,Datecreaation:1}},
+    {
+        $match: {
+          'assignetech':req.params.id,
+          'etat': { $ne: 'cloturer'}
+        }
+    }
+
+])
+.then(userResults => {res.json(userResults);console.log(userResults)});
+}
+
 
   exports.affecterautechnicien = (req, res, next) => {
     tickets.updateOne({'id':req.params.id},
@@ -284,11 +455,42 @@ exports.getavailabletechnicien= (req, res, next) =>{
 
 
     exports.getTicketscloturer = (req, res, next) => {
-      tickets.find({'etat':'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
-      .then(events => res.json(events));
-  }
-
- 
+      tickets.aggregate([
+        //{$set: {assignetech: {$toObjectId: "$assignetech"} }},
+    
+         {$set: {specialite: {$toObjectId: "$specialite"} }},
+       
+          {
+              $lookup: {
+                  from: 'groupes',
+                  localField: 'specialite',
+                  foreignField: '_id',
+                  as: 'ticket_groupe'
+              }
+          },
+         // { "$addFields": { "assignetech": { "$toObjectId": "$assignetech" }}},   
+        //   {
+        //     $lookup: {
+        //         from: 'users',
+        //         localField: 'assignetech',
+        //         foreignField: '_id',
+        //         as: 'ticket_user'
+        //     }
+        // },  
+        //  { $addFields:{ "users._id": { $toString: "$users._id" }
+        //  }},
+         
+          {$sort:{
+            priorite:- 1,Datecreaation:1}},
+          {
+              $match: {
+                'etat':  'cloturer'
+              }
+          }
+      
+      ])
+      .then(userResults => {res.json(userResults);console.log(userResults)});
+    }
   
 // description?:string;
 // priorite?:string;
@@ -344,14 +546,92 @@ exports.getTicketsnumber = (req, res, next) => {
 
 
      exports.getUsertickets = (req, res, next) => {
-      tickets.find({'demandeur':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
-      .then(events => res.json(events));
-  }
+  //     tickets.find({'demandeur':req.params.id,'etat': { $ne: 'cloturer'}},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Dateaffectation':1,
+  //     'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+  //     .then(events => res.json(events));
+  // }
+  //     tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+//     .then(events => res.json(events));
+// }
+tickets.aggregate([
+  //{$set: {assignetech: {$toObjectId: "$assignetech"} }},
+
+   {$set: {specialite: {$toObjectId: "$specialite"} }},
+ 
+    {
+        $lookup: {
+            from: 'groupes',
+            localField: 'specialite',
+            foreignField: '_id',
+            as: 'ticket_groupe'
+        }
+    },
+   // { "$addFields": { "assignetech": { "$toObjectId": "$assignetech" }}},   
+  //   {
+  //     $lookup: {
+  //         from: 'users',
+  //         localField: 'assignetech',
+  //         foreignField: '_id',
+  //         as: 'ticket_user'
+  //     }
+  // },  
+  //  { $addFields:{ "users._id": { $toString: "$users._id" }
+  //  }},
+   
+    {$sort:{
+      priorite:- 1,Datecreaation:1}},
+    {
+        $match: {
+          'demandeur':req.params.id,
+          'etat': { $ne: 'cloturer'}
+        }
+    }
+
+])
+.then(userResults => {res.json(userResults);console.log(userResults)});
+}
 
 
   exports.getUserticketscloturer = (req, res, next) => {
-    tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
-    .then(events => res.json(events));
+//     tickets.find({'demandeur':req.params.id,'etat': 'cloturer'},{'description':1,'priorite':1,'demandeur':1,'assignetech':1,'etat':1,'specialite':1,'note':1,'Datecreaation':1,'Datecloturation':1,'_id':1}).sort({priorite:- 1,Datecreaation:1})
+//     .then(events => res.json(events));
+// }
+tickets.aggregate([
+  //{$set: {assignetech: {$toObjectId: "$assignetech"} }},
+
+   {$set: {specialite: {$toObjectId: "$specialite"} }},
+ 
+    {
+        $lookup: {
+            from: 'groupes',
+            localField: 'specialite',
+            foreignField: '_id',
+            as: 'ticket_groupe'
+        }
+    },
+   // { "$addFields": { "assignetech": { "$toObjectId": "$assignetech" }}},   
+  //   {
+  //     $lookup: {
+  //         from: 'users',
+  //         localField: 'assignetech',
+  //         foreignField: '_id',
+  //         as: 'ticket_user'
+  //     }
+  // },  
+  //  { $addFields:{ "users._id": { $toString: "$users._id" }
+  //  }},
+   
+    {$sort:{
+      priorite:- 1,Datecreaation:1}},
+    {
+        $match: {
+          'demandeur':req.params.id,
+          'etat': 'cloturer'
+        }
+    }
+
+])
+.then(userResults => {res.json(userResults);console.log(userResults)});
 }
 
 
@@ -513,7 +793,9 @@ exports.getTicketsnumber = (req, res, next) => {
             "foreignField": "assignetech",
             "as": "user_ticket",
             pipeline: [
-              { $match:{ "Datecreaation": { $gte: new Date(req.params.datedebut), $lt: new Date(req.params.datefin) } } }
+             // { $match:{ "Datecreaation": { $gte: new Date(req.params.datedebut), $lt: new Date(req.params.datefin) } } }
+            { $match:{ "Datecreaation": { $gte: new Date(req.params.datedebut), $lt: new Date(req.params.datefin) } } }
+            // { $match:{ "Datecreaation": { $gte: new Date("2022-05-02"), $lt: new Date("2022-06-09") } } }
            ],
           }},
           {$match:{type:"technicien"}},

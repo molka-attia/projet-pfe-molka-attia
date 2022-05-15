@@ -4,7 +4,7 @@
 <div id="htmlData">
   <br>
 <table class="graph"  > 
-	<!-- <caption>Bar Chart HTML From HTML Table</caption> -->
+
 	<thead>
 		<tr>
 			<th scope="col">Item</th>
@@ -14,38 +14,10 @@
 		<tr *ngFor="let user of fetchedUser; let i = index"
     style="height:{{(fetchedusertickettotal[i].numberOftickets-user.numberOftickets)*100/fetchedusertickettotal[i].numberOftickets|number}}%">
 			<th scope="row">{{user.name}}</th>
-			<!-- <td><span>{{(fetchedusertickettotal[i].numberOftickets-user.numberOftickets)*100/fetchedusertickettotal[i].numberOftickets|number}}% {{fetchedUserperdate[0].user_ticket[0].averageTime}}</span></td>
-       -->
+
        <td><span>{{(fetchedusertickettotal[i].numberOftickets-user.numberOftickets)*100/fetchedusertickettotal[i].numberOftickets|number}}%</span><span style="margin-top:5% ;"> {{fetchedUserperdate[i].user_ticket[0].averageTime}} H</span></td>
 		</tr>
-		<!-- <tr style="height:23%">
-			<th scope="row">Medium</th>
-			<td><span>23%</span></td>
-		</tr>
-		<tr style="height:7%">
-			<th scope="row">Tumblr</th>
-			<td><span>7%</span></td>
-		</tr>
-		<tr style="height:38%">
-			<th scope="row">Facebook</th>
-			<td><span>38%</span></td>
-		</tr>
-		<tr style="height:35%">
-			<th scope="row">Youtube</th>
-			<td><span>35%</span></td>
-		</tr>
-		<tr style="height:30%">
-			<th scope="row">LinkedIn</th>
-			<td><span>30%</span></td>
-		</tr>
-		<tr style="height:5%">
-			<th scope="row">Twitter</th>
-			<td><span>5%</span></td>
-		</tr>
-		<tr style="height:20%">
-			<th scope="row">Other</th>
-			<td><span>20%</span></td>
-		</tr> -->
+
 	</tbody>
 </table>
 <h3 style="margin-left: 17%;">Avancement des techniciens</h3>
@@ -90,10 +62,7 @@
 						  <i class="fas fa-percent"></i>
 						</div>
 					</div>
-					<!-- <p class="mt-3 mb-0 text-muted text-sm">
-					  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-					  <span class="text-nowrap">Since last month</span>
-					</p> -->
+				
 				  </div>
 				</div>
 			  </div>

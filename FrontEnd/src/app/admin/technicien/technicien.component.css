@@ -8,6 +8,13 @@
     text-decoration: none;
     font-family: 'Montserrat';
   }
+  .logged-in {
+    color: green;
+  }
+  
+  .logged-out {
+    color: red;
+  }
   .sidebar{
     width: 300px;
     position: fixed;
@@ -242,7 +249,7 @@
     background:  #fff200;
   }
   .status-produit.color-three{
-    background:  #b83dba;
+    background:  #3dba41;
   }
   .status-produit.color-four{
     background:  #00a8f3;
@@ -250,6 +257,30 @@
   .status-produit.color-five{
     background:  #b83dba;
   }
+  .status-produit.color-one{
+    background:  #ec1c24;
+  }
+  .status-produit.color-two{
+    background:  #fff200;
+  }
+  .status-produit.color-three{
+    background:  #6fba3d;
+  }
+  .status-produit.color-four{
+    background:  #00a8f3;
+  }
+  .status-produit.color-five{
+    background:  #b83dba;
+  }
+  .status-produit{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 1rem;
+    border-radius: 50%; 
+  }
+  
+  
   tr td:last-child{
     display: flex;
     align-items: center;

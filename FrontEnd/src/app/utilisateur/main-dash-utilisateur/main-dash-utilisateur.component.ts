@@ -7,6 +7,7 @@ import { users } from '../../admin/user/users-list';
 import { User } from '../../admin/user/user.model';
 import { groupes } from 'src/app/admin/groupe/groupes-list';
 import {Groupe} from 'src/app/admin/groupe/groupe.model';
+import { departements } from 'src/app/admin/user/departements-list';
 
 @Component({
   selector: 'app-main-dash-utilisateur',
@@ -23,12 +24,20 @@ export class MainDashUtilisateurComponent implements OnInit {
   public allticketscount;
   public ticketscloturer;
   public ticketsnoncloturer;
+  public fetchedDepatments=departements;
   ngOnInit(): void {
     this.userService.getStatsusernumberoftickets(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
       this.allticketscount = res.tickets;
       //this. clubsCount = res.teams;
       //this.title = res.title
     });
+    this.userService.getDepartements().subscribe(
+      (resultatUser) => {
+        this.fetchedDepatments = resultatUser;
+      
+         console.log(resultatUser);
+      }
+    );
   //  getStatsusernumberofticketscloturer
 
   this.userService.getStatsusernumberofticketscloturer(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
@@ -47,11 +56,19 @@ export class MainDashUtilisateurComponent implements OnInit {
         this.user = resultat;
       
       });
+
+
+    
+
+
       this.formEdit = new FormGroup({
         name: new FormControl(null,{validators:[Validators.required]}),
+        prenom: new FormControl(null,{validators:[Validators.required]}),
         email: new FormControl(null,{validators:[Validators.required]}),
-         password: new FormControl(null,{validators:[Validators.required]}),
-      //  type: new FormControl(null,{validators:[Validators.required]}),
+        tel: new FormControl(null,{validators:[Validators.required]}),
+        poste: new FormControl(null,{validators:[Validators.required]}),
+       password: new FormControl(null,{validators:[Validators.required]}),
+       departement_id: new FormControl(null,{validators:[Validators.required]}),
        user_img: new FormControl(null,{validators:[Validators.required]}),
       });
   }

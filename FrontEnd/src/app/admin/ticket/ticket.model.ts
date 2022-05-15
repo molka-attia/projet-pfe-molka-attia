@@ -10,6 +10,7 @@ export interface Ticket {
   Datecloturation?:Date;
   ticket_groupe?:Ticket;
   averageTime?:Number;
+  Dateaffectation?:Date;
 }
 
 //  Dateopening:{type: Date, required: false},

@@ -7,6 +7,7 @@ const cors = require("cors");
  const Publication= require('./models/Publication');
  const Commenaire= require('./models/Commentaire');
  const Demande= require('./models/Demande'); 
+ const Departement=require('./models/Departement');
  const nodemailer = require("nodemailer");
  
 
@@ -21,6 +22,7 @@ const groupeRouter = require('./routes/groupe');
 const publicationRouter = require('./routes/publication');
 const commentaireRouter = require('./routes/commentaire');
 const demandeRouter = require('./routes/demande');
+const departementRouter = require('./routes/Departement');
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/Pfe', {
     useNewUrlParser: true,
@@ -51,6 +53,7 @@ app.use('/api/groupe',groupeRouter);
 app.use('/api/publication',publicationRouter);
 app.use('/api/commentaire',commentaireRouter);
 app.use('/api/demande',demandeRouter);
+app.use('/api/departement',departementRouter);
 
 
 app.post("/api/sendmail", (req, res) => {

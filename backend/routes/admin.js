@@ -9,6 +9,7 @@ const auth=require('../middlewares/auth');
 const nodemailer = require("nodemailer");
 
 const multer = require('multer');
+const Groupe = require('../models/Groupe');
 const MIME_TYPE_MAP = {
     'image/png': 'png',
     'image/jpeg': 'jpg',
@@ -26,14 +27,14 @@ const storageEvents = multer.diskStorage({
     }
 });
 
-router.get('/:id/getuser',auth,userController.getOneUser);
+router.get('/:id/getuser',userController.getOneUser);
 
 router.get('/:id/getUserName',auth,userController.getUserName);
 // router.get('/',(req,res)=>{
 //     User.find().then(users=>res.status(200).json(users)).catch(err=>res.status(400).json('Eror')); 
 //    })
 
-   router.get('/',auth,userController.getUsers);
+   router.get('/',userController.getUsers);
 
    router.get('/gettechniciens',auth,userController.getTechniciens);
 
@@ -47,33 +48,43 @@ router.get('/:id/getUserName',auth,userController.getUserName);
    router.get('/tickets',ticketController.getTickets);
 
    router.get('/:id/ticketsfilter',ticketController.getTicketswithfilter);
+   router.get('/:groupe/:id/ticketsfilteruser',ticketController.getTicketswithfilteruser);
+   router.get('/:groupe/:id/ticketsfiltertech',ticketController.ticketsfiltertech);
+   ///ticketsfilterusercloturer
+   ///ticketsfiltertech
+   router.get('/:groupe/:id/ticketsfilterusercloturer',ticketController.ticketsfilterusercloturer);
+   router.get('/:id/ticketscloturerfilter',ticketController.ticketscloturerfilter);
 
 
-router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
-  const id=req.params.id;  
-  bcrypt.hash(req.body.password, 10)
-  .then(hash => {
-    const user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: hash,
-      type:"utilisateur",
-      user_img:req.file.filename,
-    });
+// router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
+//   const id=req.params.id;  
+//   bcrypt.hash(req.body.password, 10)
+//   .then(hash => {
+//     const user = new User({
+//       name: req.body.name,
+//       prenom:req.body.prenom,
+//       tel:req.body.tel,
+//       poste:req.body.poste,
+//       email: req.body.email,
+//       password: hash,
+//       type:"utilisateur",
+//       departement_id:req.body.departement_id,
+//       user_img:req.file.filename,
+//     });
   
-    User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"password":user.password,"type":req.body.type,"user_img":req.file.filename}})
-  //      .then(resultat=> console.log(resultat)) 
-      .then(() => res.status(201).json({
-        message: 'User created !',
-        status: 201
-      }))
-      .catch(error => res.status(400).json({
-        error
-      }));
-  })
-  .catch(error => res.status(500).json({
-    error
-  }));
+//     User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"password":user.password,"type":req.body.type,"user_img":req.file.filename}})
+//   //      .then(resultat=> console.log(resultat)) 
+//       .then(() => res.status(201).json({
+//         message: 'User created !',
+//         status: 201
+//       }))
+//       .catch(error => res.status(400).json({
+//         error
+//       }));
+//   })
+//   .catch(error => res.status(500).json({
+//     error
+//   }));
 
   // const id=req.params.id;
   // console.log(id);
@@ -96,21 +107,31 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
   //        }));
  
  
- });
+ //});
   
 
 
  router.put('/:id/affectertechnicien' ,auth,(req, res, next) => {
-    
+    /**
+    const event = {
+        event_id: mongoose.Types.ObjectId().toString(),
+        event_name: req.body.event_name,
+        event_date: req.body.event_date,
+        event_img: req.file.filename,
+    }
+
+    club.updateOne({'_id':req.body.club_id},{'$push':{'events':event}})
+    .then(AddedEvent => res.json(AddedEvent)); */
    
   const id=req.params.id;
   console.log(id);
-       const user = new User({
-        groupe_id: req.body.groupe_id,
+       const user = new Groupe({
+        _id: req.body.groupe_id,
         
        });
  
-       User.updateOne({"_id":id},{"$set":{"groupe_id":req.body.groupe_id}})
+       User.updateOne({"_id":id},{'$push':{'groupe_id':user}})
+       //,{"$set":{"groupe_id":req.body.groupe_id}})
        .then(resultat=> console.log(resultat)) 
        
        // .then(() => res.status(201).json({
@@ -129,16 +150,22 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
 
 
    
-  
+  /** prenom: {type: String, required: false},
+    tel: {type: String, required: false},
+    poste: {type: String, required: false}, */
    router.post('/addUser',auth,multer({storage:storageEvents}).single("user_img") ,(req, res, next) => {
     console.log(req.file);
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
       const user = new User({
         name: req.body.name,
+        prenom:req.body.prenom,
+        tel:req.body.tel,
+        poste:req.body.poste,
         email: req.body.email,
         password: hash,
         type:"utilisateur",
+        departement_id:req.body.departement_id,
         user_img:req.file.filename,
       });
     
@@ -165,9 +192,13 @@ router.post('/ajouterTechnicien',multer({storage:storageEvents}).single("user_im
   .then(hash => {
     const user = new User({
       name: req.body.name,
+      prenom:req.body.prenom,
+      tel:req.body.tel,
+      poste:req.body.poste,
       email: req.body.email,
       password: hash,
       type:"technicien",
+      departement_id:req.body.departement_id,
       user_img:req.file.filename,
       groupe_id:req.body.groupe_id,
     });
@@ -292,10 +323,11 @@ router.put('/:id/editUser',auth,multer({storage:storageEvents}).single("user_img
          name: req.body.name,
          email: req.body.email,
          type:req.body.type,
+         departement_id:req.body.departement_id,
          user_img:req.file.filename,
        });
  
-       User.updateOne({"_id":id},{"$set":{"name":req.body.name,"email":req.body.email,"type":req.body.type,"user_img":req.file.filename}})
+       User.updateOne({"_id":id},{"$set":{"name":req.body.name,"prenom":req.body.prenom,"email":req.body.email,"tel":req.body.tel,"poste":req.body.poste,"departement_id":req.body.departement_id,"type":req.body.type,"user_img":req.file.filename}})
        .then(resultat=> console.log(resultat)) 
        
        // .then(() => res.status(201).json({
@@ -315,6 +347,17 @@ router.delete('/:id/deleteuser',auth,userController.delete)
 
 router.get('/:id/getequipe',userController.getequipe )
 
+
+
+
+
+
+//deleteusergroupe
+router.put('/:id/:groupe_id/deleteusergroupe',userController.deleteusergroupe )
+
+
+
+
 //////////////////////////////////////// Stats ////////////////////////////////////////
 //router.get('/stats',auth, userController.getStats);
 router.get('/stats',auth, userController.getStats);
@@ -324,4 +367,7 @@ router.get('/getnombredeticketpertechnicien',userController.getnombredeticketper
 router.get('/getnombredeticketcloturerpertechnicien',userController.getnombredeticketcloturerpertechnicien);
 router.get('/getnombredetickettotalpertechnicien',userController.getnombredetickettotalpertechnicien);
 router.get('/gettimeticketpertechnicien',userController.gettimeticketpertechnicien);
+//getsitechdisponible
+router.get('/getsitechdisponible',userController.getsitechdisponible);
+
 module.exports = router;

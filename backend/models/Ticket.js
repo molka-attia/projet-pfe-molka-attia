@@ -9,6 +9,7 @@ const ticketSchema = mongoose.Schema({
     specialite:{type: String, required: false},
     Datecreaation:{type: Date, required: false},
     Datecloturation:{type: Date, required: false},
+    Dateaffectation:{type: Date, required: false},
     note:{type:String, required: false},
 });
 
