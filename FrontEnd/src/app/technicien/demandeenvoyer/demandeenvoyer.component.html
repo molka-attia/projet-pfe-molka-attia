@@ -70,7 +70,7 @@
                    <td>{{demande.Datecreaation|date:'medium'}}</td>
                    <td>  <img src="./../../../../assets/images/{{demande.user_demande[0].user_img}}" alt="Admin" class="rounded-circle p-1 btn-light" width="40" height="40">  {{demande.user_demande[0].name}}</td>
                    <td>{{demande.contenu}}</td>
-                   <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(demande.ticket_id)" >consulter</button> </td>
+                   <td><button class="btn btn-success add-btn" style="width: 100%;" (click)="onClickShowForm2(demande.ticket_id,demande)" >consulter</button> </td>
                   
                    
                     
@@ -214,7 +214,7 @@
                                         <!--PRICE START-->
                                         <div class="generic_price_tag clearfix">	
                                             <span class="price">
-                                                <span >{{currentticket.description}}</span>
+                                                <span >{{demandetest.user_tickets[0].description}}</span>
                                                 <!-- <span class="currency">99</span> -->
                                                 <!-- <span class="cent">{{currentticket.description}}</span> -->
                                                 <!-- <span class="month">/MON</span> -->
@@ -231,8 +231,8 @@
                                           
                                           
                                             <li><span>Demandeur:</span> {{user.name}}</li>
-                                            <li><span>technicien:</span> {{technicienaffecte.name}}</li>
-                                            <!-- <li><span>Solution:</span> {{currentticket.note}}</li> -->
+                                            <!-- <li><span>technicien:</span> {{technicienaffecte.name}}</li> -->
+                                            <li><span>Date de création:</span> {{demandetest.user_tickets[0].Datecreaation|date:'medium'}}</li>
                                         </ul>
                                     </div>
                                     <div class="generic_feature_list">

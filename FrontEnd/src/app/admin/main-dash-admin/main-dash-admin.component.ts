@@ -4,6 +4,7 @@ import { User } from '../../admin/user/user.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Groupe } from '../groupe/groupe.model';
 import { groupes } from '../groupe/groupes-list';
+import { departements } from '../user/departements-list';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class MainDashAdminComponent implements OnInit {
   public imagePreview:string;
   public fetchedTicket=groupes;
   public fetchedgroupecloturer=groupes;
-
+  public fetchedDepatments=departements;
   formEdit:FormGroup;
   technicienId = localStorage.getItem('user');
   constructor(private userService : AdminService) { }
@@ -45,6 +46,13 @@ export class MainDashAdminComponent implements OnInit {
           this.fetchedgroupecloturer = resultatTicket;
            console.log(resultatTicket);
         }  
+        );
+        this.userService.getDepartements().subscribe(
+          (resultatUser) => {
+            this.fetchedDepatments = resultatUser;
+          
+             console.log(resultatUser);
+          }
         );
 
 
@@ -74,9 +82,12 @@ this.userService.getStatsnombreTechnicien().subscribe((res:any)=>{
       });
       this.formEdit = new FormGroup({
         name: new FormControl(null,{validators:[Validators.required]}),
+        prenom: new FormControl(null,{validators:[Validators.required]}),
         email: new FormControl(null,{validators:[Validators.required]}),
-         password: new FormControl(null,{validators:[Validators.required]}),
-      //  type: new FormControl(null,{validators:[Validators.required]}),
+        tel: new FormControl(null,{validators:[Validators.required]}),
+        poste: new FormControl(null,{validators:[Validators.required]}),
+       password: new FormControl(null,{validators:[Validators.required]}),
+       departement_id: new FormControl(null,{validators:[Validators.required]}),
        user_img: new FormControl(null,{validators:[Validators.required]}),
       });
   }

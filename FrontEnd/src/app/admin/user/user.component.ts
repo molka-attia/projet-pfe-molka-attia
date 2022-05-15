@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from './user.model';
 import { users } from './users-list';
+import { Departement } from './departement.model';
+import { departements } from './departements-list';
 import {AdminService } from '../../services/admin.service';
 import {Subject} from 'rxjs';
 
@@ -31,6 +33,8 @@ export class UserComponent implements OnInit {
    public showEditUserForm=false;
    public currentuser=users[0];
    public fetchedUser=users;
+
+   public fetchedDepatments=departements;
    public listtechniciens=users;
  
   ngOnInit(): void {
@@ -42,20 +46,37 @@ export class UserComponent implements OnInit {
          console.log(resultatUser);
       }
     );
+    this.userService.getDepartements().subscribe(
+      (resultatUser) => {
+        this.fetchedDepatments = resultatUser;
+      
+         console.log(resultatUser);
+      }
+    );
+    
     
     this.formaddUser = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
+      prenom: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
+      tel: new FormControl(null,{validators:[Validators.required]}),
+      poste: new FormControl(null,{validators:[Validators.required]}),
      password: new FormControl(null,{validators:[Validators.required]}),
-   //  type: new FormControl(null,{validators:[Validators.required]}),
+     departement_id: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
 
+     /** prenom: {type: String, required: false},
+    tel: {type: String, required: false},
+    poste: {type: String, required: false}, */ 
     this.formEdit = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
+      prenom: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
-       password: new FormControl(null,{validators:[Validators.required]}),
-    //  type: new FormControl(null,{validators:[Validators.required]}),
+      tel: new FormControl(null,{validators:[Validators.required]}),
+      poste: new FormControl(null,{validators:[Validators.required]}),
+     password: new FormControl(null,{validators:[Validators.required]}),
+     departement_id: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
     });
   }

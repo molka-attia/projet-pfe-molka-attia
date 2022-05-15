@@ -4,6 +4,8 @@ import {TechnicienService } from '../../services/technicien.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../admin/user/user.model';
 import { users } from '../../admin/user/users-list';
+import { groupes } from 'src/app/admin/groupe/groupes-list';
+import { departements } from 'src/app/admin/user/departements-list';
 @Component({
   selector: 'app-main-dash-technicien',
   templateUrl: './main-dash-technicien.component.html',
@@ -24,6 +26,8 @@ export class MainDashTechnicienComponent implements OnInit {
 public demandes;
 public demandeenvoyer;
   formEdit:FormGroup;
+  public fetchedTicket=groupes;
+  public fetchedDepatments=departements;
   
   constructor(private userService : AdminService,private technicienService:TechnicienService) {
    
@@ -37,11 +41,26 @@ public demandeenvoyer;
       //this. clubsCount = res.teams;
       //this.title = res.title
     });
+    this.userService.getDepartements().subscribe(
+      (resultatUser) => {
+        this.fetchedDepatments = resultatUser;
+      
+         console.log(resultatUser);
+      }
+    );
     this.userService.getStatstechtickets(JSON.parse(this.technicienId).userId).subscribe((res:any)=>{
       this.techticketscount = res.tickets;
       //this. clubsCount = res.teams;
       //this.title = res.title
     });
+
+    this.userService.getGroupes().subscribe(
+      (resultatTicket) => {
+        this.fetchedTicket = resultatTicket;
+         console.log(resultatTicket);
+      }  
+      );
+
     this.userService.getUser(JSON.parse(this.technicienId).userId) .subscribe(
       (resultat:any) => {
         console.log(resultat);
@@ -83,10 +102,13 @@ public demandeenvoyer;
 
 
       this.formEdit = new FormGroup({
-        name: new FormControl(null,{validators:[Validators.required]}),
+            name: new FormControl(null,{validators:[Validators.required]}),
+        prenom: new FormControl(null,{validators:[Validators.required]}),
         email: new FormControl(null,{validators:[Validators.required]}),
-         password: new FormControl(null,{validators:[Validators.required]}),
-      // type: new FormControl(null,{validators:[Validators.required]}),
+        tel: new FormControl(null,{validators:[Validators.required]}),
+        poste: new FormControl(null,{validators:[Validators.required]}),
+       password: new FormControl(null,{validators:[Validators.required]}),
+       departement_id: new FormControl(null,{validators:[Validators.required]}),
        user_img: new FormControl(null,{validators:[Validators.required]}),
   
       });

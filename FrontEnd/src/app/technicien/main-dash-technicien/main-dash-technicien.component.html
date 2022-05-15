@@ -60,7 +60,7 @@
               
                 <div>
                   <h2>{{techticketscount}}</h2>
-                  <h6>Tickets attribués</h6>
+                  <h3>Tickets attribués</h3>
                  
                 </div>
                 <div>
@@ -72,7 +72,7 @@
              <div class="card-single">
               <div>
                 <h2>{{AllticketsCount}}</h2>
-                <small>les tickets</small>
+                <h3>les tickets</h3>
               </div>
                <div>
                  <span class="fa fa-ticket"></span>
@@ -81,7 +81,7 @@
              <div class="card-single">
               <div>
                 <h2>{{demandes}}</h2>
-                <small>le demandes</small>
+                <h3>le demandes</h3>
               </div>
               <div>
                 <span class="fa fa-commenting-o"></span>
@@ -90,7 +90,7 @@
              <div class="card-single">
               <div>
                 <h2>200</h2>
-                <small>Technicien</small>
+                <h3>Technicien</h3>
               </div>
               <div>
                 <span class="fa fa-group"></span>
@@ -160,10 +160,10 @@
     <div class="body-case" *ngFor="let technicien of listtechniciens; let i = index" >
       <div class="all-users">
         <div class="infos">
-        <img src="./../../../../assets/images/{{technicien.user_img}}" width="40" height="40">
+        <img src="./../../../../assets/images/{{technicien.user_img}}" width="60" height="60">
           <div>
           <h4>{{technicien.name}}</h4>
-          <small>{{technicien.email}}</small>
+          <h5 style="margin-top: -5%;">{{technicien.email}}</h5>
         </div>
         </div>
         
@@ -184,7 +184,7 @@
    
   </div>
 </div>
-<div class="stock">
+<!-- <div class="stock">
   <div class="case">
    
     <div class="body-case">
@@ -210,7 +210,7 @@
    <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-9 text-secondary">
-      <!-- <button  class="btn btn-primary px-4" (click)=" onClickShowForm()"value="modifier profile"></button> -->
+
       <button  style="background-color: rgba(39,154,189,255);" type="button" class="btn btn-primary" (click)="onClickShowForm()">modifier</button>
     </div>
   </div>
@@ -219,8 +219,65 @@
     </div>
    
   </div>
-</div>
-
+</div> -->
+<div class="stock">
+  <div class="case">
+   
+    <div class="body-case">
+      <div class="d-flex flex-column align-items-center text-center">
+        <br>
+        <img src="./../../../../assets/images/{{user.user_img}}" alt="Admin" class="rounded-circle p-1 btn-light" width="110" height="110">
+        <div class="mt-3">
+          <h2>{{user.name}} {{user.prenom}} </h2>
+          <h3 class="text-secondary" style="margin-top:-5%; ">{{user.poste}}</h3>
+          <!-- <h3 class="text-secondary mb-1">{{user.type}}</h3> -->
+          <!-- <p class="text-muted font-size-sm">{{user.password}}</p> -->
+          <!-- <button class="btn btn-primary">Follow</button>
+          <button class="btn btn-outline-primary">Message</button> -->
+        </div>
+      </div>
+      <br>
+     
+      <!-- <h6 class="mb-0"><img src="../../../assets/images/icons8-email-64.png"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">Email :{{user.email}}</h6>
+          -->
+          <h4 class="mb-0" style="margin-left: 22%;margin-top: -8%;"><img src="../../../assets/images/telephone.png"  width="25" height="24" >  tel : <span class="text-secondary">{{user.tel}}</span></h4>
+          <h4 class="mb-0" style="margin-left: 22%;margin-top: 0%;"><img src="../../../assets/images/gmail.png"  width="25" height="24" >  Email : <span class="text-secondary">{{user.email}}</span></h4>   
+    
+          <h4 class="mb-0" style="margin-left: 22%;margin-top: 0%;"><img src="../../../assets/images/networking.png"  width="25" height="24" >  département : <span class="text-secondary">{{user.user_departement[0].name}}</span></h4>
+    
+          <br>
+      <hr>
+      <!-- <img src="./../../../../assets/images/{{user.user_img}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="100" style="margin-left: 30%;">
+      <div class="mt-3">
+        <h2 style="text-align: center;">{{user.name}}</h2>
+        <p  style="text-align: center;"class="text-secondary mb-1">{{user.type}}</p>
+        <br>
+        <br>
+        <h6 class="mb-0"><img src="../../../assets/images/icons8-email-64.png"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">Email :{{user.email}}</h6>
+           
+        <br>
+        <hr>
+      
+        -->
+        
+       
+       
+          <div >
+           
+          </div>
+   <br>
+   <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9 text-secondary">
+      <!-- <button  class="btn btn-primary px-4" (click)=" onClickShowForm()"value="modifier profile"></button> -->
+      <button  style="background-color: rgba(39,154,189,255);width: 60%;" type="button" class="btn btn-primary" (click)="onClickShowForm()">modifier</button>
+    </div>
+  </div>
+      </div>
+   
+    </div>
+   
+  </div>
 <div class="statistique">
   
   <div class="statistique-barre bar{{techticketscount}}" style="background-color:#001E6C;"><h3 style="color: white;text-align: center;margin-top: 17%;">{{techticketscount}}</h3></div>
@@ -315,29 +372,46 @@
 <div class="model-bg" *ngIf="showEditUserForm">
 
 <a class="close-button" (click)=" onClickCloseForm()">X</a>
-<div class="edit">
+<div class="edit" style="margin-top: -6%;">
 <!-- create form -->
 <form [formGroup]="formEdit" (submit)="oneEditSubmit()">
-<div class="form-group">
-    <label for="name">User Name </label>
-    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
-  </div>
   <div class="form-group">
-    <label for="email">User Email : </label>
-    <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
+    <label for="name">Nom et Prènom</label>
+    <input type="text" class="form-control" style="width: 47%;" id="name" formControlName="name" placeholder="Entrer nom">
+    <input type="text" class="form-control" style="width: 47%; margin-left: 52%;margin-top: -7%;"  id="prenom" formControlName="prenom" placeholder="Enter Prènom">
   </div>
-  <div class="form-group">
-    <label for="password">User password : </label>
-    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
-  </div>
-
-  <div class="form-group">
-    <label for="event_img">User Image</label>
-    <input type="file" #filePicker (change)="onImagePicked2($event)" class="form-control" id="userimage" placeholder="Enter user image">
-    <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview">
-      <img [src]="imagePreview" alt="">
+    <div class="form-group">
+      <label for="email">User Email : </label>
+      <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
     </div>
+    <div class="form-group">
+      <label for="tel">Numèro tel:  </label>
+      <input type="tel" class="form-control" id="tel" formControlName="tel" placeholder="Enter num tel">
+    </div>
+    <div class="form-group">
+      <label for="tel">poste:  </label>
+      <input type="text" class="form-control" id="poste" formControlName="poste" placeholder="Enter  poste">
+    </div>
+    <div class="form-group">
+      <label for="password">User password : </label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
+    </div>
+    <div class="form-group">
+      <label for="password">Département  </label>
+    
+     <select class="form-control" id="type" formControlName="departement_id" name="departement_id">
+      <option *ngFor="let department of fetchedDepatments; let i = index" value="{{department._id}}" >{{department.name}}</option>
+
+    </select>
   </div>
+ 
+    <div class="form-group">
+      <label for="event_img">User Image</label>
+      <input type="file" #filePicker (change)="onImagePicked2($event)" class="form-control" id="userimage" placeholder="Enter user image">
+      <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview">
+        <img [src]="imagePreview" alt="">
+      </div>
+    </div>
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
@@ -345,3 +419,8 @@
 
 
 </div>
+
+
+
+
+

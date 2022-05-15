@@ -24,10 +24,10 @@
     <div class="body-case">
       <div class="all-users">
         <div class="infos">
-        <img src="./../../../../assets/images/{{user?.user_img}}" width="50" height="50">
+        <img src="./../../../../assets/images/{{user?.user_img}}" width="70" height="70">
           <div>
-          <h4>{{user.name}}</h4>
-          <small>{{user.type}}</small>
+          <h2 style="font-weight: 500;">{{user.name }} {{user.prenom}} </h2>
+          <h4 style="margin-top: -15%;">{{user.type}}</h4>
          
         </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="edit">
        
           <form >
-            <h3 style="text-align: center;">User info</h3>
+            <h3 style="text-align: center;">Utilisateur</h3>
             <br>
             <!-- <img src="./../../../../assets/images/{{currentuser.user_img}}"  style="border-radius: 60%;margin-left: 43%;" width="50" height="50">
             <div>
@@ -102,8 +102,8 @@
                   <br>
                   <img src="./../../../../assets/images/{{currentuser.user_img}}" alt="Admin" class="rounded-circle p-1 btn-light" width="110" height="110">
                   <div class="mt-3">
-                    <h4>{{currentuser.name}}</h4>
-                    <p class="text-secondary mb-1">{{currentuser.type}}</p>
+                    <h2>{{currentuser.name}} {{currentuser.prenom}} </h2>
+                    <h3 class="text-secondary mb-1">{{currentuser.poste}}</h3>
                     <!-- <p class="text-muted font-size-sm">{{user.password}}</p> -->
                     <!-- <button class="btn btn-primary">Follow</button>
                     <button class="btn btn-outline-primary">Message</button> -->
@@ -112,11 +112,25 @@
                 <hr class="my-4">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0" style="margin-left: 22%;margin-top: -5%;"><img src="../../../assets/images/icons8-email-64.png"  width="25" height="24" >  Email : <span class="text-secondary">{{currentuser.email}}</span></h6>
-                    <br>
+                    <h4 class="mb-0" style="margin-left: 22%;margin-top: -8%;"><img src="../../../assets/images/telephone.png"  width="25" height="24" >  tel : <span class="text-secondary">{{currentuser.tel}}</span></h4>
+                    
+                   <br>
+               
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h4 class="mb-0" style="margin-left: 22%;margin-top: 0%;"><img src="../../../assets/images/gmail.png"  width="25" height="24" >  Email : <span class="text-secondary">{{currentuser.email}}</span></h4>
+                    
+                   <br>
                     <br>
                   </li>
               
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                 
+                    <h4 class="mb-0" style="margin-left: 22%;margin-top: 0%;"><img src="../../../assets/images/networking.png"  width="25" height="24" >  département : <span class="text-secondary">{{currentuser.user_departement[0].name}}</span></h4>
+                    <br>
+                    <br>
+                  </li>
+                  
                   
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                 
@@ -150,25 +164,47 @@
         </div>
         </div>
 
-  <div class="model-bg" *ngIf="showAddUserForm">
+  <div class="model-bg"  *ngIf="showAddUserForm">
 
-    <a class="close-button" (click)="onClickCloseForm()">X</a>
-    <div class="edit">
+    <a class="close-button" style="margin-top: -3%;margin-left: 15%;" (click)="onClickCloseForm()">X</a>
+    <div class="edit" style="margin-top: -6%;">
       <!-- create form -->
-      <form [formGroup]="formaddUser" (submit)="onAddSubmit()">
+      <form [formGroup]="formaddUser" (submit)="onAddSubmit()" >
         
         <div class="form-group">
-     <label for="name">User Name</label>
-     <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
+     <label for="name">Nom et Prènom</label>
+     <input type="text" class="form-control" style="width: 47%;" id="name" formControlName="name" placeholder="Entrer nom">
+     <input type="text" class="form-control" style="width: 47%; margin-left: 52%;margin-top: -7%;"  id="prenom" formControlName="prenom" placeholder="Enter Prènom">
    </div>
+   <!-- <div class="form-group">
+    <label for="name">Prènom</label>
+    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
+  </div> -->
    <div class="form-group">
-     <label for="email">User Email : </label>
+     <label for="email">User Email  </label>
      <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
    </div>
    <div class="form-group">
-     <label for="password">User password : </label>
+    <label for="tel">Numèro tel:  </label>
+    <input type="tel" class="form-control" id="tel" formControlName="tel" placeholder="Enter num tel">
+  </div>
+  <div class="form-group">
+    <label for="tel">poste:  </label>
+    <input type="text" class="form-control" id="poste" formControlName="poste" placeholder="Enter  poste">
+  </div>
+   <div class="form-group">
+     <label for="password">User password  </label>
      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
    </div>
+   <div class="form-group">
+    <label for="password">Département  </label>
+  
+   <select class="form-control" id="type" formControlName="departement_id" name="departement_id">
+    <option *ngFor="let department of fetchedDepatments; let i = index" value="{{department._id}}" >{{department.name}}</option>
+    <!-- <option value="technicien">technicien</option>
+    <option value="employe">employé</option> -->
+  </select>
+</div>
    <!-- <div class="form-group">
      <label for="radio">User type : </label>
     
@@ -197,21 +233,38 @@
 <div class="model-bg" *ngIf="showEditUserForm">
 
   <a class="close-button" (click)="onClickCloseForm3()">X</a>
-  <div class="edit">
+  <div class="edit" style="margin-top: -6%;">
     <!-- create form -->
     <form [formGroup]="formEdit" (submit)="oneEditSubmit(currentuser._id)">
       <div class="form-group">
-          <label for="name">User Name </label>
-          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter user name">
-        </div>
+        <label for="name">Nom et Prènom</label>
+        <input type="text" class="form-control" style="width: 47%;" id="name" formControlName="name" placeholder="Entrer nom">
+        <input type="text" class="form-control" style="width: 47%; margin-left: 52%;margin-top: -7%;"  id="prenom" formControlName="prenom" placeholder="Enter Prènom">
+      </div>
         <div class="form-group">
           <label for="email">User Email : </label>
           <input type="text" class="form-control" id="email" formControlName="email" placeholder="Enter user email">
         </div>
         <div class="form-group">
+          <label for="tel">Numèro tel:  </label>
+          <input type="tel" class="form-control" id="tel" formControlName="tel" placeholder="Enter num tel">
+        </div>
+        <div class="form-group">
+          <label for="tel">poste:  </label>
+          <input type="text" class="form-control" id="poste" formControlName="poste" placeholder="Enter  poste">
+        </div>
+        <div class="form-group">
           <label for="password">User password : </label>
           <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter user password">
         </div>
+        <div class="form-group">
+          <label for="password">Département  </label>
+        
+         <select class="form-control" id="type" formControlName="departement_id" name="departement_id">
+          <option *ngFor="let department of fetchedDepatments; let i = index" value="{{department._id}}" >{{department.name}}</option>
+    
+        </select>
+      </div>
      
         <div class="form-group">
           <label for="event_img">User Image</label>

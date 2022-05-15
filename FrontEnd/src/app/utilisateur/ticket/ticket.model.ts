@@ -8,6 +8,7 @@ export interface Ticket {
   specialite?:string;
   Datecreaation?:Date;
   Datecloturation?:Date;
+  Dateaffectation?:Date;
   note?:string;
 
 }

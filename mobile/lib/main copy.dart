@@ -10,6 +10,7 @@ void main() {
   runApp(LoginUiApp());
 }
 
+
 class LoginUiApp extends StatelessWidget {
 
   Color _primaryColor = HexColor('#2596be');

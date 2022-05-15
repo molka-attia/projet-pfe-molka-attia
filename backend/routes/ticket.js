@@ -57,6 +57,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
         etat:'non cloturer',
         specialite:req.body.specialite,
         Datecreaation:new Date(),
+        Dateaffectation:new Date(),
         Datecloturation:'',
       });
     
@@ -87,7 +88,7 @@ router.post('/:id/addticket' ,auth,(req, res, next) => {
           
         });  
      
-           Ticket.updateOne({"_id":id},{"$set":{"assignetech":req.body.assignetech}})
+           Ticket.updateOne({"_id":id},{"$set":{"assignetech":req.body.assignetech,"Dateaffectation":new Date()}})
            .then(resultat=> console.log(resultat)) 
            
            // .then(() => res.status(201).json({

@@ -25,7 +25,7 @@ export class DemandeenvoyerComponent implements OnInit {
 public ticket:Ticket ;
   public showTicketaffectation = false;
   public currentticket=tickets[0];
- 
+ public demandetest:Demande;
   public fetchedTechniciens=users;
   public fetchedadmin=users;
   public user:User;
@@ -102,25 +102,27 @@ onAddSubmit(){
 
 
 
-onClickShowForm2(idticket:string){
+onClickShowForm2(idticket:string,demande){
+  this.demandetest=demande;
+  // this.userService.getoneticket(idticket).subscribe(
+  //   (resultatUser) => {
+  //     this.ticket = resultatUser;
+  //      console.log(resultatUser);
+  //   }
   
+  // );
+  this.userService.getUser(demande.user_tickets[0].demandeur).subscribe(
+    (resultat:any) => {
+      console.log(resultat);
+      this.user = resultat;
+    
+    });
   this.showTicketDetails = true;
  // getoneticket(id:string)
- this.userService.getoneticket(idticket).subscribe(
-  (resultatUser) => {
-    this.ticket = resultatUser;
-     console.log(resultatUser);
-  }
 
-);
   this.currentticket=this.ticket;
 //ticket.opened="opened";
-this.userService.getUser(this.currentticket.demandeur) .subscribe(
-(resultat:any) => {
-  console.log(resultat);
-  this.user = resultat;
 
-});
 this.userService.getUser(this.currentticket.assignetech) .subscribe(
   (resultat:any) => {
     console.log(resultat);

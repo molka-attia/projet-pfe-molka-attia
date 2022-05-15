@@ -1,5 +1,7 @@
 import { Component,  OnDestroy, OnInit  } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { User } from '../admin/user/user.model';
+import { AdminService } from '../services/admin.service';
 import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-main-dash-all',
@@ -15,19 +17,33 @@ export class MainDashAllComponent implements OnInit ,OnDestroy {
   utilisateur : boolean;
   admin:boolean=false;
 token2:any;
-
+aff=0;
+technicienId = localStorage.getItem('user');
+public user:User;
   constructor(
     public authService : AuthService,
+    private userService : AdminService,
     ) { }
 
     ngOnInit(): void {
       this.authListenerSubs= this.authService.getAuthStatusListener().subscribe(isAuthenticated=>{
         this.userIsAuthenticated= isAuthenticated;
       });
+  
+      /** technicienId = localStorage.getItem('user');
+  constructor(private userService : AdminService) { }
+  */
+      this.userService.getUser(JSON.parse(this.technicienId).userId) .subscribe(
+        (resultat:any) => {
+          console.log(resultat);
+          this.user = resultat;
+        
+        });
       const token = localStorage.getItem('id_token');
       if(token){
         this.userIsAuthenticated=true;
       }
+      
       
       const type = JSON.parse(localStorage.getItem('user')).type;
       if(type=="technicien"){
@@ -80,5 +96,13 @@ token2:any;
     }
   onLogoutClick() {
     this.authService.logout();
+  }
+  afficher(){
+    if(this.aff==0){
+    this.aff=1;}
+    else{
+      this.aff=0;
+    }
+
   }
 }

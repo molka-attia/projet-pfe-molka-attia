@@ -7,6 +7,10 @@ import { TicketComponent } from './ticket/ticket.component';
 import { MainDashUtilisateurComponent } from './main-dash-utilisateur/main-dash-utilisateur.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArchiveComponent } from './archive/archive.component';
+import { MatTableModule } from '@angular/material/table';
+
+import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { ArchiveComponent } from './archive/archive.component';
   imports: [
     CommonModule,
     UtilisateurRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatPaginatorModule, 
+    MatTableModule
   ]
 })
 export class UtilisateurModule { }

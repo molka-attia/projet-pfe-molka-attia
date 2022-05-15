@@ -19,6 +19,15 @@ exports.getDemandes =  (req, res, next) =>{
                 as: 'user_demande'
             }
         },
+        {$set: {ticket_id: {$toObjectId: "$ticket_id"} }},
+        {
+            $lookup: {
+                from: 'tickets',
+                localField: 'ticket_id',
+                foreignField: '_id',
+                as: 'user_tickets'
+            }
+        },
         // {$sort:{
         //     Datecreaation:-1}},
         {
@@ -41,6 +50,15 @@ exports.getDemandesenvoyer =  (req, res, next) =>{
                 localField: 'recepteur_id',
                 foreignField: '_id',
                 as: 'user_demande'
+            }
+        },
+        {$set: {ticket_id: {$toObjectId: "$ticket_id"} }},
+        {
+            $lookup: {
+                from: 'tickets',
+                localField: 'ticket_id',
+                foreignField: '_id',
+                as: 'user_tickets'
             }
         },
         // {$sort:{

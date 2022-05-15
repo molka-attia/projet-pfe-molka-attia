@@ -49,7 +49,18 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:3000/api/tickets/ticketscloturer`,{headers:this.head});
     }
    
+////////////////////////////////////////////getdepartement//////////////////////////////////////
 
+
+getDepartements() {
+  //ticketscloturer 
+  return this.http.get<any>(`http://localhost:3000/api/departement/getdepartement`,{headers:this.head});
+  }
+
+
+
+
+/////////////////////////////////////////////////////////////////////
 
   getTickets(){
     
@@ -61,15 +72,49 @@ export class AdminService {
   
     return this.http.get<any>(`http://localhost:3000/api/users/${id}/ticketsfilter`,{headers:this.head});
   }
+
+  getTicketsfiltreruser(groupe:string,id:String){
+  
+    return this.http.get<any>(`http://localhost:3000/api/users/${groupe}/${id}/ticketsfilteruser`,{headers:this.head});
+  }
+
+  getTicketsfiltrertech(groupe:string,id:String){
+  
+    return this.http.get<any>(`http://localhost:3000/api/users/${groupe}/${id}/ticketsfiltertech`,{headers:this.head});
+  }
+
+
+
+
+  getTicketscloturerfiltreruser(groupe:string,id:String){
+  
+    return this.http.get<any>(`http://localhost:3000/api/users/${groupe}/${id}/ticketsfilterusercloturer`,{headers:this.head});
+  }
+
+  getTicketscloturerfiltrer(id:String){
+  
+    return this.http.get<any>(`http://localhost:3000/api/users/${id}/ticketscloturerfilter`,{headers:this.head});
+  }
   
 
 
+
+
+
   addUser(user:User){
+     /** prenom: {type: String, required: false},
+    tel: {type: String, required: false},
+    poste: {type: String, required: false}, */ 
     const userData = new FormData();
     userData.append('name',user.name);
+    userData.append('prenom',user.prenom);
+   
     userData.append('email',user.email);
+    userData.append('tel',user.tel);
+    userData.append('poste',user.poste);
     userData.append('password',user.password);
     userData.append('type',user.type);
+    userData.append('departement_id',user.departement_id);
     userData.append('user_img',user.user_img);
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
@@ -112,11 +157,19 @@ export class AdminService {
 ajoutertechnicien(user:User){
   const userData = new FormData();
   userData.append('name',user.name);
+  userData.append('prenom',user.prenom);
+ 
   userData.append('email',user.email);
+  userData.append('tel',user.tel);
+  userData.append('poste',user.poste);
   userData.append('password',user.password);
-  userData.append('type',"technicien");
+  userData.append('type','technicien');
+  userData.append('departement_id',user.departement_id);
   userData.append('user_img',user.user_img);
+
   userData.append('groupe_id',user.groupe_id);
+ 
+ 
   const ticketData = {email:user.email}
 //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
@@ -181,10 +234,15 @@ envoyermailechinformer(user:User){
 
     const userData = new FormData();
     userData.append('name',user.name);
+    userData.append('prenom',user.prenom);
     userData.append('email',user.email);
+    userData.append('tel',user.tel);
+    userData.append('poste',user.poste);
+    userData.append('password',user.password);
     userData.append('type',"utilisateur");
-     userData.append('password',user.password);
+    userData.append('departement_id',user.departement_id);
     userData.append('user_img',user.user_img);
+
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
 
@@ -200,9 +258,13 @@ envoyermailechinformer(user:User){
 
     const userData = new FormData();
     userData.append('name',user.name);
+    userData.append('prenom',user.prenom);
     userData.append('email',user.email);
+    userData.append('tel',user.tel);
+    userData.append('poste',user.poste);
+    userData.append('password',user.password);
     userData.append('type',"admin");
-     userData.append('password',user.password);
+    userData.append('departement_id',user.departement_id);
     userData.append('user_img',user.user_img);
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
@@ -219,9 +281,13 @@ envoyermailechinformer(user:User){
 
     const userData = new FormData();
     userData.append('name',user.name);
+    userData.append('prenom',user.prenom);
     userData.append('email',user.email);
+    userData.append('tel',user.tel);
+    userData.append('poste',user.poste);
+    userData.append('password',user.password);
     userData.append('type',"technicien");
-     userData.append('password',user.password);
+    userData.append('departement_id',user.departement_id);
     userData.append('user_img',user.user_img);
 
   //  userData.append('club_id',JSON.parse(localStorage.getItem('user')).club_id);
@@ -336,6 +402,8 @@ getoneticket(id:string){
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getTechtickets`,{headers:this.head});
   }
+
+
   getTicketsUser(id:string){
     
     return this.http.get<any>(`http://localhost:3000/api/tickets/${id}/getUsertickets`,{headers:this.head});

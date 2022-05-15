@@ -1,3 +1,5 @@
+import { Ticket } from "src/app/admin/ticket/ticket.model";
+
 export interface Demande {
     _id?: string;
     contenu?:string;
@@ -7,6 +9,7 @@ export interface Demande {
     etat?:string;
     Datecreaation?:Date;
     Datereponse?:Date;
+    user_tickets?:Ticket[];
   }
   
 

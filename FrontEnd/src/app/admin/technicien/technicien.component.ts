@@ -7,6 +7,7 @@ import { users } from './users-list';
 import {AdminService } from '../../services/admin.service';
 import { Groupe } from '../groupe/groupe.model';
 import { groupes } from '../groupe/groupes-list';
+import { departements } from '../user/departements-list';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class TechnicienComponent implements OnInit {
    public fetchedspecialite;
    public fetchedgroupes=groupes;
    formAffecter:FormGroup;
+   public fetchedDepatments=departements;
    
 
   ngOnInit(): void {
@@ -53,20 +55,34 @@ export class TechnicienComponent implements OnInit {
          console.log(resultatUser);
       }
       );
+      this.userService.getDepartements().subscribe(
+        (resultatUser) => {
+          this.fetchedDepatments = resultatUser;
+        
+           console.log(resultatUser);
+        }
+      );
     
     this.formaddUser = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
+      prenom: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
+      tel: new FormControl(null,{validators:[Validators.required]}),
+      poste: new FormControl(null,{validators:[Validators.required]}),
      password: new FormControl(null,{validators:[Validators.required]}),
-     type: new FormControl(null),
-     user_img: new FormControl(null,{validators:[Validators.required]}),
+     departement_id: new FormControl(null,{validators:[Validators.required]}),
      groupe_id: new FormControl(null,{validators:[Validators.required]}),
+     user_img: new FormControl(null,{validators:[Validators.required]}),
     });
 
     this.formEdit = new FormGroup({
       name: new FormControl(null,{validators:[Validators.required]}),
+      prenom: new FormControl(null,{validators:[Validators.required]}),
       email: new FormControl(null,{validators:[Validators.required]}),
-       password: new FormControl(null,{validators:[Validators.required]}),
+      tel: new FormControl(null,{validators:[Validators.required]}),
+      poste: new FormControl(null,{validators:[Validators.required]}),
+     password: new FormControl(null,{validators:[Validators.required]}),
+     departement_id: new FormControl(null,{validators:[Validators.required]}),
     // type: new FormControl(null,{validators:[Validators.required]}),
      user_img: new FormControl(null,{validators:[Validators.required]}),
 
@@ -110,7 +126,7 @@ export class TechnicienComponent implements OnInit {
 
 
    this.userService.ajoutertechnicien(this.formaddUser.value);
-    this.userService.envoyermailech(this.formaddUser.value);
+   // this.userService.envoyermailech(this.formaddUser.value);
     this.showAddUserForm = false;
    // this.router.navigate(['dash-respo/events']);
   }

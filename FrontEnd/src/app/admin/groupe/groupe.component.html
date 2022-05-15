@@ -538,9 +538,16 @@
                                 <ul>
                                     
                                     
-                                      <li  *ngFor="let technicien of listtechniciens; let i = index"><span>{{technicien.name}}  :  </span> <img src="../../../assets/images/icons8-email-64.png"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">{{technicien.email}}</li>
+                                      <li  *ngFor="let technicien of listtechniciens.membre_groupe; let i = index" >
+                                        
+                                        <span>{{technicien.name}}  :  </span>
+                                         <img src="../../../assets/images/icons8-email-64.png"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">{{technicien.email}}
+                                       
+                                        
+                                        </li>
                                       <!-- <li><span>technicien:</span> {{technicienaffecte.name}}</li> -->
                                       <!-- <li><span>Solution:</span> {{currentticket.note}}</li> -->
+                                      
                                   </ul>
                               </div>
                               <!--//FEATURE LIST END-->
